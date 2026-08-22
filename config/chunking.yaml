@@ -1,0 +1,57 @@
+schema_version: "1.0"
+
+chunking:
+  soft_max_tokens: 500
+  hard_max_tokens: 750
+  oversized_overlap_tokens: 90
+  minimum_chunk_tokens: 50
+
+  preserve_evidence_text_unchanged: true
+  prepend_heading_path_to_embedding_text: true
+  include_neighbor_links: true
+
+  table_policy: "independent_unless_preceding_context_fits"
+  table_repeat_title_on_split: true
+  table_repeat_column_headers_on_split: true
+
+embedding:
+  baseline_model_id: "nomic-ai/nomic-embed-text-v1.5"
+  baseline_model_revision: "e9b6763023c676ca8431644204f50c2b100d9aab"
+  baseline_dimension: 768
+  similarity_metric: "cosine"
+  tokenizer_trust_remote_code: true
+
+  document_prefix: "search_document: "
+  query_prefix: "search_query: "
+  normalize_embeddings: true
+
+source_policy:
+  sce_rule21_tariff_pdf:
+    authority_tier: "primary_governing"
+    retrieval_tier: "default_current"
+    currency_status: "current_candidate"
+
+  sce_interconnection_handbook_pdf:
+    authority_tier: "primary_technical"
+    retrieval_tier: "default_current"
+    currency_status: "current_candidate"
+
+  sce_testing_certification_instruction_pdf:
+    authority_tier: "supporting_implementation"
+    retrieval_tier: "default_current"
+    currency_status: "current_candidate"
+
+  sce_interconnection_web:
+    authority_tier: "supporting_process"
+    retrieval_tier: "default_current"
+    currency_status: "current_candidate"
+
+  cpuc_rule21_overview:
+    authority_tier: "regulatory_overview"
+    retrieval_tier: "source_discovery"
+    currency_status: "current_candidate"
+
+  siwg_phase2_recommendations_pdf:
+    authority_tier: "historical_draft"
+    retrieval_tier: "historical_only"
+    currency_status: "historical"

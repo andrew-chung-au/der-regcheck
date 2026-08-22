@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "document_id": "sce_rule21_tariff_pdf",
+  "source_type": "pdf",
+  "source": {
+    "id": "sce_rule21_tariff_pdf",
+    "title": "SCE Rule 21 tariff",
+    "content_hash": "sha256:fixture"
+  },
+  "blocks": [
+    {
+      "block_id": "sce_rule21_tariff_pdf:p050:b0001",
+      "block_type": "heading",
+      "text": "E. INTERCONNECTION REQUEST SUBMISSION PROCESS",
+      "heading_path": [
+        "E. INTERCONNECTION REQUEST SUBMISSION PROCESS"
+      ],
+      "citation": {
+        "pdf_page_start": 50,
+        "pdf_page_end": 50,
+        "tariff_rule_sheet": "51",
+        "tariff_cpuc_sheet": "85469-E",
+        "section_ids": ["E"]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "sce_rule21_tariff_pdf:p050:b0002",
+      "block_type": "heading",
+      "text": "4. Interconnection Cost Responsibility",
+      "heading_path": [
+        "E. INTERCONNECTION REQUEST SUBMISSION PROCESS",
+        "4. Interconnection Cost Responsibility"
+      ],
+      "citation": {
+        "pdf_page_start": 50,
+        "pdf_page_end": 50,
+        "tariff_rule_sheet": "51",
+        "tariff_cpuc_sheet": "85469-E",
+        "section_ids": ["E", "4"]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "sce_rule21_tariff_pdf:p050:b0003",
+      "block_type": "paragraph",
+      "text": "An Applicant is responsible for interconnection fees and costs associated with parallel operation.",
+      "heading_path": [
+        "E. INTERCONNECTION REQUEST SUBMISSION PROCESS",
+        "4. Interconnection Cost Responsibility"
+      ],
+      "citation": {
+        "pdf_page_start": 50,
+        "pdf_page_end": 50,
+        "tariff_rule_sheet": "51",
+        "tariff_cpuc_sheet": "85469-E",
+        "section_ids": ["E", "4"]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "sce_rule21_tariff_pdf:p050:b0004",
+      "block_type": "list_item",
+      "text": "i) Costs may include facilities, upgrades, and associated studies.",
+      "heading_path": [
+        "E. INTERCONNECTION REQUEST SUBMISSION PROCESS",
+        "4. Interconnection Cost Responsibility"
+      ],
+      "citation": {
+        "pdf_page_start": 50,
+        "pdf_page_end": 50,
+        "tariff_rule_sheet": "51",
+        "tariff_cpuc_sheet": "85469-E",
+        "section_ids": ["E", "4"]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "sce_rule21_tariff_pdf:p050:b0005",
+      "block_type": "table",
+      "text": "Table E.1 | Fee category | Applicant responsibility |\n| --- | --- |\n| Study deposit | Applicant |",
+      "heading_path": [
+        "E. INTERCONNECTION REQUEST SUBMISSION PROCESS",
+        "4. Interconnection Cost Responsibility"
+      ],
+      "citation": {
+        "pdf_page_start": 50,
+        "pdf_page_end": 50,
+        "tariff_rule_sheet": "51",
+        "tariff_cpuc_sheet": "85469-E",
+        "section_ids": ["E", "4"]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    }
+  ]
+}
