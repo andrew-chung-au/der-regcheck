@@ -8,11 +8,9 @@ Usage:
     uv add pypdf beautifulsoup4 requests
     uv run python src/ingestion/extract_raw_content.py
 
-
 Input:
     data/corpus/corpus_metadata.json
     data/corpus/<downloaded source files>
-
 
 Output:
     data/processed/extracted/<document_id>.json
@@ -29,6 +27,11 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 from pypdf import PdfReader
+
+
+EXTRACTION_SCHEMA_VERSION = "1.0"
+PDF_EXTRACTION_METHOD = "pypdf_page_text"
+HTML_EXTRACTION_METHOD = "beautifulsoup_main_content_blocks"
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CORPUS_DIR = PROJECT_ROOT / "data" / "corpus"
@@ -95,7 +98,10 @@ def render_inline(element: Tag, base_url: str) -> str:
 def table_to_markdown(table: Tag, base_url: str) -> str:
     rows: list[list[str]] = []
     for tr in table.find_all("tr"):
-        cells = [render_inline(cell, base_url) for cell in tr.find_all(["th", "td"], recursive=False)]
+        cells = [
+            render_inline(cell, base_url)
+            for cell in tr.find_all(["th", "td"], recursive=False)
+        ]
         if cells:
             rows.append(cells)
 
@@ -129,7 +135,10 @@ def html_blocks(html_path: Path, source_url: str) -> list[dict[str, Any]]:
         if element.name != "li" and nearest_content_parent(element) is not None:
             continue
 
-        is_accordion = element.name == "button" and "accordion" in " ".join(element.get("class", [])).lower()
+        is_accordion = (
+            element.name == "button"
+            and "accordion" in " ".join(element.get("class", [])).lower()
+        )
         if element.name == "button" and not is_accordion:
             continue
 
@@ -138,14 +147,18 @@ def html_blocks(html_path: Path, source_url: str) -> list[dict[str, Any]]:
             heading = normalise_text(element.get_text(" ", strip=True))
             if not heading:
                 continue
-            active_headings = {key: value for key, value in active_headings.items() if key < level}
+            active_headings = {
+                key: value for key, value in active_headings.items() if key < level
+            }
             active_headings[level] = heading
             blocks.append(
                 {
                     "block_type": "heading",
                     "heading_level": level,
                     "heading": heading,
-                    "heading_path": " > ".join(active_headings[key] for key in sorted(active_headings)),
+                    "heading_path": " > ".join(
+                        active_headings[key] for key in sorted(active_headings)
+                    ),
                     "text": heading,
                 }
             )
@@ -165,7 +178,9 @@ def html_blocks(html_path: Path, source_url: str) -> list[dict[str, Any]]:
             blocks.append(
                 {
                     "block_type": block_type,
-                    "heading_path": " > ".join(active_headings[key] for key in sorted(active_headings)),
+                    "heading_path": " > ".join(
+                        active_headings[key] for key in sorted(active_headings)
+                    ),
                     "text": text,
                 }
             )
@@ -188,24 +203,32 @@ def extract_pdf(source: dict[str, Any], input_path: Path) -> dict[str, Any]:
         )
 
     return {
+        "schema_version": EXTRACTION_SCHEMA_VERSION,
         "document_id": source["id"],
         "source_type": "pdf",
+        "extraction_method": PDF_EXTRACTION_METHOD,
         "extracted_at": now_iso(),
         "page_count": len(pages),
         "pages": pages,
-        "structured_text": "\n\n".join(f"{page['marker']}\n{page['text']}" for page in pages),
+        "structured_text": "\n\n".join(
+            f"{page['marker']}\n{page['text']}" for page in pages
+        ),
     }
 
 
 def extract_html(source: dict[str, Any], input_path: Path) -> dict[str, Any]:
     blocks = html_blocks(input_path, source["url"])
     return {
+        "schema_version": EXTRACTION_SCHEMA_VERSION,
         "document_id": source["id"],
         "source_type": "html",
+        "extraction_method": HTML_EXTRACTION_METHOD,
         "extracted_at": now_iso(),
         "blocks": blocks,
         "structured_text": "\n\n".join(
-            block["text"] if block["block_type"] != "heading" else f"--- H{block['heading_level']}: {block['heading']} ---"
+            block["text"]
+            if block["block_type"] != "heading"
+            else f"--- H{block['heading_level']}: {block['heading']} ---"
             for block in blocks
         ),
     }
@@ -215,8 +238,10 @@ def extract_source(source: dict[str, Any]) -> dict[str, Any]:
     if not source.get("eligible_for_extraction", False):
         raise ValueError(
             f"Source {source['id']} is not eligible for extraction. "
-            f"automated_validation.status={source.get('automated_validation', {}).get('status')}, "
-            f"manual_review.status={source.get('manual_review', {}).get('status')}"
+            f"automated_validation.status="
+            f"{source.get('automated_validation', {}).get('status')}, "
+            f"manual_review.status="
+            f"{source.get('manual_review', {}).get('status')}"
         )
 
     input_path = resolve_local_path(source)
@@ -253,7 +278,13 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    manifest = {"extracted_at": now_iso(), "documents": [], "failures": [], "skipped": []}
+    manifest = {
+        "schema_version": EXTRACTION_SCHEMA_VERSION,
+        "extracted_at": now_iso(),
+        "documents": [],
+        "failures": [],
+        "skipped": [],
+    }
 
     for source in metadata.get("sources", []):
         if not source.get("eligible_for_extraction", False):
@@ -261,8 +292,12 @@ def main() -> None:
                 {
                     "document_id": source["id"],
                     "reason": "not_eligible_for_extraction",
-                    "validation_status": source.get("automated_validation", {}).get("status"),
-                    "manual_review_status": source.get("manual_review", {}).get("status"),
+                    "validation_status": source.get("automated_validation", {}).get(
+                        "status"
+                    ),
+                    "manual_review_status": source.get("manual_review", {}).get(
+                        "status"
+                    ),
                 }
             )
             print(f"SKIPPED (not eligible): {source['id']}")
@@ -271,13 +306,17 @@ def main() -> None:
         try:
             extraction = extract_source(source)
             output_path = OUTPUT_DIR / f"{source['id']}.json"
-            output_path.write_text(json.dumps(extraction, indent=2), encoding="utf-8")
+            output_path.write_text(
+                json.dumps(extraction, indent=2), encoding="utf-8"
+            )
             manifest["documents"].append(
                 {
                     "document_id": source["id"],
                     "status": "success",
                     "output_path": str(output_path.relative_to(PROJECT_ROOT)),
                     "source_hash": source.get("content_hash"),
+                    "schema_version": extraction["schema_version"],
+                    "extraction_method": extraction["extraction_method"],
                     "extracted_at": extraction["extracted_at"],
                 }
             )

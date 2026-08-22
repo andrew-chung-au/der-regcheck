@@ -1,7 +1,9 @@
 {
+  "schema_version": "1.0",
   "document_id": "sce_rule21_tariff_pdf",
   "source_type": "pdf",
-  "extracted_at": "2026-08-21T02:48:17.402169Z",
+  "extraction_method": "pypdf_page_text",
+  "extracted_at": "2026-08-22T10:42:21.857628Z",
   "page_count": 233,
   "pages": [
     {

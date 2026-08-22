@@ -1,47 +1,60 @@
 {
-  "extracted_at": "2026-08-21T02:48:09.816950Z",
+  "schema_version": "1.0",
+  "extracted_at": "2026-08-22T10:42:14.910872Z",
   "documents": [
     {
       "document_id": "cpuc_rule21_overview",
       "status": "success",
       "output_path": "data/processed/extracted/cpuc_rule21_overview.json",
       "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
-      "extracted_at": "2026-08-21T02:48:09.850119Z"
+      "schema_version": "1.0",
+      "extraction_method": "beautifulsoup_main_content_blocks",
+      "extracted_at": "2026-08-22T10:42:14.940435Z"
     },
     {
       "document_id": "sce_rule21_tariff_pdf",
       "status": "success",
       "output_path": "data/processed/extracted/sce_rule21_tariff_pdf.json",
       "source_hash": "sha256:9d88f030adaea8ae9b8e072385325805ba72b477f0d25d9e9c302ffe61a81e0d",
-      "extracted_at": "2026-08-21T02:48:17.402169Z"
+      "schema_version": "1.0",
+      "extraction_method": "pypdf_page_text",
+      "extracted_at": "2026-08-22T10:42:21.857628Z"
     },
     {
       "document_id": "sce_interconnection_handbook_pdf",
       "status": "success",
       "output_path": "data/processed/extracted/sce_interconnection_handbook_pdf.json",
       "source_hash": "sha256:f64bc3926e348f8e8a70362c32eb504fc88aeda9a356f4b93bd1e6d318c849ae",
-      "extracted_at": "2026-08-21T02:48:38.649191Z"
+      "schema_version": "1.0",
+      "extraction_method": "pypdf_page_text",
+      "extracted_at": "2026-08-22T10:42:41.447446Z"
     },
     {
       "document_id": "sce_interconnection_web",
       "status": "success",
       "output_path": "data/processed/extracted/sce_interconnection_web.json",
       "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
-      "extracted_at": "2026-08-21T02:48:38.699674Z"
+      "schema_version": "1.0",
+      "extraction_method": "beautifulsoup_main_content_blocks",
+      "extracted_at": "2026-08-22T10:42:41.491183Z"
     },
     {
       "document_id": "siwg_phase2_recommendations_pdf",
       "status": "success",
       "output_path": "data/processed/extracted/siwg_phase2_recommendations_pdf.json",
       "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
-      "extracted_at": "2026-08-21T02:48:39.465941Z"
+      "schema_version": "1.0",
+      "extraction_method": "pypdf_page_text",
+      "extracted_at": "2026-08-22T10:42:42.121691Z"
     },
     {
       "document_id": "sce_testing_certification_instruction_pdf",
       "status": "success",
       "output_path": "data/processed/extracted/sce_testing_certification_instruction_pdf.json",
       "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
-      "extracted_at": "2026-08-21T02:48:40.367666Z"
+      "schema_version": "1.0",
+      "extraction_method": "pypdf_page_text",
+      "extracted_at": "2026-08-22T10:42:42.782107Z"
     }
   ],
   "failures": [],

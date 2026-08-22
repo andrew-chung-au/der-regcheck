@@ -1,7 +1,9 @@
 {
+  "schema_version": "1.0",
   "document_id": "cpuc_rule21_overview",
   "source_type": "html",
-  "extracted_at": "2026-08-21T02:48:09.850119Z",
+  "extraction_method": "beautifulsoup_main_content_blocks",
+  "extracted_at": "2026-08-22T10:42:14.940435Z",
   "blocks": [
     {
       "block_type": "heading",

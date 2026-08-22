@@ -1,7 +1,9 @@
 {
+  "schema_version": "1.0",
   "document_id": "sce_interconnection_web",
   "source_type": "html",
-  "extracted_at": "2026-08-21T02:48:38.699674Z",
+  "extraction_method": "beautifulsoup_main_content_blocks",
+  "extracted_at": "2026-08-22T10:42:41.491183Z",
   "blocks": [
     {
       "block_type": "heading",

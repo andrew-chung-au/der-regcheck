@@ -1,7 +1,9 @@
 {
+  "schema_version": "1.0",
   "document_id": "sce_testing_certification_instruction_pdf",
   "source_type": "pdf",
-  "extracted_at": "2026-08-21T02:48:40.367666Z",
+  "extraction_method": "pypdf_page_text",
+  "extracted_at": "2026-08-22T10:42:42.782107Z",
   "page_count": 25,
   "pages": [
     {
