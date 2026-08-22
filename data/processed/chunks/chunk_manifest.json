@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "chunked_at": "2026-08-22T18:50:29.373540Z",
+  "embedding": {
+    "baseline_model_id": "nomic-ai/nomic-embed-text-v1.5",
+    "baseline_model_revision": "e9b6763023c676ca8431644204f50c2b100d9aab",
+    "baseline_dimension": 768,
+    "similarity_metric": "cosine",
+    "tokenizer_trust_remote_code": true,
+    "document_prefix": "search_document: ",
+    "query_prefix": "search_query: ",
+    "normalize_embeddings": true
+  },
+  "documents": [
+    {
+      "document_id": "cpuc_rule21_overview",
+      "status": "success",
+      "output_path": "data/processed/chunks/cpuc_rule21_overview.json",
+      "output_chunks": 26
+    },
+    {
+      "document_id": "sce_interconnection_handbook_pdf",
+      "status": "success",
+      "output_path": "data/processed/chunks/sce_interconnection_handbook_pdf.json",
+      "output_chunks": 394
+    },
+    {
+      "document_id": "sce_interconnection_web",
+      "status": "success",
+      "output_path": "data/processed/chunks/sce_interconnection_web.json",
+      "output_chunks": 35
+    },
+    {
+      "document_id": "sce_rule21_tariff_pdf",
+      "status": "success",
+      "output_path": "data/processed/chunks/sce_rule21_tariff_pdf.json",
+      "output_chunks": 535
+    },
+    {
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "status": "success",
+      "output_path": "data/processed/chunks/sce_testing_certification_instruction_pdf.json",
+      "output_chunks": 31
+    },
+    {
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "status": "success",
+      "output_path": "data/processed/chunks/siwg_phase2_recommendations_pdf.json",
+      "output_chunks": 28
+    }
+  ],
+  "failures": []
+}

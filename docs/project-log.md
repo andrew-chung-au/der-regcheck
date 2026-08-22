@@ -139,3 +139,144 @@ Create a deterministic, reviewable evidence-normalisation stage between raw extr
 - Review normalised source outputs before designing structural chunk assembly.
 - Implement deterministic, section-aware chunking as the next pipeline stage.
 - Preserve canonical evidence text separately from any future embedding-oriented context text.
+
+## 2026-08-23 - Structural chunking and citation preservation
+
+### Goal
+Transform normalised evidence blocks into searchable chunks while preserving citations and source metadata.
+
+### What I did
+- Built `src/processing/chunk_documents.py` with:
+  - Structural block assembly (keeps headings with their content)
+  - Evidence text preservation (unchanged from normalised blocks)
+  - Embedding text with heading context prepended
+  - Citation metadata merging (PDF pages, tariff sheets, Cal. PUC sheets, sections)
+  - Neighbour chunk linking (previous/next chunk IDs)
+  - Oversized block flagging (without text mutation)
+- Built `src/processing/quality_check_chunks.py` with:
+  - Neighbour link validation
+  - Token limit checking
+  - JSON and Markdown quality reports
+- Added `config/chunking.yaml` with:
+  - Soft max: 500 tokens, Hard max: 750 tokens
+  - Overlap: 90 tokens for oversized chunks
+  - Source policy (authority tiers, retrieval tiers)
+- Generated 1,049 chunks across 6 sources
+- Added regression tests for chunking (20 tests total)
+
+### What I learned
+- Must keep parent headings with nested child headings (avoid orphan chunks)
+- Tables should stay with preceding context when under hard limit
+- Evidence text must never be mutated (breaks citation integrity)
+- Heading context belongs in embedding text, not evidence text
+- 5 handbook TOC blocks exceed hard limit (accepted as documented exceptions)
+
+### Decision made
+- Use structural chunking with citation preservation
+- Flag oversized blocks rather than splitting mid-evidence
+- Keep heading context in embedding_text only
+- Preserve source policy metadata (authority tier, retrieval tier)
+
+### Problems
+- Initial implementation created orphan heading chunks (fixed by keeping headings with descendants)
+- Five handbook TOC blocks exceed 750 tokens (1,033-1,561 tokens)
+- These are dense list-of-lists blocks, not substantive requirements
+
+### Next step
+- Embed chunks with Nomic nomic-embed-text-v1.5
+- Generate evaluation queries
+- Compare BM25, vector, and hybrid retrieval
+
+---
+
+## 2026-08-23 - Embedding and retrieval evaluation
+
+### Goal
+Evaluate retrieval approaches (BM25, vector, hybrid) with multiple metadata weighting schemes.
+
+### What I did
+- Embedded 1,049 chunks with Nomic nomic-embed-text-v1.5:
+  - 768-dimensional vectors
+  - `search_document:` prefix on embedding text
+  - Batched inference with retry logic
+- Generated 100 synthetic queries with Gemini 3.5-flash-lite:
+  - LLM-generated from sampled chunks
+  - Query types: product_capability, market_analysis, evidence_governance, technical_deep_dive, broad_research
+  - Gold metadata preserved for each query
+- Built evaluation pipeline:
+  - BM25 (token overlap)
+  - Vector (cosine similarity)
+  - Hybrid (reciprocal rank fusion)
+  - 5 metadata weighting schemes (equal, source-heavy, section-heavy, page-heavy, authority-heavy)
+- Computed metrics: nDCG@10, MRR, Recall@10
+- Saved results to JSONL (1,500 records, reproducible)
+
+### What I learned
+- Vector retrieval outperforms hybrid and BM25 (nDCG@10: 0.826 vs 0.777 vs 0.745)
+- Weighting scheme has modest impact (4% difference across schemes)
+- Hybrid has best MRR (0.903 vs 0.893 for vector)
+- Equal weighting works best for vector retrieval
+- Section-heavy helps hybrid slightly
+
+### Decision made
+- Use vector retrieval with equal weighting for production
+- Keep evaluation file-based (reproducible, no DB needed for reviewers)
+- Add PostgreSQL/pgvector for production deployment (separate from evaluation)
+
+### Problems
+- None major
+- All 100 queries generated successfully
+- All 1,500 evaluation results computed
+
+### Next step
+- Load chunks into PostgreSQL/pgvector
+- Build production retrieval layer
+- Add RAG generation with Gemini
+
+---
+
+## 2026-08-23 - Production database and retrieval
+
+### Goal
+Build production-ready RAG infrastructure with PostgreSQL/pgvector.
+
+### What I did
+- Set up PostgreSQL with pgvector (Docker: `pgvector/pgvector:pg16`)
+- Built `src/database/` module:
+  - `db_connection.py`: Connection pooling
+  - `db_init.py`: Schema (chunks + chunk_embeddings with pgvector)
+  - `db_chunks.py`: CRUD operations (insert, search, filter)
+- Built `src/scripts/load_chunks_to_db.py`:
+  - Loads 1,049 chunks from JSON files
+  - Loads 1,049 embeddings from JSONL files
+  - Validates counts match
+- Built `src/retrieval/retrieve.py`:
+  - Query encoding with Nomic (`search_query:` prefix)
+  - pgvector similarity search (cosine distance)
+  - Metadata filtering (by source_id)
+  - Formatted results for RAG context
+- Database stats:
+  - 1,049 chunks with full metadata
+  - 1,049 embeddings (768-dim vectors)
+  - IVFFlat index for fast similarity search
+
+### What I learned
+- pgvector enables efficient similarity search at scale
+- Database is better for production than loading all embeddings into memory
+- Keep evaluation file-based for reproducibility
+- Production and evaluation can coexist (different storage backends)
+
+### Decision made
+- Use PostgreSQL/pgvector for production RAG
+- Keep evaluation file-based (JSONL)
+- Separate concerns: DB for ops, files for eval
+
+### Problems
+- Needed pgvector Docker image (not standard PostgreSQL)
+- Had to fix script pathing (use `src/scripts/` and run as modules)
+
+### Next step
+- Build RAG generation pipeline with Gemini
+- Add reranking (cross-encoder)
+- Add query rewriting
+- Build API or Streamlit interface

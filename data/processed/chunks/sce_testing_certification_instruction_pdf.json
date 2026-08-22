@@ -1,0 +1,1473 @@
+{
+  "schema_version": "1.0",
+  "document_id": "sce_testing_certification_instruction_pdf",
+  "source": {
+    "id": "sce_testing_certification_instruction_pdf",
+    "title": "SCE Rule 21 testing and certification instruction sheet (PDF)",
+    "url": "https://www.sce.com/sites/default/files/custom-files/PDF_Files/Rule_21_Testing_and_Certification_Instruction_Sheet_Final_2025-06-05.pdf",
+    "source_org": "SCE",
+    "content_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+    "last_checked": "2026-08-21T02:43:08.987296Z",
+    "is_current": true
+  },
+  "chunked_at": "2026-08-22T18:50:29.600646Z",
+  "chunking_method": "structural_block_assembly_v1",
+  "source_policy": {
+    "authority_tier": "supporting_implementation",
+    "retrieval_tier": "default_current",
+    "currency_status": "current_candidate"
+  },
+  "chunks": [
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0001",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 1,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p003:b0001",
+        "sce_testing_certification_instruction_pdf:p003:b0002",
+        "sce_testing_certification_instruction_pdf:p003:b0003",
+        "sce_testing_certification_instruction_pdf:p003:b0004",
+        "sce_testing_certification_instruction_pdf:p004:b0005",
+        "sce_testing_certification_instruction_pdf:p004:b0006",
+        "sce_testing_certification_instruction_pdf:p005:b0007"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [],
+      "evidence_text": "Main References\n\nPG&E: \u2022 PG&E\u2019s Electric Rule 21 Tariff \u2022 Transmission and Distribution Interconnection Handbooks \u2022 Greenbook Manual \u2022 UL 1741 SB CSIP Requirements \u2022 Advice Letters \u2022 For more information, visit PG&E\u2019s Interconnections page\n\nSCE: \u2022 SCE\u2019s Electric Rule 21 Tariff \u2022 Electric Service Requirements \u2022 Interconnection Handbook \u2022 NEM/NBT Interconnection Handbook \u2022 Advice Letters \u2022 For more information, visit SCE\u2019s Interconnections page\n\nSDG&E: \u2022 SDGE\u2019s Electric Rule 21 Tariff \u2022 Transmission Interconnection Handbook \u2022 Distribution Interconnection Handbook \u2022 Advice Letters\n\nList of Acronyms:\n\nAcronyms and Abbreviations AC Alternating Current ATL Authorized Test Laboratory CALSSA California Solar and Storage Association CEC California Energy Commission CPUC California Public Utilities Commission CRD Certification Requirements Decision CSIP Common Smart Inverter Profile (a.k.a. IEEE 2030.5 Implementation Guide for Smart Inverters) DC Direct Current DER Distributed Energy Resource(s) ESS Energy Storage System EVSE Electric Vehicle Supply Equipment IEC International Electrotechnical Commission IEEE Institute of Electrical and Electronics Engineers ILAC International Laboratory Accreditation Cooperation ISO International Organization for Standardization MASH Multifamily Affordable Solar Housing MOLRT Maximum Open Loop Response Time MRA Mutual Recognition Arrangement NEM/NBT Net Energy Metering / Net Billing Tariff NEMFC Net Energy Metering \u2013 Fuel Cell NEMV / NBTV Net Energy Metering Virtual / Net Billing Tariff Virtual NRTL Nationally Recognized Testing Laboratory OEM Original Equipment Manufacturer(s) OSHA Occupational Safety and Health Administration PCS Power Control System(s) PG&E Pacific Gas and Electric PKI Public Key Infrastructure PTO Permission To Operate PV Photovoltaic System RES-BCT Renewable Energy Self-Generation Bill Credit Transfer SCE Southern California Edison SDG&E San Diego Gas and Electric\n\nAcronyms and Abbreviations SRD Source Requirement Document(s) SOMAH Solar on Multifamily Affordable Housing UL Underwriters Laboratories V1G Unidirectional Vehicle Charging V2G Vehicle-to-Grid (bidirectional charging/discharging) VGI Vehicle Grid Integration",
+      "evidence_text_sha256": "sha256:1a1aea8f853f7aefec38feaca43a53c2198d802574a10b48f123ea91786102e7",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Main References\n\nPG&E: \u2022 PG&E\u2019s Electric Rule 21 Tariff \u2022 Transmission and Distribution Interconnection Handbooks \u2022 Greenbook Manual \u2022 UL 1741 SB CSIP Requirements \u2022 Advice Letters \u2022 For more information, visit PG&E\u2019s Interconnections page\n\nSCE: \u2022 SCE\u2019s Electric Rule 21 Tariff \u2022 Electric Service Requirements \u2022 Interconnection Handbook \u2022 NEM/NBT Interconnection Handbook \u2022 Advice Letters \u2022 For more information, visit SCE\u2019s Interconnections page\n\nSDG&E: \u2022 SDGE\u2019s Electric Rule 21 Tariff \u2022 Transmission Interconnection Handbook \u2022 Distribution Interconnection Handbook \u2022 Advice Letters\n\nList of Acronyms:\n\nAcronyms and Abbreviations AC Alternating Current ATL Authorized Test Laboratory CALSSA California Solar and Storage Association CEC California Energy Commission CPUC California Public Utilities Commission CRD Certification Requirements Decision CSIP Common Smart Inverter Profile (a.k.a. IEEE 2030.5 Implementation Guide for Smart Inverters) DC Direct Current DER Distributed Energy Resource(s) ESS Energy Storage System EVSE Electric Vehicle Supply Equipment IEC International Electrotechnical Commission IEEE Institute of Electrical and Electronics Engineers ILAC International Laboratory Accreditation Cooperation ISO International Organization for Standardization MASH Multifamily Affordable Solar Housing MOLRT Maximum Open Loop Response Time MRA Mutual Recognition Arrangement NEM/NBT Net Energy Metering / Net Billing Tariff NEMFC Net Energy Metering \u2013 Fuel Cell NEMV / NBTV Net Energy Metering Virtual / Net Billing Tariff Virtual NRTL Nationally Recognized Testing Laboratory OEM Original Equipment Manufacturer(s) OSHA Occupational Safety and Health Administration PCS Power Control System(s) PG&E Pacific Gas and Electric PKI Public Key Infrastructure PTO Permission To Operate PV Photovoltaic System RES-BCT Renewable Energy Self-Generation Bill Credit Transfer SCE Southern California Edison SDG&E San Diego Gas and Electric\n\nAcronyms and Abbreviations SRD Source Requirement Document(s) SOMAH Solar on Multifamily Affordable Housing UL Underwriters Laboratories V1G Unidirectional Vehicle Charging V2G Vehicle-to-Grid (bidirectional charging/discharging) VGI Vehicle Grid Integration",
+      "estimated_evidence_tokens": 335,
+      "estimated_embedding_tokens": 351,
+      "citation": {
+        "pdf_page_start": 3,
+        "pdf_page_end": 5,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": null,
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0002",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0002",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 2,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p006:b0008",
+        "sce_testing_certification_instruction_pdf:p006:b0009"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 1. Rule 21 Certification and Testing Standards"
+      ],
+      "evidence_text": "Section 1. Rule 21 Certification and Testing Standards\n\nStandard (Testing) Applicable Rule 21 Topic / Interconnection Option Comments UL 1741 or UL 1741 SA \u2022 Section Mm. Inadvertent Export \u2022 Section Hh. Smart Inverter (requires UL 1741 \u2013 SB, see below) UL 1741 or UL 1741 Supplement A (UL 1741 SA) are required for all applications using inverter-based technology. Note: Refer to Section 2.6 for an exemption currently provided for V2G DC electric vehicle supply equipment (EVSE). UL 1741 SB \u2022 Section Hh. Smart Inverter Generating Facility Design and Operation Requirements Required for all applications using Smart Inverter based technology. The inverter requirements are intended to be consistent with UL 1741 Supplement B (UL 1741 SB) using as the source requirement document ANSI/IEEE 1547-2018 and IEEE1547.1-2020 standards. Note: Refer to Section 2.6 for an exemption currently provided for V2G DC electric vehicle supply equipment (EVSE). IEEE 2030.5 \u2022 Section Hh. Communications requirements for Smart Inverters Required for all applications using Smart Inverter based technology. The default application-level protocol shall be IEEE",
+      "evidence_text_sha256": "sha256:ddf4ffaae76e1b2654b474f0a21691dd1bb3e8e0a81fe567241d250dccaa62ac",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 1. Rule 21 Certification and Testing Standards\n\nSection 1. Rule 21 Certification and Testing Standards\n\nStandard (Testing) Applicable Rule 21 Topic / Interconnection Option Comments UL 1741 or UL 1741 SA \u2022 Section Mm. Inadvertent Export \u2022 Section Hh. Smart Inverter (requires UL 1741 \u2013 SB, see below) UL 1741 or UL 1741 Supplement A (UL 1741 SA) are required for all applications using inverter-based technology. Note: Refer to Section 2.6 for an exemption currently provided for V2G DC electric vehicle supply equipment (EVSE). UL 1741 SB \u2022 Section Hh. Smart Inverter Generating Facility Design and Operation Requirements Required for all applications using Smart Inverter based technology. The inverter requirements are intended to be consistent with UL 1741 Supplement B (UL 1741 SB) using as the source requirement document ANSI/IEEE 1547-2018 and IEEE1547.1-2020 standards. Note: Refer to Section 2.6 for an exemption currently provided for V2G DC electric vehicle supply equipment (EVSE). IEEE 2030.5 \u2022 Section Hh. Communications requirements for Smart Inverters Required for all applications using Smart Inverter based technology. The default application-level protocol shall be IEEE",
+      "estimated_evidence_tokens": 207,
+      "estimated_embedding_tokens": 234,
+      "citation": {
+        "pdf_page_start": 6,
+        "pdf_page_end": 6,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0001",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0003",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0003",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 3,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p006:b0010",
+        "sce_testing_certification_instruction_pdf:p006:b0011",
+        "sce_testing_certification_instruction_pdf:p007:b0012",
+        "sce_testing_certification_instruction_pdf:p007:b0013"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 1. Rule 21 Certification and Testing Standards",
+        "2030.5 as defined in the latest version of the Common"
+      ],
+      "evidence_text": "2030.5 as defined in the latest version of the Common\n\nSmart Inverter Profile (CSIP, a.k.a IEEE 2030.5 Implementation Guide for Smart Inverters). Inverters can be certified directly with CSIP or shown to be compatible with a CSIP certified gateway (refer to IEEE 2030.5 Implementation Guide for Smart Inverters). Note. As of the date of this Instruction Sheet, IEEE is leading updates to the IEEE 2030.5 Implementation Guide for Smart Inverters. The SunSpec Alliance is leading updates to the CSIP Test Procedures. UL PCS Certification Requirements Decision (CRD) issued on March 8, 2019 \u2022 Section Mm1, Option 8: Non- Export \u2022 Section Mm2, Option 9: Limited Export using certified PCS \u2022 Section Mm3, Option 10: Non- Export with Inadvertent Export using PCS \u2022 Section Mm4, Option 11: Limited Export with Inadvertent Export using PCS Currently required for all proposed power control systems (PCS) to provide the functionality required under the Rule 21 sections listed. Note. The CRD for PCS contains tests to assess a set of PCS functionalities not previously addressed in UL 1741. * Refer to the footnote below this table for additional information.\n\nStandard (Testing) Applicable Rule 21 Topic / Interconnection Option Comments UL 3141 Issue 2 published on October 9, 2024 * \u2022 Section Mm5, Option 12: Limited Export with Limited Generation Profile Utilizing Certified Power Control Systems Note. Section Mm5 Option 12 is required for Limited Generation Profile projects (per Resolution E-5296). Section Mm5 Option 12 is provided in Joint Advice Letter SCE 5424-E-A, PG&E 7435-E-A and SDG&E 4554-E-A, dated 2/28/2025, and was approved by CPUC Energy Division on March 26, 2025. An upcoming Advice Letter process will formalize this language in Rule 21. Non-Inverter Technologies and Non- certified Equipment \u2022 Section H \u2013 Non-Inverter technologies The applicable Interconnection Handbook (as available from the hosting utility for the specific type of project) describes the requirements for equipment for which standards are not applicable or not published yet (Non- Inverter based). Section L of Rule 21 contains more standards related to testing and certifying interconnection equipment, such as those for surge protection, testing, and withstand capability.\n\n* Note on UL PCS CRD:",
+      "evidence_text_sha256": "sha256:a91029eab6c8001728771d740fa28424002c7f6dc1c8c1976e06818df31d388d",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 1. Rule 21 Certification and Testing Standards > 2030.5 as defined in the latest version of the Common\n\n2030.5 as defined in the latest version of the Common\n\nSmart Inverter Profile (CSIP, a.k.a IEEE 2030.5 Implementation Guide for Smart Inverters). Inverters can be certified directly with CSIP or shown to be compatible with a CSIP certified gateway (refer to IEEE 2030.5 Implementation Guide for Smart Inverters). Note. As of the date of this Instruction Sheet, IEEE is leading updates to the IEEE 2030.5 Implementation Guide for Smart Inverters. The SunSpec Alliance is leading updates to the CSIP Test Procedures. UL PCS Certification Requirements Decision (CRD) issued on March 8, 2019 \u2022 Section Mm1, Option 8: Non- Export \u2022 Section Mm2, Option 9: Limited Export using certified PCS \u2022 Section Mm3, Option 10: Non- Export with Inadvertent Export using PCS \u2022 Section Mm4, Option 11: Limited Export with Inadvertent Export using PCS Currently required for all proposed power control systems (PCS) to provide the functionality required under the Rule 21 sections listed. Note. The CRD for PCS contains tests to assess a set of PCS functionalities not previously addressed in UL 1741. * Refer to the footnote below this table for additional information.\n\nStandard (Testing) Applicable Rule 21 Topic / Interconnection Option Comments UL 3141 Issue 2 published on October 9, 2024 * \u2022 Section Mm5, Option 12: Limited Export with Limited Generation Profile Utilizing Certified Power Control Systems Note. Section Mm5 Option 12 is required for Limited Generation Profile projects (per Resolution E-5296). Section Mm5 Option 12 is provided in Joint Advice Letter SCE 5424-E-A, PG&E 7435-E-A and SDG&E 4554-E-A, dated 2/28/2025, and was approved by CPUC Energy Division on March 26, 2025. An upcoming Advice Letter process will formalize this language in Rule 21. Non-Inverter Technologies and Non- certified Equipment \u2022 Section H \u2013 Non-Inverter technologies The applicable Interconnection Handbook (as available from the hosting utility for the specific type of project) describes the requirements for equipment for which standards are not applicable or not published yet (Non- Inverter based). Section L of Rule 21 contains more standards related to testing and certifying interconnection equipment, such as those for surge protection, testing, and withstand capability.\n\n* Note on UL PCS CRD:",
+      "estimated_evidence_tokens": 437,
+      "estimated_embedding_tokens": 477,
+      "citation": {
+        "pdf_page_start": 6,
+        "pdf_page_end": 7,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2030.5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0002",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0004",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0004",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 4,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p007:b0014",
+        "sce_testing_certification_instruction_pdf:p007:b0015"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 1. Rule 21 Certification and Testing Standards",
+        "2030.5 as defined in the latest version of the Common"
+      ],
+      "evidence_text": "UL PCS CRD now points to UL 3141. UL 3141 Issue 2 has incorporated the guidance of the UL PCS CRD. Rule 21 Sections Mm1 through Mm4 still refer to the UL PCS CRD. A future Rule 21 filing is expected to update Sections Mm1 through Mm4 to refer directly to UL 3141 rather than indirectly via the existing UL PCS CRD reference.\n\nPCS equipment is expected to be certified to the applicable UL PCS standard available at the time of certification. Devices certified to the UL PCS CRD do not need to recertify to UL 3141, unless a use case specifically requires UL 3141 compliance (i.e., some use cases can still employ the CRD, some use cases must now use PCS certified to UL 3141 Issue 1, and some use cases, such as integrated scheduling for LGP, must now use PCS certified to UL 3141 Issue 2).",
+      "evidence_text_sha256": "sha256:f8ffe0da36e08c03ffba15e383d1933fb811f65f759abf6b4d94f3af729e00a8",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 1. Rule 21 Certification and Testing Standards > 2030.5 as defined in the latest version of the Common\n\nUL PCS CRD now points to UL 3141. UL 3141 Issue 2 has incorporated the guidance of the UL PCS CRD. Rule 21 Sections Mm1 through Mm4 still refer to the UL PCS CRD. A future Rule 21 filing is expected to update Sections Mm1 through Mm4 to refer directly to UL 3141 rather than indirectly via the existing UL PCS CRD reference.\n\nPCS equipment is expected to be certified to the applicable UL PCS standard available at the time of certification. Devices certified to the UL PCS CRD do not need to recertify to UL 3141, unless a use case specifically requires UL 3141 compliance (i.e., some use cases can still employ the CRD, some use cases must now use PCS certified to UL 3141 Issue 1, and some use cases, such as integrated scheduling for LGP, must now use PCS certified to UL 3141 Issue 2).",
+      "estimated_evidence_tokens": 165,
+      "estimated_embedding_tokens": 205,
+      "citation": {
+        "pdf_page_start": 7,
+        "pdf_page_end": 7,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2030.5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0003",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0005",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0005",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 5,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p008:b0016",
+        "sce_testing_certification_instruction_pdf:p008:b0017",
+        "sce_testing_certification_instruction_pdf:p008:b0018",
+        "sce_testing_certification_instruction_pdf:p008:b0019",
+        "sce_testing_certification_instruction_pdf:p008:b0020",
+        "sce_testing_certification_instruction_pdf:p008:b0021",
+        "sce_testing_certification_instruction_pdf:p008:b0022"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid"
+      ],
+      "evidence_text": "Section 2. Certification Process\n\nSection 2.1. Certification Requirements for Grid Support Solar Inverters, Grid\n\nSupport Battery Inverters, and Energy Storage Systems For solar and battery inverters (external) and energy storage systems (inverter-incorporated), in accordance with California Public Utilities Commission (CPUC) Resolutions E-50001 and E- 50362, the Utilities require interconnection applicants to use UL 1741 Supplemental B (UL 1741 SB) certified inverters as well as support conformance with the Common Smart Inverter Profile (CSIP, a.k.a. IEEE 2030.5 Implementation Guide for Smart Inverters)3.\n\nUL 1741 SB Tests UL 1741 SB4 is a supplement to the UL 1741 safety standard and includes testing for grid support utility-interactive inverters and converters. UL 1741 SB is the product testing standard that is used to evaluate compliance with the IEEE 1547-2018 and the IEEE 1547.1-2020 standards. UL 1741 SB includes type testing and interoperability testing requirements. For the interoperability testing, UL 1741 SB is used to validate conformance to IEEE 1547-2018 interoperability requirements (managing and monitoring) with one of the three defined protocols (IEEE 2030.5, SunSpec Modbus, IEEE 1815 DNP3).\n\nRule 21 Table L.1 lists the test criteria requirements (with generator type or inverter technology as applicable to each test) as well as the relevant testing or certification standard that each test needs to be conducted under. While UL 1741 and UL 1741 Supplement A (UL 1741 SA) were written specifically for inverters, the requirements are readily adaptable to synchronous generators, induction generators, as well as single/multi-function controllers and protection relays.\n\nRequired Documentation: \u2022 UL 1741 Certification: o Certification to UL 1741 (3rd Edition) standard including UL1741 SB, issued by a NRTL.\n\nCSIP Tests On December 5, 2019, the Commission issued Resolution E-5036 to clarify the testing requirements for smart inverter Phase 2 communications. Appendix D of Resolution E-5036 laid out a revised version of CSIP testing requirements. In the \u201cApproved Testing Pathway,\u201d Resolution E-5036 notes that a Nationally Recognized Testing Laboratory (NRTL) \u201cshould test conformance gateways to IEEE 2030.5 in accordance with the [SunSpec CSIP Test Procedures].\u201d5 The Approved Testing Pathway defines which specific SunSpec CSIP Test",
+      "evidence_text_sha256": "sha256:3ddb6d573c346a7d166139ec060da9fbfd34aac77bf18328cb38367e04b9893b",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid\n\nSection 2. Certification Process\n\nSection 2.1. Certification Requirements for Grid Support Solar Inverters, Grid\n\nSupport Battery Inverters, and Energy Storage Systems For solar and battery inverters (external) and energy storage systems (inverter-incorporated), in accordance with California Public Utilities Commission (CPUC) Resolutions E-50001 and E- 50362, the Utilities require interconnection applicants to use UL 1741 Supplemental B (UL 1741 SB) certified inverters as well as support conformance with the Common Smart Inverter Profile (CSIP, a.k.a. IEEE 2030.5 Implementation Guide for Smart Inverters)3.\n\nUL 1741 SB Tests UL 1741 SB4 is a supplement to the UL 1741 safety standard and includes testing for grid support utility-interactive inverters and converters. UL 1741 SB is the product testing standard that is used to evaluate compliance with the IEEE 1547-2018 and the IEEE 1547.1-2020 standards. UL 1741 SB includes type testing and interoperability testing requirements. For the interoperability testing, UL 1741 SB is used to validate conformance to IEEE 1547-2018 interoperability requirements (managing and monitoring) with one of the three defined protocols (IEEE 2030.5, SunSpec Modbus, IEEE 1815 DNP3).\n\nRule 21 Table L.1 lists the test criteria requirements (with generator type or inverter technology as applicable to each test) as well as the relevant testing or certification standard that each test needs to be conducted under. While UL 1741 and UL 1741 Supplement A (UL 1741 SA) were written specifically for inverters, the requirements are readily adaptable to synchronous generators, induction generators, as well as single/multi-function controllers and protection relays.\n\nRequired Documentation: \u2022 UL 1741 Certification: o Certification to UL 1741 (3rd Edition) standard including UL1741 SB, issued by a NRTL.\n\nCSIP Tests On December 5, 2019, the Commission issued Resolution E-5036 to clarify the testing requirements for smart inverter Phase 2 communications. Appendix D of Resolution E-5036 laid out a revised version of CSIP testing requirements. In the \u201cApproved Testing Pathway,\u201d Resolution E-5036 notes that a Nationally Recognized Testing Laboratory (NRTL) \u201cshould test conformance gateways to IEEE 2030.5 in accordance with the [SunSpec CSIP Test Procedures].\u201d5 The Approved Testing Pathway defines which specific SunSpec CSIP Test",
+      "estimated_evidence_tokens": 422,
+      "estimated_embedding_tokens": 454,
+      "citation": {
+        "pdf_page_start": 8,
+        "pdf_page_end": 8,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2",
+          "2.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0004",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0006",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0006",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 6,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p008:b0023",
+        "sce_testing_certification_instruction_pdf:p009:b0024",
+        "sce_testing_certification_instruction_pdf:p009:b0025",
+        "sce_testing_certification_instruction_pdf:p009:b0026",
+        "sce_testing_certification_instruction_pdf:p009:b0027"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid"
+      ],
+      "evidence_text": "1 Resolution E-5000: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M309/K713/309713654.PDF 2 Resolution E-5036: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M321/K596/321596742.PDF 3 CSIP ver. 2.1: https://sunspec.org/wp-content/uploads/2019/08/CSIPImplementationGuidev2.103-15- 2018.pdf 4 https://www.shopulstandards.com/ProductDetail.aspx?productId=UL1741_3_S_20210928 5 Resolution E-5036 at 22.\n\nProcedures6 should be performed. Please refer to the Approved Testing Pathway attached as Appendix B to this Instruction Sheet for more information.\n\nNote: Per Resolution E-53577, the IEEE is now the agency responsible for future updates to the CSIP and SunSpec will continue to steward its CSIP Test Procedures (which were originally published in 2018).\n\nRequired Documentation: \u2022 Phase 2 Communications (CSIP) Certification via one of the following methods: o When using an aggregator or a CSIP certified gateway for communications with Utility: Attestation of an inverter communicating with a CSIP certified aggregator/gateway8 from a NRTL. \u2212 For inverters that are not certified to IEEE 2030.5 at the level of the inverter, each inverter model or family of models will demonstrate compliance with the Phase 2 communication requirements via compatibility testing in conjunction with a CSIP- certified aggregator/gateway as established in Resolution E-5000 and as modified in Resolution E-5036 (see Appendix B \u201cApproved Testing Pathway\u201d to this Instruction Sheet). \u2212 Inverters must be tested and attested to receive commands from a gateway, aggregator, or energy management system that conforms to IEEE 2030.5 and CSIP. \u2212 The language between the inverter and the aggregator/gateway can be proprietary as long as the aggregator/gateway meets CSIP requirements. \u2212 Attestation may be provided by the UL 1741 SB Certification if the inverter is tested and attested to receive commands from a gateway, aggregator, or energy management system that conforms to IEEE 2030.5 and CSIP as part of the process.\n\no When using direct communication between Utility and inverter: \u2212 Inverter-level CSIP Certification provided by one of the following: \u25aa A NRTL, which can certify testing results from itself or another NRTL.9 \u25aa The Sunspec Alliance, which can certify testing results from a SunSpec Alliance Authorized Test Laboratory (ATL).",
+      "evidence_text_sha256": "sha256:f32486a54665d52adb97f5d056a4ec19cb7172f9f85c0605b20db45b661ba9b5",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid\n\n1 Resolution E-5000: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M309/K713/309713654.PDF 2 Resolution E-5036: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M321/K596/321596742.PDF 3 CSIP ver. 2.1: https://sunspec.org/wp-content/uploads/2019/08/CSIPImplementationGuidev2.103-15- 2018.pdf 4 https://www.shopulstandards.com/ProductDetail.aspx?productId=UL1741_3_S_20210928 5 Resolution E-5036 at 22.\n\nProcedures6 should be performed. Please refer to the Approved Testing Pathway attached as Appendix B to this Instruction Sheet for more information.\n\nNote: Per Resolution E-53577, the IEEE is now the agency responsible for future updates to the CSIP and SunSpec will continue to steward its CSIP Test Procedures (which were originally published in 2018).\n\nRequired Documentation: \u2022 Phase 2 Communications (CSIP) Certification via one of the following methods: o When using an aggregator or a CSIP certified gateway for communications with Utility: Attestation of an inverter communicating with a CSIP certified aggregator/gateway8 from a NRTL. \u2212 For inverters that are not certified to IEEE 2030.5 at the level of the inverter, each inverter model or family of models will demonstrate compliance with the Phase 2 communication requirements via compatibility testing in conjunction with a CSIP- certified aggregator/gateway as established in Resolution E-5000 and as modified in Resolution E-5036 (see Appendix B \u201cApproved Testing Pathway\u201d to this Instruction Sheet). \u2212 Inverters must be tested and attested to receive commands from a gateway, aggregator, or energy management system that conforms to IEEE 2030.5 and CSIP. \u2212 The language between the inverter and the aggregator/gateway can be proprietary as long as the aggregator/gateway meets CSIP requirements. \u2212 Attestation may be provided by the UL 1741 SB Certification if the inverter is tested and attested to receive commands from a gateway, aggregator, or energy management system that conforms to IEEE 2030.5 and CSIP as part of the process.\n\no When using direct communication between Utility and inverter: \u2212 Inverter-level CSIP Certification provided by one of the following: \u25aa A NRTL, which can certify testing results from itself or another NRTL.9 \u25aa The Sunspec Alliance, which can certify testing results from a SunSpec Alliance Authorized Test Laboratory (ATL).",
+      "estimated_evidence_tokens": 457,
+      "estimated_embedding_tokens": 489,
+      "citation": {
+        "pdf_page_start": 8,
+        "pdf_page_end": 9,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0005",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0007",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0007",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 7,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p009:b0028"
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid"
+      ],
+      "evidence_text": "6 SunSpec CSIP Test Procedures: https://sunspec.org/ieee-2030-5-csip-certification/ 7 Resolution E-5357: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M551/K523/551523428.PDF 8 A \u201cgateway\u201d is anything other than the Distributed Energy Resource (DER) that provides a communications interface to the hosting utility for the purposes of exchanging the content contained in the communications with one or more DERs. 9 Having a SunSpec CSIP Certification is required to get onto the SunSpec 2030.5 Public Key Infrastructure (PKI). This may be required for certain programs and is optional for others. If an entity opts for an alternative PKI solution, they must ensure it meets the security standards outlined by the Utility's interconnection requirements and the CSIP guidelines. For questions related to this, reach out to the specific Utility\u2019s contact information provided in Section 4.",
+      "evidence_text_sha256": "sha256:56704ede2c211178839430edb712a90af0ceaa9005c80527e2f4602459bf96e2",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.1. Certification Requirements for Grid Support Solar Inverters, Grid\n\n6 SunSpec CSIP Test Procedures: https://sunspec.org/ieee-2030-5-csip-certification/ 7 Resolution E-5357: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M551/K523/551523428.PDF 8 A \u201cgateway\u201d is anything other than the Distributed Energy Resource (DER) that provides a communications interface to the hosting utility for the purposes of exchanging the content contained in the communications with one or more DERs. 9 Having a SunSpec CSIP Certification is required to get onto the SunSpec 2030.5 Public Key Infrastructure (PKI). This may be required for certain programs and is optional for others. If an entity opts for an alternative PKI solution, they must ensure it meets the security standards outlined by the Utility's interconnection requirements and the CSIP guidelines. For questions related to this, reach out to the specific Utility\u2019s contact information provided in Section 4.",
+      "estimated_evidence_tokens": 175,
+      "estimated_embedding_tokens": 207,
+      "citation": {
+        "pdf_page_start": 9,
+        "pdf_page_end": 9,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0006",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0008",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0008",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 8,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p010:b0029",
+        "sce_testing_certification_instruction_pdf:p010:b0030",
+        "sce_testing_certification_instruction_pdf:p010:b0031",
+        "sce_testing_certification_instruction_pdf:p010:b0032",
+        "sce_testing_certification_instruction_pdf:p010:b0033"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,"
+      ],
+      "evidence_text": "Section 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,\n\nor latest UL PCS Standard) As stated in the footnote of the Rule 21 Certification and Testing Standards listed in Section 1 above, as of the date of this Instruction Sheet, Rule 21 Sections Mm1 through Mm4 refer to Underwriters Laboratories (UL) PCS Certification Requirements Decision (CRD) issued on March 8, 2019. It is expected that in a future update of Rule 21, the Utilities will clarify the applicability of UL PCS CRD, UL 3141 Issue 2, or a later UL PCS standard. Rule 21 Section Mm5 (OPTION 12: Limited Export with Limited Generation Profile Utilizing Certified Power Control Systems)10 refers only to UL 3141 Issue 2 which is required for Limited Generation Profile projects (per Resolution E-529611).\n\nFor power control systems, the following are required:\n\nRequired Documentation: \u2022 Certificate of Compliance with UL PCS CRD, UL 3141 Issue 2, or the latest UL PCS Standard, as applicable, issued by a NRTL. \u2022 Manufacturer\u2019s Equipment Information and Instructions Document (as required by the UL PCS CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable).\n\nInformation Needed in the UL PCS CRD, UL 3141 Issue 2, or latest UL PCS Standard (as applicable) Test Report: \u2022 Signed or stamped and dated by NRTL whose OSHA Scope of Recognition includes UL PCS CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable. \u2022 Indicates the applicable standard (UL PCS CRD issued on March 8, 2019, UL 3141 Issue 1 published on January 11, 2024, UL 3141 Issue 2 published on October 9, 2024, or later UL PCS standard). \u2022 Specifies the requested model number(s), if applicable. \u2022 Defines all the wildcards in the requested model number(s). \u2022 Specifies all the additional devices required and tested for PCS functionality o Accepted PCS equipment includes the \u201cAdditional Required PCS Devices\u201d column information added to the model entry. \u2022 Defines all wildcards in the model number of any required additional devices. \u2022 Specifies all the ESS or PV Operating Modes that were tested and certified. \u2022 Specifies the maximum open loop response time for each certified mode **. o Measured by Max Open Loop Response Time (MOLRT). To comply with NEM Integrity and Options Mm1 through Mm4 in Rule 21, the following modes are analyzed:",
+      "evidence_text_sha256": "sha256:acf9c303eb1eb4c88666328de4187f88e31a6d8bb69791d70ee495e751483925",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,\n\nSection 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,\n\nor latest UL PCS Standard) As stated in the footnote of the Rule 21 Certification and Testing Standards listed in Section 1 above, as of the date of this Instruction Sheet, Rule 21 Sections Mm1 through Mm4 refer to Underwriters Laboratories (UL) PCS Certification Requirements Decision (CRD) issued on March 8, 2019. It is expected that in a future update of Rule 21, the Utilities will clarify the applicability of UL PCS CRD, UL 3141 Issue 2, or a later UL PCS standard. Rule 21 Section Mm5 (OPTION 12: Limited Export with Limited Generation Profile Utilizing Certified Power Control Systems)10 refers only to UL 3141 Issue 2 which is required for Limited Generation Profile projects (per Resolution E-529611).\n\nFor power control systems, the following are required:\n\nRequired Documentation: \u2022 Certificate of Compliance with UL PCS CRD, UL 3141 Issue 2, or the latest UL PCS Standard, as applicable, issued by a NRTL. \u2022 Manufacturer\u2019s Equipment Information and Instructions Document (as required by the UL PCS CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable).\n\nInformation Needed in the UL PCS CRD, UL 3141 Issue 2, or latest UL PCS Standard (as applicable) Test Report: \u2022 Signed or stamped and dated by NRTL whose OSHA Scope of Recognition includes UL PCS CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable. \u2022 Indicates the applicable standard (UL PCS CRD issued on March 8, 2019, UL 3141 Issue 1 published on January 11, 2024, UL 3141 Issue 2 published on October 9, 2024, or later UL PCS standard). \u2022 Specifies the requested model number(s), if applicable. \u2022 Defines all the wildcards in the requested model number(s). \u2022 Specifies all the additional devices required and tested for PCS functionality o Accepted PCS equipment includes the \u201cAdditional Required PCS Devices\u201d column information added to the model entry. \u2022 Defines all wildcards in the model number of any required additional devices. \u2022 Specifies all the ESS or PV Operating Modes that were tested and certified. \u2022 Specifies the maximum open loop response time for each certified mode **. o Measured by Max Open Loop Response Time (MOLRT). To comply with NEM Integrity and Options Mm1 through Mm4 in Rule 21, the following modes are analyzed:",
+      "estimated_evidence_tokens": 469,
+      "estimated_embedding_tokens": 508,
+      "citation": {
+        "pdf_page_start": 10,
+        "pdf_page_end": 10,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0007",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0009",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0009",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 9,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p010:b0034",
+        "sce_testing_certification_instruction_pdf:p011:b0035",
+        "sce_testing_certification_instruction_pdf:p011:b0036",
+        "sce_testing_certification_instruction_pdf:p011:b0037"
+      ],
+      "block_types": [
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,"
+      ],
+      "evidence_text": "10 Section Mm5 is a new Rule 21 section introduced by Resolution E-5296. As of the date of this Instruction Sheet, Section Mm5 is expected to be incorporated into Rule 21 with an effective date of July 9, 2025. See Joint Advice Letter SCE 5424-E-A, PG&E 7435-E-A and SDG&E 4554-E-A, dated 2/28/2025, for text of Section Mm5. 11 Resolution E-5296: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M527/K981/527981713.PDF Resolution E-5296 Appendices: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M527/K964/527964265.pdf\n\n- Unrestricted Mode: 10 seconds or less in MOLRT \u2212 Export Only Mode: 10 seconds or less in MOLRT (CRD - NEM) \u2212 Import Only Mode: 10 seconds or less in MOLRT (CRD - Limited Export); or 2 second or less in MOLRT (CRD - Non-Export) \u2212 No Exchange Mode: 10 seconds or less in MOLRT\n\nInformation Needed in the \u201cManufacturer\u2019s Equipment Information and Instructions Document\u201d: \u2022 Issued by the inverter or ESS manufacturer. \u2022 Submitted on company letterhead. \u2022 Includes all the requested model number(s). \u2022 Identifies the equipment\u2019s \u201ccurrent measurement reference point.\u201d \u2022 Includes all the required information specified in the UL CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable.\n\nNote: Refer to UL 3141 for information on required physical markings of the PCS device to demonstrate certification, details needed to be included in the PCS installation instructions, and other specifics.",
+      "evidence_text_sha256": "sha256:30751f800e3b5a81553f67428e47c93d3b2444a085daf4f31f93c206c7bd62d3",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.2. Power Control System (PCS) Certification (UL CRD, UL 3141 Issue 2,\n\n10 Section Mm5 is a new Rule 21 section introduced by Resolution E-5296. As of the date of this Instruction Sheet, Section Mm5 is expected to be incorporated into Rule 21 with an effective date of July 9, 2025. See Joint Advice Letter SCE 5424-E-A, PG&E 7435-E-A and SDG&E 4554-E-A, dated 2/28/2025, for text of Section Mm5. 11 Resolution E-5296: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M527/K981/527981713.PDF Resolution E-5296 Appendices: https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M527/K964/527964265.pdf\n\n- Unrestricted Mode: 10 seconds or less in MOLRT \u2212 Export Only Mode: 10 seconds or less in MOLRT (CRD - NEM) \u2212 Import Only Mode: 10 seconds or less in MOLRT (CRD - Limited Export); or 2 second or less in MOLRT (CRD - Non-Export) \u2212 No Exchange Mode: 10 seconds or less in MOLRT\n\nInformation Needed in the \u201cManufacturer\u2019s Equipment Information and Instructions Document\u201d: \u2022 Issued by the inverter or ESS manufacturer. \u2022 Submitted on company letterhead. \u2022 Includes all the requested model number(s). \u2022 Identifies the equipment\u2019s \u201ccurrent measurement reference point.\u201d \u2022 Includes all the required information specified in the UL CRD, UL 3141 Issue 2, or latest UL PCS standard, as applicable.\n\nNote: Refer to UL 3141 for information on required physical markings of the PCS device to demonstrate certification, details needed to be included in the PCS installation instructions, and other specifics.",
+      "estimated_evidence_tokens": 315,
+      "estimated_embedding_tokens": 354,
+      "citation": {
+        "pdf_page_start": 10,
+        "pdf_page_end": 11,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0008",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0010",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0010",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 10,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p011:b0038",
+        "sce_testing_certification_instruction_pdf:p011:b0039",
+        "sce_testing_certification_instruction_pdf:p011:b0040",
+        "sce_testing_certification_instruction_pdf:p011:b0041",
+        "sce_testing_certification_instruction_pdf:p012:b0042",
+        "sce_testing_certification_instruction_pdf:p012:b0043"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.3. PV Modules"
+      ],
+      "evidence_text": "Section 2.3. PV Modules\n\nRequired Documentation: \u2022 NRTL safety certification to UL 61730 from a NRTL whose OSHA Scope of Recognition includes the UL 61730 standard. \u2022 Signed or stamped and dated by the testing lab. A current list of NRTLs approved by OSHA, along with their recognized scopes, can be found on the OSHA website.\n\n\u2022 Refer to the CEC\u2019s Listing Request Instructions Page 3 of 8 Revised 11/3/2023: https://www.energy.ca.gov/sites/default/files/2023- 05/PV_Module_Listing_Request_Instructions_ADA.pdf o Refers to subsections 10.2, 10.4, 10.5, 10.6, and 10.7 of IEC 61215:2005 (crystalline) or IEC 61646:2008 (thin film) and includes data for: 1. NOCT 2. Temperature coefficients (\u03b1Isc, \u03b2Voc, \u03b3Pmax) 3. Performance at STC 4. Performance at Low Irradiance 5. Performance at NOCT o Specifies the model number(s) tested. o Specifies all the model numbers that the test results can be applied to. o Reports test data without the impact of any integrated optimizer \u2022 International Laboratory Accreditation Cooperation (ILAC) accredited lab\u2019s test report(s) for IEC 61215:2005 (Crystalline) or IEC 61646:2008 (Thin Film). Note: Do not submit any proprietary or confidential information. (Optional)\n\nMinimum Criteria for Safety Certification:\n\nThe safety certification(s) document must meet the requirements outlined below. a) Signed or stamped and dated by NRTL whose OSHA Scope of Recognition includes the UL 61730 standard (both \u20131 and \u20132 sections). b) Indicates the UL 61730 standard (both \u20131 and \u20132 sections) and Source Requirement Documents (SRDs) for the test. c) Specifies the requested model number(s) certified. d) Defines all the wildcards in model number(s).\n\nMinimum Criteria for Performance Data Test Report(s): The testing lab must meet the following qualifications: a) The laboratory is accredited to ISO/IEC 17025. b) The accreditation must be from an accreditation body that is a signatory to the ILAC Mutual Recognition Arrangement (MRA). c) The scope of accreditation must include IEC 61215 or IEC 61646, whichever is applicable. The performance test report must meet the requirements outlined below.",
+      "evidence_text_sha256": "sha256:ff6b09bc6a46366cf0cb72696b25198ece7dd0f475c493152c7ec76cafeb45a5",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.3. PV Modules\n\nSection 2.3. PV Modules\n\nRequired Documentation: \u2022 NRTL safety certification to UL 61730 from a NRTL whose OSHA Scope of Recognition includes the UL 61730 standard. \u2022 Signed or stamped and dated by the testing lab. A current list of NRTLs approved by OSHA, along with their recognized scopes, can be found on the OSHA website.\n\n\u2022 Refer to the CEC\u2019s Listing Request Instructions Page 3 of 8 Revised 11/3/2023: https://www.energy.ca.gov/sites/default/files/2023- 05/PV_Module_Listing_Request_Instructions_ADA.pdf o Refers to subsections 10.2, 10.4, 10.5, 10.6, and 10.7 of IEC 61215:2005 (crystalline) or IEC 61646:2008 (thin film) and includes data for: 1. NOCT 2. Temperature coefficients (\u03b1Isc, \u03b2Voc, \u03b3Pmax) 3. Performance at STC 4. Performance at Low Irradiance 5. Performance at NOCT o Specifies the model number(s) tested. o Specifies all the model numbers that the test results can be applied to. o Reports test data without the impact of any integrated optimizer \u2022 International Laboratory Accreditation Cooperation (ILAC) accredited lab\u2019s test report(s) for IEC 61215:2005 (Crystalline) or IEC 61646:2008 (Thin Film). Note: Do not submit any proprietary or confidential information. (Optional)\n\nMinimum Criteria for Safety Certification:\n\nThe safety certification(s) document must meet the requirements outlined below. a) Signed or stamped and dated by NRTL whose OSHA Scope of Recognition includes the UL 61730 standard (both \u20131 and \u20132 sections). b) Indicates the UL 61730 standard (both \u20131 and \u20132 sections) and Source Requirement Documents (SRDs) for the test. c) Specifies the requested model number(s) certified. d) Defines all the wildcards in model number(s).\n\nMinimum Criteria for Performance Data Test Report(s): The testing lab must meet the following qualifications: a) The laboratory is accredited to ISO/IEC 17025. b) The accreditation must be from an accreditation body that is a signatory to the ILAC Mutual Recognition Arrangement (MRA). c) The scope of accreditation must include IEC 61215 or IEC 61646, whichever is applicable. The performance test report must meet the requirements outlined below.",
+      "estimated_evidence_tokens": 454,
+      "estimated_embedding_tokens": 479,
+      "citation": {
+        "pdf_page_start": 11,
+        "pdf_page_end": 12,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0009",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0011",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0011",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 11,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p012:b0044",
+        "sce_testing_certification_instruction_pdf:p012:b0045",
+        "sce_testing_certification_instruction_pdf:p012:b0046"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.4. Batteries: Only electrochemical batteries"
+      ],
+      "evidence_text": "Section 2.4. Batteries: Only electrochemical batteries\n\nRequired Documentation: \u2022 NRTL certification(s) to UL 1973. \u2022 Manufacturer's spec sheet(s) for all the requested model number(s). Note: Do not submit any proprietary or confidential information.\n\nMinimum Criteria for Safety Certification: The certification(s) must meet the requirements outlined below. a) Signed or stamped and dated by NRTL. b) Indicates the UL 1973 standard and Source Requirement Documents (SRDs) for the test. c) Specifies the requested model number(s) certified. d) Defines all the wildcards in model number(s).",
+      "evidence_text_sha256": "sha256:c823b5060704ad1c4be25359a76a575144c2756449d4b8d021f1e5439b69c652",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.4. Batteries: Only electrochemical batteries\n\nSection 2.4. Batteries: Only electrochemical batteries\n\nRequired Documentation: \u2022 NRTL certification(s) to UL 1973. \u2022 Manufacturer's spec sheet(s) for all the requested model number(s). Note: Do not submit any proprietary or confidential information.\n\nMinimum Criteria for Safety Certification: The certification(s) must meet the requirements outlined below. a) Signed or stamped and dated by NRTL. b) Indicates the UL 1973 standard and Source Requirement Documents (SRDs) for the test. c) Specifies the requested model number(s) certified. d) Defines all the wildcards in model number(s).",
+      "estimated_evidence_tokens": 122,
+      "estimated_embedding_tokens": 150,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 12,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.4"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0010",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0012",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0012",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 12,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p012:b0047",
+        "sce_testing_certification_instruction_pdf:p012:b0048"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.5. AC Disconnect"
+      ],
+      "evidence_text": "Section 2.5. AC Disconnect\n\nRequired Documentation: \u2022 Manufacturer's spec sheet(s) for all the requested model number(s). Note: Do not submit any proprietary or confidential information.",
+      "evidence_text_sha256": "sha256:45c4eaa5d23470890089a216dba5bf00282411889fb3f19c69d392381cba95dd",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.5. AC Disconnect\n\nSection 2.5. AC Disconnect\n\nRequired Documentation: \u2022 Manufacturer's spec sheet(s) for all the requested model number(s). Note: Do not submit any proprietary or confidential information.",
+      "estimated_evidence_tokens": 38,
+      "estimated_embedding_tokens": 63,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 12,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0011",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0013",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0013",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 13,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p012:b0049",
+        "sce_testing_certification_instruction_pdf:p012:b0050",
+        "sce_testing_certification_instruction_pdf:p013:b0051",
+        "sce_testing_certification_instruction_pdf:p013:b0052",
+        "sce_testing_certification_instruction_pdf:p013:b0053",
+        "sce_testing_certification_instruction_pdf:p013:b0054",
+        "sce_testing_certification_instruction_pdf:p013:b0055",
+        "sce_testing_certification_instruction_pdf:p013:b0056",
+        "sce_testing_certification_instruction_pdf:p013:b0057",
+        "sce_testing_certification_instruction_pdf:p013:b0058"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.6. Special Certification Requirements for V2G DC Equipment"
+      ],
+      "evidence_text": "Section 2.6. Special Certification Requirements for V2G DC Equipment\n\nCertification for Vehicle to Grid (V2G) equipment is not explicitly stated in Rule 21; however, the underlying requirements for V2G equipment using smart inverters to connect to a customer's site and operate in parallel with the Utilities\u2019 grid generally follows the certification requirements listed in Section 1 of this Instruction Sheet.\n\nIn anticipation for potential extreme weather events in the summers of 2022 and 2023, on December 6, 2021, the CPUC issued Decision (D.) 21-12-015 which expanded the Emergency Load Reduction Program (ELRP) created by the Commission on D.21-03-056 (issued March 26, 2021). D.21-12-015 expanded the ELRP on electrical vehicle participation by allowing aggregation of V2G managed charging and discharging to support the grid at net peak. The Vehicle-Grid-Integration (VGI) aggregation consists of any combination of electric vehicles and charging stations \u2013 including those that are capable of managed one-way charging (V1G) and bi-directional charging and discharging (V2G) deployed with residential or non-residential customers that meets certain criteria.\n\nTo support electric vehicle participation in the ELRP, D.21-12-015 provided for an exemption for any direct current (DC) V2G electric vehicle supply equipment (EVSE) that has UL 1741 certification (but not UL 1741 SA certification, any subsequent UL 1741 supplement certification required in Rule 21, or Smart Inverter Working Group-recommended smart inverter functions) to interconnect initially for the purpose of participating in the ELRP, subject to all other Rule 21 interconnection requirements.\n\nFor more information about the ELRP, as well as each Utility\u2019s implementation of the ELRP and their requirements for participation, please visit the following pages:\n\nCPUC: https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric- costs/demand-response-dr/emergency-load-reduction-program\n\nPG&E: https://elrp.olivineinc.com/\n\nSCE: https://elrp.sce.com/\n\nSDG&E: https://www.sdge.com/businesses/savings-center/energy- management-programs/demand-response/emergency-load-reduction\n\nFurther details on V2G direct current (DC) (set to unidirectional mode) are available in Advice Letter 6500-E (PG&E), Advice Letter 3955-E (SDG&E), Advice Letter 4718-E (SCE) dated February 11, 2022, submitted in response to Resolution E-5165.",
+      "evidence_text_sha256": "sha256:2008c5097e3e0f8e7cbf0948799400d45917b4993d9fa3759691f41d5a3fb709",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.6. Special Certification Requirements for V2G DC Equipment\n\nSection 2.6. Special Certification Requirements for V2G DC Equipment\n\nCertification for Vehicle to Grid (V2G) equipment is not explicitly stated in Rule 21; however, the underlying requirements for V2G equipment using smart inverters to connect to a customer's site and operate in parallel with the Utilities\u2019 grid generally follows the certification requirements listed in Section 1 of this Instruction Sheet.\n\nIn anticipation for potential extreme weather events in the summers of 2022 and 2023, on December 6, 2021, the CPUC issued Decision (D.) 21-12-015 which expanded the Emergency Load Reduction Program (ELRP) created by the Commission on D.21-03-056 (issued March 26, 2021). D.21-12-015 expanded the ELRP on electrical vehicle participation by allowing aggregation of V2G managed charging and discharging to support the grid at net peak. The Vehicle-Grid-Integration (VGI) aggregation consists of any combination of electric vehicles and charging stations \u2013 including those that are capable of managed one-way charging (V1G) and bi-directional charging and discharging (V2G) deployed with residential or non-residential customers that meets certain criteria.\n\nTo support electric vehicle participation in the ELRP, D.21-12-015 provided for an exemption for any direct current (DC) V2G electric vehicle supply equipment (EVSE) that has UL 1741 certification (but not UL 1741 SA certification, any subsequent UL 1741 supplement certification required in Rule 21, or Smart Inverter Working Group-recommended smart inverter functions) to interconnect initially for the purpose of participating in the ELRP, subject to all other Rule 21 interconnection requirements.\n\nFor more information about the ELRP, as well as each Utility\u2019s implementation of the ELRP and their requirements for participation, please visit the following pages:\n\nCPUC: https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/electric- costs/demand-response-dr/emergency-load-reduction-program\n\nPG&E: https://elrp.olivineinc.com/\n\nSCE: https://elrp.sce.com/\n\nSDG&E: https://www.sdge.com/businesses/savings-center/energy- management-programs/demand-response/emergency-load-reduction\n\nFurther details on V2G direct current (DC) (set to unidirectional mode) are available in Advice Letter 6500-E (PG&E), Advice Letter 3955-E (SDG&E), Advice Letter 4718-E (SCE) dated February 11, 2022, submitted in response to Resolution E-5165.",
+      "estimated_evidence_tokens": 462,
+      "estimated_embedding_tokens": 492,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 13,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.6"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0012",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0014",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0014",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 14,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p013:b0059",
+        "sce_testing_certification_instruction_pdf:p013:b0060",
+        "sce_testing_certification_instruction_pdf:p013:b0061"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.7. Non-Inverter Technologies"
+      ],
+      "evidence_text": "Section 2.7. Non-Inverter Technologies\n\nThe applicable Interconnection Handbook (as available from the hosting Utility for the specific type of project) describes the requirements for equipment for which standards are not applicable or are not published yet (non-inverter based).\n\nSection L of Rule 21 contains more standards related to testing and certifying interconnection equipment, such as those for surge protection, testing, and withstand capability.",
+      "evidence_text_sha256": "sha256:5fc6b4e8c6a3c4527e0246b059aaf71985164b3f2d26f219a6e2d32c4a4d6c44",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.7. Non-Inverter Technologies\n\nSection 2.7. Non-Inverter Technologies\n\nThe applicable Interconnection Handbook (as available from the hosting Utility for the specific type of project) describes the requirements for equipment for which standards are not applicable or are not published yet (non-inverter based).\n\nSection L of Rule 21 contains more standards related to testing and certifying interconnection equipment, such as those for surge protection, testing, and withstand capability.",
+      "estimated_evidence_tokens": 75,
+      "estimated_embedding_tokens": 100,
+      "citation": {
+        "pdf_page_start": 13,
+        "pdf_page_end": 13,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.7"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0013",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0015",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0015",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 15,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p013:b0062",
+        "sce_testing_certification_instruction_pdf:p013:b0063",
+        "sce_testing_certification_instruction_pdf:p014:b0064",
+        "sce_testing_certification_instruction_pdf:p014:b0065"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 2.8. Testing and Certification Resources:"
+      ],
+      "evidence_text": "Section 2.8. Testing and Certification Resources:\n\nThe list of approved NRTLs to perform certification for some or all the standards is listed at the OSHA's Nationally Recognized Testing Laboratory (NRTL) Program:\n\nhttps://www.osha.gov/nationally-recognized-testing-laboratory-program https://www.osha.gov/nationally-recognized-testing-laboratory-program/current-list-of- nrtls\n\nOther links: \u2022 List of Recognized Testing Standards: https://www.osha.gov/nationally-recognized-testing-laboratory-program/list-standards \u25aa IEEE Standards Association: https://www.ieee.org/ \u25aa SunSpec Alliance: https://sunspec.org/",
+      "evidence_text_sha256": "sha256:f221feb81c0f7059d45ee60242157ebded549d62a70d08171266ff30f38e1fba",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 2.8. Testing and Certification Resources:\n\nSection 2.8. Testing and Certification Resources:\n\nThe list of approved NRTLs to perform certification for some or all the standards is listed at the OSHA's Nationally Recognized Testing Laboratory (NRTL) Program:\n\nhttps://www.osha.gov/nationally-recognized-testing-laboratory-program https://www.osha.gov/nationally-recognized-testing-laboratory-program/current-list-of- nrtls\n\nOther links: \u2022 List of Recognized Testing Standards: https://www.osha.gov/nationally-recognized-testing-laboratory-program/list-standards \u25aa IEEE Standards Association: https://www.ieee.org/ \u25aa SunSpec Alliance: https://sunspec.org/",
+      "estimated_evidence_tokens": 128,
+      "estimated_embedding_tokens": 156,
+      "citation": {
+        "pdf_page_start": 13,
+        "pdf_page_end": 14,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.8"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0014",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0016",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0016",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 16,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p014:b0066",
+        "sce_testing_certification_instruction_pdf:p014:b0067",
+        "sce_testing_certification_instruction_pdf:p014:b0068",
+        "sce_testing_certification_instruction_pdf:p014:b0069",
+        "sce_testing_certification_instruction_pdf:p014:b0070",
+        "sce_testing_certification_instruction_pdf:p014:b0071",
+        "sce_testing_certification_instruction_pdf:p015:b0072",
+        "sce_testing_certification_instruction_pdf:p015:b0073"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 3. Utilities\u2019 Lists of Certified Equipment"
+      ],
+      "evidence_text": "Section 3. Utilities\u2019 Lists of Certified Equipment\n\nOnce the equipment is tested and certified, certified equipment needs to be added to each utility\u2019s list of certified equipment so that it can be selected by the applicant for the initial and subsequent submittal of their interconnection request.\n\nInterconnection equipment that is certified will be added to the Utilities\u2019 list of certified equipment in 1 of 2 ways, as outlined below:\n\n1. Importing inverter-based equipment from the CEC website a) Individual manufacturers and vendors submit inverter-based equipment that meets the latest UL and CSIP certification requirements to the CEC for review. b) CEC reviews and adds UL and CSIP certified inverter-based equipment to their working list. c) The Utilities routinely extract the latest list of UL and CSIP certified equipment from CEC website and add any new models into their respective list of certified equipment. Note: Only equipment indicating a \"Y\" in the \u201cUL 1741 SB Certification, 3rd Edition\u201d column, and either a \"Y\" or \"Y*\" in the \u201cCommon Smart Inverter Profile Conformance, CSIP\u201d column will be added to the Utilities\u2019 list. d) Interconnection applicants select any UL and CSIP certified equipment (from the applicable Utility list of certified equipment) and submit their interconnection application on the applicable Utility interconnection portal for processing.12 e) Submitted interconnection application continues to progress towards the intended Permission to Operate (PTO) status.\n\n2. Manually adding inverter-based equipment currently not on CEC website a) Interconnection applicant or manufacturer of inverter-based Equipment directly provides UL and CSIP certification documentation of inverter-based equipment to hosting Utility. b) The applicable Utility reviews submitted UL and CSIP certification documentation and approves the equipment for addition to their respective list of certified equipment moving forward.\n\n12 For interconnection applicants wishing to use a UL 1741 or UL 1741 SA certified inverter intending to participate in the Electric Load Reduction Program (ELRP) , contact the utility directly using the information provided in Section 4.\n\nc) The Utility manually adds approved equipment to their respective list of certified equipment. d) Interconnection applicants select any UL and CSIP certified equipment (from the applicable Utility list of certified equipment) and submit their interconnection application on the applicable Utility interconnection portal for processing. e) Submitted interconnection application continues to progress towards the intended Permission to Operate (PTO) status.\n\nA chart demonstrating this process is provided below.",
+      "evidence_text_sha256": "sha256:6dd492ea28b1bd2ca183d2196f87e3b496aa7f5dcf9dd9e79a01571796c8f4f5",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 3. Utilities\u2019 Lists of Certified Equipment\n\nSection 3. Utilities\u2019 Lists of Certified Equipment\n\nOnce the equipment is tested and certified, certified equipment needs to be added to each utility\u2019s list of certified equipment so that it can be selected by the applicant for the initial and subsequent submittal of their interconnection request.\n\nInterconnection equipment that is certified will be added to the Utilities\u2019 list of certified equipment in 1 of 2 ways, as outlined below:\n\n1. Importing inverter-based equipment from the CEC website a) Individual manufacturers and vendors submit inverter-based equipment that meets the latest UL and CSIP certification requirements to the CEC for review. b) CEC reviews and adds UL and CSIP certified inverter-based equipment to their working list. c) The Utilities routinely extract the latest list of UL and CSIP certified equipment from CEC website and add any new models into their respective list of certified equipment. Note: Only equipment indicating a \"Y\" in the \u201cUL 1741 SB Certification, 3rd Edition\u201d column, and either a \"Y\" or \"Y*\" in the \u201cCommon Smart Inverter Profile Conformance, CSIP\u201d column will be added to the Utilities\u2019 list. d) Interconnection applicants select any UL and CSIP certified equipment (from the applicable Utility list of certified equipment) and submit their interconnection application on the applicable Utility interconnection portal for processing.12 e) Submitted interconnection application continues to progress towards the intended Permission to Operate (PTO) status.\n\n2. Manually adding inverter-based equipment currently not on CEC website a) Interconnection applicant or manufacturer of inverter-based Equipment directly provides UL and CSIP certification documentation of inverter-based equipment to hosting Utility. b) The applicable Utility reviews submitted UL and CSIP certification documentation and approves the equipment for addition to their respective list of certified equipment moving forward.\n\n12 For interconnection applicants wishing to use a UL 1741 or UL 1741 SA certified inverter intending to participate in the Electric Load Reduction Program (ELRP) , contact the utility directly using the information provided in Section 4.\n\nc) The Utility manually adds approved equipment to their respective list of certified equipment. d) Interconnection applicants select any UL and CSIP certified equipment (from the applicable Utility list of certified equipment) and submit their interconnection application on the applicable Utility interconnection portal for processing. e) Submitted interconnection application continues to progress towards the intended Permission to Operate (PTO) status.\n\nA chart demonstrating this process is provided below.",
+      "estimated_evidence_tokens": 448,
+      "estimated_embedding_tokens": 475,
+      "citation": {
+        "pdf_page_start": 14,
+        "pdf_page_end": 15,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0015",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0017",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0017",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 17,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p015:b0074",
+        "sce_testing_certification_instruction_pdf:p015:b0075",
+        "sce_testing_certification_instruction_pdf:p016:b0076",
+        "sce_testing_certification_instruction_pdf:p016:b0077",
+        "sce_testing_certification_instruction_pdf:p016:b0078",
+        "sce_testing_certification_instruction_pdf:p016:b0079",
+        "sce_testing_certification_instruction_pdf:p016:b0080",
+        "sce_testing_certification_instruction_pdf:p016:b0081",
+        "sce_testing_certification_instruction_pdf:p016:b0082"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Section 3. Utilities\u2019 Lists of Certified Equipment"
+      ],
+      "evidence_text": "For Energy Storage Systems follow the same processes and requirements as above. If using the CEC listing method, only applications indicating a \"Y\" in the \u201cUL 1741 SB Certification, 3rd Edition\u201d column, and either a \"Y\" or \"Y*\" in the \u201cCommon Smart Inverter Profile Conformance, CSIP\u201d column will be accepted.\n\nFor PV Modules: UL 61730 standard column indicated.\n\nFor Batteries: (The Battery List only includes electrochemical batteries): UL 1973 standard column indicated.\n\nFurther Documentation:\n\nThe CEC as well as the Utilities provide instructions on the documentation required to be submitted for their certification review.\n\n\u2022 CEC: o Solar Equipment Lists Program https://www.energy.ca.gov/programs-and-topics/programs/solar-equipment-lists o Inverter Listing Request Instructions https://www.energy.ca.gov/sites/default/files/2022- 03/Inverter_Listing_Request_Instructions_ADA.pdf\n\n\u2022 PG&E o PG&E Interconnection website o PG&E Instructions for Inverter Information Submittal o PG&E Inverter Information Form\n\n\u2022 SCE: o Interconnecting Generation under Rule 21 o Instructions Sheet o Inverter Information Submittal\n\n\u2022 SDG&E \u2022 SDG&E Rule 21 Interconnection website",
+      "evidence_text_sha256": "sha256:8b1a3303f960dcaa70e5c9ce3e25959d4a4d4687f375d9edd82ae4f5f92e53a9",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 3. Utilities\u2019 Lists of Certified Equipment\n\nFor Energy Storage Systems follow the same processes and requirements as above. If using the CEC listing method, only applications indicating a \"Y\" in the \u201cUL 1741 SB Certification, 3rd Edition\u201d column, and either a \"Y\" or \"Y*\" in the \u201cCommon Smart Inverter Profile Conformance, CSIP\u201d column will be accepted.\n\nFor PV Modules: UL 61730 standard column indicated.\n\nFor Batteries: (The Battery List only includes electrochemical batteries): UL 1973 standard column indicated.\n\nFurther Documentation:\n\nThe CEC as well as the Utilities provide instructions on the documentation required to be submitted for their certification review.\n\n\u2022 CEC: o Solar Equipment Lists Program https://www.energy.ca.gov/programs-and-topics/programs/solar-equipment-lists o Inverter Listing Request Instructions https://www.energy.ca.gov/sites/default/files/2022- 03/Inverter_Listing_Request_Instructions_ADA.pdf\n\n\u2022 PG&E o PG&E Interconnection website o PG&E Instructions for Inverter Information Submittal o PG&E Inverter Information Form\n\n\u2022 SCE: o Interconnecting Generation under Rule 21 o Instructions Sheet o Inverter Information Submittal\n\n\u2022 SDG&E \u2022 SDG&E Rule 21 Interconnection website",
+      "estimated_evidence_tokens": 233,
+      "estimated_embedding_tokens": 260,
+      "citation": {
+        "pdf_page_start": 15,
+        "pdf_page_end": 16,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0016",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0018",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0018",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 18,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p016:b0083",
+        "sce_testing_certification_instruction_pdf:p016:b0084",
+        "sce_testing_certification_instruction_pdf:p016:b0085",
+        "sce_testing_certification_instruction_pdf:p016:b0086",
+        "sce_testing_certification_instruction_pdf:p016:b0087",
+        "sce_testing_certification_instruction_pdf:p017:b0088",
+        "sce_testing_certification_instruction_pdf:p017:b0089",
+        "sce_testing_certification_instruction_pdf:p017:b0090",
+        "sce_testing_certification_instruction_pdf:p017:b0091"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 4.1. Certified Equipment Lists and Other Standards Questions"
+      ],
+      "evidence_text": "Section 4. Utilities\u2019 Contact Info\n\nSection 4.1. Certified Equipment Lists and Other Standards Questions\n\nFor information regarding Rule 21 standards requirements and certified equipment lists, please refer to the following:\n\n\u2022 PG&E Please contact EGIEquipmentCertification@pge.com for any questions related to Rule 21 equipment standard requirements.\n\nInquiries and certification submissions are reviewed and responded to in order of receipt. Certification submissions lacking complete documentation will not be reviewed and will be returned to the sender for revision. PG&E aims to review packages and provide approval within 30 business days of receiving a complete package. This time frame may vary based on request volume.\n\n\u2022 SCE: Please send all documentation for review/listing of certified equipment to VerifyInverters@sce.com. Requests for review of certified equipment will be processed in the order they are received.\n\nFor questions regarding applicability of standards to Rule 21, standards development or new proposed alternate standards, please contact Roger Salas (roger.salas@sce.com).\n\n\u2022 SDG&E For any questions relating to Rule 21 standards requirements, please contact the lead engineer for Customer Generation, who can be contacted at the following contact email address: Netmetering@sdge.com\n\nInquiries and certification submittals will be processed in the order in which they are received. Those submittals which are deemed incomplete by Customer Generation will be sent back to the sender for follow up, as required to satisfy all requirements. The timing for a completed request will vary on other competing requests.",
+      "evidence_text_sha256": "sha256:bc32da2f21b95470d87fbe12349c46c8f36c284d29f79ae9bac84fefe6153459",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 4.1. Certified Equipment Lists and Other Standards Questions\n\nSection 4. Utilities\u2019 Contact Info\n\nSection 4.1. Certified Equipment Lists and Other Standards Questions\n\nFor information regarding Rule 21 standards requirements and certified equipment lists, please refer to the following:\n\n\u2022 PG&E Please contact EGIEquipmentCertification@pge.com for any questions related to Rule 21 equipment standard requirements.\n\nInquiries and certification submissions are reviewed and responded to in order of receipt. Certification submissions lacking complete documentation will not be reviewed and will be returned to the sender for revision. PG&E aims to review packages and provide approval within 30 business days of receiving a complete package. This time frame may vary based on request volume.\n\n\u2022 SCE: Please send all documentation for review/listing of certified equipment to VerifyInverters@sce.com. Requests for review of certified equipment will be processed in the order they are received.\n\nFor questions regarding applicability of standards to Rule 21, standards development or new proposed alternate standards, please contact Roger Salas (roger.salas@sce.com).\n\n\u2022 SDG&E For any questions relating to Rule 21 standards requirements, please contact the lead engineer for Customer Generation, who can be contacted at the following contact email address: Netmetering@sdge.com\n\nInquiries and certification submittals will be processed in the order in which they are received. Those submittals which are deemed incomplete by Customer Generation will be sent back to the sender for follow up, as required to satisfy all requirements. The timing for a completed request will vary on other competing requests.",
+      "estimated_evidence_tokens": 286,
+      "estimated_embedding_tokens": 316,
+      "citation": {
+        "pdf_page_start": 16,
+        "pdf_page_end": 17,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4",
+          "4.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0017",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0019",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0019",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 19,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p017:b0092",
+        "sce_testing_certification_instruction_pdf:p017:b0093",
+        "sce_testing_certification_instruction_pdf:p017:b0094",
+        "sce_testing_certification_instruction_pdf:p017:b0095",
+        "sce_testing_certification_instruction_pdf:p017:b0096",
+        "sce_testing_certification_instruction_pdf:p018:b0097",
+        "sce_testing_certification_instruction_pdf:p018:b0098",
+        "sce_testing_certification_instruction_pdf:p018:b0099"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 4.2. Other Relevant Contact Information Regarding Interconnections"
+      ],
+      "evidence_text": "Section 4.2. Other Relevant Contact Information Regarding Interconnections\n\nEach utility maintains various email addresses or web content with useful information on interconnection processes or program information. The following are some additional useful contact information (not intended to be exhaustive):\n\n\u2022 PG&E For questions about your application, please contact the relevant email address and or visit the PG&E Interconnection website: PG&E Interconnections\n\nProject Type Description Mailbox Standard NEM Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW NEMfollowups@pge.com Standard NEM Paired Storage Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW with Energy Storage \u2264 10 kW SNEMPairedStorage@pge.com Complex Rule 21 All other Rule 21 Interconnection Programs Rule21Gen@pge.com\n\n\u2022 SCE: For all non-NEM/NBT applications, SCE assigns a project manager who should be the primary point of contact to address questions about your project. For NEM/NBT projects (including virtual networks), please refer to the contact information provided in the PowerClerk Interconnection portal or email SolarBillingPlan@sce.com.\n\n\u2022 SDG&E For more information or assistance with your application, email our Customer Generation team at DGInquiries@sdge.com.\n\nInquiries and certification submittals will be processed in the order in which they are received. Those submittals which are deemed incomplete by Customer Generation will be sent back to the sender for follow up, as required to satisfy all requirements. The timing for a completed request will vary on other competing requests.\n\nTo address any disputes regarding Rule 21 missed timelines, please contact SDG&E\u2019s appointed ombudsman at rule21.ombudsman@semprautilities.com.",
+      "evidence_text_sha256": "sha256:ea13c6e1566232032b474657f9564a4cd2dbe316c39b7e0422056d94730e88e5",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 4.2. Other Relevant Contact Information Regarding Interconnections\n\nSection 4.2. Other Relevant Contact Information Regarding Interconnections\n\nEach utility maintains various email addresses or web content with useful information on interconnection processes or program information. The following are some additional useful contact information (not intended to be exhaustive):\n\n\u2022 PG&E For questions about your application, please contact the relevant email address and or visit the PG&E Interconnection website: PG&E Interconnections\n\nProject Type Description Mailbox Standard NEM Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW NEMfollowups@pge.com Standard NEM Paired Storage Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW with Energy Storage \u2264 10 kW SNEMPairedStorage@pge.com Complex Rule 21 All other Rule 21 Interconnection Programs Rule21Gen@pge.com\n\n\u2022 SCE: For all non-NEM/NBT applications, SCE assigns a project manager who should be the primary point of contact to address questions about your project. For NEM/NBT projects (including virtual networks), please refer to the contact information provided in the PowerClerk Interconnection portal or email SolarBillingPlan@sce.com.\n\n\u2022 SDG&E For more information or assistance with your application, email our Customer Generation team at DGInquiries@sdge.com.\n\nInquiries and certification submittals will be processed in the order in which they are received. Those submittals which are deemed incomplete by Customer Generation will be sent back to the sender for follow up, as required to satisfy all requirements. The timing for a completed request will vary on other competing requests.\n\nTo address any disputes regarding Rule 21 missed timelines, please contact SDG&E\u2019s appointed ombudsman at rule21.ombudsman@semprautilities.com.",
+      "estimated_evidence_tokens": 314,
+      "estimated_embedding_tokens": 343,
+      "citation": {
+        "pdf_page_start": 17,
+        "pdf_page_end": 18,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0018",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0020",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0020",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 20,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p018:b0100",
+        "sce_testing_certification_instruction_pdf:p018:b0101"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 5. Rule 21 Testing Requirements"
+      ],
+      "evidence_text": "Section 5. Rule 21 Testing Requirements\n\nRule 21, Section L (Certification and Testing Criteria) describes the test procedures and requirements for equipment used for the interconnection of generating facilities to the Utilities\u2019 transmission or distribution system. This section provides information about some of these tests (Type Testing, Production Testing, Commissioning Testing, and Periodic Testing). Please refer to Rule 21 for the complete set of requirements for each of these tests.",
+      "evidence_text_sha256": "sha256:cf2cd02a46e90651677c3df94be61437914d01505ad649388042a3bbd9a9945c",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 5. Rule 21 Testing Requirements\n\nSection 5. Rule 21 Testing Requirements\n\nRule 21, Section L (Certification and Testing Criteria) describes the test procedures and requirements for equipment used for the interconnection of generating facilities to the Utilities\u2019 transmission or distribution system. This section provides information about some of these tests (Type Testing, Production Testing, Commissioning Testing, and Periodic Testing). Please refer to Rule 21 for the complete set of requirements for each of these tests.",
+      "estimated_evidence_tokens": 83,
+      "estimated_embedding_tokens": 108,
+      "citation": {
+        "pdf_page_start": 18,
+        "pdf_page_end": 18,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0019",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0021",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0021",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 21,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p018:b0102",
+        "sce_testing_certification_instruction_pdf:p018:b0103",
+        "sce_testing_certification_instruction_pdf:p018:b0104",
+        "sce_testing_certification_instruction_pdf:p018:b0105",
+        "sce_testing_certification_instruction_pdf:p018:b0106",
+        "sce_testing_certification_instruction_pdf:p018:b0107"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 5.1. Type Testing"
+      ],
+      "evidence_text": "Section 5.1. Type Testing\n\nType Testing refers to a one-time test performed on a sample of a particular model of a device to verify specific aspects of its design, construction and performance and its conformance with intended standards. The complete set of requirements for Type Testing is described in Rule 21 Section L.3.\n\nThe guidelines provided in Appendix A (Guidelines for Rule 21 Section L.7 - \u201cType Testing Procedures Not Defined in Other Standards) were developed during 2024 to clarify helpful and efficient practices for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment. These guidelines also appear on each utility web site along with utility contact person information for equipment manufacturers seeking to communicate with a utility about Rule 21 Section L.7 type testing.\n\nThe Energy Division maintains a public list of contact persons for equipment manufacturers, who are points of contact for type testing, should a utility or interconnection customer need to contact a manufacturer about their equipment.\n\nList of OEM Contacts for Type Testing Purposes\n\nAny manufacturer whose equipment may be subject to type testing can submit an email request be added to the list or update an existing entry. Email IxDE@cpuc.ca.gov with company name, contact person name, title/role, and email.",
+      "evidence_text_sha256": "sha256:152a10f0ff6a440d23f1ef4a7c633dcc3945bec849ccd859ddf531b4cf53c1ab",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 5.1. Type Testing\n\nSection 5.1. Type Testing\n\nType Testing refers to a one-time test performed on a sample of a particular model of a device to verify specific aspects of its design, construction and performance and its conformance with intended standards. The complete set of requirements for Type Testing is described in Rule 21 Section L.3.\n\nThe guidelines provided in Appendix A (Guidelines for Rule 21 Section L.7 - \u201cType Testing Procedures Not Defined in Other Standards) were developed during 2024 to clarify helpful and efficient practices for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment. These guidelines also appear on each utility web site along with utility contact person information for equipment manufacturers seeking to communicate with a utility about Rule 21 Section L.7 type testing.\n\nThe Energy Division maintains a public list of contact persons for equipment manufacturers, who are points of contact for type testing, should a utility or interconnection customer need to contact a manufacturer about their equipment.\n\nList of OEM Contacts for Type Testing Purposes\n\nAny manufacturer whose equipment may be subject to type testing can submit an email request be added to the list or update an existing entry. Email IxDE@cpuc.ca.gov with company name, contact person name, title/role, and email.",
+      "estimated_evidence_tokens": 262,
+      "estimated_embedding_tokens": 287,
+      "citation": {
+        "pdf_page_start": 18,
+        "pdf_page_end": 18,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "5.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0020",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0022",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0022",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 22,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p019:b0108",
+        "sce_testing_certification_instruction_pdf:p019:b0109",
+        "sce_testing_certification_instruction_pdf:p019:b0110"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 5.2. Production Testing"
+      ],
+      "evidence_text": "Section 5.2. Production Testing\n\nProduction Test is a test performed on each device coming off the production line to verify certain aspects of its performance. Production Tests are not conducted by the Utilities as these are only done during the manufacturing stage of the devices.\n\nRequirements for Production Testing are described in Rule 21 Section L.4.",
+      "evidence_text_sha256": "sha256:6fc7ead62401ff9d5103d69887e16b0a263c452d8d8eddf37ab48cfeed8463b3",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 5.2. Production Testing\n\nSection 5.2. Production Testing\n\nProduction Test is a test performed on each device coming off the production line to verify certain aspects of its performance. Production Tests are not conducted by the Utilities as these are only done during the manufacturing stage of the devices.\n\nRequirements for Production Testing are described in Rule 21 Section L.4.",
+      "estimated_evidence_tokens": 64,
+      "estimated_embedding_tokens": 89,
+      "citation": {
+        "pdf_page_start": 19,
+        "pdf_page_end": 19,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "5.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0021",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0023",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0023",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 23,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p019:b0111",
+        "sce_testing_certification_instruction_pdf:p019:b0112",
+        "sce_testing_certification_instruction_pdf:p019:b0113",
+        "sce_testing_certification_instruction_pdf:p019:b0114",
+        "sce_testing_certification_instruction_pdf:p019:b0115"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 5.3. Commissioning Testing"
+      ],
+      "evidence_text": "Section 5.3. Commissioning Testing\n\nCommissiong Test is a test performed during the commissioning of all or part of a generating facility to achieve one or more of the following: (a) verify specific aspects of its performance; (b) calibrate its instrumentation; or (c) establish instrument or protective function set-points.\n\nRequirements for Production Testing are described in Rule 21 Section L.5.\n\nCommissioning Tests are always required but the Utilities may waive attendance to the test for non-complex projects.\n\nThe processes for completing Commissioning Tests are described in the applicable Utility\u2019s Interconnection Handbook: \u2022 For projects in PG&E\u2019s service area, Commissioning Tests are outlined in PG&E\u2019s (Rule 21 tariff, Section F.5 and L.5) and Section G5.1 of the PG&E Transmission Interconnection Handbook. \u2022 For NEM projects in SCE\u2019s service area, please refer to SCE\u2019s NEM Interconnection Handbook, 2022 edition, Section 3.2. \u2022 For project in SDGE\u2019s service area, Commissioning Tests are outlined in SDG&E\u2019s Distribution Interconnection Handbook, May 2018 edition, Section 6.3.",
+      "evidence_text_sha256": "sha256:e042f7cf1ea943ad6eb20b010774763b1d6e93b68716fad507282854a5b3c661",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 5.3. Commissioning Testing\n\nSection 5.3. Commissioning Testing\n\nCommissiong Test is a test performed during the commissioning of all or part of a generating facility to achieve one or more of the following: (a) verify specific aspects of its performance; (b) calibrate its instrumentation; or (c) establish instrument or protective function set-points.\n\nRequirements for Production Testing are described in Rule 21 Section L.5.\n\nCommissioning Tests are always required but the Utilities may waive attendance to the test for non-complex projects.\n\nThe processes for completing Commissioning Tests are described in the applicable Utility\u2019s Interconnection Handbook: \u2022 For projects in PG&E\u2019s service area, Commissioning Tests are outlined in PG&E\u2019s (Rule 21 tariff, Section F.5 and L.5) and Section G5.1 of the PG&E Transmission Interconnection Handbook. \u2022 For NEM projects in SCE\u2019s service area, please refer to SCE\u2019s NEM Interconnection Handbook, 2022 edition, Section 3.2. \u2022 For project in SDGE\u2019s service area, Commissioning Tests are outlined in SDG&E\u2019s Distribution Interconnection Handbook, May 2018 edition, Section 6.3.",
+      "estimated_evidence_tokens": 208,
+      "estimated_embedding_tokens": 233,
+      "citation": {
+        "pdf_page_start": 19,
+        "pdf_page_end": 19,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "5.3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0022",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0024",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0024",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 24,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p019:b0116",
+        "sce_testing_certification_instruction_pdf:p019:b0117",
+        "sce_testing_certification_instruction_pdf:p019:b0118",
+        "sce_testing_certification_instruction_pdf:p019:b0119"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 5.4. Periodic Testing"
+      ],
+      "evidence_text": "Section 5.4. Periodic Testing\n\nTesting of interconnection-related protective functions and equipment (whose purpose is to protect against unsafe operating conditions) should be performed as specified by the manufacturer\u2019s operating instructions, and at least every four (4) years.\n\nRequirements for Periodic Testing are described in Rule 21 Section L.6.\n\nThe Utilities normally do not witness periodic testing but may require information about periodic testing (such as testing logs).",
+      "evidence_text_sha256": "sha256:2b5159023fdbca1b56cf85fb8c2f58017b77a3b2815154b8a5b383c14508fc6d",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 5.4. Periodic Testing\n\nSection 5.4. Periodic Testing\n\nTesting of interconnection-related protective functions and equipment (whose purpose is to protect against unsafe operating conditions) should be performed as specified by the manufacturer\u2019s operating instructions, and at least every four (4) years.\n\nRequirements for Periodic Testing are described in Rule 21 Section L.6.\n\nThe Utilities normally do not witness periodic testing but may require information about periodic testing (such as testing logs).",
+      "estimated_evidence_tokens": 82,
+      "estimated_embedding_tokens": 107,
+      "citation": {
+        "pdf_page_start": 19,
+        "pdf_page_end": 19,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "5.4"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0023",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0025",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0025",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 25,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p020:b0120",
+        "sce_testing_certification_instruction_pdf:p020:b0121",
+        "sce_testing_certification_instruction_pdf:p020:b0122"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 6. List of Interconnection Programs and Applicable Technology"
+      ],
+      "evidence_text": "Section 6. List of Interconnection Programs and Applicable Technology\n\nThe table below is a non-exhaustive list of the available interconnection programs. It outlines the technologies able to participate in the programs, as well as further requirements. Both inverter- based (smart inverters, when applicable) and non-inverter-based technologies can participate in all of the below programs.\n\nProgram Description Standard NEM/NBT Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW Standard NEM/NBT Paired Storage Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW with Energy Storage \u2264 10 kW Expanded NEM Solar, wind, or hybrid generators \u22641MW NEM Paired Storage Solar, wind, or hybrid generators \u22641MW with Energy Storage > 10kW and \u2264 150% of NEM system size NEM/NBT Aggregation An eligible NEM/NBT system intended for multiple electric accounts on the same property as the renewable generator and/or on property contiguous or adjacent to that property where those properties are solely owned, leased, or rented by the same customer. NEM/NBT Virtual Solar, wind or hybrid generators with multiple Utility customers that are located on a cluster of multi-tenant and multi-meter buildings, facilities or structures that are under the control of a single Owner or Operator built to serve a common function, such as a housing complex or a multi-tenant complex, on an integral parcel of land undivided. NEMV MASH Same as NEM/NBT Virtual but only available to income-qualified housing projects with proof of MASH, NSHP, or LIWP program participation. Although MASH incentives are discontinued, interconnection of otherwise eligible systems is still available. NEMV SOMAH Same as NEM/NBT Virtual but only available to income-qualified housing projects with proof of SOMAH participation Non-Export All types of generator technologies and sizes where energy will not be exported to the Utilities\u2019 electric system NEM Fuel Cell1 (NEMFC) Fuel cell generators \u22645MW. (discontinued for new projects) NEM/NBT Multiple Tariff Solar, wind, or hybrid generators \u22641MW with Energy Storage > 10kW and >150% of NEM system size or a combination of generating technologies with different tariff treatments RES-BCT Solar, wind, or hybrid generators \u22645MW for Local Government only",
+      "evidence_text_sha256": "sha256:4756110ebf67e4efdafe564ae768d479d128d6279093847846c2aea27a3ccfaa",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 6. List of Interconnection Programs and Applicable Technology\n\nSection 6. List of Interconnection Programs and Applicable Technology\n\nThe table below is a non-exhaustive list of the available interconnection programs. It outlines the technologies able to participate in the programs, as well as further requirements. Both inverter- based (smart inverters, when applicable) and non-inverter-based technologies can participate in all of the below programs.\n\nProgram Description Standard NEM/NBT Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW Standard NEM/NBT Paired Storage Solar, wind, or hybrid (solar and wind) generators \u2264 30 kW with Energy Storage \u2264 10 kW Expanded NEM Solar, wind, or hybrid generators \u22641MW NEM Paired Storage Solar, wind, or hybrid generators \u22641MW with Energy Storage > 10kW and \u2264 150% of NEM system size NEM/NBT Aggregation An eligible NEM/NBT system intended for multiple electric accounts on the same property as the renewable generator and/or on property contiguous or adjacent to that property where those properties are solely owned, leased, or rented by the same customer. NEM/NBT Virtual Solar, wind or hybrid generators with multiple Utility customers that are located on a cluster of multi-tenant and multi-meter buildings, facilities or structures that are under the control of a single Owner or Operator built to serve a common function, such as a housing complex or a multi-tenant complex, on an integral parcel of land undivided. NEMV MASH Same as NEM/NBT Virtual but only available to income-qualified housing projects with proof of MASH, NSHP, or LIWP program participation. Although MASH incentives are discontinued, interconnection of otherwise eligible systems is still available. NEMV SOMAH Same as NEM/NBT Virtual but only available to income-qualified housing projects with proof of SOMAH participation Non-Export All types of generator technologies and sizes where energy will not be exported to the Utilities\u2019 electric system NEM Fuel Cell1 (NEMFC) Fuel cell generators \u22645MW. (discontinued for new projects) NEM/NBT Multiple Tariff Solar, wind, or hybrid generators \u22641MW with Energy Storage > 10kW and >150% of NEM system size or a combination of generating technologies with different tariff treatments RES-BCT Solar, wind, or hybrid generators \u22645MW for Local Government only",
+      "estimated_evidence_tokens": 415,
+      "estimated_embedding_tokens": 443,
+      "citation": {
+        "pdf_page_start": 20,
+        "pdf_page_end": 20,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "6"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0024",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0026",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0026",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 26,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p021:b0123",
+        "sce_testing_certification_instruction_pdf:p021:b0124",
+        "sce_testing_certification_instruction_pdf:p022:b0125",
+        "sce_testing_certification_instruction_pdf:p022:b0126",
+        "sce_testing_certification_instruction_pdf:p022:b0127",
+        "sce_testing_certification_instruction_pdf:p022:b0128",
+        "sce_testing_certification_instruction_pdf:p022:b0129"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History"
+      ],
+      "evidence_text": "Section 7. Instruction Sheet Version History\n\nVersion Publication Date Description of Revision SIWG Review Other Comments 001 06/05/2025 First publication 06/05/2025 002 Updates xxx Additions xxx Etc. xxx xx/xx/xx\n\nInstruction Sheet Version 6/5/2025 Appendix A - Page 1 Internal\n\nAppendix A - Guidelines for Rule 21 Section L.7 \u201cType Testing Procedures Not Defined in Other Standards\u201d\n\nThe following guidelines are relevant to Rule 21 Section L.7 to be used for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment. 1. A public-facing directory of primary Points of Contact at utilities and a list of Original Equipment Manufacturers (OEMs) should be published specifically for the purpose of facilitating engagement and communications pertaining to Type T esting13. Each utility should designate, and differentiate, if necessary, their Points of Contact for (i) Type Testing for equipment for which an interconnection application using the equipment has not been submitted, and (ii) Type Testing for equipment for which one or more interconnection applications using the equipment have already been submitted to the respective utility.\n\n2. OEMs should seek to proactively enroll in the publicly available list of OEMs, via a subscription/un-subscription form managed by a single entity, to update their contact information and to include pending release of new products, product variants, use cases, or configurations. OEMs should be encouraged to maintain their information updated and to reach out to the utility contacts up to three to six months in anticipation of any upcoming interconnection requests proposing to use their products as to provide sufficient time for review, testing, and certification of new equipment or systems, as may be applicable.\n\n3. OEMs should be proactive at reaching out to IOUs when they believe Type T esting will be required on any of their products. In any proactive outreach to utilities, OEMs should strive to provide relevant documentation regarding the new product, configuration, or use case to inform the utilities\u2019 review and testing determinations. Such documentation could include technical specifications; narrative descriptions of the role and function of the new product, configuration, or use case; suggested features or functionality that utilities might wish to test; and the OEM\u2019s anticipated or target dates for 1) NRTL testing and certification, 2) utility Type Testing, if needed, and 3) commercial availability. Utilities should acknowledge receipt of an OEM\u2019s outreach within 10 business days.",
+      "evidence_text_sha256": "sha256:a19ef3f1795613f272f94c1af8d6957ea68a412171e8b9802fe76756db7b1d9b",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History\n\nSection 7. Instruction Sheet Version History\n\nVersion Publication Date Description of Revision SIWG Review Other Comments 001 06/05/2025 First publication 06/05/2025 002 Updates xxx Additions xxx Etc. xxx xx/xx/xx\n\nInstruction Sheet Version 6/5/2025 Appendix A - Page 1 Internal\n\nAppendix A - Guidelines for Rule 21 Section L.7 \u201cType Testing Procedures Not Defined in Other Standards\u201d\n\nThe following guidelines are relevant to Rule 21 Section L.7 to be used for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment. 1. A public-facing directory of primary Points of Contact at utilities and a list of Original Equipment Manufacturers (OEMs) should be published specifically for the purpose of facilitating engagement and communications pertaining to Type T esting13. Each utility should designate, and differentiate, if necessary, their Points of Contact for (i) Type Testing for equipment for which an interconnection application using the equipment has not been submitted, and (ii) Type Testing for equipment for which one or more interconnection applications using the equipment have already been submitted to the respective utility.\n\n2. OEMs should seek to proactively enroll in the publicly available list of OEMs, via a subscription/un-subscription form managed by a single entity, to update their contact information and to include pending release of new products, product variants, use cases, or configurations. OEMs should be encouraged to maintain their information updated and to reach out to the utility contacts up to three to six months in anticipation of any upcoming interconnection requests proposing to use their products as to provide sufficient time for review, testing, and certification of new equipment or systems, as may be applicable.\n\n3. OEMs should be proactive at reaching out to IOUs when they believe Type T esting will be required on any of their products. In any proactive outreach to utilities, OEMs should strive to provide relevant documentation regarding the new product, configuration, or use case to inform the utilities\u2019 review and testing determinations. Such documentation could include technical specifications; narrative descriptions of the role and function of the new product, configuration, or use case; suggested features or functionality that utilities might wish to test; and the OEM\u2019s anticipated or target dates for 1) NRTL testing and certification, 2) utility Type Testing, if needed, and 3) commercial availability. Utilities should acknowledge receipt of an OEM\u2019s outreach within 10 business days.",
+      "estimated_evidence_tokens": 480,
+      "estimated_embedding_tokens": 505,
+      "citation": {
+        "pdf_page_start": 21,
+        "pdf_page_end": 22,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "7"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0025",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0027",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0027",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 27,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p022:b0130",
+        "sce_testing_certification_instruction_pdf:p022:b0131",
+        "sce_testing_certification_instruction_pdf:p023:b0132",
+        "sce_testing_certification_instruction_pdf:p023:b0133",
+        "sce_testing_certification_instruction_pdf:p023:b0134",
+        "sce_testing_certification_instruction_pdf:p023:b0135",
+        "sce_testing_certification_instruction_pdf:p023:b0136"
+      ],
+      "block_types": [
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History"
+      ],
+      "evidence_text": "4. Utilities may at their discretion require Type Testing to test system-level functionality of non-certified equipment or for certified system for which individual system components may have been tested and certified by a NRTL to applicable standards (such as inverters), but system-level functionality may not have been explicitly tested and certified by a NRTL due to non-existence of applicable standards to test and certify the required system-level functionality.\n\n13 The Energy Division maintains a public list of contact persons for equipment manufacturers, who are points of contact for type testing should a utility or interconnection customer need to contact a manufacturer about their equipment: https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy- division/documents/rule21/list-of-oem-contacts-for-type-testing-purposes-03212025.xlsx\n\nInstruction Sheet Version 6/5/2025 Appendix A - Page 2 Internal\n\n5. If a utility determines Type Testing is needed, either based on its own initiative, upon review of an interconnection application, or following OEM\u2019s outreach, the utility should make personnel available to engage the relevant OEM to communicate, discuss and determine the planning, development and execution of the Type Testing required. If the OEM proves incommunicative or cannot otherwise be engaged, the utility has the discretion to conduct the Type T esting requirements through coordination with the applicant customer or the installer. Completion of the Type Testing is required prior to approval of any interconnection application using the equipment (or the applicable functionality) that is the subject of the Type Testing.\n\n6. If a utility determines Type Testing is required, the utility should inform the other utilities and offer them the opportunity to participate in the Type Testing activities, as to avoid redundant efforts, when permitted or allowed by the OEM, the installer, or the customer, as applicable.\n\n7. Upon determination that Type Testing is required, the designated lead utility will schedule a \u201cscoping meeting\u201d with the OEM, installer, customer and other utilities, as applicable, to discuss and agree on Type T esting objectives, agree to test procedures, and coordinate the date, time, and location of the Type Test. The utility and OEM (or applicable parties) should develop and reach a consensus on finalized testing procedures prior to the scheduled date of testing in order establish transparency on how the certified equipment will be evaluated, and what the passing criteria will be during testing.\n\n8. It is highly preferred to conduct Type T esting in the OEM\u2019s laboratory facilities (or laboratory arranged by the OEM) given the complex testing for normal and abnormal configuration/operations.",
+      "evidence_text_sha256": "sha256:5c011f1eb08a0dfc0e77a959a8c8052fd7b032e0a74b00c574641778c503ae5b",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History\n\n4. Utilities may at their discretion require Type Testing to test system-level functionality of non-certified equipment or for certified system for which individual system components may have been tested and certified by a NRTL to applicable standards (such as inverters), but system-level functionality may not have been explicitly tested and certified by a NRTL due to non-existence of applicable standards to test and certify the required system-level functionality.\n\n13 The Energy Division maintains a public list of contact persons for equipment manufacturers, who are points of contact for type testing should a utility or interconnection customer need to contact a manufacturer about their equipment: https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy- division/documents/rule21/list-of-oem-contacts-for-type-testing-purposes-03212025.xlsx\n\nInstruction Sheet Version 6/5/2025 Appendix A - Page 2 Internal\n\n5. If a utility determines Type Testing is needed, either based on its own initiative, upon review of an interconnection application, or following OEM\u2019s outreach, the utility should make personnel available to engage the relevant OEM to communicate, discuss and determine the planning, development and execution of the Type Testing required. If the OEM proves incommunicative or cannot otherwise be engaged, the utility has the discretion to conduct the Type T esting requirements through coordination with the applicant customer or the installer. Completion of the Type Testing is required prior to approval of any interconnection application using the equipment (or the applicable functionality) that is the subject of the Type Testing.\n\n6. If a utility determines Type Testing is required, the utility should inform the other utilities and offer them the opportunity to participate in the Type Testing activities, as to avoid redundant efforts, when permitted or allowed by the OEM, the installer, or the customer, as applicable.\n\n7. Upon determination that Type Testing is required, the designated lead utility will schedule a \u201cscoping meeting\u201d with the OEM, installer, customer and other utilities, as applicable, to discuss and agree on Type T esting objectives, agree to test procedures, and coordinate the date, time, and location of the Type Test. The utility and OEM (or applicable parties) should develop and reach a consensus on finalized testing procedures prior to the scheduled date of testing in order establish transparency on how the certified equipment will be evaluated, and what the passing criteria will be during testing.\n\n8. It is highly preferred to conduct Type T esting in the OEM\u2019s laboratory facilities (or laboratory arranged by the OEM) given the complex testing for normal and abnormal configuration/operations.",
+      "estimated_evidence_tokens": 492,
+      "estimated_embedding_tokens": 517,
+      "citation": {
+        "pdf_page_start": 22,
+        "pdf_page_end": 23,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0026",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0028",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0028",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 28,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p023:b0137",
+        "sce_testing_certification_instruction_pdf:p023:b0138",
+        "sce_testing_certification_instruction_pdf:p023:b0139",
+        "sce_testing_certification_instruction_pdf:p024:b0140",
+        "sce_testing_certification_instruction_pdf:p024:b0141",
+        "sce_testing_certification_instruction_pdf:p024:b0142",
+        "sce_testing_certification_instruction_pdf:p024:b0143",
+        "sce_testing_certification_instruction_pdf:p024:b0144",
+        "sce_testing_certification_instruction_pdf:p024:b0145",
+        "sce_testing_certification_instruction_pdf:p024:b0146"
+      ],
+      "block_types": [
+        "list_item",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History"
+      ],
+      "evidence_text": "9. If field testing is required, or if laboratory testing is not possible, OEMs, in tandem with relevant third parties (installers, developers, contractors, etc.), should be responsible for identifying optimal field sites and/or host customers for testing. OEMs should then work in tandem with utilities and third parties to communicate test schedules and procedures with the host and oversee test activities.\n\n10. Nothing in these guidelines inhibits the discretion of utilities to require new or additional Type Testing for similar or related products or features, or to adjust testing plans as new information arises.\n\n11. Type Testing experience with new products could be brought by utilities to the attention of CPUC Energy Division staff if, in the opinion of the utility, discussion with stakeholders on any specific categories of products, configurations, or system-level functionalities that are not covered by existing standards could bring value on Type Testing procedures to be performed in the future.\n\nInstruction Sheet Version 6/5/2025 Appendix B - Page 1 Internal\n\nAppendix B \u2013 Approved Testing Pathway For Phase 2 Communications Requirements\n\nNOTE: Originally this \u201cTesting Pathway\u201d was introduced in Resolution E-5000, issued July 12, 2019. In Resolution E-5036, issued December 6, 2019, the Commission made minor changes to the original \u201cTesting Pathway\u201d. This Appendix B is the clean version of the Testing Pathway as approved in Resolution E5036 Appendix D.\n\nIn order to make the direction of the Commission explicit, we detail the approved testing pathway for the Phase 2 communications requirements below. The IOUs shall implement the smart inverter Phase 2 requirements as described by CALSSA in the Petition14 and as reiterated herein.\n\nThis appendix is intended for use in conjunction with the testing specifications proposed in the Petition. However, where any discrepancies arise, this appendix governs. Where this language allows for multiple interpretations, it should be read in the manner most consistent with the interoperability requirements put forth in IEEE 1547 and 1547.1.\n\nTesting Pathway: Inverters that are certified to IEEE 2030.5 at the inverter level will be considered compliant with the Phase 2 communications requirements and will not be required to pass the following compatibility testing.\n\nFor inverters that are not certified to IEEE 2030.5 at the level of the inverter, each inverter model or family of models15 will demonstrate compliance with the Phase 2 communications requirements via compatibility testing in conjunction with a CSIP-certified gateway16, 17. In this",
+      "evidence_text_sha256": "sha256:f45381220b37c9d68034e6338645de1daa1b3d61bb517138239fa472068d1fdb",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History\n\n9. If field testing is required, or if laboratory testing is not possible, OEMs, in tandem with relevant third parties (installers, developers, contractors, etc.), should be responsible for identifying optimal field sites and/or host customers for testing. OEMs should then work in tandem with utilities and third parties to communicate test schedules and procedures with the host and oversee test activities.\n\n10. Nothing in these guidelines inhibits the discretion of utilities to require new or additional Type Testing for similar or related products or features, or to adjust testing plans as new information arises.\n\n11. Type Testing experience with new products could be brought by utilities to the attention of CPUC Energy Division staff if, in the opinion of the utility, discussion with stakeholders on any specific categories of products, configurations, or system-level functionalities that are not covered by existing standards could bring value on Type Testing procedures to be performed in the future.\n\nInstruction Sheet Version 6/5/2025 Appendix B - Page 1 Internal\n\nAppendix B \u2013 Approved Testing Pathway For Phase 2 Communications Requirements\n\nNOTE: Originally this \u201cTesting Pathway\u201d was introduced in Resolution E-5000, issued July 12, 2019. In Resolution E-5036, issued December 6, 2019, the Commission made minor changes to the original \u201cTesting Pathway\u201d. This Appendix B is the clean version of the Testing Pathway as approved in Resolution E5036 Appendix D.\n\nIn order to make the direction of the Commission explicit, we detail the approved testing pathway for the Phase 2 communications requirements below. The IOUs shall implement the smart inverter Phase 2 requirements as described by CALSSA in the Petition14 and as reiterated herein.\n\nThis appendix is intended for use in conjunction with the testing specifications proposed in the Petition. However, where any discrepancies arise, this appendix governs. Where this language allows for multiple interpretations, it should be read in the manner most consistent with the interoperability requirements put forth in IEEE 1547 and 1547.1.\n\nTesting Pathway: Inverters that are certified to IEEE 2030.5 at the inverter level will be considered compliant with the Phase 2 communications requirements and will not be required to pass the following compatibility testing.\n\nFor inverters that are not certified to IEEE 2030.5 at the level of the inverter, each inverter model or family of models15 will demonstrate compliance with the Phase 2 communications requirements via compatibility testing in conjunction with a CSIP-certified gateway16, 17. In this",
+      "estimated_evidence_tokens": 457,
+      "estimated_embedding_tokens": 482,
+      "citation": {
+        "pdf_page_start": 23,
+        "pdf_page_end": 24,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0027",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0029",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0029",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 29,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p024:b0147"
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History"
+      ],
+      "evidence_text": "14 In a February 11, 2019, Petition for Modification of Resolution E-4832 and E-4898 (\u201cthe Petition\u201d), the California Solar and Storage Association (CALSSA) requests that the Commission clarify and modify the smart inverter Phase 2 and 3 requirements. The Petition makes four primary assertions: (1) IEEE",
+      "evidence_text_sha256": "sha256:c9e275f577ee95a4d0590cf77b923ec4514d13d0e93a88595837b4f90a9984ff",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History\n\n14 In a February 11, 2019, Petition for Modification of Resolution E-4832 and E-4898 (\u201cthe Petition\u201d), the California Solar and Storage Association (CALSSA) requests that the Commission clarify and modify the smart inverter Phase 2 and 3 requirements. The Petition makes four primary assertions: (1) IEEE",
+      "estimated_evidence_tokens": 59,
+      "estimated_embedding_tokens": 84,
+      "citation": {
+        "pdf_page_start": 24,
+        "pdf_page_end": 24,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0028",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0030",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0030",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 30,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p024:b0148",
+        "sce_testing_certification_instruction_pdf:p024:b0149",
+        "sce_testing_certification_instruction_pdf:p025:b0150",
+        "sce_testing_certification_instruction_pdf:p025:b0151",
+        "sce_testing_certification_instruction_pdf:p025:b0152",
+        "sce_testing_certification_instruction_pdf:p025:b0153"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History",
+        "2030.51 should not be required at the inverter level, (2) undefined utility testing should not be"
+      ],
+      "evidence_text": "2030.51 should not be required at the inverter level, (2) undefined utility testing should not be\n\nrequired and utilities should rely on attestations for Phase 3 Functions 1 (Monitor Key Data) and 8 (Scheduling), (3) compatibility testing should satisfy compliance with Phase 2 without active aggregator agreements or installed gateway devices, and (4) further extension of the effective date for certain inverter capabilities may be needed. 15 For inverter product families that use the same communications protocols, physical communications layers, firmware, and communication circuit design, the NRTL may use engineering judgement to determine whether a single verification will suffice for the product family or whether model-by-model verification is necessary. For example, if a 5 kW inverter and a 10 kW inverter have different model numbers but utilize the same communications interface, the NRTL may determine that a compatibility test of the 5 kW inverter may be applied to the 10 kW model and vice versa. (Footnote included from Resolution E-5000). 16 A \u201cgateway\u201d is anything other than the DER that provides a communications interface (CSIP/IEEE 2030.5) to the utility for the purposes of exchanging the content contained in the communications messages with one or more DERs. 17 The gateway may have been previously CSIP certified and need not be tested concurrently with the inverter.\n\nInstruction Sheet Version 6/5/2025 Appendix B - Page 2 Internal testing, a NRTL18 should perform the following SunSpec CSIP test procedures on the gateway while it is connected to the inverter or inverter control unit:\n\n\u2022 Inverter Status (BASIC-028) \u2022 Inverter Meter Reading (BASIC-029) \u2022 Basic Inverter Control \u2013 Volt/Var (BASIC-006) \u2022 Basic Inverter Control \u2013 Fixed Power Factor (BASIC-008) \u2022 Basic Inverter Control \u2013 Volt-Watt (BASIC-011)\n\nThe NRTL need not witness the inverter-level result of these commands. Instead, the inverter or gateway manufacturer must attest that the inverter communicates with the NRTL server and executes the commands. The NRTL should then state in the inverter test report that the manufacturer attested to performance of the commands during the test.\n\nThe NRTL should test conformance gateways to IEEE 2030.5 in accordance with the SunSpec CSIP Test Protocols. This testing may be carried out without regard to what is connected to the far end of the gateway. However, the entity under test may connect a specific inverter model to the gateway. If a specific inverter model is used, the testing lab may note the inverter model in the test results or in a letter associated with the test results.",
+      "evidence_text_sha256": "sha256:0ddc9a6860d9a413ca42c149495d5514317c128031b2781ad9f2bc1753345e40",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History > 2030.51 should not be required at the inverter level, (2) undefined utility testing should not be\n\n2030.51 should not be required at the inverter level, (2) undefined utility testing should not be\n\nrequired and utilities should rely on attestations for Phase 3 Functions 1 (Monitor Key Data) and 8 (Scheduling), (3) compatibility testing should satisfy compliance with Phase 2 without active aggregator agreements or installed gateway devices, and (4) further extension of the effective date for certain inverter capabilities may be needed. 15 For inverter product families that use the same communications protocols, physical communications layers, firmware, and communication circuit design, the NRTL may use engineering judgement to determine whether a single verification will suffice for the product family or whether model-by-model verification is necessary. For example, if a 5 kW inverter and a 10 kW inverter have different model numbers but utilize the same communications interface, the NRTL may determine that a compatibility test of the 5 kW inverter may be applied to the 10 kW model and vice versa. (Footnote included from Resolution E-5000). 16 A \u201cgateway\u201d is anything other than the DER that provides a communications interface (CSIP/IEEE 2030.5) to the utility for the purposes of exchanging the content contained in the communications messages with one or more DERs. 17 The gateway may have been previously CSIP certified and need not be tested concurrently with the inverter.\n\nInstruction Sheet Version 6/5/2025 Appendix B - Page 2 Internal testing, a NRTL18 should perform the following SunSpec CSIP test procedures on the gateway while it is connected to the inverter or inverter control unit:\n\n\u2022 Inverter Status (BASIC-028) \u2022 Inverter Meter Reading (BASIC-029) \u2022 Basic Inverter Control \u2013 Volt/Var (BASIC-006) \u2022 Basic Inverter Control \u2013 Fixed Power Factor (BASIC-008) \u2022 Basic Inverter Control \u2013 Volt-Watt (BASIC-011)\n\nThe NRTL need not witness the inverter-level result of these commands. Instead, the inverter or gateway manufacturer must attest that the inverter communicates with the NRTL server and executes the commands. The NRTL should then state in the inverter test report that the manufacturer attested to performance of the commands during the test.\n\nThe NRTL should test conformance gateways to IEEE 2030.5 in accordance with the SunSpec CSIP Test Protocols. This testing may be carried out without regard to what is connected to the far end of the gateway. However, the entity under test may connect a specific inverter model to the gateway. If a specific inverter model is used, the testing lab may note the inverter model in the test results or in a letter associated with the test results.",
+      "estimated_evidence_tokens": 481,
+      "estimated_embedding_tokens": 528,
+      "citation": {
+        "pdf_page_start": 24,
+        "pdf_page_end": 25,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2030.51"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0029",
+      "next_chunk_id": "sce_testing_certification_instruction_pdf:c0031",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_testing_certification_instruction_pdf:c0031",
+      "schema_version": "1.0",
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "chunk_ordinal": 31,
+      "block_ids": [
+        "sce_testing_certification_instruction_pdf:p025:b0154",
+        "sce_testing_certification_instruction_pdf:p025:b0155"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Section 7. Instruction Sheet Version History",
+        "2030.51 should not be required at the inverter level, (2) undefined utility testing should not be"
+      ],
+      "evidence_text": "Following the above tests, the NRTL should produce two reports. The test report should state that the gateway conformed to IEEE 2030.5 and CSIP. This may be certified by the SunSpec Alliance. A separate letter should state the inverter models that were connected to the gateway for compatibility testing, as outlined above. The CEC or another list-maintaining entity will receive that letter and use these documents as the basis for a list of compliant inverter models. The IOUs shall draw from that list to populate the list of eligible inverters in their interconnection application portals.19\n\n18 The term \u201cNationally Recognize Testing Lab (NRTL)\u201d, as used throughout this Appendix B, refers to both (1) those testing labs that have been recognized by the Occupational Safety and Health Administration (OSHA) as providing evaluation, testing, and certification of electrical products and (2) SunSpec Authorized Testing Laboratories (SunSpec ATLs). 19 If a non-IOU party maintains the list and excludes any categories of inverter for reasons not related to Rule 21 compliance, the IOUs shall nonetheless ensure the inclusion of those inverters that have undergone all relevant testing among the eligible inverters.",
+      "evidence_text_sha256": "sha256:3ac71494a432f7c5c829c0e112272c5e321e9f84cc2385fcb24e8bbfab948af2",
+      "embedding_text": "title: SCE Rule 21 testing and certification instruction sheet (PDF) | text: Section: Section 7. Instruction Sheet Version History > 2030.51 should not be required at the inverter level, (2) undefined utility testing should not be\n\nFollowing the above tests, the NRTL should produce two reports. The test report should state that the gateway conformed to IEEE 2030.5 and CSIP. This may be certified by the SunSpec Alliance. A separate letter should state the inverter models that were connected to the gateway for compatibility testing, as outlined above. The CEC or another list-maintaining entity will receive that letter and use these documents as the basis for a list of compliant inverter models. The IOUs shall draw from that list to populate the list of eligible inverters in their interconnection application portals.19\n\n18 The term \u201cNationally Recognize Testing Lab (NRTL)\u201d, as used throughout this Appendix B, refers to both (1) those testing labs that have been recognized by the Occupational Safety and Health Administration (OSHA) as providing evaluation, testing, and certification of electrical products and (2) SunSpec Authorized Testing Laboratories (SunSpec ATLs). 19 If a non-IOU party maintains the list and excludes any categories of inverter for reasons not related to Rule 21 compliance, the IOUs shall nonetheless ensure the inclusion of those inverters that have undergone all relevant testing among the eligible inverters.",
+      "estimated_evidence_tokens": 217,
+      "estimated_embedding_tokens": 264,
+      "citation": {
+        "pdf_page_start": 25,
+        "pdf_page_end": 25,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2030.51"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "supporting_implementation",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_testing_certification_instruction_pdf:c0030",
+      "next_chunk_id": null,
+      "chunking_flags": []
+    }
+  ],
+  "chunking_summary": {
+    "input_blocks": 155,
+    "output_chunks": 31,
+    "historical_only": false,
+    "chunks_over_hard_limit": 0
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-08-22T18:50:29.691639Z",
+  "documents": [
+    {
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "chunk_count": 26,
+      "historical_only": false,
+      "flags": {},
+      "errors": [],
+      "warnings": [],
+      "status": "pass"
+    },
+    {
+      "document_id": "sce_interconnection_handbook_pdf",
+      "source_id": "sce_interconnection_handbook_pdf",
+      "chunk_count": 394,
+      "historical_only": false,
+      "flags": {
+        "single_block_exceeds_hard_limit": 5
+      },
+      "errors": [],
+      "warnings": [
+        "sce_interconnection_handbook_pdf:c0010: exceeds hard token target",
+        "sce_interconnection_handbook_pdf:c0031: exceeds hard token target",
+        "sce_interconnection_handbook_pdf:c0048: exceeds hard token target",
+        "sce_interconnection_handbook_pdf:c0054: exceeds hard token target",
+        "sce_interconnection_handbook_pdf:c0057: exceeds hard token target"
+      ],
+      "status": "review"
+    },
+    {
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "chunk_count": 35,
+      "historical_only": false,
+      "flags": {},
+      "errors": [],
+      "warnings": [],
+      "status": "pass"
+    },
+    {
+      "document_id": "sce_rule21_tariff_pdf",
+      "source_id": "sce_rule21_tariff_pdf",
+      "chunk_count": 535,
+      "historical_only": false,
+      "flags": {},
+      "errors": [],
+      "warnings": [],
+      "status": "pass"
+    },
+    {
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "source_id": "sce_testing_certification_instruction_pdf",
+      "chunk_count": 31,
+      "historical_only": false,
+      "flags": {},
+      "errors": [],
+      "warnings": [],
+      "status": "pass"
+    },
+    {
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "chunk_count": 28,
+      "historical_only": true,
+      "flags": {},
+      "errors": [],
+      "warnings": [],
+      "status": "pass"
+    }
+  ],
+  "summary": {
+    "documents": 6,
+    "pass": 5,
+    "review": 1,
+    "fail": 0
+  }
+}

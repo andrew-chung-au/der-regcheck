@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "embedded_at": "2026-08-22T18:59:02.020501Z",
+  "model_id": "nomic-ai/nomic-embed-text-v1.5",
+  "documents": [
+    {
+      "document_id": "cpuc_rule21_overview",
+      "output_path": "data/processed/embeddings/cpuc_rule21_overview.jsonl",
+      "chunks_embedded": 26,
+      "chunks_failed": 0
+    },
+    {
+      "document_id": "sce_interconnection_handbook_pdf",
+      "output_path": "data/processed/embeddings/sce_interconnection_handbook_pdf.jsonl",
+      "chunks_embedded": 394,
+      "chunks_failed": 0
+    },
+    {
+      "document_id": "sce_interconnection_web",
+      "output_path": "data/processed/embeddings/sce_interconnection_web.jsonl",
+      "chunks_embedded": 35,
+      "chunks_failed": 0
+    },
+    {
+      "document_id": "sce_rule21_tariff_pdf",
+      "output_path": "data/processed/embeddings/sce_rule21_tariff_pdf.jsonl",
+      "chunks_embedded": 535,
+      "chunks_failed": 0
+    },
+    {
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "output_path": "data/processed/embeddings/sce_testing_certification_instruction_pdf.jsonl",
+      "chunks_embedded": 31,
+      "chunks_failed": 0
+    },
+    {
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "output_path": "data/processed/embeddings/siwg_phase2_recommendations_pdf.jsonl",
+      "chunks_embedded": 28,
+      "chunks_failed": 0
+    }
+  ],
+  "failures": []
+}
