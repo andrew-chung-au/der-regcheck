@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "normalised_at": "2026-08-22T12:33:22.357872Z",
+  "input_manifest": "data/processed/extraction_manifest.json",
+  "documents": [
+    {
+      "document_id": "cpuc_rule21_overview",
+      "status": "success",
+      "input_path": "data/processed/extracted/cpuc_rule21_overview.json",
+      "output_path": "data/processed/normalised/cpuc_rule21_overview.json",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "normalised_at": "2026-08-22T12:33:22.359055Z",
+      "output_blocks": 116
+    },
+    {
+      "document_id": "sce_rule21_tariff_pdf",
+      "status": "success",
+      "input_path": "data/processed/extracted/sce_rule21_tariff_pdf.json",
+      "output_path": "data/processed/normalised/sce_rule21_tariff_pdf.json",
+      "source_hash": "sha256:9d88f030adaea8ae9b8e072385325805ba72b477f0d25d9e9c302ffe61a81e0d",
+      "normalised_at": "2026-08-22T12:33:22.428773Z",
+      "output_blocks": 2264
+    },
+    {
+      "document_id": "sce_interconnection_handbook_pdf",
+      "status": "success",
+      "input_path": "data/processed/extracted/sce_interconnection_handbook_pdf.json",
+      "output_path": "data/processed/normalised/sce_interconnection_handbook_pdf.json",
+      "source_hash": "sha256:f64bc3926e348f8e8a70362c32eb504fc88aeda9a356f4b93bd1e6d318c849ae",
+      "normalised_at": "2026-08-22T12:33:22.484911Z",
+      "output_blocks": 967
+    },
+    {
+      "document_id": "sce_interconnection_web",
+      "status": "success",
+      "input_path": "data/processed/extracted/sce_interconnection_web.json",
+      "output_path": "data/processed/normalised/sce_interconnection_web.json",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "normalised_at": "2026-08-22T12:33:22.494961Z",
+      "output_blocks": 165
+    },
+    {
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "status": "success",
+      "input_path": "data/processed/extracted/siwg_phase2_recommendations_pdf.json",
+      "output_path": "data/processed/normalised/siwg_phase2_recommendations_pdf.json",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "normalised_at": "2026-08-22T12:33:22.500844Z",
+      "output_blocks": 160
+    },
+    {
+      "document_id": "sce_testing_certification_instruction_pdf",
+      "status": "success",
+      "input_path": "data/processed/extracted/sce_testing_certification_instruction_pdf.json",
+      "output_path": "data/processed/normalised/sce_testing_certification_instruction_pdf.json",
+      "source_hash": "sha256:973cfba0a6764cb2c69d40fa4b17c7d0c4fdfa59036c6803d1adcb34ae040423",
+      "normalised_at": "2026-08-22T12:33:22.506179Z",
+      "output_blocks": 155
+    }
+  ],
+  "failures": [],
+  "skipped": []
+}

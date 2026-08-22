@@ -12,7 +12,7 @@
 | [04](#04-extraction-and-chunking-approach) | Extraction and chunking approach | Active | No |
 | [05](#05-source-hierarchy-and-authority) | Source hierarchy and authority | Active | No |
 | [06](#06-evaluation-strategy) | Evaluation strategy | Active | No |
-
+| [07](#07-raw-extraction-and-evidence-normalisation) | Raw extraction and evidence normalisation | Active | No |
 
 ---
 
@@ -220,3 +220,38 @@ Assign each source an authority level and retrieval tier:
 **Trade-offs:**
 - Manual curation is time-consuming but yields clearer signals.
 - Automated metrics are scalable but may not reflect real-world usefulness.
+
+---
+
+## 07. Raw extraction and evidence normalisation
+
+**Decision:**
+- Preserve `data/processed/extracted/` as immutable, page-preserving raw extraction artifacts.
+- Add extraction schema and method metadata to each extracted document and the extraction manifest.
+- Generate separately tracked, deterministic normalised evidence outputs in `data/processed/normalised/`.
+- Keep PDF physical-page locators and HTML heading-path locators in every normalised block.
+- Use document-specific normalisation where structure requires it, including a dedicated SCE Rule 21 tariff parser.
+- Preserve tariff Rule 21 sheet number, Cal. PUC sheet number, effective date, and advice letter as citation metadata.
+- Treat tariff Roman-numeral entries as list items by default, except short title-like entries that are deterministic level-four subheadings.
+- Exclude non-substantive cover, approval, contents, certificate, page-header, and repeated document-control material from normalised evidence outputs.
+- Keep SIWG Phase 2 in the corpus as historical/draft context, excluded from normal current-requirement retrieval.
+
+**Reason:**
+- Raw PDF and HTML extraction provides reproducible evidence, but outputs have incompatible structures: PDF pages, HTML blocks, tables, repeated headers, document-control notices, and tariff sheet metadata.
+- Citation-grade RAG requires a consistent evidence-block representation without changing or discarding the raw extracted source material.
+- The SCE Rule 21 tariff has a distinct legal hierarchy and recurring Cal. PUC sheet structure that cannot be handled reliably by the generic PDF normaliser.
+- Normalisation must remain deterministic and auditable before later chunking, embedding, retrieval, or generated-answer stages.
+- Regression fixtures derived from raw tariff pages protect critical parsing behaviour for nested headings, Roman entries, tariff sheet metadata, and appendices.
+
+**Alternatives considered:**
+- Replacing raw PDF extraction with a structural parser such as `pdfplumber` or `unstructured`.
+- Applying one generic PDF normalisation strategy to every source.
+- Chunking raw page text directly.
+- Using an LLM to repair PDF layout or infer headings during normalisation.
+- Treating source headers, tariff sheet metadata, and document-control text as retrievable evidence.
+
+**Trade-offs:**
+- Document-specific normalisation adds code and tests, but retains traceability and avoids applying unreliable generic heuristics to legal and technical sources.
+- Some supporting-source blocks remain flagged with `no_detected_heading_path`; these are review limitations, not extraction failures.
+- Raw `pypdf` layout artefacts remain in evidence text. Any future readability cleanup must be separated from citation text and must not overwrite raw extraction outputs.
+- Chunking, embedding, and retrieval are deferred until normalised output quality is reviewed and accepted.

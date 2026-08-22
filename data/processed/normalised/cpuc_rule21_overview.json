@@ -1,0 +1,2622 @@
+{
+  "schema_version": "1.0",
+  "document_id": "cpuc_rule21_overview",
+  "source_type": "html",
+  "normalised_at": "2026-08-22T12:33:22.359055Z",
+  "normalisation_method": "deterministic_html_block_normalisation",
+  "source": {
+    "id": "cpuc_rule21_overview",
+    "title": "CPUC Electric Rule 21 overview page",
+    "url": "https://www.cpuc.ca.gov/Rule21/",
+    "source_org": "CPUC",
+    "content_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+    "last_checked": "2026-08-21T02:43:01.539344Z",
+    "is_current": true
+  },
+  "blocks": [
+    {
+      "block_id": "cpuc_rule21_overview:b0001",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 1,
+      "block_type": "heading",
+      "text": "Electric Rule 21: Generating Facility Interconnections",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 1,
+      "heading": "Electric Rule 21: Generating Facility Interconnections"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0002",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 2,
+      "block_type": "paragraph",
+      "text": "Electric Rule 21 (Rule 21) is a tariff that describes the interconnection, operating and metering requirements for generation facilities to be connected to an investor-owned utility\u2019s (IOUs) distribution system and transmission system over which the California Public Utilities Commission (Commission) has jurisdiction. Rule 21 provides a generating facility (i.e., customers wishing to install generating or storage facilities on their premises) with access to the electric grid while protecting the safety and reliability of the distribution and transmission systems.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0003",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 3,
+      "block_type": "paragraph",
+      "text": "The IOUs under Commission jurisdiction include the Large IOUs\u2014Pacific Gas and Electric Company\u2019s (PG&E), Southern California Edison\u2019s (SCE), and San Diego Gas & Electric\u2019s (SDG&E)\u2014and the three small and multi-jurisdictional utilities (SMJUs)\u2014Bear Valley Electric Service (Bear Valley), Liberty Utilities (CalPeco Electric) LLC (Liberty), and PacifiCorp, d.b.a Pacific Power (PacifiCorp).",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0004",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 4,
+      "block_type": "paragraph",
+      "text": "Each investor-owned utility is responsible for administration of Rule 21 in its service territory and maintains its own version of the rule:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0005",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 5,
+      "block_type": "table",
+      "text": "| PG&E | [Rule 21 Tariff](https://www.pge.com/tariffs/assets/pdf/tariffbook/ELEC_RULES_21.pdf) Rule 21 Tariff | [Interconnection Website](https://www.pge.com/en_US/for-our-business-partners/interconnection-renewables/interconnections-renewables.page?ctx=business) Interconnection Website |\n| --- | --- | --- |\n| SCE | [Rule 21 Tariff](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=Z2Wdlo) Rule 21 Tariff | [Interconnecting Generation Website](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Interconnecting-Generation-under-Rule-21) Interconnecting Generation Website |\n| SDG&E | [Rule 21 Tariff](https://tariff.sdge.com/tm2/pdf/tariffs/ELEC_ELEC-RULES_ERULE21.pdf) Rule 21 Tariff | [Overview of Generation Interconnections Website](https://www.sdge.com/more-information/customer-generation) Overview of Generation Interconnections Website |\n| Bear Valley | [Rule 21 Tariff](https://www.bvesinc.com/media/managed/documents/Rule-21.pdf) Rule 21 Tariff | [Interconnection & Net Energy Metering Website](https://www.bvesinc.com/efficiency-environment/renewable-energy/interconnection-net-energy-metering) Interconnection & Net Energy Metering Website |\n| Liberty | [Rule 21 Tariff](https://california.libertyutilities.com/uploads/Rule%2021%20Generating%20Facility%20Interconnections.pdf) Rule 21 Tariff | [Homes/Business Solar Website](https://california.libertyutilities.com/south-lake-tahoe/residential/evolve/net-metering.html) Homes/Business Solar Website |\n| PacifiCorp | N/A | [Customer Generation Website](https://www.pacificpower.net/savings-energy-choices/customer-generation.html) Customer Generation Website |",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0006",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 6,
+      "block_type": "paragraph",
+      "text": "The Commission has not required PacifiCorp to implement its own version of Rule 21 but accepts PacifiCorp\u2019s existing interconnection processes for the interconnection of smaller facilities. PacifiCorp uses interconnection processes under its Open Access Transmission Tariff (OATT), consistent with Federal Energy Regulatory Commission (FERC) requirements. In [Decision (D.) 07-07-027](https://docs.cpuc.ca.gov/PublishedDocs/WORD_PDF/FINAL_DECISION/70660.PDF) Decision (D.) 07-07-027 , the Commission required that PacifiCorp \u201cfollow the same principles of timely review and disposition of interconnection requests as in Rule 21 for other utilities without requiring that [it] file [its] own version of Rule 21, amend then current rules, or file another interconnection protocol.\u201d",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0007",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 7,
+      "block_type": "paragraph",
+      "text": "Generating Facility interconnections to the IOUs\u2019 distribution system that are subject to FERC jurisdiction do not apply for interconnection through Rule 21, but instead apply under the IOUs\u2019 Wholesale Distribution Access Tariff (WDT) whether they interconnect to IOUs\u2019 distribution or transmission system.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0008",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 8,
+      "block_type": "heading",
+      "text": "Interconnection Rulemaking & Regulatory History",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Rulemaking & Regulatory History"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Rulemaking & Regulatory History"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Interconnection Rulemaking & Regulatory History"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0009",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 9,
+      "block_type": "paragraph",
+      "text": "On August 20, 2025, the Commission opened R.25-08-004 to consider refinements to the interconnection of DERs under Rule 21 of PG&E, SCE and SDG&E, and the equivalent tariff rules of the small and multi-jurisdictional electric utilities (SMJUs).",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Rulemaking & Regulatory History"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Rulemaking & Regulatory History"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0010",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 10,
+      "block_type": "paragraph",
+      "text": "All documents pertaining to Rulemakings can be found in the Commission's Docket Card (see [Proceedings and Rulemaking](https://www.cpuc.ca.gov/proceedings-and-rulemaking) Proceedings and Rulemaking ) by searching the proceeding number.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Rulemaking & Regulatory History"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Rulemaking & Regulatory History"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0011",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 11,
+      "block_type": "paragraph",
+      "text": "For more information on current or past proceedings, please see [Energy Division's Rule 21 Rulemaking and Regulatory History](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/rulemaking-and-regulatory-history) Energy Division's Rule 21 Rulemaking and Regulatory History web page.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Rulemaking & Regulatory History"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Rulemaking & Regulatory History"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0012",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 12,
+      "block_type": "paragraph",
+      "text": "The Commission's first iteration of Rule 21 was adopted in 1982. As initially adopted, Rule 21 was designed to meet the needs of small, non-utility-owned generating facilities. Over subsequent years Rule 21 has undergone revisions to develop policies and rules to facilitate deployment of distributed generation in California, to address the key policy and technical issues essential to timely, non-discriminatory, cost-effective and transparent interconnection, and to consider streamlining interconnection of Distribution Energy Resources and improvements to Rule 21.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Rulemaking & Regulatory History"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Rulemaking & Regulatory History"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0013",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 13,
+      "block_type": "heading",
+      "text": "Meetings, Workshops and Working Groups",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Meetings, Workshops and Working Groups"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Meetings, Workshops and Working Groups"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Meetings, Workshops and Working Groups"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0014",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 14,
+      "block_type": "heading",
+      "text": "Ongoing Meetings",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Meetings, Workshops and Working Groups",
+        "Ongoing Meetings"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Meetings, Workshops and Working Groups",
+          "Ongoing Meetings"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Ongoing Meetings"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0015",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 15,
+      "block_type": "paragraph",
+      "text": "Interconnection Discussion Forum",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Meetings, Workshops and Working Groups",
+        "Ongoing Meetings"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Meetings, Workshops and Working Groups",
+          "Ongoing Meetings"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0016",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 16,
+      "block_type": "paragraph",
+      "text": "The Interconnection Discussion Forum (IDF) provides an informal venue for utilities, developers, and other stakeholders to explore a wide variety of issues related to interconnection practices and policies. The forum meets at least twice a year in person and/or through online conferencing. Visit the [Energy Division's IDF page](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/idf) Energy Division's IDF page for more information, including how to join the mailing list and to view previous presentations. For questions related to the IDF e-mail [IxForum@cpuc.ca.gov](mailto:IxForum@cpuc.ca.gov) IxForum@cpuc.ca.gov .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Meetings, Workshops and Working Groups",
+        "Ongoing Meetings"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Meetings, Workshops and Working Groups",
+          "Ongoing Meetings"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0017",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 17,
+      "block_type": "heading",
+      "text": "Smart Inverter Working Group",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Smart Inverter Working Group"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0018",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 18,
+      "block_type": "paragraph",
+      "text": "The Smart Inverter Working Group (SIWG) meets on a biweekly basis to foster proactive, constructive communication between utilities, developers, and other impacted stakeholders on issues of a technical nature related, but not limited to, interconnection, communications, and cybersecurity. Example topics include smart inverters, advances in technology to streamline interconnection, Power Control Systems, and industry standards. For more information on the group activities or to join the SIWG, please see [Energy Division's Smart Inverter Working Group page](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/smart-inverter-working-group) Energy Division's Smart Inverter Working Group page .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0019",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 19,
+      "block_type": "paragraph",
+      "text": "Schedule: Meetings take place between 1:00 and 2:30 PM PST on alternating Thursdays. For schedule information, please follow the directions below to join the distribution list.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0020",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 20,
+      "block_type": "paragraph",
+      "text": "Distribution List: Energy Division maintains a distribution list for those interested in attending the SIWG. To request to be added to the list, please email [SIWG@cpuc.ca.gov](mailto:SIWG@cpuc.ca.gov) SIWG@cpuc.ca.gov with the subject line \u201cAddition to IDF.\u201d To be removed from the list, email us with the subject line \u201cRemoval from SIWG.\u201d Please include your first and last name, e-mail address (for Removals, as it appears in the IDF invites), organization, role, and phone number.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0021",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 21,
+      "block_type": "heading",
+      "text": "Past Events",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Past Events"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0022",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 22,
+      "block_type": "paragraph",
+      "text": "Smart Inverter Working Group: Selected Recorded Meetings Energy Division staff may record SIWG meetings and publicly share the recordings to promote transparency. Below are selected recorded meetings of interest:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0023",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 23,
+      "block_type": "list_item",
+      "text": "- April 10, 2025 IEEE 2030.5-2023 (IEEE Standard for Smart Energy Profile Application Protocol) Overview Presented by: Robby Simpson, PhD (Chair, IEEE P2030.5) Recording link: [https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353](https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353) https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353 Password: cSPVdUr5",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0024",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 24,
+      "block_type": "list_item",
+      "text": "- IEEE 2030.5-2023 (IEEE Standard for Smart Energy Profile Application Protocol) Overview",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0025",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 25,
+      "block_type": "list_item",
+      "text": "- Presented by: Robby Simpson, PhD (Chair, IEEE P2030.5)",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0026",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 26,
+      "block_type": "list_item",
+      "text": "- Recording link: [https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353](https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353) https://cpuc.webex.com/cpuc/ldr.php?RCID=972bee810e2052df73cd35f13f91c353",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0027",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 27,
+      "block_type": "list_item",
+      "text": "- Password: cSPVdUr5",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0028",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 28,
+      "block_type": "list_item",
+      "text": "- April 24, 2025 IEEE 1815.2 (DNP3 Profile for DER) Presented by: Frances Cleveland Recording link: [https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db](https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db) https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db Password: mUaFshX3",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0029",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 29,
+      "block_type": "list_item",
+      "text": "- IEEE 1815.2 (DNP3 Profile for DER)",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0030",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 30,
+      "block_type": "list_item",
+      "text": "- Presented by: Frances Cleveland",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0031",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 31,
+      "block_type": "list_item",
+      "text": "- Recording link: [https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db](https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db) https://cpuc.webex.com/cpuc/ldr.php?RCID=ba7f57e32b26cdec24f4b56f37d4c9db",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0032",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 32,
+      "block_type": "list_item",
+      "text": "- Password: mUaFshX3",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0033",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 33,
+      "block_type": "paragraph",
+      "text": "Vehicle-Grid-Integration (VGI) Forum",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0034",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 34,
+      "block_type": "paragraph",
+      "text": "[Decision (D.) 22-11-040](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M499/K005/499005805.PDF) Decision (D.) 22-11-040 , in Rulemaking 18-12-006 (Order Instituting Rulemaking to Continue the Development of Rates and Infrastructure for Vehicle Electrification), directed the Large IOUs to host, in collaboration with CPUC Energy Division staff, an annual Vehicle Grid Integration (VGI) Forum. The primary purpose of the forums is to provide an opportunity for strategic communication, information sharing, and discussion of relevant VGI issues, and provide an opportunity to incorporate learnings into current IOU and CPUC activities and policies. See CPUC\u2019s [Transportation Electrification](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/transportation-electrification) Transportation Electrification page for more information on the VGI Forum.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0035",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 35,
+      "block_type": "paragraph",
+      "text": "The Interconnection and Distribution Engineering section supports this effort by presenting on interconnection topics relevant to VGI:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0036",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 36,
+      "block_type": "list_item",
+      "text": "- April 16, 2025, VGI Forum V2X Standards and Technology panel\u2014The objective of the panel was to discuss the current state of V2X offerings and the technical, market and regulatory barriers to realizing V2X at scale, along with an overview of the interconnection process of V2G systems. See 2025: [Interconnection and Distribution Engineering Slides](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/2025_interconnection_vgi_forum_slide_deck.pdf) Interconnection and Distribution Engineering Slides . See 2024: [Interconnection and Distribution Engineering Slides](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/2024_interconnection_vgi_forum_slide_deck.pdf) Interconnection and Distribution Engineering Slides .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0037",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 37,
+      "block_type": "list_item",
+      "text": "- V2X Standards and Technology panel\u2014The objective of the panel was to discuss the current state of V2X offerings and the technical, market and regulatory barriers to realizing V2X at scale, along with an overview of the interconnection process of V2G systems.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0038",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 38,
+      "block_type": "list_item",
+      "text": "- See 2025: [Interconnection and Distribution Engineering Slides](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/2025_interconnection_vgi_forum_slide_deck.pdf) Interconnection and Distribution Engineering Slides .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0039",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 39,
+      "block_type": "list_item",
+      "text": "- See 2024: [Interconnection and Distribution Engineering Slides](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/2024_interconnection_vgi_forum_slide_deck.pdf) Interconnection and Distribution Engineering Slides .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0040",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 40,
+      "block_type": "paragraph",
+      "text": "Operational Flexibility Workshop",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0041",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 41,
+      "block_type": "paragraph",
+      "text": "[D.21-06-002](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M387/K064/387064665.PDF) D.21-06-002 , issued on June 4, 2021, adopted Proposal F-1 from the [Working Group Four Final Report](https://docs.cpuc.ca.gov/PublishedDocs/Efile/G000/M345/K416/345416776.PDF) Working Group Four Final Report dated August 12, 2020. Issue F considered what interconnection rules the Commission should adopt to account for the ability of Distributed Energy Resources Management Systems (DERMS) to address flexibility needs.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0042",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 42,
+      "block_type": "paragraph",
+      "text": "Proposal F-1 required the distribution provider to determine whether a distributed energy resources (DER) operational alternative would be a sufficient mitigation for operations flexibility constraints, if the output of a generating facility being interconnected is larger than the Integration Capacity Analysis (ICA) values for that location with operational flexibility (OF or OpFlex) constraints taken into account but smaller than the ICA values without operational constraints taken into account. The Commission found Proposal F-1 has the potential to increase distributed energy resource use without compromising safety by leveraging the capabilities of DERMS. The Commission adopted Proposal F-1 but found it prudent to initially pilot it. [Resolution E-5260](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M528/K919/528919033.PDF) Resolution E-5260 , issued May 9, 2024, approved the Large IOUs\u2019 OpFlex pilot proposals and required the Large IOUs to submit reports:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0043",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 43,
+      "block_type": "list_item",
+      "text": "- [SCE OpFlex Pilot Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/sce_opflex_report_2024.pdf) SCE OpFlex Pilot Report (filed September 9, 2024)",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0044",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 44,
+      "block_type": "list_item",
+      "text": "- [SDG&E OpFlex Pilot Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/sdge_opflex_report_2024.pdf) SDG&E OpFlex Pilot Report (filed September 9, 2024)",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0045",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 45,
+      "block_type": "list_item",
+      "text": "- [PG&E OpFlex Pilot Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/pge_opflex_report_2025.pdf) PG&E OpFlex Pilot Report (filed February 28, 2025)",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0046",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 46,
+      "block_type": "paragraph",
+      "text": "Resolution E-5260 further required the Large IOUs to hold a workshop once the pilots concluded. A workshop was held on April 14, 2025, to discuss the Large IOUs\u2019 OpFlex Pilot findings. The recording can be accessed at this link:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0047",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 47,
+      "block_type": "list_item",
+      "text": "- [Recording of Workshop](https://files.cpuc.ca.gov/energy/Rule21/Workshop Op Flex Pilot Results and Recommendations-20250414_224735-Meeting Recording.mp4) Recording of Workshop : Operational Flexibility Pilot: Results and Recommendations",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0048",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 48,
+      "block_type": "list_item",
+      "text": "- [OpFlex WorkshopTranscript](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/workshop_-operational-flexibility-pilot_-results-and-recommendations---transcript.docx) OpFlex WorkshopTranscript",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0049",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 49,
+      "block_type": "paragraph",
+      "text": "Background: Integration Capacity Analysis The ICA without Operational Flexibility (ICA-Static Grid (SG)) quantifies the maximum amount of capacity available to be connected to the distribution system requiring minimal to no distribution upgrades or operational restrictions and without violating any of the following technical restrictions: thermal, voltage, or distribution protection. The ICA with OpFlex (ICA-OF) considers one additional technical restriction\u2014operational flexibility violations. Operational Flexibility refers to reverse-flow limitations that enable more flexibility in grid operations. It is the amount of generations to avoid reverse power flow when a generator is generating into abnormal circuit operating condition. So reverse flow is allowed within the power flow analysis models used for \u201cICA without OpFlex\u201d (i.e., ICA-SG). A DER operational alternative is a deliberate change to how a distributed energy resource operates to limit adverse grid impacts during a defined period or abnormal grid configurations. This can include limiting or eliminating exported energy, employing a variety of other advanced inverter functionalities, monitoring and reporting, or providing other functionality that supports grid operations.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0050",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 50,
+      "block_type": "paragraph",
+      "text": "The Unintentional Islanding Working Group",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0051",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 51,
+      "block_type": "paragraph",
+      "text": "[D.21-06-002](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M387/K064/387064665.PDF) D.21-06-002 , issued in 2021, adopted Proposal 18d\u2014Convene an Unintentional Islanding Working Group (UIWG) on distribution-system-level solutions\u2014of the [Rule 21 Working Group 4 Report](https://docs.cpuc.ca.gov/PublishedDocs/Efile/G000/M345/K416/345416776.PDF) Rule 21 Working Group 4 Report . The UIWG was established in 2022 and was comprised of utility representatives, distributed energy resources (DER) project developers, researchers, and other industry experts. It met monthly for approximately from September 2022 through November 2023. Its objective was to review, discuss, evaluate, and recommend distribution system level solutions to island formation arising from increased DER penetration. The meetings primarily focused on addressing the questions laid out in [Appendix B of D.21-06- 002](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M387/K064/387064665.PDF) Appendix B of D.21-06- 002 . The [Unintentional Islanding Working Group: Final Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/uiwg-report-12082023.pdf) Unintentional Islanding Working Group: Final Report was released in December 2023.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Smart Inverter Working Group",
+        "Past Events"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Smart Inverter Working Group",
+          "Past Events"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0052",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 52,
+      "block_type": "heading",
+      "text": "Dispute Resolution",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Dispute Resolution"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0053",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 53,
+      "block_type": "paragraph",
+      "text": "Section K of Rule 21 describes existing procedures for resolution of interconnection disputes. For disputes regarding missed timelines, please contact the relevant utility\u2019s Rule 21 ombudsman:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0054",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 54,
+      "block_type": "table",
+      "text": "| PG&E Mike Mulvey [rule21.ombudsman@pge.com](mailto:rule21.ombudsman@pge.com?subject=Rule%2021) rule21.ombudsman@pge.com 916-203-6459 | SCE Rod Vickers [Rule21.Ombudsman@sce.com](mailto:Rule21.Ombudsman@sce.com) Rule21.Ombudsman@sce.com 714-895-0211 | SDG&E Kimberley Chong [rule21.ombudsman@semprautilities.com](mailto:rule21.ombudsman@semprautilities.com) rule21.ombudsman@semprautilities.com 619-676-5833 |\n| --- | --- | --- |",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0055",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 55,
+      "block_type": "paragraph",
+      "text": "For all other disputes, please use the procedures outlined in Section K of Rule 21. For CPUC assistance in reviewing or resolving a dispute, please contact [Rule21.Disputes@cpuc.ca.gov](mailto:Rule21.Disputes@cpuc.ca.gov) Rule21.Disputes@cpuc.ca.gov .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0056",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 56,
+      "block_type": "heading",
+      "text": "Notice of Status August 2024",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Notice of Status August 2024"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Notice of Status August 2024"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Notice of Status August 2024"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0057",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 57,
+      "block_type": "paragraph",
+      "text": "The Expedited Interconnection Dispute Resolution Process (EIDR) has been temporarily suspended due to a lapse in funding. In the interim and until further notice, disputes are being addressed through Energy Division's informal staff dispute resolution process. Staff anticipates seeking public input on a long-term approach.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Notice of Status August 2024"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Notice of Status August 2024"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0058",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 58,
+      "block_type": "heading",
+      "text": "Expedited Interconnection Dispute Resolution Process",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Expedited Interconnection Dispute Resolution Process"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Expedited Interconnection Dispute Resolution Process"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Expedited Interconnection Dispute Resolution Process"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0059",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 59,
+      "block_type": "paragraph",
+      "text": "On October 12, 2017, the Commission approved [Resolution ALJ-347](http://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M197/K421/197421608.pdf) Resolution ALJ-347 establishing an Expedited Interconnection Dispute Resolution Process as authorized by Assembly Bill 2861 (Ting, 2016). The expedited dispute resolution process will issue binding determinations to electric distribution grid interconnection disputes based on the recommendations of a technical panel within 60 days of the Commission receiving the Application regarding a particular dispute. For a detailed description of the adopted process, please see Exhibit A of [Resolution ALJ-347](http://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M197/K421/197421608.pdf) Resolution ALJ-347 .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Expedited Interconnection Dispute Resolution Process"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Expedited Interconnection Dispute Resolution Process"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0060",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 60,
+      "block_type": "paragraph",
+      "text": "AB 2821 is intended to address the inadequacy of the existing interconnection dispute resolution process described in utility tariffs in Section K of Rule 21, which relies on protracted mediation and does not benefit from readily-leveraged technical expertise to review the engineering determinations and upgrade cost allocations that often lead to disputes.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Expedited Interconnection Dispute Resolution Process"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Expedited Interconnection Dispute Resolution Process"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0061",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 61,
+      "block_type": "paragraph",
+      "text": "To apply for the Expedited Interconnection Dispute Resolution process, [click here](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/expedited-interconnection-dispute-resolution) click here .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Expedited Interconnection Dispute Resolution Process"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Expedited Interconnection Dispute Resolution Process"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0062",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 62,
+      "block_type": "paragraph",
+      "text": "For questions about the expedited process, please contact [Rule21.Disputes@cpuc.ca.gov](mailto:Rule21.Disputes@cpuc.ca.gov) Rule21.Disputes@cpuc.ca.gov .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Dispute Resolution",
+        "Expedited Interconnection Dispute Resolution Process"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Dispute Resolution",
+          "Expedited Interconnection Dispute Resolution Process"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0063",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 63,
+      "block_type": "heading",
+      "text": "Interconnection Data Reporting",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Data Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Data Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Interconnection Data Reporting"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0064",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 64,
+      "block_type": "paragraph",
+      "text": "Pursuant to Decision (D.) 14-04-003, the three California IOUs submit interconnection data reports to the CPUC Energy Division on a quarterly basis. Public versions of the reports are made available on our [Utility Interconnection Data Reports page](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/quarterly-iou-interconnection-data-reports) Utility Interconnection Data Reports page .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Interconnection Data Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Interconnection Data Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0065",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 65,
+      "block_type": "heading",
+      "text": "Rule 21 Interconnection Timeline Reporting",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Rule 21 Interconnection Timeline Reporting"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0066",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 66,
+      "block_type": "paragraph",
+      "text": "On September 30, 2020, in the R.17-07-007 proceeding, the Commission issued Decision [D.20-09-035 \u201cDecision Adopting Recommendations from Working Groups Two, Three and Subgroup\u201d](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M347/K953/347953769.PDF) D.20-09-035 \u201cDecision Adopting Recommendations from Working Groups Two, Three and Subgroup\u201d in Phase I of the R.17-07-007 Proceeding, which is [quasi legislative](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M209/K618/209618807.PDF) quasi legislative (definition at 2). The Decision addressed Working Group Issue 12: Improving Timeline Certainty. The Decision states (at 82-83) \u201cThe purpose of Issue 12 is to improve certainty regarding timelines for distribution upgrade planning, cost estimation, and construction. In the [Working Group Three Report](https://docs.cpuc.ca.gov/PublishedDocs/Efile/G000/M309/K943/309943907.PDF) Working Group Three Report (at 11), parties claim timelines for these three elements of interconnection are not being set, communicated, and/or adhered to in a predictable and consistent manner. These same parties contend that as a result, developers cannot give reliable estimates to customers; customers may be required to carry their own facilities\u2019 loan or leasing costs for longer than reasonable or expected; and Utilities [i.e., PG&E, SCE and SDG&E] are not being held accountable. Working group participants all agree that in order to improve accountability, transparency, communication, and consistency around these times, additional data is needed along with better data collection.\u201d",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0067",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 67,
+      "block_type": "paragraph",
+      "text": "To address party concerns and improve timeline tracking, D.20-09-035 ordering paragraph 4 ordered the utilities to track \u201cthe actual costs associated with the processing of interconnection applications\u201d. D.20-09-035 ordering paragraphs 22-30 address Rule 21 project timeline tracking issues by mandating regular reporting and specifying areas of additional or improved timeline tracking. It is important to note that D.20-09-035 did not mandate reporting for net energy metering (NEM) systems smaller than 30 kVA (i.e., ~30 kW) installed capacity, which, per the [March 2021 Rule 21 Interconnection Program Evaluation](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/rule-21-interconnection-program-eval_2021.pdf) March 2021 Rule 21 Interconnection Program Evaluation (overview below on this webpage), represent the majority of the Rule 21 Interconnections in California.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0068",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 68,
+      "block_type": "paragraph",
+      "text": "Since in December 2020, CPUC Energy Division Interconnection staff has worked with the Utilities to construct spreadsheets that track Utility interconnection timeline performance for Rule 21 systems as well as interconnection application processing costs. The Utilities serve these spreadsheets to the R.17-07-007 service list quarterly.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0069",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 69,
+      "block_type": "paragraph",
+      "text": "Click the link below to download the aggregated version of the latest, cumulative submission:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0070",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 70,
+      "block_type": "paragraph",
+      "text": "[All IOUs - R21 Timelines Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/all_ious-r21timelinesreport_202204.xlsx) All IOUs - R21 Timelines Report",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0071",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 71,
+      "block_type": "paragraph",
+      "text": "Columns in the cover page tab of this cumulative submission include information on system location (ZIP), system type (e.g., net energy metering, non-export, etc.), system technology (e.g., solar photovoltaic (PV), battery storage, solar PV paired with battery storage, etc.), and the timeline steps required (D.20-09-035 ordering paragraph and Rule 21 tariff references included for ease of reference). Additional tabs in this spreadsheet capture the actual costs associated with the processing of interconnection applications.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0072",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 72,
+      "block_type": "paragraph",
+      "text": "Each Utility also submits its own, more detailed quarterly timeline tracking sheet that accompanies its quarterly submission displayed in the cumulative submission. These more detailed quarterly timeline tracking sheets include dates for each system captured in the all-IOU aggregated coversheet. Click the links below to download the latest versions of the Utility submissions:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0073",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 73,
+      "block_type": "list_item",
+      "text": "- [PG&E R21 Timelines Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/pge-r21-timelines-report_202204.xlsx) PG&E R21 Timelines Report",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0074",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 74,
+      "block_type": "list_item",
+      "text": "- [SCE R21 Timelines Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/sce-r21-timelines-report_202204.xlsx) SCE R21 Timelines Report",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0075",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 75,
+      "block_type": "list_item",
+      "text": "- [SDG&E R21 Timelines Report](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/sdge-rule-21-timelines-report_202204.xlsx) SDG&E R21 Timelines Report",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0076",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 76,
+      "block_type": "paragraph",
+      "text": "If you have additional questions regarding this information, please email [IxDE@cpuc.ca.gov](mailto:IxDE@cpuc.ca.gov) IxDE@cpuc.ca.gov .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Timeline Reporting"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Timeline Reporting"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0077",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 77,
+      "block_type": "heading",
+      "text": "Rule 21 Interconnection Program Evaluation",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Program Evaluation"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Program Evaluation"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Rule 21 Interconnection Program Evaluation"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0078",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 78,
+      "block_type": "paragraph",
+      "text": "[Assembly Bill 2861](https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201520160AB2861) Assembly Bill 2861 (Ting, 2016) authorized CPUC to evaluate adherence to Rule 21 interconnection timelines. Guidehouse (consultant) carried out the evaluation from May 2019 through July 2020. Stakeholders at CPUC-hosted workshops vetted questionnaires and data requests sent to the utilities and weighed in on report findings. In many cases, utility data was incomplete or unavailable, so Guidehouse used population sampling to evaluate performance. Guidehouse also interviewed utilities and developers, aiming to identify opportunities for programmatic changes to improve adherence to Rule 21, transparency and CPUC / utility feedback mechanisms.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Program Evaluation"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Program Evaluation"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0079",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 79,
+      "block_type": "paragraph",
+      "text": "Proposals adopted from Issue 12 in the [WG 2/3/V2G AC Decision (D.20-09-035)](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M347/K953/347953769.PDF) WG 2/3/V2G AC Decision (D.20-09-035) largely address recommendations 7.1-7.3 from the Report. Ordering Paragraph 22 requires IOUs to track and report 19 interconnection timelines similar to those studied in the report. Ordering Paragraphs 23 and 24 establish standard interconnection construction and metering equipment installation timelines, and Ordering Paragraph 25 requires utilities to notify interconnection customers when they will fail (or will likely fail) to meet specified timeline requirements. Ordering Paragraphs 26-29 hold utilities accountable for tracking and adhering to timelines.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Program Evaluation"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Program Evaluation"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0080",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 80,
+      "block_type": "paragraph",
+      "text": "The Report was distributed to the R.17-07-007 and Interconnection Discussion Forum service lists in March 2021 and is available for download [here](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/rule-21-interconnection-program-eval_2021.pdf) here .",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Rule 21 Interconnection Program Evaluation"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Rule 21 Interconnection Program Evaluation"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0081",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 81,
+      "block_type": "heading",
+      "text": "General Information",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "General Information"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0082",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 82,
+      "block_type": "heading",
+      "text": "Applicability",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Applicability"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Applicability"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Applicability"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0083",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 83,
+      "block_type": "paragraph",
+      "text": "Rule 21 governs CPUC-jurisdictional interconnections, which include the interconnection of all net energy metering (NEM) facilities, \"Non-Export\" facilities, and qualifying facilities intending to sell power at avoided cost to the host utility. Rule 21 does not apply to the interconnection of generating or storage facilities intending to participate in wholesale markets overseen by the Federal Energy Regulatory Commission (FERC). These facilities must typically apply for interconnection under the FERC-jurisdictional \"Wholesale Distribution Access Tariff\" (when connecting to the distribution system) or \"CAISO Tariff\" (when connecting to the transmission system).",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Applicability"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Applicability"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0084",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 84,
+      "block_type": "heading",
+      "text": "Overview of Tariff Provisions",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Overview of Tariff Provisions"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0085",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 85,
+      "block_type": "paragraph",
+      "text": "Rule 21 contains provisions governing many aspects of interconnection, including:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0086",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 86,
+      "block_type": "list_item",
+      "text": "- Procedures and timeframes for reviewing applications",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0087",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 87,
+      "block_type": "list_item",
+      "text": "- Fee schedules to process applications and perform impact studies",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0088",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 88,
+      "block_type": "list_item",
+      "text": "- Pro forma application and agreement forms",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0089",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 89,
+      "block_type": "list_item",
+      "text": "- Allocation of interconnection costs",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0090",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 90,
+      "block_type": "list_item",
+      "text": "- Provisions specific to net energy metered facilities",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0091",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 91,
+      "block_type": "list_item",
+      "text": "- Technical operating parameters",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0092",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 92,
+      "block_type": "list_item",
+      "text": "- Certification and testing criteria",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0093",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 93,
+      "block_type": "list_item",
+      "text": "- Technical requirements for inverters",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0094",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 94,
+      "block_type": "list_item",
+      "text": "- Metering and monitoring requirements",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0095",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 95,
+      "block_type": "list_item",
+      "text": "- Procedures for dispute resolution",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Overview of Tariff Provisions"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Overview of Tariff Provisions"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0096",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 96,
+      "block_type": "heading",
+      "text": "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 3,
+      "heading": "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0097",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 97,
+      "block_type": "paragraph",
+      "text": "The following guidelines were developed during 2024 to clarify helpful and efficient practices for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment. These guidelines also appear on each utility web site along with utility contact person information tor equipment manufacturers seeking to communicate with a utility about Rule 21 Section L.7 type testing.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0098",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 98,
+      "block_type": "list_item",
+      "text": "- [Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined in Other Standards](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/rule-21-section-l7-type-testing-guidelines-03212025.pdf) Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined in Other Standards",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0099",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 99,
+      "block_type": "paragraph",
+      "text": "Energy Division is maintaining a public list of contact persons for equipment manufacturers, who are points of contact for type testing should a utility or interconnection customer need to contact a manufacturer about their equipment.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0100",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 100,
+      "block_type": "list_item",
+      "text": "- [List of OEM Contacts for Type Testing Purposes](https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/list-of-oem-contacts-for-type-testing-purposes-03212025.xlsx) List of OEM Contacts for Type Testing Purposes",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0101",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 101,
+      "block_type": "paragraph",
+      "text": "Any manufacturer whose equipment may be subject to type testing can submit an email request be added to the list or to update an existing entry. Email [IxDE@cpuc.ca.gov](mailto:IxDE@cpuc.ca.gov) IxDE@cpuc.ca.gov with company name, contact person name, title/role, and email.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0102",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 102,
+      "block_type": "paragraph",
+      "text": "Contact Us",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0103",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 103,
+      "block_type": "paragraph",
+      "text": "For utility-specific interconnection inquiries, please contact the relevant utility using the contact information found on the utility's interconnection website.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0104",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 104,
+      "block_type": "paragraph",
+      "text": "For inquiries to the Interconnection & Distribution Engineering staff, contact:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0105",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 105,
+      "block_type": "table",
+      "text": "| E-Mail | Purpose |\n| --- | --- |\n| [IxDE@cpuc.ca.gov](mailto:IxDE@cpuc.ca.gov) IxDE@cpuc.ca.gov | For general inquiries related to interconnection (e.g., tariff inquiries; proceeding inquiries) |\n| [IxForum@cpuc.ca.gov](mailto:IxForum@cpuc.ca.gov) IxForum@cpuc.ca.gov | For inquiries related to the Interconnection Discussion Forum (e.g., Distribution List; Agenda Items; General Questions) |\n| [SIWG@cpuc.ca.gov](mailto:SIWG@cpuc.ca.gov) SIWG@cpuc.ca.gov | For inquiries related to the Smart Inverter Working Group (e.g., Distribution List; Agenda Items; General Questions), Smart Inverters and Interconnection Standards |\n| [Ix_Tx_Dispute@cpuc.ca.gov](mailto:Ix_Tx_Dispute@cpuc.ca.gov) Ix_Tx_Dispute@cpuc.ca.gov | For inquires related to Transmission interconnection disputes and Summer Reliability interconnection disputes |\n| [Rule21.Disputes@cpuc.ca.gov](mailto:Rule21.Disputes@cpuc.ca.gov) Rule21.Disputes@cpuc.ca.gov | For Rule 21 interconnection disputes (e.g., Expedited Interconnection Dispute Resolution Process) |",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0106",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 106,
+      "block_type": "paragraph",
+      "text": "For more information on proceedings, decisions, and locating documents, please visit the corresponding CPUC websites:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0107",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 107,
+      "block_type": "list_item",
+      "text": "- Proceedings and Rulemaking: [https://www.cpuc.ca.gov/proceedings-and-rulemaking](https://www.cpuc.ca.gov/proceedings-and-rulemaking) https://www.cpuc.ca.gov/proceedings-and-rulemaking",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0108",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 108,
+      "block_type": "list_item",
+      "text": "- Advanced Search: [https://www.cpuc.ca.gov/documents](https://www.cpuc.ca.gov/documents) https://www.cpuc.ca.gov/documents",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0109",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 109,
+      "block_type": "paragraph",
+      "text": "There are two ways to receive information related to proceedings:",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0110",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 110,
+      "block_type": "list_item",
+      "text": "- Become a Party to a Proceeding . This allows you to receive e-mails and documents sent by the Commission, by other parties participating in the proceeding, and notices of workshops or other events.",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0111",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 111,
+      "block_type": "list_item",
+      "text": "- Subscribe to a Proceeding . This allows you to follow subscription documents on the proceeding docket card. Visit the docket card, search for the proceeding, and open the link, and subscribe. Visit the docket card: [https://apps.cpuc.ca.gov/apex/f?p=401:1:0](https://apps.cpuc.ca.gov/apex/f?p=401:1:0) https://apps.cpuc.ca.gov/apex/f?p=401:1:0",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "General Information",
+        "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "General Information",
+          "Guidelines for Rule 21 Section L.7 Type Testing Procedures Not Defined In Other Standards"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0112",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 112,
+      "block_type": "heading",
+      "text": "Electric Rule 21: Generating Facility Interconnections",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": [],
+      "heading_level": 2,
+      "heading": "Electric Rule 21: Generating Facility Interconnections"
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0113",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 113,
+      "block_type": "list_item",
+      "text": "- [IDF](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/idf) IDF",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0114",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 114,
+      "block_type": "list_item",
+      "text": "- [Limited Generation Profiles](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/limited-generation-profiles) Limited Generation Profiles",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0115",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 115,
+      "block_type": "list_item",
+      "text": "- [Petitions for Modifications](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/petitions-for-modifications) Petitions for Modifications",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    },
+    {
+      "block_id": "cpuc_rule21_overview:b0116",
+      "document_id": "cpuc_rule21_overview",
+      "source_id": "cpuc_rule21_overview",
+      "source_hash": "sha256:f53ee636bc02f67f8c19d5f05aaadd58374634d1c8b8051947cda26992358eeb",
+      "ordinal": 116,
+      "block_type": "list_item",
+      "text": "- [Rulemaking and Regulatory History](https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/rulemaking-and-regulatory-history) Rulemaking and Regulatory History",
+      "heading_path": [
+        "Electric Rule 21: Generating Facility Interconnections",
+        "Electric Rule 21: Generating Facility Interconnections"
+      ],
+      "citation": {
+        "heading_path": [
+          "Electric Rule 21: Generating Facility Interconnections",
+          "Electric Rule 21: Generating Facility Interconnections"
+        ]
+      },
+      "is_substantive": true,
+      "normalisation_flags": []
+    }
+  ],
+  "normalisation_summary": {
+    "input_blocks": 125,
+    "output_blocks": 116,
+    "adjacent_duplicates_suppressed": 0,
+    "blocks_flagged_for_review": 0
+  }
+}

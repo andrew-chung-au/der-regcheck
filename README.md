@@ -1,51 +1,44 @@
 # DER RegCheck
 
 
-> An evidence-first RAG application for converting fragmented public DER interconnection material into traceable research answers and preliminary market-entry evidence briefs.
+> An evidence-first RAG prototype for converting fragmented public DER interconnection material into traceable research answers and preliminary market-entry evidence briefs.
 
 
-> **Project status:** In active development. Ingestion and extraction are implemented; database, retrieval, generation, and interface are under development.
+> **Project status:** In active development. Corpus ingestion, raw extraction, deterministic evidence normalisation, quality reporting, and tariff regression tests are implemented. Chunking, database, retrieval, generation, evaluation experiments, interface, feedback capture, and monitoring are planned.
 
 
 ## Overview
 
+DER RegCheck is a research-support prototype for investigating distributed energy resource (DER) interconnection and preliminary market-entry requirements.
 
-DER RegCheck is an internal-tool-style prototype for researching distributed energy resource (DER) interconnection and market-entry requirements.
+It is intended to support two future interaction modes:
 
+1. A **focused evidence question**, such as: “What official source material covers telemetry requirements?”; or
+2. A broader **market-entry research goal**, such as: “What should be validated before pursuing a DER communications and control opportunity in this market?”
 
-It accepts a structured project context and either:
+For focused questions, DER RegCheck will retrieve and explain the most relevant source evidence. For broader research goals, it will produce a structured, source-traceable preliminary evidence brief across relevant research categories.
 
+Version 1 focuses on the California Rule 21 / Southern California Edison (SCE) context. The corpus includes a utility tariff, technical handbook, process web guidance, testing instructions, a regulatory overview page, and historical working-group material. These sources are intentionally not treated as equally authoritative.
 
-1. A **focused evidence question**, such as: "What official source material covers telemetry requirements?"; or
-2. A broader **market-entry research goal**, such as: "What should be validated before pursuing a DER communications and control opportunity in this market?"
-
-
-For a focused question, DER RegCheck retrieves and explains the most relevant evidence directly. For a broader research goal, it creates a transparent retrieval plan, retrieves evidence across multiple research categories, and generates a structured preliminary market-entry evidence brief.
-
-
-Version 1 focuses on the California Rule 21 / Southern California Edison (SCE) context. The corpus includes utility tariffs, technical guidance, web pages, testing instructions, and historical working-group material. These sources are intentionally not treated as equally authoritative.
-
-
-The application makes the basis of an answer visible: users can inspect the source document, section, page range where available, authority level, retrieval tier, currency status, and supporting excerpt behind a result.
+The project is a research and decision-support tool only. It does not provide legal, regulatory, engineering, compliance, commercial, or customer-approval advice.
 
 
 ## Problem statement
 
-
-Teams researching DER products, projects, or market opportunities must locate, read, compare, and interpret a large set of public but fragmented documents. Depending on the research context, relevant information may be distributed across a regulator's overview page, a utility tariff, an interconnection handbook, a testing/certification instruction sheet, utility web guidance, and historical standards or working-group reports.
-
+Teams researching DER products, projects, or market opportunities must locate, read, compare, and interpret a fragmented set of public documents. Depending on the research context, relevant information may be distributed across a regulator's overview page, a utility tariff, an interconnection handbook, a testing/certification instruction sheet, utility web guidance, and historical standards or working-group reports.
 
 This research is difficult for several reasons:
 
+- **Document heterogeneity:** Tariffs, handbooks, web pages, tables, forms, and technical procedures use different structures and citation conventions.
+- **Source hierarchy:** A web page may provide useful process guidance, while a formal tariff may control if the two conflict.
+- **Conditional rules:** Relevance can depend on utility, DER type, exporting or non-exporting status, project size, interconnection stage, equipment category, voltage, or technical configuration.
+- **Versioning and currency:** Documents may be revised, replaced, withdrawn, or silently updated at the same URL.
+- **Manual effort:** Locating relevant provisions, preserving thresholds and exceptions, following cross-references, and comparing source authority takes time and can miss important context.
+- **Historical contamination:** Historical or draft material can be useful for rationale but should not be represented as a current requirement.
 
-- **Document heterogeneity:** tariffs, handbooks, websites, tables, forms, and technical procedures use different structures and citation conventions.
-- **Source hierarchy:** a web page may provide useful process guidance, while a formal tariff may control if the two conflict.
-- **Conditional rules:** relevance can depend on the utility, DER type, exporting or non-exporting status, project size, interconnection stage, equipment category, or technical configuration.
-- **Versioning:** documents may be revised, replaced, withdrawn, or silently updated at the same URL. A result is more useful when its source version and check date are visible.
-- **Manual effort:** locating a relevant clause, preserving its thresholds and exceptions, following cross-references, and comparing sources takes time and can miss important context.
+A general-purpose LLM alone is not an appropriate solution. It may generate uncited answers, confuse historical recommendations with current requirements, or overlook conditions located in another section.
 
-
-A general-purpose LLM alone is not an appropriate solution. It may generate uncited answers, confuse historical recommendations with current requirements, or overlook conditions located in another section. DER RegCheck uses retrieval-augmented generation (RAG) to ground outputs in retrieved, versioned source chunks and distinguish primary sources from supporting implementation or historical material.
+DER RegCheck is being built as a retrieval-augmented generation system that will ground outputs in retrieved, versioned source evidence and distinguish primary sources from supporting implementation or historical material.
 
 
 ## Scope
@@ -53,48 +46,43 @@ A general-purpose LLM alone is not an appropriate solution. It may generate unci
 
 ### In scope for v1
 
-
 - Public California Rule 21 / SCE interconnection material.
-- A downloadable, source-provenanced, and version-aware document corpus.
-- Source-specific extraction and chunking for PDF and HTML documents.
-- Metadata-aware retrieval over document authority, source type, currency, and retrieval tier.
-- A structured project-context form and natural-language research request.
-- Two interaction modes: focused evidence questions and market-entry evidence briefs.
-- A controlled, template-based research-plan / query-decomposition step for broad requests.
-- Multiple focused retrieval queries generated from selected project context and a broader research goal.
-- Retrieved evidence with source links, heading paths, and page citations where available.
-- Generated answers and briefs grounded in retrieved context.
-- Preliminary evidence-based findings, source hierarchy, uncertainty flags, and validation actions.
-- Evaluation of multiple retrieval and answer-generation configurations.
-- User feedback capture and runtime monitoring.
+- A source-provenanced and version-aware public corpus.
+- Deterministic corpus download, validation, manual replacement, raw extraction, and evidence normalisation.
+- Page-preserving PDF extraction and heading-path-preserving HTML extraction.
+- Source-specific normalisation for regulatory and technical document structures.
+- Future section-aware chunking over normalised evidence blocks.
+- Future metadata-aware retrieval over authority, source type, currency, applicability, and retrieval tier.
+- Future focused evidence questions and preliminary market-entry evidence briefs.
+- Future retrieval and answer-generation evaluation.
+- Future source-backed citations, uncertainty flags, and validation actions.
+- Future feedback capture and runtime monitoring.
 
 
 ### System boundaries for v1
 
+DER RegCheck can eventually generate preliminary research findings and structured validation actions from its configured public corpus. It may identify requirement areas that appear relevant to a selected context, surface primary and supporting sources, highlight uncertainty, and produce a preliminary market-entry evidence brief.
 
-DER RegCheck can generate preliminary research findings and structured validation actions from its configured public corpus. It may identify requirement areas that appear relevant to a selected context, surface primary and supporting sources, highlight uncertainty, and produce a preliminary market-entry evidence brief.
+However, it will not make final legal, regulatory, engineering, compliance, commercial, customer-approval, or go/no-go decisions.
 
-
-However, v1 does not make final legal, regulatory, engineering, compliance, commercial, or customer-approval decisions. It cannot determine that a specific product, project, device, or configuration meets a requirement unless the necessary evidence is available in the corpus and the conclusion is reviewed by an accountable human expert.
+It cannot determine that a specific product, project, device, or configuration meets a requirement unless the necessary evidence is present in the corpus and the conclusion is reviewed by an accountable human expert.
 
 
 ### Out of scope for v1
 
-
 - Formal legal or regulatory advice.
-- A final compliance determination.
-- A final market-entry, customer-approval, or go/no-go decision.
+- Final compliance determination.
+- Final market-entry, customer-approval, or go/no-go decision.
 - Automated comparison against private product-capability, security, roadmap, OEM, contract, or customer-specific data.
 - Direct regulatory filing, utility application submission, or control of DER equipment.
 - Coverage of every Californian utility or every electricity market.
 - A guarantee that every public source remains current.
+- Replacement of official utility, regulator, engineering, legal, or compliance review.
 
 
 ## Intended users
 
-
 The prototype is aimed at people who need a defensible starting point for public DER interconnection and market-entry research, for example:
-
 
 - Product or strategy teams assessing a potential DER market.
 - Industry or regulatory analysts mapping relevant public sources.
@@ -102,104 +90,26 @@ The prototype is aimed at people who need a defensible starting point for public
 - Project developers researching public connection, testing, or certification material.
 - Analysts who need source-backed answers and a visible record of uncertainty.
 
-
-The tool supports human judgement. It does not replace regulatory specialists, utility guidance, legal review, engineering review, or the official source documents.
-
-
-## Application modes
-
-
-### Focused evidence question
-
-
-A user supplies project context and one evidence question:
-
-
-```text
-Utility / jurisdiction: Southern California Edison (SCE)
-Asset type: Battery energy storage system
-Export mode: Non-exporting
-Project stage: Interconnection and certification research
-
-
-Question:
-What official material should I review for interconnection,
-certification, and inadvertent-export requirements?
-```
-
-
-DER RegCheck then:
-
-
-1. Normalises the project context and question.
-2. Retrieves relevant source chunks using metadata, lexical search, and semantic search.
-3. Prioritises current primary sources where the question concerns requirements.
-4. Reranks the evidence and generates a concise grounded answer.
-5. Shows supporting evidence with authority, retrieval-tier, and currency labels.
-6. Allows the user to rate the answer and optionally leave feedback.
-
-
-### Market-entry evidence brief
-
-
-A user can also submit a broader research request:
-
-
-```text
-Market: California
-Utility / customer context: Southern California Edison
-Target customer type: Distribution utility
-Asset types: Solar PV and battery storage
-Capability focus: DER communications and control
-Decision stage: Early market assessment
-
-
-Question:
-What current public sources should we review, which requirement areas appear
-relevant, and what needs validation before pursuing this opportunity?
-```
-
-
-For v1, DER RegCheck uses a controlled, transparent research-plan template rather than an open-ended autonomous agent.
-
-
-```text
-Research plan
-
-
-1. Identify current primary and technical sources
-2. Review interconnection process and application pathways
-3. Review technical and operating requirements
-4. Review communications, telemetry, monitoring, and control
-5. Review equipment certification and testing
-6. Identify source authority, currency risks, applicability issues, and gaps
-```
-
-
-Each category becomes a focused retrieval query. The system retrieves evidence for each category, merges and deduplicates the evidence, applies source-authority checks, and generates a preliminary evidence brief.
+The tool supports human judgement. It does not replace regulatory specialists, utility guidance, legal review, engineering review, or official source documents.
 
 
 ## Data sources
 
+The v1 corpus contains six public sources from the California Public Utilities Commission (CPUC) and Southern California Edison (SCE).
 
-The v1 corpus is composed of public documents from the California Public Utilities Commission (CPUC) and Southern California Edison (SCE). The downloader records source URLs, content hashes, last-checked timestamps, and version/currency cues where available.
-
-
-| Source | Corpus role | Default retrieval tier |
-|---|---|---|
-| CPUC Electric Rule 21 overview page | Regulatory context and discovery of authoritative sources | `source_discovery` |
-| SCE Rule 21 tariff | Primary interconnection requirements | `primary_requirements` |
-| SCE Interconnection Handbook | Technical implementation detail | `primary_technical` |
-| SCE Rule 21 interconnection web guidance | Process guidance, forms, and source discovery | `supporting_process` |
-| Smart Inverter Working Group Phase 2 Recommendations | Historical context and standards rationale | `historical_context` |
-| SCE testing and certification instruction | Equipment testing and certification implementation guidance | `supporting_implementation` |
+| Source | Corpus role | Default retrieval tier | Authority role |
+|---|---|---|---|
+| CPUC Electric Rule 21 overview page | Regulatory context and authoritative-source discovery | `source_discovery` | Regulatory overview; not controlling tariff text |
+| SCE Rule 21 tariff | Primary interconnection requirements | `primary_requirements` | Primary tariff / governing source |
+| SCE Interconnection Handbook | Technical implementation detail | `primary_technical` | Primary technical handbook |
+| SCE Rule 21 interconnection web guidance | Process guidance, forms, and source discovery | `supporting_process` | Supporting process guidance |
+| SIWG Phase 2 Recommendations | Historical context and standards rationale | `historical_context` | Historical/draft context |
+| SCE testing and certification instruction | Equipment testing and certification implementation guidance | `supporting_implementation` | Supporting implementation guidance |
 
 
 ### Source hierarchy
 
-
-Textual similarity is not sufficient evidence quality. Each chunk carries an authority level and retrieval tier.
-
+Textual similarity is not sufficient evidence quality. Future chunks and retrieval results will carry source authority, retrieval tier, currency, and applicability metadata.
 
 ```text
 Primary tariff / governing source
@@ -213,140 +123,326 @@ Supporting process guidance and source-discovery pages
 Historical or draft material
 ```
 
+Historical or draft material is excluded from normal current-requirement retrieval unless the user explicitly requests historical context.
 
-Historical or draft material is excluded from normal current-requirement retrieval unless a user asks a specifically historical question. Supporting guidance can be retrieved, but the generated output must not present it as equivalent to a controlling source.
+Supporting guidance can be retrieved where useful, but future generated outputs must not present it as equivalent to a controlling tariff.
 
 
-## Architecture
+## Current pipeline
 
+The implemented pipeline preserves a clear boundary between raw source extraction and normalised evidence.
 
 ```text
 Public CPUC and SCE documents
             |
             v
-Download + source metadata + content hashes
+Download + validation + source metadata + content hashes
             |
             v
-PDF / HTML text extraction
+Raw PDF / HTML extraction
             |
             v
-Document-specific normalisation and chunking
+Deterministic evidence normalisation
             |
             v
-PostgreSQL + pgvector knowledge base
+Quality reporting + regression tests
             |
             v
-Project context + user research request
+Future structural chunking
             |
             v
-Research-plan generation
-(focused query or multi-category evidence-brief plan)
+Future PostgreSQL + pgvector knowledge base
             |
             v
-Metadata-aware hybrid retrieval + reranking
-(per focused retrieval question)
+Future lexical, vector, hybrid, and reranked retrieval
             |
             v
-Evidence aggregation, deduplication, and authority checks
+Future grounded answer or preliminary market-entry evidence brief
             |
             v
-Grounded answer or preliminary market-entry evidence brief
-            |
-            v
-Streamlit interface, feedback, and monitoring dashboard
+Future Streamlit interface, feedback capture, and monitoring
 ```
 
 
-### Ingestion and chunking
+### Corpus download and metadata
+
+Implemented downloader:
+
+```text
+src/ingestion/download_california_rule21_docs.py
+```
+
+The downloader:
+
+- Downloads configured sources to `data/corpus/`.
+- Validates expected PDF responses using the `%PDF-` signature.
+- Uses a primary request with browser-style headers.
+- Retries failed PDF validation with a simplified request:
+  - Browser User-Agent only
+  - No explicit `Accept` header
+  - Default Requests redirect handling
+- Tracks content hashes and last-checked timestamps.
+- Records validation, manual review, extraction eligibility, and default retrieval eligibility.
+- Supports manual replacement for sources that cannot be acquired reliably through automation.
+
+The corpus metadata file is authoritative for source trust and eligibility:
+
+```text
+data/corpus/corpus_metadata.json
+```
 
 
-The corpus is structurally heterogeneous, so DER RegCheck does not apply one fixed-size text splitter to every source.
+### Raw extraction
+
+Implemented extractor:
+
+```text
+src/ingestion/extract_raw_content.py
+```
+
+Raw extraction is deterministic and does not perform chunking, LLM calls, authority assignment, embedding, retrieval, or answer generation.
+
+PDF extraction:
+
+- Uses `pypdf`.
+- Preserves one object per physical PDF page.
+- Preserves page text and `--- PAGE N ---` markers.
+- Records `schema_version` and `extraction_method`.
+
+HTML extraction:
+
+- Uses BeautifulSoup.
+- Selects main page content where available.
+- Preserves headings, paragraphs, list items, and tables.
+- Preserves heading paths.
+- Converts HTML tables to Markdown-style text.
+- Removes selected page boilerplate such as navigation, headers, footers, scripts, and forms.
+
+Raw outputs are tracked under:
+
+```text
+data/processed/extracted/
+data/processed/extraction_manifest.json
+```
 
 
-- **Utility tariff:** hierarchy-aware clause chunking. Each chunk retains its section path, conditions, thresholds, exceptions, tables, and page/sheet citations where available.
-- **Interconnection handbook:** hierarchy-aware technical chunking with table and cross-reference preservation.
-- **Testing instruction:** section/subsection chunks preserving equipment-specific checklists, tables, and associated footnotes.
-- **Web guidance:** HTML heading- and accordion-aware chunking. Navigation, cookie banners, headers, footers, and unrelated boilerplate are removed; hyperlinks are preserved.
-- **Working-group report:** section-based contextual chunks labelled as draft/historical material where applicable.
+### Evidence normalisation
+
+Implemented normaliser:
+
+```text
+src/processing/normalise_documents.py
+```
+
+Implemented quality checker:
+
+```text
+src/processing/quality_check_normalised.py
+```
+
+Source-specific normalisation rules are configured in:
+
+```text
+config/normalisation.yaml
+```
+
+Normalisation produces deterministic evidence blocks under:
+
+```text
+data/processed/normalised/
+```
+
+Normalised blocks retain:
+
+- Source ID
+- Source content hash
+- Stable block order
+- Block type
+- Evidence text
+- PDF physical-page locators or HTML heading-path locators
+- Source-specific citation metadata
+- Normalisation flags for known review limitations
+
+Raw extraction outputs remain unchanged and available for audit and parser-regression review.
 
 
-## Retrieval and generation flow
+### SCE Rule 21 tariff handling
+
+The SCE Rule 21 tariff uses a dedicated deterministic normalisation path because it contains:
+
+- Repeated California PUC administrative sheet headers.
+- Rule 21 printed sheet numbers.
+- Advice-letter and effective-date metadata.
+- Lettered tariff sections.
+- Numbered provisions.
+- Lettered subsections.
+- Roman-numeral entries that can function as either list items or subheadings.
+- Appendices that reset prior heading hierarchy.
+
+The tariff normaliser:
+
+- Excludes Table of Contents pages from normalised evidence output.
+- Removes recurring administrative sheet text from evidence blocks.
+- Preserves Rule 21 sheet number, Cal. PUC sheet number, effective date, and advice letter as citation metadata.
+- Treats prose-style Roman entries as list items.
+- Treats short title-style Roman entries as level-four headings.
+- Resets hierarchy at appendices, including `APPENDIX B`.
+
+Regression fixtures currently validate raw tariff extraction pages 50, 100, 150, and 233.
+
+
+### Current normalisation status
+
+| Source | Normalisation status | Notes |
+|---|---|---|
+| CPUC Rule 21 overview | Pass | HTML heading paths and tables preserved |
+| SCE Rule 21 tariff | Pass | Dedicated tariff parser and regression coverage |
+| SCE Interconnection Handbook | Pass | Cover, contents, certificate, and repeated headers excluded |
+| SCE Rule 21 web guidance | Pass | HTML headings, lists, and tables preserved |
+| SCE testing instruction | Review | Limited early reference/acronym blocks lack heading paths |
+| SIWG Phase 2 Recommendations | Review | Limited early substantive blocks lack heading paths; source remains historical/draft context |
+
+A `review` status is not an extraction failure. It indicates that one or more blocks retain physical PDF page provenance but require manual interpretation or later source-specific parser refinement.
+
+
+## Future application modes
 
 
 ### Focused evidence question
 
+A future user may supply project context and a focused question:
 
 ```text
-Project context + focused user question
-            ↓
-Query normalisation / optional query rewriting
-            ↓
-Metadata filters
-(utility, source tier, current/draft status, asset type when available)
-            ↓
-Candidate retrieval
-(vector + lexical / full-text search)
-            ↓
-Hybrid rank fusion + document reranking
-            ↓
-Top evidence chunks
-            ↓
-Grounded answer-generation prompt
-            ↓
-Answer + citations + uncertainty / review note
+Utility / jurisdiction: Southern California Edison (SCE)
+Asset type: Battery energy storage system
+Export mode: Non-exporting
+Project stage: Interconnection and certification research
+
+Question:
+What official material should I review for interconnection,
+certification, and inadvertent-export requirements?
 ```
 
+The planned flow is:
 
-### Market-entry evidence brief
+1. Normalise project context and user question.
+2. Apply source, utility, authority, currency, and applicability filters.
+3. Retrieve lexical and semantic candidates.
+4. Combine and rerank evidence.
+5. Prioritise current primary sources for current-requirement questions.
+6. Generate a grounded answer from retrieved evidence.
+7. Display source, locator, authority, retrieval-tier, currency, and uncertainty information.
+8. Allow future user feedback capture.
 
+
+### Preliminary market-entry evidence brief
+
+A future user may submit a broader research request:
 
 ```text
-Project context + broad research goal
-            ↓
-Controlled research-plan template
-            ↓
-Focused retrieval questions by category
-            ↓
-Metadata-aware hybrid retrieval and reranking for each category
-            ↓
-Evidence aggregation, deduplication, and authority checks
-            ↓
-Grounded preliminary evidence brief
+Market: California
+Utility / customer context: Southern California Edison
+Target customer type: Distribution utility
+Asset types: Solar PV and battery storage
+Capability focus: DER communications and control
+Decision stage: Early market assessment
+
+Question:
+What current public sources should we review, which requirement areas appear
+relevant, and what needs validation before pursuing this opportunity?
 ```
 
+For v1, DER RegCheck is intended to use a controlled research-plan template rather than an open-ended autonomous agent.
 
-The answer-generation prompt will instruct the LLM to:
+```text
+Research plan
 
+1. Identify current primary and technical sources
+2. Review interconnection process and application pathways
+3. Review technical and operating requirements
+4. Review communications, telemetry, monitoring, and control
+5. Review equipment certification and testing
+6. Identify source authority, currency risks, applicability issues, and gaps
+```
+
+Each category will become a focused retrieval query. The system will aggregate, deduplicate, and rank evidence before generating a preliminary evidence brief.
+
+
+## Planned chunking, retrieval, and generation
+
+
+### Structural chunking
+
+Chunking is not implemented yet.
+
+The next pipeline stage will consume normalised blocks rather than raw extraction outputs.
+
+Planned chunking principles:
+
+- Preserve canonical citation-grade evidence text.
+- Create separate embedding-oriented context text where required.
+- Preserve source page, sheet, section, heading path, authority, currency, and applicability metadata.
+- Group headings, introductory clauses, associated lists, and trailing context into coherent semantic units.
+- Avoid splitting conditions from their exceptions, thresholds, or applicability statements.
+- Use fixed-size token windows only as a fallback for oversized structurally cohesive blocks.
+- Keep adjacent chunk references for context expansion.
+
+
+### Retrieval
+
+Planned retrieval configurations:
+
+1. Lexical/full-text retrieval.
+2. Vector-only retrieval.
+3. Hybrid lexical plus vector retrieval.
+4. Hybrid retrieval with reranking.
+5. Hybrid retrieval with source-tier, currency, and applicability-aware filtering.
+6. Hybrid retrieval with neighbouring-chunk context expansion.
+
+The initial vector baseline will use exact pgvector nearest-neighbour search before approximate indexing is considered.
+
+Hybrid retrieval debug output should preserve:
+
+- Lexical rank
+- Vector rank
+- Combined score
+- Reranker score where applicable
+- Source ID
+- Authority tier
+- Retrieval tier
+- Currency status
+- Applicability metadata
+
+
+### Grounded generation
+
+Future answer-generation prompts will instruct the model to:
 
 - Use only retrieved context.
-- Cite the underlying document and section/page metadata.
+- Cite the underlying document and available section/page metadata.
 - State when evidence is insufficient.
 - Distinguish primary requirements from supporting guidance.
+- Separate historical/draft context from current requirements.
 - Identify open questions and validation actions when evidence is incomplete.
 - Avoid unsupported legal, compliance, engineering, or commercial conclusions.
 
 
 ## Preliminary evidence brief
 
-
-The broad-request output is a structured research artefact, not a final decision.
-
+The planned broad-request output is a structured research artifact, not a final decision.
 
 ```text
 DER RegCheck — Preliminary Market-entry Evidence Brief
 
-
 1. Research scope
    - Market, utility/customer context, asset types, capability focus
    - Research question and corpus last-checked date
-
 
 2. Source map
    - Primary governing sources
    - Primary technical sources
    - Supporting implementation/process guidance
    - Historical or draft sources excluded from current conclusions
-
 
 3. Evidence areas
    - Interconnection process
@@ -355,12 +451,10 @@ DER RegCheck — Preliminary Market-entry Evidence Brief
    - Certification and testing
    - Source currency and applicability conditions
 
-
 4. Preliminary findings and validation actions
-   - What the retrieved evidence indicates
+   - What retrieved evidence indicates
    - Questions for Product, Engineering, Industry, Security, or external SMEs
    - Missing evidence, ambiguous applicability, or version risks
-
 
 5. Evidence appendix
    - Retrieved excerpts
@@ -373,164 +467,120 @@ DER RegCheck — Preliminary Market-entry Evidence Brief
 
 ## Evaluation
 
+Evaluation design is documented in [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
 
-### Research-plan evaluation
+Planned evaluation areas:
 
-
-For broad market-entry requests, DER RegCheck is evaluated on whether its controlled research plan covers the expected evidence categories.
-
-
-Expected categories may include:
-
-
-- Primary and technical sources.
-- Interconnection process.
-- Technical and operating requirements.
-- Communications and telemetry.
-- Testing and certification.
-- Currency, authority, applicability, and evidence gaps.
-
-
-The v1 plan is deliberately template-based. Evaluation checks that the appropriate categories are selected for a given request and that resulting focused retrieval queries are correctly scoped.
-
-
-### Focused retrieval evaluation
-
-
-A manually curated evaluation set will contain representative, scoped DER questions. Each query will identify:
-
-
-- Required source document IDs.
-- Required section or chunk IDs.
-- Acceptable supporting source IDs.
-- Sources that should not rank prominently.
-- Expected source-authority tier.
-
-
-The evaluation will compare multiple retrieval approaches:
-
-
-1. Vector-only retrieval.
-2. Lexical/full-text retrieval.
-3. Hybrid retrieval.
-4. Hybrid retrieval with reranking.
-5. **Planned:** Hybrid retrieval with source-tier and currency-aware filtering.
-
-
-Planned metrics include:
-
-
-- Document Recall@k.
-- Section Recall@k.
+- Retrieval document recall.
+- Evidence or chunk recall.
+- Primary-source recall.
 - Mean Reciprocal Rank (MRR).
-- Primary-source Recall@k.
+- nDCG where graded relevance labels exist.
 - Historical/draft contamination rate.
+- Authority-weighted retrieval quality.
+- Citation-locator coverage.
 - Retrieval latency.
+- Groundedness of generated answers.
+- Citation correctness.
+- Source hierarchy representation.
+- Currency and applicability handling.
+- Completeness, uncertainty, and evidence-gap handling.
+- Category coverage for broad market-entry research requests.
+- Usefulness and validation-action quality.
+
+Evaluation queries and relevance labels will be committed under:
+
+```text
+data/evaluation/
+```
 
 
-### LLM answer and brief evaluation
+## Planned interface
 
-
-Focused answers and preliminary evidence briefs will be evaluated across multiple prompt or model configurations using labelled test sets.
-
-
-The evaluation rubric will score:
-
-
-- **Groundedness:** Does the output stay within retrieved evidence?
-- **Citation correctness:** Do citations support the stated claim?
-- **Source hierarchy:** Are primary and supporting sources represented correctly?
-- **Completeness:** Are material conditions, exceptions, uncertainty, and evidence gaps noted?
-- **Category coverage:** For broad requests, does the brief cover the planned research areas?
-- **Usefulness:** Does the output clearly direct a human to the appropriate source material and validation action?
-
-
-Results and configuration-selection decisions will be published in [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
-
-
-## Interface
-
-
-**Planned:** A Streamlit interface will provide:
-
+A future Streamlit interface is intended to provide:
 
 - A choice between **Focused evidence question** and **Market-entry evidence brief** modes.
-- Project-context controls: utility, asset type, export status, project stage, target customer type, and capability focus.
+- Project-context controls:
+  - Utility
+  - Asset type
+  - Export status
+  - Project stage
+  - Target customer type
+  - Capability focus
 - Natural-language question input.
 - A visible research-plan panel for broad requests.
 - Generated evidence-grounded answers or briefs.
-- Expandable category-level source evidence cards.
+- Expandable source evidence cards.
 - Source authority, retrieval tier, version, check date, section path, and page citations.
-- Thumbs-up/down feedback and optional comments.
-- A separate runtime monitoring dashboard.
+- Future thumbs-up/down feedback and optional comments.
+- A separate future runtime-monitoring dashboard.
 
 
-![Placeholder for DER RegCheck query interface](docs/images/query-interface-placeholder.png)
+## Planned monitoring and feedback
 
+Runtime telemetry and optional user feedback are planned for persistence in PostgreSQL.
 
-Replace this placeholder with a screenshot once the interface is available.
-
-
-## Monitoring and feedback
-
-
-**Planned:** Runtime telemetry and optional user feedback will be persisted to PostgreSQL.
-
-
-The monitoring dashboard is intended to include at least five charts:
-
+The future monitoring dashboard is intended to include:
 
 1. Query volume over time.
 2. Retrieval latency distribution.
 3. Retrieved source/document frequency.
 4. Authority-tier distribution of retrieved evidence.
 5. User feedback ratio and feedback volume over time.
-6. Optional: documents with changed hashes, currency warnings, or review flags.
+6. Optional source freshness, changed hash, currency-warning, and review-flag views.
 
 
 ## Repository structure
 
-
 ```text
 der-regcheck/
-├── app/                         # Streamlit application and dashboard
-├── config/                      # Chunking, research-plan, and retrieval policies
+├── config/
+│   └── normalisation.yaml              # Implemented source-specific normalisation rules
 ├── data/
-│   ├── corpus/                  # Downloaded source documents and metadata
-│   ├── processed/               # Extracted text and chunks
-│   ├── evaluation/              # Public evaluation queries, plans, and labels
-│   └── source_manifest.json     # Source provenance and retrieval metadata
+│   ├── corpus/                         # Ignored raw source files and corpus metadata
+│   ├── processed/
+│   │   ├── extracted/                  # Tracked raw extraction artifacts
+│   │   └── normalised/                 # Tracked normalised evidence blocks and quality reports
+│   └── evaluation/                     # Planned labelled evaluation artifacts
 ├── docs/
-│   ├── project-log.md           # Working journal and stage-by-stage progress
-│   ├── decisions.md             # Key design choices and trade-offs
-│   ├── dataset-notes.md         # Corpus source details and extraction issues
-│   ├── evaluation-notes.md      # Retrieval and answer/brief evaluation
-│   └── runbook.md               # Setup, reproduction, and troubleshooting
+│   ├── project-log.md                  # Working journal and stage-by-stage progress
+│   ├── decisions.md                    # Key design choices and trade-offs
+│   ├── dataset-notes.md                # Corpus, normalisation, and source-quality details
+│   ├── evaluation-notes.md             # Retrieval and answer/brief evaluation framework
+│   └── runbook.md                      # Setup, reproduction, and troubleshooting
 ├── src/
-│   ├── database/                # PostgreSQL and pgvector access
-│   ├── evaluation/              # Plan, retrieval, and answer evaluation
-│   ├── generation/              # LLM prompts and answer/brief orchestration
-│   ├── ingestion/               # Download, extract, normalise, and chunk
-│   ├── monitoring/              # Telemetry and feedback persistence
-│   ├── planning/                # Research-plan templates and query decomposition
-│   └── retrieval/               # Vector, lexical, hybrid, and reranking logic
-├── compose.yaml                 # Planned full-stack Docker Compose runtime
-├── pyproject.toml               # Python dependencies managed with uv
-├── uv.lock                      # Locked dependency versions
+│   ├── ingestion/
+│   │   ├── download_california_rule21_docs.py
+│   │   └── extract_raw_content.py
+│   └── processing/
+│       ├── normalise_documents.py
+│       └── quality_check_normalised.py
+├── tests/
+│   ├── fixtures/
+│   │   └── normalisation/              # Raw tariff regression fixtures
+│   ├── test_normalise_documents.py
+│   └── test_quality_check_normalised.py
+├── pyproject.toml                       # Python project configuration
+├── uv.lock                              # Locked dependency versions
 └── README.md
 ```
 
 
 ## Technology stack
 
-
 | Component | Technology | Status |
 |---|---|---|
 | Language and dependency management | Python + uv | Implemented |
+| Corpus download | Requests | Implemented |
+| PDF extraction | pypdf | Implemented |
+| HTML extraction | BeautifulSoup | Implemented |
+| Evidence normalisation | Python + PyYAML | Implemented |
+| Quality reporting | Python | Implemented |
+| Regression testing | Python `unittest` | Implemented |
+| Structural chunking | Deterministic section-aware assembly | Planned |
 | Knowledge base | PostgreSQL + pgvector | Planned |
-| Embeddings | To be selected and evaluated | Planned |
-| Research planning | Template-based query decomposition | Planned |
-| Retrieval | Vector, lexical, hybrid, reranking | Planned |
+| Embeddings | Model to be selected and evaluated | Planned |
+| Retrieval | Lexical, vector, hybrid, and reranking | Planned |
 | LLM | Configurable provider/model | Planned |
 | Interface | Streamlit | Planned |
 | Monitoring | PostgreSQL + Streamlit dashboard | Planned |
@@ -542,44 +592,46 @@ der-regcheck/
 
 ### Prerequisites
 
-
 - Python 3.11+
-- `uv` for dependency management: https://github.com/astral-sh/uv
+- `uv` for dependency management: [https://github.com/astral-sh/uv](https://github.com/astral-sh/uv)
 
 
 ### Install dependencies
-
 
 ```bash
 cd der-regcheck
 uv sync
 ```
 
-Add ingestion dependencies if not already present:
+For an independently reproduced environment:
 
 ```bash
-uv add requests beautifulsoup4 pypdf
+uv add requests beautifulsoup4 pypdf pyyaml
 ```
 
 
 ### Download the corpus
 
-
 ```bash
 uv run python src/ingestion/download_california_rule21_docs.py
 ```
 
-This downloads all configured sources to `data/corpus/` and writes metadata to `data/corpus/corpus_metadata.json`.
+This downloads configured sources to `data/corpus/` and writes source metadata to:
+
+```text
+data/corpus/corpus_metadata.json
+```
 
 
 ### Handle blocked downloads
 
+If a source fails validation, for example because a PDF URL returns HTML rather than a PDF:
 
-If a source fails validation (e.g., returns HTML instead of PDF):
+1. Manually download the source through a browser or authenticated portal.
+2. Save it to the configured local path.
+3. Register the file as a manually reviewed replacement.
 
-1. Manually download the file via browser or authenticated portal.
-2. Save it to the configured path (e.g., `data/corpus/03_sce_interconnection_handbook.pdf`).
-3. Mark it as manually replaced:
+Example:
 
 ```bash
 uv run python src/ingestion/download_california_rule21_docs.py \
@@ -588,74 +640,100 @@ uv run python src/ingestion/download_california_rule21_docs.py \
 ```
 
 
-### Extract content
-
+### Extract raw content
 
 ```bash
 uv run python src/ingestion/extract_raw_content.py
 ```
 
-This extracts page-preserving PDF text and main-content HTML to `data/processed/extracted/` and writes a manifest to `data/processed/extraction_manifest.json`.
+This writes raw extraction outputs to:
+
+```text
+data/processed/extracted/
+data/processed/extraction_manifest.json
+```
 
 
-### Run the application (planned)
-
+### Run normalisation tests
 
 ```bash
-cp .env.example .env
-# Edit .env to set DATABASE_URL, LLM_PROVIDER, LLM_API_KEY, etc.
-uv run streamlit run app/main.py
+uv run python -m unittest \
+  tests.test_normalise_documents \
+  tests.test_quality_check_normalised
+```
+
+
+### Generate normalised evidence outputs
+
+```bash
+rm -rf data/processed/normalised/*
+
+uv run python src/processing/normalise_documents.py \
+  --input-manifest data/processed/extraction_manifest.json \
+  --config config/normalisation.yaml \
+  --output-dir data/processed/normalised
+```
+
+
+### Generate quality reports
+
+```bash
+uv run python src/processing/quality_check_normalised.py \
+  --normalised-dir data/processed/normalised \
+  --output-json data/processed/normalised/quality_report.json \
+  --output-md data/processed/normalised/quality_report.md
+```
+
+Review the report:
+
+```bash
+sed -n '1,280p' data/processed/normalised/quality_report.md
 ```
 
 
 ## Course project rubric mapping
 
-
 This repository is being built as an end-to-end project for the DataTalks.Club LLM Zoomcamp.
 
-
-| Criterion | Evidence / planned evidence |
+| Criterion | Current or planned evidence |
 |---|---|
 | Problem description | This README: [Problem statement](#problem-statement), [Scope](#scope), and [Data sources](#data-sources) |
-| Knowledge base and LLM retrieval flow | [Architecture](#architecture) and [Retrieval and generation flow](#retrieval-and-generation-flow) |
-| Retrieval evaluation | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — planned comparison of vector, lexical, hybrid, and reranked retrieval |
-| LLM evaluation | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — planned answer and evidence-brief evaluation |
-| Interface | Streamlit application — planned |
-| Ingestion pipeline | `src/ingestion/` — implemented download, validation, manual replacement, and extraction |
-| Monitoring | PostgreSQL telemetry, feedback, and dashboard — planned |
-| Containerization | `compose.yaml` — planned |
-| Reproducibility | `uv.lock`, `.env.example`, this README, and `docs/runbook.md` |
-| Hybrid search | Vector + lexical retrieval evaluation — planned |
-| Document reranking | Retrieval-reranking experiment — planned |
-| Query rewriting | Query-rewriting experiment — planned |
+| Ingestion pipeline | Implemented downloader, metadata validation, manual replacement, raw extraction, normalisation, and quality reporting |
+| Knowledge base and LLM retrieval flow | Planned architecture and retrieval flow |
+| Retrieval evaluation | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — framework defined; experiments planned |
+| LLM evaluation | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — rubric defined; experiments planned |
+| Interface | Streamlit application planned |
+| Monitoring | Telemetry, feedback persistence, and dashboard planned |
+| Containerization | Docker Compose runtime planned |
+| Reproducibility | `uv.lock`, tracked processed artifacts, regression fixtures, this README, and `docs/runbook.md` |
+| Hybrid search | Planned lexical plus vector retrieval evaluation |
+| Document reranking | Planned retrieval-reranking experiment |
+| Query rewriting | Planned query-rewriting experiment |
 
 
 ## Limitations and responsible use
 
-
 - DER RegCheck is a research and decision-support prototype, not a legal, regulatory, engineering, or compliance-authority system.
-- It can only retrieve and reason over documents included in its corpus.
-- A retrieved document may no longer be current; the system records source checks and version cues but does not guarantee source currency.
+- It can only retrieve and reason over documents included in its configured corpus.
+- A retrieved source may no longer be current; the system records source checks and version cues but does not guarantee source currency.
 - Generated outputs may be incomplete or incorrect. Users must inspect original documents and seek qualified human review where appropriate.
 - Supporting web guidance, testing instructions, and historical reports are not equivalent to a controlling utility tariff.
+- Some raw PDF text contains layout artifacts from page-level extraction.
 - The initial corpus is deliberately narrow and does not represent every utility, technology, project type, or market.
 - A preliminary evidence brief is not a final compliance, product-readiness, or market-entry decision.
 
 
 ## Documentation
 
-
 - [`docs/project-log.md`](docs/project-log.md) — Working journal and stage-by-stage progress.
 - [`docs/decisions.md`](docs/decisions.md) — Key design choices and trade-offs.
-- [`docs/dataset-notes.md`](docs/dataset-notes.md) — Corpus source details, extraction issues, and version notes.
-- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval and answer/brief evaluation framework and results.
-- [`docs/runbook.md`](docs/runbook.md) — Setup, reproduction, and troubleshooting instructions.
+- [`docs/dataset-notes.md`](docs/dataset-notes.md) — Corpus source details, source hierarchy, extraction, normalisation, and review notes.
+- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval and answer/brief evaluation framework and future results.
+- [`docs/runbook.md`](docs/runbook.md) — Setup, reproduction, output regeneration, and troubleshooting instructions.
 
 
 ## License
 
-
 This project is released under the [MIT License](LICENSE), unless source-material terms require otherwise.
-
 
 Public source documents remain subject to their original publishers' copyright, licence, and terms of use. The project records source provenance and does not claim ownership of regulatory or utility source content.
