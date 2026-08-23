@@ -1,0 +1,1677 @@
+{
+  "schema_version": "1.0",
+  "document_id": "sce_interconnection_web",
+  "source": {
+    "id": "sce_interconnection_web",
+    "title": "SCE Rule 21 interconnection web page",
+    "url": "https://www.sce.com/business/smart-energy-solar/solar-for-business/grid-interconnections/interconnecting-generation-under-rule-21",
+    "source_org": "SCE",
+    "content_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+    "last_checked": "2026-08-21T02:43:06.717594Z",
+    "is_current": true
+  },
+  "chunked_at": "2026-08-22T18:50:29.481248Z",
+  "chunking_method": "structural_block_assembly_v1",
+  "source_policy": {
+    "authority_tier": "supporting_process",
+    "retrieval_tier": "default_current",
+    "currency_status": "current_candidate"
+  },
+  "chunks": [
+    {
+      "chunk_id": "sce_interconnection_web:c0001",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 1,
+      "block_ids": [
+        "sce_interconnection_web:b0001",
+        "sce_interconnection_web:b0002",
+        "sce_interconnection_web:b0003",
+        "sce_interconnection_web:b0004",
+        "sce_interconnection_web:b0005"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnecting Generation Under Rule 21"
+      ],
+      "evidence_text": "Interconnecting Generation Under Rule 21\n\nElectric Rule 21 describes the interconnection, operating, and metering requirements for generation facilities to be connected to a utility\u2019s distribution system, over which the California Public Utilities Commission (CPUC) has jurisdiction. Each of California\u2019s large investor-owned utilities (IOUs) has its own Rule 21 tariff as part of its electric rules; however, they are largely equal in content. For the latest news and regulatory developments on Rule 21, please visit the [CPUC Rule 21.](https://www.cpuc.ca.gov/Rule21/) CPUC Rule 21.\n\nThe remaining information on this page serves as a reference for SCE\u2019s Rule 21. The guidelines in this section are provided with the intent to help customers understand SCE\u2019s interconnection procedures under Rule 21. However, in the case of discrepancies between the content of this page and SCE\u2019s Rule 21, the currently approved Rule 21 will prevail.\n\nNote that the currently posted Rule 21 at SCE.com may not reflect updates to the tariff that may be pending before the CPUC.\n\nPursuant to the CPUC Energy Division\u2019s acceptance of SCE Advice Letter 4824-E/E-A/E-B/E-C, effective August 29, 2023, Rule 21 applicants are required to use inverters that comply with UL 1741 SB requirements as specified in Section Hh of SCE\u2019s Rule 21 tariff. These requirements include certification for UL 1741 and UL 1741 SB as well as an attestation for Smart Inverter Phase 2 Communication requirements as established in Resolution E-5000 and as modified in Resolution E-5036. Details on these requirements are provided in SCE\u2019s [Instructions Sheet,](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EfGmhUBqeZtKorziXJLkne0BXODxgmF0you8ZPSJzI-tPg?e=4iALEc) Instructions Sheet, or visit the [CEC website](https://www.energy.ca.gov/programs-and-topics/programs/solar-equipment-lists) CEC website . Questions can be sent via email to [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com) InterconnectionQA@sce.com .",
+      "evidence_text_sha256": "sha256:e3fe7a4ec493c2e55ed249b91cfe92125141dfa5311e4f83e6d9a3d89b714846",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnecting Generation Under Rule 21\n\nInterconnecting Generation Under Rule 21\n\nElectric Rule 21 describes the interconnection, operating, and metering requirements for generation facilities to be connected to a utility\u2019s distribution system, over which the California Public Utilities Commission (CPUC) has jurisdiction. Each of California\u2019s large investor-owned utilities (IOUs) has its own Rule 21 tariff as part of its electric rules; however, they are largely equal in content. For the latest news and regulatory developments on Rule 21, please visit the [CPUC Rule 21.](https://www.cpuc.ca.gov/Rule21/) CPUC Rule 21.\n\nThe remaining information on this page serves as a reference for SCE\u2019s Rule 21. The guidelines in this section are provided with the intent to help customers understand SCE\u2019s interconnection procedures under Rule 21. However, in the case of discrepancies between the content of this page and SCE\u2019s Rule 21, the currently approved Rule 21 will prevail.\n\nNote that the currently posted Rule 21 at SCE.com may not reflect updates to the tariff that may be pending before the CPUC.\n\nPursuant to the CPUC Energy Division\u2019s acceptance of SCE Advice Letter 4824-E/E-A/E-B/E-C, effective August 29, 2023, Rule 21 applicants are required to use inverters that comply with UL 1741 SB requirements as specified in Section Hh of SCE\u2019s Rule 21 tariff. These requirements include certification for UL 1741 and UL 1741 SB as well as an attestation for Smart Inverter Phase 2 Communication requirements as established in Resolution E-5000 and as modified in Resolution E-5036. Details on these requirements are provided in SCE\u2019s [Instructions Sheet,](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EfGmhUBqeZtKorziXJLkne0BXODxgmF0you8ZPSJzI-tPg?e=4iALEc) Instructions Sheet, or visit the [CEC website](https://www.energy.ca.gov/programs-and-topics/programs/solar-equipment-lists) CEC website . Questions can be sent via email to [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com) InterconnectionQA@sce.com .",
+      "estimated_evidence_tokens": 392,
+      "estimated_embedding_tokens": 410,
+      "citation": {
+        "heading_path": [
+          "Interconnecting Generation Under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": null,
+      "next_chunk_id": "sce_interconnection_web:c0002",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0002",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 2,
+      "block_ids": [
+        "sce_interconnection_web:b0006",
+        "sce_interconnection_web:b0007"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Generation Interconnection Applications are Now Available Online"
+      ],
+      "evidence_text": "Generation Interconnection Applications are Now Available Online\n\nThe Grid Interconnection Processing Tool helps facilitate a smooth and efficient application submittal.",
+      "evidence_text_sha256": "sha256:1f5ac1d94221c51b89b718aece72d6b1941b7cc3f3af055709c6991d294c40dc",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Generation Interconnection Applications are Now Available Online\n\nGeneration Interconnection Applications are Now Available Online\n\nThe Grid Interconnection Processing Tool helps facilitate a smooth and efficient application submittal.",
+      "estimated_evidence_tokens": 21,
+      "estimated_embedding_tokens": 41,
+      "citation": {
+        "heading_path": [
+          "Generation Interconnection Applications are Now Available Online"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0001",
+      "next_chunk_id": "sce_interconnection_web:c0003",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0003",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 3,
+      "block_ids": [
+        "sce_interconnection_web:b0008",
+        "sce_interconnection_web:b0009",
+        "sce_interconnection_web:b0010",
+        "sce_interconnection_web:b0011",
+        "sce_interconnection_web:b0012",
+        "sce_interconnection_web:b0013",
+        "sce_interconnection_web:b0014",
+        "sce_interconnection_web:b0015",
+        "sce_interconnection_web:b0016",
+        "sce_interconnection_web:b0017",
+        "sce_interconnection_web:b0018"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Before You Submit a Request",
+        "Information Available Prior to Requesting for Interconnection under Rule 21"
+      ],
+      "evidence_text": "Before You Submit a Request\n\nInformation Available Prior to Requesting for Interconnection under Rule 21\n\nNew-generation projects considering interconnection to SCE\u2019s distribution system under Rule 21 can find useful information regarding the interconnection process and the technical requirements applicable to your project at the following links:\n\n- SCE\u2019s [Rule 21](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=Z2Wdlo) Rule 21 This is the most important reference. It describes the interconnection, operating, and metering requirements for generation facilities to be connected to SCE\u2019s distribution system.\n\n- SCE\u2019s [Interconnection Handbook](https://on.sce.com/InterconnectionHandbook) Interconnection Handbook provides information regarding technical requirements for installing and operating your generation system in a safe and reliable manner.\n\n- SCE\u2019s [Electrical Service Requirements](https://www.sce.com/regulatory/distribution-manuals/electrical-service-requirements) Electrical Service Requirements (ESR) manual provides guidance and instructions pertaining to electrical service connections. Its purpose is to assist electrical contractors, engineers, architects, and manufacturers engaged in the installation of electrical service wiring and equipment.\n\n- Project uses a UL Certified Power Control System which has been pre-approved by SCE. A list of approved UL Certified Power Control Systems can be found at: [Linked here](https://www.sce.com/sites/default/files/custom-files/PDF_Files/List_of_Approved_PCS.xlsx) Linked here\n\n- Project uses an inverter that has been pre-approved by SCE. A list of approved inverters can be found: [Linked here](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE_Inverter_List_by_Manufacturer.pdf) Linked here\n\n- To find out if the circuit you have chosen to interconnect your project is on SCE\u2019s transmission or distribution system, please send a question with the identified pole number and the voltage (kV) of the line selected to [interconnectionQA@sce.com.](mailto:interconnectionQA@sce.com) interconnectionQA@sce.com.\n\n- [FAQs for SCE\u2019s Rule 21](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EXJ4ujxAMKBGmR-ZX1YMOM4Bz7yqB3j9seLibBS2fybxQQ?e=WnS25y) FAQs for SCE\u2019s Rule 21\n\n- A Pre-Application Report provides technical information about the current conditions of a specific circuit a customer may be interested in interconnecting a project. Please review the section below, Rule 21 Pre-Application Report Request, for more information on how to obtain this report.",
+      "evidence_text_sha256": "sha256:5655f69f59a4033ea150e68f84f0a0a121c7701e3d430c48850842d4601263e0",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Before You Submit a Request > Information Available Prior to Requesting for Interconnection under Rule 21\n\nBefore You Submit a Request\n\nInformation Available Prior to Requesting for Interconnection under Rule 21\n\nNew-generation projects considering interconnection to SCE\u2019s distribution system under Rule 21 can find useful information regarding the interconnection process and the technical requirements applicable to your project at the following links:\n\n- SCE\u2019s [Rule 21](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=Z2Wdlo) Rule 21 This is the most important reference. It describes the interconnection, operating, and metering requirements for generation facilities to be connected to SCE\u2019s distribution system.\n\n- SCE\u2019s [Interconnection Handbook](https://on.sce.com/InterconnectionHandbook) Interconnection Handbook provides information regarding technical requirements for installing and operating your generation system in a safe and reliable manner.\n\n- SCE\u2019s [Electrical Service Requirements](https://www.sce.com/regulatory/distribution-manuals/electrical-service-requirements) Electrical Service Requirements (ESR) manual provides guidance and instructions pertaining to electrical service connections. Its purpose is to assist electrical contractors, engineers, architects, and manufacturers engaged in the installation of electrical service wiring and equipment.\n\n- Project uses a UL Certified Power Control System which has been pre-approved by SCE. A list of approved UL Certified Power Control Systems can be found at: [Linked here](https://www.sce.com/sites/default/files/custom-files/PDF_Files/List_of_Approved_PCS.xlsx) Linked here\n\n- Project uses an inverter that has been pre-approved by SCE. A list of approved inverters can be found: [Linked here](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE_Inverter_List_by_Manufacturer.pdf) Linked here\n\n- To find out if the circuit you have chosen to interconnect your project is on SCE\u2019s transmission or distribution system, please send a question with the identified pole number and the voltage (kV) of the line selected to [interconnectionQA@sce.com.](mailto:interconnectionQA@sce.com) interconnectionQA@sce.com.\n\n- [FAQs for SCE\u2019s Rule 21](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EXJ4ujxAMKBGmR-ZX1YMOM4Bz7yqB3j9seLibBS2fybxQQ?e=WnS25y) FAQs for SCE\u2019s Rule 21\n\n- A Pre-Application Report provides technical information about the current conditions of a specific circuit a customer may be interested in interconnecting a project. Please review the section below, Rule 21 Pre-Application Report Request, for more information on how to obtain this report.",
+      "estimated_evidence_tokens": 483,
+      "estimated_embedding_tokens": 512,
+      "citation": {
+        "heading_path": [
+          "Before You Submit a Request"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0002",
+      "next_chunk_id": "sce_interconnection_web:c0004",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0004",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 4,
+      "block_ids": [
+        "sce_interconnection_web:b0019",
+        "sce_interconnection_web:b0020",
+        "sce_interconnection_web:b0021",
+        "sce_interconnection_web:b0022"
+      ],
+      "block_types": [
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Before You Submit a Request",
+        "Information Available Prior to Requesting for Interconnection under Rule 21"
+      ],
+      "evidence_text": "- Self-Generation Projects. Customers who produce their own power from generation systems are eligible to request interconnection service under Rule 21. Please visit our [Programs for Self-Generation](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Self-Generation-Programs) Programs for Self-Generation for more information about the various programs available to help you self-generate your power.\n\n- Projects seeking to participate in the SBP program should visit the [Solar Billing Plan](https://www.sce.com/business/generating-your-own-power/solar-billing-plan) Solar Billing Plan webpage for information regarding the application for interconnection and the SBP process.\n\n- Please see the [Simple and Complex Interconnection Metering Requirements](https://www.sce.com/sites/default/files/custom-files/R21_D19-03-013_OP4_Simple%20and%20Complex%20Interconnection%20Metering%20Requirements_SCE.pdf) Simple and Complex Interconnection Metering Requirements .\n\n- SCE\u2019s [Customer-Owned Telemetry (COT) Procedures](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE-IEEE-2030.5-COT-Requirements-ver-2025-10-22.pdf) Customer-Owned Telemetry (COT) Procedures provide the technical requirements for telemetering of distribution-connected systems 1 MW or greater and less than 10 MW. This document outlines the specifications, tests, and approvals for IEEE 2030.5/CSIP gateways, as well as the ability of aggregators to meet telemetry requirements and seamlessly integrate with SCE\u2019s Distributed Energy Resource Management System (DERMS). Refer to [COT Annex 1](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE-IEEE-2030.5-Customer-Owned-Telemetry-Requirements-Annex_1-Approved-GWs.pdf) COT Annex 1 for the list of SCE approved gateways and aggregators.",
+      "evidence_text_sha256": "sha256:84e7f4dd703a8c23a1a07a05dc9b585b1a4f8fd8a9898996da897c686897a8f7",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Before You Submit a Request > Information Available Prior to Requesting for Interconnection under Rule 21\n\n- Self-Generation Projects. Customers who produce their own power from generation systems are eligible to request interconnection service under Rule 21. Please visit our [Programs for Self-Generation](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Self-Generation-Programs) Programs for Self-Generation for more information about the various programs available to help you self-generate your power.\n\n- Projects seeking to participate in the SBP program should visit the [Solar Billing Plan](https://www.sce.com/business/generating-your-own-power/solar-billing-plan) Solar Billing Plan webpage for information regarding the application for interconnection and the SBP process.\n\n- Please see the [Simple and Complex Interconnection Metering Requirements](https://www.sce.com/sites/default/files/custom-files/R21_D19-03-013_OP4_Simple%20and%20Complex%20Interconnection%20Metering%20Requirements_SCE.pdf) Simple and Complex Interconnection Metering Requirements .\n\n- SCE\u2019s [Customer-Owned Telemetry (COT) Procedures](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE-IEEE-2030.5-COT-Requirements-ver-2025-10-22.pdf) Customer-Owned Telemetry (COT) Procedures provide the technical requirements for telemetering of distribution-connected systems 1 MW or greater and less than 10 MW. This document outlines the specifications, tests, and approvals for IEEE 2030.5/CSIP gateways, as well as the ability of aggregators to meet telemetry requirements and seamlessly integrate with SCE\u2019s Distributed Energy Resource Management System (DERMS). Refer to [COT Annex 1](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE-IEEE-2030.5-Customer-Owned-Telemetry-Requirements-Annex_1-Approved-GWs.pdf) COT Annex 1 for the list of SCE approved gateways and aggregators.",
+      "estimated_evidence_tokens": 349,
+      "estimated_embedding_tokens": 378,
+      "citation": {
+        "heading_path": [
+          "Before You Submit a Request",
+          "Information Available Prior to Requesting for Interconnection under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0003",
+      "next_chunk_id": "sce_interconnection_web:c0005",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0005",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 5,
+      "block_ids": [
+        "sce_interconnection_web:b0023",
+        "sce_interconnection_web:b0024",
+        "sce_interconnection_web:b0025",
+        "sce_interconnection_web:b0026",
+        "sce_interconnection_web:b0027"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Before You Submit a Request",
+        "Inverter Information"
+      ],
+      "evidence_text": "Inverter Information\n\nPursuant to the CPUC Energy Division\u2019s acceptance of SCE Advice Letter 4824-E/E-A/E-B/E-C, effective August 29, 2023, Rule 21 applicants are required to use inverters that comply with UL 1741 SB requirements as specified in Section Hh of SCE\u2019s Rule 21 tariff. Additional information is noted toward the top of this page.\n\nPlease see the Instructions Sheet and Inverter Information Submittal form below:\n\n- [Instructions Sheet](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EfGmhUBqeZtKorziXJLkne0BXODxgmF0you8ZPSJzI-tPg?e=4iALEc) Instructions Sheet\n\n- [Inverter Information Submittal](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUR9cLDJ2lBCuoCeBTs2p1MBmAChKbjNMQaZjwnC6O-vBA?e=iym3Sx) Inverter Information Submittal",
+      "evidence_text_sha256": "sha256:7bf9e92921588e80f29d52935922468d1ecf306943e92fc680baf5517abe12e8",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Before You Submit a Request > Inverter Information\n\nInverter Information\n\nPursuant to the CPUC Energy Division\u2019s acceptance of SCE Advice Letter 4824-E/E-A/E-B/E-C, effective August 29, 2023, Rule 21 applicants are required to use inverters that comply with UL 1741 SB requirements as specified in Section Hh of SCE\u2019s Rule 21 tariff. Additional information is noted toward the top of this page.\n\nPlease see the Instructions Sheet and Inverter Information Submittal form below:\n\n- [Instructions Sheet](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EfGmhUBqeZtKorziXJLkne0BXODxgmF0you8ZPSJzI-tPg?e=4iALEc) Instructions Sheet\n\n- [Inverter Information Submittal](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUR9cLDJ2lBCuoCeBTs2p1MBmAChKbjNMQaZjwnC6O-vBA?e=iym3Sx) Inverter Information Submittal",
+      "estimated_evidence_tokens": 146,
+      "estimated_embedding_tokens": 167,
+      "citation": {
+        "heading_path": [
+          "Before You Submit a Request",
+          "Inverter Information"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0004",
+      "next_chunk_id": "sce_interconnection_web:c0006",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0006",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 6,
+      "block_ids": [
+        "sce_interconnection_web:b0028",
+        "sce_interconnection_web:b0029",
+        "sce_interconnection_web:b0030",
+        "sce_interconnection_web:b0031",
+        "sce_interconnection_web:b0032",
+        "sce_interconnection_web:b0033",
+        "sce_interconnection_web:b0034",
+        "sce_interconnection_web:b0035",
+        "sce_interconnection_web:b0036",
+        "sce_interconnection_web:b0037",
+        "sce_interconnection_web:b0038"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Before You Submit a Request",
+        "Rule 21 Optional Pre-Application Report Request"
+      ],
+      "evidence_text": "Rule 21 Optional Pre-Application Report Request\n\nAt any time, you can request technical information regarding SCE\u2019s electric system around a potential interconnection site. To request this information, you need to provide details of the proposed site, the line and voltage level you are considering, and a non-refundable processing fee.\n\nThe Rule 21 Optional Pre-Application Report may be submitted online using our [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT form.\n\nUpon receipt of a completed Pre-Application Report Request and the request fee, SCE will provide available system data. This typically includes:\n\n- Total Capacity (in MWs) of substation bus\n\n- Approximate circuit distance between the proposed site and the substation\n\n- Relevant line section(s) peak line load estimate\n\n- Number of protective devices and voltage regulating devices between the proposed site and the substation/area\n\n- Whether or not three-phase power is available at the site\n\n- Limiting conductor rating from proposed Point of Interconnection to distribution substation\n\nFor questions regarding the Pre-Application Report, please contact us at [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com;) InterconnectionQA@sce.com .",
+      "evidence_text_sha256": "sha256:c61b3e97b9749ca45056f0826ec3b9c16bd11c9b7236fcf05eefb1783e806064",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Before You Submit a Request > Rule 21 Optional Pre-Application Report Request\n\nRule 21 Optional Pre-Application Report Request\n\nAt any time, you can request technical information regarding SCE\u2019s electric system around a potential interconnection site. To request this information, you need to provide details of the proposed site, the line and voltage level you are considering, and a non-refundable processing fee.\n\nThe Rule 21 Optional Pre-Application Report may be submitted online using our [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT form.\n\nUpon receipt of a completed Pre-Application Report Request and the request fee, SCE will provide available system data. This typically includes:\n\n- Total Capacity (in MWs) of substation bus\n\n- Approximate circuit distance between the proposed site and the substation\n\n- Relevant line section(s) peak line load estimate\n\n- Number of protective devices and voltage regulating devices between the proposed site and the substation/area\n\n- Whether or not three-phase power is available at the site\n\n- Limiting conductor rating from proposed Point of Interconnection to distribution substation\n\nFor questions regarding the Pre-Application Report, please contact us at [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com;) InterconnectionQA@sce.com .",
+      "estimated_evidence_tokens": 227,
+      "estimated_embedding_tokens": 252,
+      "citation": {
+        "heading_path": [
+          "Before You Submit a Request",
+          "Rule 21 Optional Pre-Application Report Request"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0005",
+      "next_chunk_id": "sce_interconnection_web:c0007",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0007",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 7,
+      "block_ids": [
+        "sce_interconnection_web:b0039",
+        "sce_interconnection_web:b0040",
+        "sce_interconnection_web:b0041"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Before You Submit a Request",
+        "Additional Information"
+      ],
+      "evidence_text": "Additional Information\n\nPlease consult with your local planning or permitting authority to verify any local permitting requirements. SCE does not provide permitting services.\n\nPlease review the Information Available Prior to Requesting for Interconnection under Rule 21 section above for more information that can be helpful when submitting a request for interconnection.",
+      "evidence_text_sha256": "sha256:6e0070a4606886792b12b64635547e9008d0b336c8ff0c61670c556508418d1a",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Before You Submit a Request > Additional Information\n\nAdditional Information\n\nPlease consult with your local planning or permitting authority to verify any local permitting requirements. SCE does not provide permitting services.\n\nPlease review the Information Available Prior to Requesting for Interconnection under Rule 21 section above for more information that can be helpful when submitting a request for interconnection.",
+      "estimated_evidence_tokens": 54,
+      "estimated_embedding_tokens": 75,
+      "citation": {
+        "heading_path": [
+          "Before You Submit a Request",
+          "Additional Information"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0006",
+      "next_chunk_id": "sce_interconnection_web:c0008",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0008",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 8,
+      "block_ids": [
+        "sce_interconnection_web:b0042",
+        "sce_interconnection_web:b0043",
+        "sce_interconnection_web:b0044",
+        "sce_interconnection_web:b0045"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Testing",
+        "Type Testing Procedures Not Defined in Other Standards"
+      ],
+      "evidence_text": "Testing\n\nType Testing Procedures Not Defined in Other Standards\n\nThe following guidelines were developed during 2024 to clarify helpful and efficient practices for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment.\n\n[SCE Type Testing Guidelines Version March 21, 2025 for Web.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE_Type_Testing_Guidelines_Version_March21%2C_2025_for_Web.pdf) SCE Type Testing Guidelines Version March 21, 2025 for Web.pdf",
+      "evidence_text_sha256": "sha256:e212714d566d4c3fdeb69c7e638e1e1ba8df9c90e2c3402590a3e47bbfdec328",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Testing > Type Testing Procedures Not Defined in Other Standards\n\nTesting\n\nType Testing Procedures Not Defined in Other Standards\n\nThe following guidelines were developed during 2024 to clarify helpful and efficient practices for qualifying equipment as \u201cCertified Equipment,\u201d as defined under Rule 21 Section L.2.a, for which certification national standards have not been published for such piece of equipment.\n\n[SCE Type Testing Guidelines Version March 21, 2025 for Web.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE_Type_Testing_Guidelines_Version_March21%2C_2025_for_Web.pdf) SCE Type Testing Guidelines Version March 21, 2025 for Web.pdf",
+      "estimated_evidence_tokens": 113,
+      "estimated_embedding_tokens": 136,
+      "citation": {
+        "heading_path": [
+          "Testing"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0007",
+      "next_chunk_id": "sce_interconnection_web:c0009",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0009",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 9,
+      "block_ids": [
+        "sce_interconnection_web:b0046",
+        "sce_interconnection_web:b0047",
+        "sce_interconnection_web:b0048"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Testing",
+        "Rule 21 Testing and Certification Instruction Sheet"
+      ],
+      "evidence_text": "Rule 21 Testing and Certification Instruction Sheet\n\nPer the California Public Utilities Commission\u2019s Resolution E-5357 (issued 12/27/24), this instruction sheet was created by the California Utilities to show in detail the steps to test and certify a new product or equipment in conformance with CSIP, and other current Rule 21 testing and certification requirements.\n\n[Rule 21 Testing and Certification Instruction Sheet Final 2025-06-05.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Rule_21_Testing_and_Certification_Instruction_Sheet_Final_2025-06-05.pdf) Rule 21 Testing and Certification Instruction Sheet Final 2025-06-05.pdf",
+      "evidence_text_sha256": "sha256:0b805cc4142ed7916ce3462ee906d558009d762bed170a46452b358897dbc92d",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Testing > Rule 21 Testing and Certification Instruction Sheet\n\nRule 21 Testing and Certification Instruction Sheet\n\nPer the California Public Utilities Commission\u2019s Resolution E-5357 (issued 12/27/24), this instruction sheet was created by the California Utilities to show in detail the steps to test and certify a new product or equipment in conformance with CSIP, and other current Rule 21 testing and certification requirements.\n\n[Rule 21 Testing and Certification Instruction Sheet Final 2025-06-05.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Rule_21_Testing_and_Certification_Instruction_Sheet_Final_2025-06-05.pdf) Rule 21 Testing and Certification Instruction Sheet Final 2025-06-05.pdf",
+      "estimated_evidence_tokens": 118,
+      "estimated_embedding_tokens": 140,
+      "citation": {
+        "heading_path": [
+          "Testing",
+          "Rule 21 Testing and Certification Instruction Sheet"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0008",
+      "next_chunk_id": "sce_interconnection_web:c0010",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0010",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 10,
+      "block_ids": [
+        "sce_interconnection_web:b0049",
+        "sce_interconnection_web:b0050"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Information for Non-Exporting Projects"
+      ],
+      "evidence_text": "Information for Non-Exporting Projects\n\nSCE customers that operate generation systems for customer\u2019s use only and do not export power for sales to SCE\u2019s electric grid are referred to as \u201cnon-export\u201d (or \u201cnon-exporting\u201d) generators. Non-export projects include all generating facilities to be operated by, or for, a customer to serve part or all of its electric energy requirements that would otherwise be provided by SCE, including \u201cdistributed generation\u201d, \u201ccogeneration\u201d, emergency, backup, and standby generation.",
+      "evidence_text_sha256": "sha256:3fa8065bba10cf98e77305ac9411850a6d85da9d37e4e6d038948db9c946249b",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Information for Non-Exporting Projects\n\nInformation for Non-Exporting Projects\n\nSCE customers that operate generation systems for customer\u2019s use only and do not export power for sales to SCE\u2019s electric grid are referred to as \u201cnon-export\u201d (or \u201cnon-exporting\u201d) generators. Non-export projects include all generating facilities to be operated by, or for, a customer to serve part or all of its electric energy requirements that would otherwise be provided by SCE, including \u201cdistributed generation\u201d, \u201ccogeneration\u201d, emergency, backup, and standby generation.",
+      "estimated_evidence_tokens": 92,
+      "estimated_embedding_tokens": 109,
+      "citation": {
+        "heading_path": [
+          "Information for Non-Exporting Projects"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0009",
+      "next_chunk_id": "sce_interconnection_web:c0011",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0011",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 11,
+      "block_ids": [
+        "sce_interconnection_web:b0051",
+        "sce_interconnection_web:b0052",
+        "sce_interconnection_web:b0053",
+        "sce_interconnection_web:b0054"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Information for Non-Exporting Projects",
+        "Backup Systems"
+      ],
+      "evidence_text": "Backup Systems\n\n\u201cBackup systems\u201d are non-exporting generators used by customers to serve part or all of their electrical needs during a power outage. These generators will normally be operated only when SCE\u2019s electric service is not available or in an emergency.\n\nPlease visit our [Backup Systems](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Backup-Systems) Backup Systems for more information about the various types of backup systems and the process to obtain interconnection.\n\nWhile customers operating backup systems under either momentary parallel or isolated mode are not obligated to enter into an interconnection agreement with SCE, an interconnection application still needs to be completed to satisfy SCE\u2019s notice requirements for operating such generating facility as per California Health and Safety Code Section 119085 (b).",
+      "evidence_text_sha256": "sha256:b7a67c44986b1eb714c4feeb55dcfc218ff276ea357e34db2f50be7ab1738c5f",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Information for Non-Exporting Projects > Backup Systems\n\nBackup Systems\n\n\u201cBackup systems\u201d are non-exporting generators used by customers to serve part or all of their electrical needs during a power outage. These generators will normally be operated only when SCE\u2019s electric service is not available or in an emergency.\n\nPlease visit our [Backup Systems](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Backup-Systems) Backup Systems for more information about the various types of backup systems and the process to obtain interconnection.\n\nWhile customers operating backup systems under either momentary parallel or isolated mode are not obligated to enter into an interconnection agreement with SCE, an interconnection application still needs to be completed to satisfy SCE\u2019s notice requirements for operating such generating facility as per California Health and Safety Code Section 119085 (b).",
+      "estimated_evidence_tokens": 147,
+      "estimated_embedding_tokens": 167,
+      "citation": {
+        "heading_path": [
+          "Information for Non-Exporting Projects",
+          "Backup Systems"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0010",
+      "next_chunk_id": "sce_interconnection_web:c0012",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0012",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 12,
+      "block_ids": [
+        "sce_interconnection_web:b0055",
+        "sce_interconnection_web:b0056"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Information for Non-Exporting Projects",
+        "Inadvertent Export"
+      ],
+      "evidence_text": "Inadvertent Export\n\nCertain non-exporting systems are optimally sized to meet the customers\u2019 peak demand. These systems have generator controls to ensure export of electrical power to SCE\u2019s electric system is minimized. When the load changes rapidly and the generator cannot ramp down quickly enough, the facility may need to export small amounts of power for a limited duration. The event of exporting uncompensated power for a duration exceeding two seconds but less than 60 seconds is referred to as Inadvertent Export . Please refer to Section M of Rule 21 regarding technical requirements regarding Inadvertent Export.",
+      "evidence_text_sha256": "sha256:aee5d5d57c8d90f0d1f7e0adc831165eee517c3456d61191aedbc5db26bce285",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Information for Non-Exporting Projects > Inadvertent Export\n\nInadvertent Export\n\nCertain non-exporting systems are optimally sized to meet the customers\u2019 peak demand. These systems have generator controls to ensure export of electrical power to SCE\u2019s electric system is minimized. When the load changes rapidly and the generator cannot ramp down quickly enough, the facility may need to export small amounts of power for a limited duration. The event of exporting uncompensated power for a duration exceeding two seconds but less than 60 seconds is referred to as Inadvertent Export . Please refer to Section M of Rule 21 regarding technical requirements regarding Inadvertent Export.",
+      "estimated_evidence_tokens": 102,
+      "estimated_embedding_tokens": 122,
+      "citation": {
+        "heading_path": [
+          "Information for Non-Exporting Projects",
+          "Inadvertent Export"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0011",
+      "next_chunk_id": "sce_interconnection_web:c0013",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0013",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 13,
+      "block_ids": [
+        "sce_interconnection_web:b0057",
+        "sce_interconnection_web:b0058",
+        "sce_interconnection_web:b0059",
+        "sce_interconnection_web:b0060",
+        "sce_interconnection_web:b0061",
+        "sce_interconnection_web:b0062",
+        "sce_interconnection_web:b0063",
+        "sce_interconnection_web:b0064",
+        "sce_interconnection_web:b0065",
+        "sce_interconnection_web:b0066",
+        "sce_interconnection_web:b0067",
+        "sce_interconnection_web:b0068"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Information for Non-Exporting Projects",
+        "Application for Interconnection a Non-Exporting Project"
+      ],
+      "evidence_text": "Application for Interconnection a Non-Exporting Project\n\nYou can now apply to interconnect a non-exporting project using our form [14-732 online](https://gridinterconnection.sce.com) 14-732 online !\n\nAll new non-exporting generation projects seeking interconnection service under Rule 21 are required to submit a Rule 21 application form online or by downloading the ( Generating Facility Interconnection Application , PDF [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732 ). The following contains a link to the application, with instructions on how to remit the applicable fee, and a list of documents required to be submitted with your application package:\n\n- Application form for non-exporting generators: Generating Facility Interconnection Application , [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732\n\n- A single-line drawing\n\n- Site/plot plan drawing\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the switching device or scheme proposed\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the backup switch, protective device, or any other control that will trip the generator if the transfer switch or scheme does not complete the transfer in one second or less\n\n- Interconnection Request Fees. The application review requires a non-refundable fee of $800. Instructions on how to make this payment are included in the application form listed above\n\nFor a sample on acceptable single lines and site plans, please review this: [Sample drawings](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA_3.pdf) Sample drawings\n\nOnce completed, please email electronic copies of your documents (items 1 through 6, above) to [Rule21@sce.com](mailto:Rule21@sce.com) Rule21@sce.com , or mail your documents to:\n\nGrid Interconnection & Contract Development Southern California Edison 2244 Walnut Grove Ave Rosemead, CA 91770",
+      "evidence_text_sha256": "sha256:87815e6cbe23fdc5035138183173a191fbd51579751d6ed9c000379c1f816886",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Information for Non-Exporting Projects > Application for Interconnection a Non-Exporting Project\n\nApplication for Interconnection a Non-Exporting Project\n\nYou can now apply to interconnect a non-exporting project using our form [14-732 online](https://gridinterconnection.sce.com) 14-732 online !\n\nAll new non-exporting generation projects seeking interconnection service under Rule 21 are required to submit a Rule 21 application form online or by downloading the ( Generating Facility Interconnection Application , PDF [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732 ). The following contains a link to the application, with instructions on how to remit the applicable fee, and a list of documents required to be submitted with your application package:\n\n- Application form for non-exporting generators: Generating Facility Interconnection Application , [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732\n\n- A single-line drawing\n\n- Site/plot plan drawing\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the switching device or scheme proposed\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the backup switch, protective device, or any other control that will trip the generator if the transfer switch or scheme does not complete the transfer in one second or less\n\n- Interconnection Request Fees. The application review requires a non-refundable fee of $800. Instructions on how to make this payment are included in the application form listed above\n\nFor a sample on acceptable single lines and site plans, please review this: [Sample drawings](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA_3.pdf) Sample drawings\n\nOnce completed, please email electronic copies of your documents (items 1 through 6, above) to [Rule21@sce.com](mailto:Rule21@sce.com) Rule21@sce.com , or mail your documents to:\n\nGrid Interconnection & Contract Development Southern California Edison 2244 Walnut Grove Ave Rosemead, CA 91770",
+      "estimated_evidence_tokens": 397,
+      "estimated_embedding_tokens": 421,
+      "citation": {
+        "heading_path": [
+          "Information for Non-Exporting Projects",
+          "Application for Interconnection a Non-Exporting Project"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0012",
+      "next_chunk_id": "sce_interconnection_web:c0014",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0014",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 14,
+      "block_ids": [
+        "sce_interconnection_web:b0069",
+        "sce_interconnection_web:b0070",
+        "sce_interconnection_web:b0071"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnection Process"
+      ],
+      "evidence_text": "Meter Socket Adapter Program\n\nInterconnection Process\n\nFollowing the submittal of the application package and the interconnection request fee, an assigned engineer will perform a validation of the technical data provided. Once the application package is deemed complete and valid, a technical review will be performed to approve the proposed configuration and operation of your non-exporting system and to identify any necessary upgrades for interconnection of the project. After all technical reviews or studies are completed, you will receive an interconnection agreement that will establish the terms and conditions that your interconnection will be subject to.",
+      "evidence_text_sha256": "sha256:7ad1fffe83829dd6f5f29da55e41e6c52088308f61b2f416f3a42b12efaea7b9",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process\n\nMeter Socket Adapter Program\n\nInterconnection Process\n\nFollowing the submittal of the application package and the interconnection request fee, an assigned engineer will perform a validation of the technical data provided. Once the application package is deemed complete and valid, a technical review will be performed to approve the proposed configuration and operation of your non-exporting system and to identify any necessary upgrades for interconnection of the project. After all technical reviews or studies are completed, you will receive an interconnection agreement that will establish the terms and conditions that your interconnection will be subject to.",
+      "estimated_evidence_tokens": 101,
+      "estimated_embedding_tokens": 116,
+      "citation": {
+        "heading_path": [
+          "Meter Socket Adapter Program"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0013",
+      "next_chunk_id": "sce_interconnection_web:c0015",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0015",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 15,
+      "block_ids": [
+        "sce_interconnection_web:b0072",
+        "sce_interconnection_web:b0073"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnection Process",
+        "Interconnection Agreement"
+      ],
+      "evidence_text": "Interconnection Agreement\n\nProjects operating backup systems under either momentary parallel or isolated mode are not obligated to enter into an interconnection agreement with SCE. For all other non-exporting projects, please refer to Part 3 of the Rule 21 application form ( Generating Facility Interconnection Application , [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732 ) for a reference of the agreements that may apply to your project.",
+      "evidence_text_sha256": "sha256:3bc0f86ad7a67cc81e59a6e0f3fdd4c8ccbdb7b34e6a961ead9bab9d60488900",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process > Interconnection Agreement\n\nInterconnection Agreement\n\nProjects operating backup systems under either momentary parallel or isolated mode are not obligated to enter into an interconnection agreement with SCE. For all other non-exporting projects, please refer to Part 3 of the Rule 21 application form ( Generating Facility Interconnection Application , [Form 14-732](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EWXIbVZDN6dEhO1vi8bSjEMBstb1gGXoYCY0ofty_J6G1g?e=OzHVpG) Form 14-732 ) for a reference of the agreements that may apply to your project.",
+      "estimated_evidence_tokens": 95,
+      "estimated_embedding_tokens": 113,
+      "citation": {
+        "heading_path": [
+          "Interconnection Process",
+          "Interconnection Agreement"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0014",
+      "next_chunk_id": "sce_interconnection_web:c0016",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0016",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 16,
+      "block_ids": [
+        "sce_interconnection_web:b0074",
+        "sce_interconnection_web:b0075",
+        "sce_interconnection_web:b0076",
+        "sce_interconnection_web:b0077",
+        "sce_interconnection_web:b0078",
+        "sce_interconnection_web:b0079",
+        "sce_interconnection_web:b0080",
+        "sce_interconnection_web:b0081",
+        "sce_interconnection_web:b0082"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "Interconnection Process",
+        "Initiating a Request for Interconnection under Rule 21 for Exporting Projects"
+      ],
+      "evidence_text": "Initiating a Request for Interconnection under Rule 21 for Exporting Projects\n\nGenerally speaking, \u201cexporting projects\u201d are those generating systems that are designed for the purpose of supplying unused power into SCE\u2019s electric system for sale to SCE, a third party, or the market, or for delivery to another eligible customer or authorized entity.\n\nAll new non-NEM exporting generation projects seeking interconnection service under Rule 21 (including projects intending to participate in the Schedule RES-BCT) are required to submit an online [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT application form or by downloading the Rule 21 Exporting Generator Interconnection Request, [Form 14-918](https://www.sce.com/sites/default/files/custom-files/PDF_Files/ELECTRIC_FORM_14-918_PDF%20fillable.pdf) Form 14-918 . The following contains a link to the application, with instructions on how to remit the applicable fee, and a list of documents required to be submitted with your application package:\n\n- Application form: Rule 21 Exporting Generator Interconnection Request, [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT\n\n- A single-line drawing. For a sample on acceptable single lines and site plans, please review this: [Sample drawings](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA%20%281%29_0.pdf) Sample drawings .\n\n- Site/plot plan drawing\n\n- Proof of Site Exclusivity. For guidelines on providing documentation of Site Exclusivity, please review this [Site Exclusivity Guidelines.](https://www.sce.com/sites/default/files/custom-files/Web%20files/SiteExclusivityGuidelines.pdf) Site Exclusivity Guidelines.\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the generating facilities\n\n- Interconnection request fees. The application review requires a non-refundable fee of $800. Instructions on how to make this payment are included in the application form available at the link above.",
+      "evidence_text_sha256": "sha256:9cd7126c5a98801c219b314c984b6ec62cf0946c772b57de1df5f0153d87607f",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process > Initiating a Request for Interconnection under Rule 21 for Exporting Projects\n\nInitiating a Request for Interconnection under Rule 21 for Exporting Projects\n\nGenerally speaking, \u201cexporting projects\u201d are those generating systems that are designed for the purpose of supplying unused power into SCE\u2019s electric system for sale to SCE, a third party, or the market, or for delivery to another eligible customer or authorized entity.\n\nAll new non-NEM exporting generation projects seeking interconnection service under Rule 21 (including projects intending to participate in the Schedule RES-BCT) are required to submit an online [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT application form or by downloading the Rule 21 Exporting Generator Interconnection Request, [Form 14-918](https://www.sce.com/sites/default/files/custom-files/PDF_Files/ELECTRIC_FORM_14-918_PDF%20fillable.pdf) Form 14-918 . The following contains a link to the application, with instructions on how to remit the applicable fee, and a list of documents required to be submitted with your application package:\n\n- Application form: Rule 21 Exporting Generator Interconnection Request, [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT\n\n- A single-line drawing. For a sample on acceptable single lines and site plans, please review this: [Sample drawings](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA%20%281%29_0.pdf) Sample drawings .\n\n- Site/plot plan drawing\n\n- Proof of Site Exclusivity. For guidelines on providing documentation of Site Exclusivity, please review this [Site Exclusivity Guidelines.](https://www.sce.com/sites/default/files/custom-files/Web%20files/SiteExclusivityGuidelines.pdf) Site Exclusivity Guidelines.\n\n- Diagrams, manufacturer\u2019s data, and written descriptions of the generating facilities\n\n- Interconnection request fees. The application review requires a non-refundable fee of $800. Instructions on how to make this payment are included in the application form available at the link above.",
+      "estimated_evidence_tokens": 409,
+      "estimated_embedding_tokens": 436,
+      "citation": {
+        "heading_path": [
+          "Interconnection Process",
+          "Initiating a Request for Interconnection under Rule 21 for Exporting Projects"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0015",
+      "next_chunk_id": "sce_interconnection_web:c0017",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0017",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 17,
+      "block_ids": [
+        "sce_interconnection_web:b0083",
+        "sce_interconnection_web:b0084",
+        "sce_interconnection_web:b0085"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnection Process",
+        "Eligibility of Exporting Projects for Interconnection Under Rule 21"
+      ],
+      "evidence_text": "Eligibility of Exporting Projects for Interconnection Under Rule 21\n\nExporting projects can only request interconnection service under Rule 21 if they intend to participate in an eligible energy program approved and under the jurisdiction of the CPUC (e.g., Schedule NEM, Schedule RES-BCT, or an eligible procurement program where 100% of the exported power is sold to SCE). For information about the procurement programs that qualify for interconnection under Rule 21, please refer to SCE\u2019s [Energy Procurement site](https://www.sce.com/procurement) Energy Procurement site .\n\nSales to 3rd Parties. If the project developer is intending to sell any portion of the exported energy or any capacity services from the project to a 3rd party (any entity other than SCE, including other utilities), or in the market, then the interconnection service must be obtained under a FERC jurisdictional tariff (such as SCE\u2019s WDAT, or the CAISO tariff, depending on applicability).",
+      "evidence_text_sha256": "sha256:fc522943d2426b785f0921b5698aadd57b1283aa55724e640aa0810fbc3e949d",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process > Eligibility of Exporting Projects for Interconnection Under Rule 21\n\nEligibility of Exporting Projects for Interconnection Under Rule 21\n\nExporting projects can only request interconnection service under Rule 21 if they intend to participate in an eligible energy program approved and under the jurisdiction of the CPUC (e.g., Schedule NEM, Schedule RES-BCT, or an eligible procurement program where 100% of the exported power is sold to SCE). For information about the procurement programs that qualify for interconnection under Rule 21, please refer to SCE\u2019s [Energy Procurement site](https://www.sce.com/procurement) Energy Procurement site .\n\nSales to 3rd Parties. If the project developer is intending to sell any portion of the exported energy or any capacity services from the project to a 3rd party (any entity other than SCE, including other utilities), or in the market, then the interconnection service must be obtained under a FERC jurisdictional tariff (such as SCE\u2019s WDAT, or the CAISO tariff, depending on applicability).",
+      "estimated_evidence_tokens": 182,
+      "estimated_embedding_tokens": 207,
+      "citation": {
+        "heading_path": [
+          "Interconnection Process",
+          "Eligibility of Exporting Projects for Interconnection Under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0016",
+      "next_chunk_id": "sce_interconnection_web:c0018",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0018",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 18,
+      "block_ids": [
+        "sce_interconnection_web:b0086",
+        "sce_interconnection_web:b0087"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnection Process",
+        "Application for Interconnection for new Solar Billing Plan Projects"
+      ],
+      "evidence_text": "Application for Interconnection for new Solar Billing Plan Projects\n\nFor information regarding the request for interconnection for new Solar Billing Plan projects, please visit the [Solar Billing Plan](https://www.sce.com/business/generating-your-own-power/solar-billing-plan) Solar Billing Plan webpage.",
+      "evidence_text_sha256": "sha256:34aa2170d0ba5b7fc5e916627bc4dcb2abd3cc9d06cb38b86a1f93482f0e610f",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process > Application for Interconnection for new Solar Billing Plan Projects\n\nApplication for Interconnection for new Solar Billing Plan Projects\n\nFor information regarding the request for interconnection for new Solar Billing Plan projects, please visit the [Solar Billing Plan](https://www.sce.com/business/generating-your-own-power/solar-billing-plan) Solar Billing Plan webpage.",
+      "estimated_evidence_tokens": 57,
+      "estimated_embedding_tokens": 82,
+      "citation": {
+        "heading_path": [
+          "Interconnection Process",
+          "Application for Interconnection for new Solar Billing Plan Projects"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0017",
+      "next_chunk_id": "sce_interconnection_web:c0019",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0019",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 19,
+      "block_ids": [
+        "sce_interconnection_web:b0088",
+        "sce_interconnection_web:b0089",
+        "sce_interconnection_web:b0090",
+        "sce_interconnection_web:b0091",
+        "sce_interconnection_web:b0092",
+        "sce_interconnection_web:b0093",
+        "sce_interconnection_web:b0094",
+        "sce_interconnection_web:b0095"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "Interconnection Process",
+        "Distribution Service"
+      ],
+      "evidence_text": "Distribution Service\n\nIn addition, projects connecting to SCE\u2019s distribution system through Rule 21 are required to obtain \u201cDistribution Service\u201d with SCE. \u201cDistribution Service\u201d allows the customer to be able to use SCE\u2019s distribution system to \u201ctransport\u201d their energy from the point of interconnection with SCE\u2019s electric system to the CAISO system (where most power sales are expected to be delivered and settled in accordance with the CAISO market rules).\n\n- [Distribution Service Request Form](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUiO3fOv16BIgnCdlFTPaOABET8bueWCVul8X-yHXKYrfA?e=0Nv4dF) Distribution Service Request Form (fillable)\n\nFor guidelines on providing documentation of Site Exclusivity, please review this [Site Exclusivity Guidelines.](https://www.sce.com/sites/default/files/custom-files/Web%20files/SiteExclusivityGuidelines.pdf) Site Exclusivity Guidelines.\n\nFor a sample on acceptable single lines and site plans, please review this: [Sample drawings.](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA%20%281%29_0.pdf) Sample drawings.\n\nStorage Project. Supplementary information is required in order to evaluate projects with energy storing capabilities. As part of your application, please provide the following [additional technical data.](https://www.sce.com/sites/default/files/inline-files/BESS%2BForm%2B-%2BRev%2B2%2BJune%2B20150908_AA%2Bform_2_1.pdf) additional technical data.\n\nOnce completed, please email electronic copies of your documents (items 1 through 6, above) to [Rule21@sce.com](mailto:Rule21@sce.com) Rule21@sce.com , or alternatively, mail your documents to:\n\nGrid Interconnection & Contract Development Southern California Edison 2244 Walnut Grove Ave Rosemead, CA 91770",
+      "evidence_text_sha256": "sha256:f20b6f0ef504f3dc14e3cf5afb669cbc7bcb3683cf118e8066ceaced780a308e",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: Interconnection Process > Distribution Service\n\nDistribution Service\n\nIn addition, projects connecting to SCE\u2019s distribution system through Rule 21 are required to obtain \u201cDistribution Service\u201d with SCE. \u201cDistribution Service\u201d allows the customer to be able to use SCE\u2019s distribution system to \u201ctransport\u201d their energy from the point of interconnection with SCE\u2019s electric system to the CAISO system (where most power sales are expected to be delivered and settled in accordance with the CAISO market rules).\n\n- [Distribution Service Request Form](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUiO3fOv16BIgnCdlFTPaOABET8bueWCVul8X-yHXKYrfA?e=0Nv4dF) Distribution Service Request Form (fillable)\n\nFor guidelines on providing documentation of Site Exclusivity, please review this [Site Exclusivity Guidelines.](https://www.sce.com/sites/default/files/custom-files/Web%20files/SiteExclusivityGuidelines.pdf) Site Exclusivity Guidelines.\n\nFor a sample on acceptable single lines and site plans, please review this: [Sample drawings.](https://www.sce.com/sites/default/files/inline-files/Grid%2BInterconnection%2BSample%2BDrawings%2BSept%2B2015_AA%20%281%29_0.pdf) Sample drawings.\n\nStorage Project. Supplementary information is required in order to evaluate projects with energy storing capabilities. As part of your application, please provide the following [additional technical data.](https://www.sce.com/sites/default/files/inline-files/BESS%2BForm%2B-%2BRev%2B2%2BJune%2B20150908_AA%2Bform_2_1.pdf) additional technical data.\n\nOnce completed, please email electronic copies of your documents (items 1 through 6, above) to [Rule21@sce.com](mailto:Rule21@sce.com) Rule21@sce.com , or alternatively, mail your documents to:\n\nGrid Interconnection & Contract Development Southern California Edison 2244 Walnut Grove Ave Rosemead, CA 91770",
+      "estimated_evidence_tokens": 372,
+      "estimated_embedding_tokens": 390,
+      "citation": {
+        "heading_path": [
+          "Interconnection Process",
+          "Distribution Service"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0018",
+      "next_chunk_id": "sce_interconnection_web:c0020",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0020",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 20,
+      "block_ids": [
+        "sce_interconnection_web:b0096",
+        "sce_interconnection_web:b0097",
+        "sce_interconnection_web:b0098"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection"
+      ],
+      "evidence_text": "What Happens After Submitting Your Application for Interconnection\n\nFollowing the submittal of the application package and the review fee, an assigned engineer will perform a validation of the technical data provided. Once the application package is deemed complete and valid, the review/study track that is applicable to your project will begin (see Rule 21 Review/Study Tracks section below).\n\nPlease consult with your local planning or permitting authority to verify any local permitting requirements. SCE does not provide permitting services. Please review the Information Available Prior to Requesting for Interconnection under Rule 21 section above for more information that can be helpful when submitting a request for interconnection.",
+      "evidence_text_sha256": "sha256:b93efee7ec505a0b64f319f1d2a653a4d6b25378b4e99b6c64c62e5dcc4509f6",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection\n\nWhat Happens After Submitting Your Application for Interconnection\n\nFollowing the submittal of the application package and the review fee, an assigned engineer will perform a validation of the technical data provided. Once the application package is deemed complete and valid, the review/study track that is applicable to your project will begin (see Rule 21 Review/Study Tracks section below).\n\nPlease consult with your local planning or permitting authority to verify any local permitting requirements. SCE does not provide permitting services. Please review the Information Available Prior to Requesting for Interconnection under Rule 21 section above for more information that can be helpful when submitting a request for interconnection.",
+      "estimated_evidence_tokens": 120,
+      "estimated_embedding_tokens": 141,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0019",
+      "next_chunk_id": "sce_interconnection_web:c0021",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0021",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 21,
+      "block_ids": [
+        "sce_interconnection_web:b0099",
+        "sce_interconnection_web:b0100",
+        "sce_interconnection_web:b0101",
+        "sce_interconnection_web:b0102"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Rule 21 Review/Study Tracks"
+      ],
+      "evidence_text": "Rule 21 Review/Study Tracks\n\nPrior to obtaining interconnection, SCE performs technical reviews to identify how the project can be interconnected to SCE\u2019s electric system in a safe and reliable manner while complying with all applicable standards and regulations. Under Rule 21, the technical review of projects requesting interconnection service can be done under the Fast Track Process or the Detailed Study Process. For information about these two tracks, please read the sections Fast Track Process under Rule 21 or the Detailed Study Processes under Rule 21 below.\n\nWhen completing the application form, the customer can select, based on eligibility, the preferred track for reviewing the project.\n\nNote: Non-exporting projects operating in parallel with SCE\u2019s electric system (using application form 14-732) are evaluated only under the Fast Track Process. Only exporting projects (using application form 14-918) can select, based on eligibility, their desired review track.",
+      "evidence_text_sha256": "sha256:be5c88b07c89657babcf6896a4f5ca11f428bd6cea1ca4ff3a038cc82a4c3f3b",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Rule 21 Review/Study Tracks\n\nRule 21 Review/Study Tracks\n\nPrior to obtaining interconnection, SCE performs technical reviews to identify how the project can be interconnected to SCE\u2019s electric system in a safe and reliable manner while complying with all applicable standards and regulations. Under Rule 21, the technical review of projects requesting interconnection service can be done under the Fast Track Process or the Detailed Study Process. For information about these two tracks, please read the sections Fast Track Process under Rule 21 or the Detailed Study Processes under Rule 21 below.\n\nWhen completing the application form, the customer can select, based on eligibility, the preferred track for reviewing the project.\n\nNote: Non-exporting projects operating in parallel with SCE\u2019s electric system (using application form 14-732) are evaluated only under the Fast Track Process. Only exporting projects (using application form 14-918) can select, based on eligibility, their desired review track.",
+      "estimated_evidence_tokens": 165,
+      "estimated_embedding_tokens": 193,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Rule 21 Review/Study Tracks"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0020",
+      "next_chunk_id": "sce_interconnection_web:c0022",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0022",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 22,
+      "block_ids": [
+        "sce_interconnection_web:b0103",
+        "sce_interconnection_web:b0104",
+        "sce_interconnection_web:b0105",
+        "sce_interconnection_web:b0106",
+        "sce_interconnection_web:b0107",
+        "sce_interconnection_web:b0108",
+        "sce_interconnection_web:b0109",
+        "sce_interconnection_web:b0110",
+        "sce_interconnection_web:b0111"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Fast Track Process under Rule 21"
+      ],
+      "evidence_text": "Fast Track Process under Rule 21\n\nThe Fast Track Process is intended for projects that can be interconnected without system upgrades: it allows for a faster review of an interconnection request against a set of predefined screens to determine whether the project can interconnect without the need for detailed engineering studies or significant upgrades to SCE\u2019s electric system.\n\nThe Fast Track review consists of an Initial Review and, if needed, a Supplemental Review . The Initial Review involves the evaluation of Screens A through M (described in Section G.1 of Rule 21).\n\nThe need for Supplemental Review will be determined based on the results of the Initial Review screens. Projects that successfully pass Initial Review screens will be allowed to interconnect without a Supplemental Review.\n\nIf needed, SCE can perform a Supplemental Review, which requires an additional nonrefundable fee of $2,500. The Supplemental Review consists of the application of Screens N through P (described in Section G.2 of Rule 21).\n\nProjects that pass the Supplemental Review will be allowed to interconnect without further engineering studies. Failure to pass Fast Track evaluation (after the Initial Review and the Supplemental Review have been performed) means that the project needs further review (or study) before it can interconnect to SCE\u2019s electric system. It does not mean that the project cannot be interconnected.\n\nFast Track Eligibility. Projects need to be \u201celigible\u201d for the Fast Track review before the Initial Review and the Supplemental review are performed. Eligibility to request a Fast Track review means that the project can be evaluated under the Initial Review and the Supplemental Review screens, but eligibility does not guarantee that the project passes Fast Track.\n\nNon-Exporting projects (using application form 14-732) and Net Energy Metered/Net Billing Tariff projects (using application form 14-957) are eligible for Fast Track evaluation regardless of the gross nameplate rating of the proposed generating facility. Exporting projects (using application form 14-918) are encouraged to review the Integration Capacity Analysis (ICA) for information relevant to their project. See also the Distribution Resources Plan External Portal (DRPEP): [https://ltmdrpep.sce.com/drpep/](https://ltmdrpep.sce.com/drpep/) https://ltmdrpep.sce.com/drpep/\n\nTypical Timelines for Fast Track Review Process. The Initial Review is normally completed within fifteen (15) business days after the application package is deemed complete and valid.",
+      "evidence_text_sha256": "sha256:b6ad67aa4b63a77ea888f7709a5841d9ad9a5495d2bb31d42907bcbea16d4486",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Fast Track Process under Rule 21\n\nFast Track Process under Rule 21\n\nThe Fast Track Process is intended for projects that can be interconnected without system upgrades: it allows for a faster review of an interconnection request against a set of predefined screens to determine whether the project can interconnect without the need for detailed engineering studies or significant upgrades to SCE\u2019s electric system.\n\nThe Fast Track review consists of an Initial Review and, if needed, a Supplemental Review . The Initial Review involves the evaluation of Screens A through M (described in Section G.1 of Rule 21).\n\nThe need for Supplemental Review will be determined based on the results of the Initial Review screens. Projects that successfully pass Initial Review screens will be allowed to interconnect without a Supplemental Review.\n\nIf needed, SCE can perform a Supplemental Review, which requires an additional nonrefundable fee of $2,500. The Supplemental Review consists of the application of Screens N through P (described in Section G.2 of Rule 21).\n\nProjects that pass the Supplemental Review will be allowed to interconnect without further engineering studies. Failure to pass Fast Track evaluation (after the Initial Review and the Supplemental Review have been performed) means that the project needs further review (or study) before it can interconnect to SCE\u2019s electric system. It does not mean that the project cannot be interconnected.\n\nFast Track Eligibility. Projects need to be \u201celigible\u201d for the Fast Track review before the Initial Review and the Supplemental review are performed. Eligibility to request a Fast Track review means that the project can be evaluated under the Initial Review and the Supplemental Review screens, but eligibility does not guarantee that the project passes Fast Track.\n\nNon-Exporting projects (using application form 14-732) and Net Energy Metered/Net Billing Tariff projects (using application form 14-957) are eligible for Fast Track evaluation regardless of the gross nameplate rating of the proposed generating facility. Exporting projects (using application form 14-918) are encouraged to review the Integration Capacity Analysis (ICA) for information relevant to their project. See also the Distribution Resources Plan External Portal (DRPEP): [https://ltmdrpep.sce.com/drpep/](https://ltmdrpep.sce.com/drpep/) https://ltmdrpep.sce.com/drpep/\n\nTypical Timelines for Fast Track Review Process. The Initial Review is normally completed within fifteen (15) business days after the application package is deemed complete and valid.",
+      "estimated_evidence_tokens": 461,
+      "estimated_embedding_tokens": 489,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Fast Track Process under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0021",
+      "next_chunk_id": "sce_interconnection_web:c0023",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0023",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 23,
+      "block_ids": [
+        "sce_interconnection_web:b0112",
+        "sce_interconnection_web:b0113",
+        "sce_interconnection_web:b0114",
+        "sce_interconnection_web:b0115",
+        "sce_interconnection_web:b0116",
+        "sce_interconnection_web:b0117",
+        "sce_interconnection_web:b0118"
+      ],
+      "block_types": [
+        "list_item",
+        "list_item",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Fast Track Process under Rule 21"
+      ],
+      "evidence_text": "- Activities following Initial Review analysis: If the project passes the Initial Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days following the Initial Review results. If the project passes the Initial Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Initial Review results. If the project does not pass the Initial Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include conducting a Supplemental Review or moving the project to the Detailed Study Process.\n\n- If the project passes the Initial Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days following the Initial Review results.\n\n- If the project passes the Initial Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Initial Review results.\n\n- If the project does not pass the Initial Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include conducting a Supplemental Review or moving the project to the Detailed Study Process.\n\nIf SCE and the customer agree to perform a Supplemental Review, the review is normally completed within twenty (20) business days after receipt of supplemental review fee.\n\n- Activities following Supplemental Review analysis: If the project passes the Supplemental Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days of providing the Supplemental Review results. If the project passes the Supplemental Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Supplemental Review results. If the project does not pass the Supplemental Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include moving the project to the Detailed Study Process. Please review the Detailed Study Processes under Rule 21 section below for more information.\n\n- If the project passes the Supplemental Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days of providing the Supplemental Review results.",
+      "evidence_text_sha256": "sha256:a5a9e4d573e383b82c6ea6a59eb0b3e49a4971cb322be75aff75148bedf44370",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Fast Track Process under Rule 21\n\n- Activities following Initial Review analysis: If the project passes the Initial Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days following the Initial Review results. If the project passes the Initial Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Initial Review results. If the project does not pass the Initial Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include conducting a Supplemental Review or moving the project to the Detailed Study Process.\n\n- If the project passes the Initial Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days following the Initial Review results.\n\n- If the project passes the Initial Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Initial Review results.\n\n- If the project does not pass the Initial Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include conducting a Supplemental Review or moving the project to the Detailed Study Process.\n\nIf SCE and the customer agree to perform a Supplemental Review, the review is normally completed within twenty (20) business days after receipt of supplemental review fee.\n\n- Activities following Supplemental Review analysis: If the project passes the Supplemental Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days of providing the Supplemental Review results. If the project passes the Supplemental Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Supplemental Review results. If the project does not pass the Supplemental Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include moving the project to the Detailed Study Process. Please review the Detailed Study Processes under Rule 21 section below for more information.\n\n- If the project passes the Supplemental Review screens, and there are no identified upgrades required for interconnection, SCE will deliver a draft interconnection agreement within fifteen (15) business days of providing the Supplemental Review results.",
+      "estimated_evidence_tokens": 481,
+      "estimated_embedding_tokens": 509,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Fast Track Process under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0022",
+      "next_chunk_id": "sce_interconnection_web:c0024",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0024",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 24,
+      "block_ids": [
+        "sce_interconnection_web:b0119",
+        "sce_interconnection_web:b0120",
+        "sce_interconnection_web:b0121",
+        "sce_interconnection_web:b0122"
+      ],
+      "block_types": [
+        "list_item",
+        "list_item",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Fast Track Process under Rule 21"
+      ],
+      "evidence_text": "- If the project passes the Supplemental Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Supplemental Review results.\n\n- If the project does not pass the Supplemental Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include moving the project to the Detailed Study Process. Please review the Detailed Study Processes under Rule 21 section below for more information.\n\nInterconnection Agreement. Following the receipt of a cost estimate for new facilities identified during the Initial Review or the Supplemental Review, the customer can request a Generator Interconnection Agreement within fifteen (15) business days. SCE will deliver a draft interconnection agreement within fifteen (15) business days of the customer\u2019s request. At that point, SCE and the customer begin negotiations under the timelines provided in Section F.2.e of Rule 21.\n\nNotes About Deliverability. All projects reviewed under the Fast Track Process are considered Energy Only (also referred to as Energy Only Deliverability Status , or EO ). Energy Only projects do not qualify to provide Resource Adequacy benefits to Load Serving Entities (\u201cResource Adequacy\u201d and \u201cLoad Serving Entities\u201d are terms defined by the California Public Utilities Commission).",
+      "evidence_text_sha256": "sha256:c27795a3c81af81d8537847f1d75bc413561d0b8b7e96377643b4e8aa7098c4d",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Fast Track Process under Rule 21\n\n- If the project passes the Supplemental Review screens, but there are identified upgrades required for interconnection, SCE will deliver a cost estimate of such upgrades within fifteen (15) business days following the Supplemental Review results.\n\n- If the project does not pass the Supplemental Review screens, SCE may hold a meeting with the customer to determine the next steps and recommended options for the project, which may include moving the project to the Detailed Study Process. Please review the Detailed Study Processes under Rule 21 section below for more information.\n\nInterconnection Agreement. Following the receipt of a cost estimate for new facilities identified during the Initial Review or the Supplemental Review, the customer can request a Generator Interconnection Agreement within fifteen (15) business days. SCE will deliver a draft interconnection agreement within fifteen (15) business days of the customer\u2019s request. At that point, SCE and the customer begin negotiations under the timelines provided in Section F.2.e of Rule 21.\n\nNotes About Deliverability. All projects reviewed under the Fast Track Process are considered Energy Only (also referred to as Energy Only Deliverability Status , or EO ). Energy Only projects do not qualify to provide Resource Adequacy benefits to Load Serving Entities (\u201cResource Adequacy\u201d and \u201cLoad Serving Entities\u201d are terms defined by the California Public Utilities Commission).",
+      "estimated_evidence_tokens": 250,
+      "estimated_embedding_tokens": 278,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Fast Track Process under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0023",
+      "next_chunk_id": "sce_interconnection_web:c0025",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0025",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 25,
+      "block_ids": [
+        "sce_interconnection_web:b0123",
+        "sce_interconnection_web:b0124",
+        "sce_interconnection_web:b0125",
+        "sce_interconnection_web:b0126",
+        "sce_interconnection_web:b0127",
+        "sce_interconnection_web:b0128",
+        "sce_interconnection_web:b0129"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "list_item",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Detailed Study Processes under Rule 21"
+      ],
+      "evidence_text": "Detailed Study Processes under Rule 21\n\nProjects that are not eligible for Fast Track evaluation, or that failed the Fast Track Process, can apply for a Detailed Study . A detailed study is an engineering study of a project that evaluates its impact to SCE\u2019s electric system and identifies the facilities that are needed to accommodate the interconnection of the project.\n\nThere are three types of Detailed Studies : an Independent Study , a Distribution Group Study , and a Transmission Cluster Study . The specific Detailed Study applicable for a project is determined by Screen Q (which identifies if the project is electrically independent from other projects in the transmission system) and Screen R (which identifies if the project is electrically independent from other projects in SCE\u2019s distribution system). Refer to Section G.3 of Rule 21 for a description and applicability of Screens Q and R.\n\n- If the project passes both Screen Q and Screen R, the project can proceed to the Independent Study Process (refer to section F.3.b of Rule 21 for a description of this process)\n\n- If the projects passes Screen Q, but fails Screen R, the project can proceed to the Distribution Group Study Process (refer to section F.3.c of Rule 21 for a description of this process)\n\n- If the project fails screen Q, the project is required to withdraw its application from the Rule 21 Process and proceed to the Transmission Cluster Study Process (refer to section F.3.d of Rule 21 for a description of this process). The project would then be processed for interconnection under SCE\u2019s WDAT (please visit our [WDAT page](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Wholesale-Distribution-Access-Tariff) WDAT page for more information).\n\nNormally, for projects seeking to be evaluated under the Independent Study Process, SCE provides the results of the evaluation of Screens Q and R within twenty (20) business days following validation of an interconnection request and receipt of the appropriate study deposit set forth in Section E.3.a. For projects seeking to be evaluated under the Distribution Group Study Process, SCE provides the results of the evaluation of Screens Q within thirty (30) business days following the close of the Distribution Group Study application window.",
+      "evidence_text_sha256": "sha256:a60ac5080b20975da79c3cc2fa544a3f4531c7dfcb364a1ef54d8ae1c954a52c",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Detailed Study Processes under Rule 21\n\nDetailed Study Processes under Rule 21\n\nProjects that are not eligible for Fast Track evaluation, or that failed the Fast Track Process, can apply for a Detailed Study . A detailed study is an engineering study of a project that evaluates its impact to SCE\u2019s electric system and identifies the facilities that are needed to accommodate the interconnection of the project.\n\nThere are three types of Detailed Studies : an Independent Study , a Distribution Group Study , and a Transmission Cluster Study . The specific Detailed Study applicable for a project is determined by Screen Q (which identifies if the project is electrically independent from other projects in the transmission system) and Screen R (which identifies if the project is electrically independent from other projects in SCE\u2019s distribution system). Refer to Section G.3 of Rule 21 for a description and applicability of Screens Q and R.\n\n- If the project passes both Screen Q and Screen R, the project can proceed to the Independent Study Process (refer to section F.3.b of Rule 21 for a description of this process)\n\n- If the projects passes Screen Q, but fails Screen R, the project can proceed to the Distribution Group Study Process (refer to section F.3.c of Rule 21 for a description of this process)\n\n- If the project fails screen Q, the project is required to withdraw its application from the Rule 21 Process and proceed to the Transmission Cluster Study Process (refer to section F.3.d of Rule 21 for a description of this process). The project would then be processed for interconnection under SCE\u2019s WDAT (please visit our [WDAT page](https://www.sce.com/business/generating-your-own-power/Grid-Interconnections/Wholesale-Distribution-Access-Tariff) WDAT page for more information).\n\nNormally, for projects seeking to be evaluated under the Independent Study Process, SCE provides the results of the evaluation of Screens Q and R within twenty (20) business days following validation of an interconnection request and receipt of the appropriate study deposit set forth in Section E.3.a. For projects seeking to be evaluated under the Distribution Group Study Process, SCE provides the results of the evaluation of Screens Q within thirty (30) business days following the close of the Distribution Group Study application window.",
+      "estimated_evidence_tokens": 435,
+      "estimated_embedding_tokens": 463,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Detailed Study Processes under Rule 21"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0024",
+      "next_chunk_id": "sce_interconnection_web:c0026",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0026",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 26,
+      "block_ids": [
+        "sce_interconnection_web:b0130",
+        "sce_interconnection_web:b0131",
+        "sce_interconnection_web:b0132",
+        "sce_interconnection_web:b0133",
+        "sce_interconnection_web:b0134",
+        "sce_interconnection_web:b0135",
+        "sce_interconnection_web:b0136"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Attestation for Demonstration of Derated Inverter"
+      ],
+      "evidence_text": "Attestation for Demonstration of Derated Inverter\n\nConsistent with SCE\u2019s expressed commitments through the 2024 CPUC\u2019s Interconnection Discussion Forum, SCE makes available the attestation form linked below for generator inverter manufacturers to use to demonstrate to SCE a manufacturer\u2019s derating of a project\u2019s inverter from its Gross Nameplate Rating that may be submitted for purposes of calculating Rule 21 Detailed Study Deposit Fee.\n\nAs of the publication of this notification, SCE will accept a completed attestation form (linked below) from a manufacturer to demonstrate an inverter derating from its Gross Nameplate Rating to a rating of 5MW or less, for a generating facility included in a previously submitted Customer Interconnection Request on or after March 1, 2024 to SCE.\n\nUpon satisfactory demonstration to SCE that the inverter has been derated to 5MW or less of its Gross Nameplate Rating, with the required information provided from the Manufacturer through use of the attestation form, SCE will accept a Detailed Study Deposit fee per that inverter\u2019s appropriate re-rating as designated under Table E.1 in SCE\u2019s Rule 21.\n\nCustomer understands that all other required applicable provisions of Rule 21 must also first be satisfied to demonstrate a completed Interconnection Request, which includes submission of the Detailed Study Deposit fee.\n\nShould customers have any questions concerning the process for demonstration of Manufacturer inverter derating for the purposes addressed above, please contact SCE at [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com) InterconnectionQA@sce.com .\n\nCustomers may access form \u201cAttestation for Demonstration of Derated Inverter for Purposes of Calculating Rule 21 Detailed Study Deposit Fee\u201d at the following link: [Attestation for Derated Inverter.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Attestation_or_Derated_Inverter.pdf) Attestation for Derated Inverter.pdf",
+      "evidence_text_sha256": "sha256:0921f2bcf125a4fed565c953c6e4c3a3ec3dea6e18214ff2b7051e7f0f9e583a",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Attestation for Demonstration of Derated Inverter\n\nAttestation for Demonstration of Derated Inverter\n\nConsistent with SCE\u2019s expressed commitments through the 2024 CPUC\u2019s Interconnection Discussion Forum, SCE makes available the attestation form linked below for generator inverter manufacturers to use to demonstrate to SCE a manufacturer\u2019s derating of a project\u2019s inverter from its Gross Nameplate Rating that may be submitted for purposes of calculating Rule 21 Detailed Study Deposit Fee.\n\nAs of the publication of this notification, SCE will accept a completed attestation form (linked below) from a manufacturer to demonstrate an inverter derating from its Gross Nameplate Rating to a rating of 5MW or less, for a generating facility included in a previously submitted Customer Interconnection Request on or after March 1, 2024 to SCE.\n\nUpon satisfactory demonstration to SCE that the inverter has been derated to 5MW or less of its Gross Nameplate Rating, with the required information provided from the Manufacturer through use of the attestation form, SCE will accept a Detailed Study Deposit fee per that inverter\u2019s appropriate re-rating as designated under Table E.1 in SCE\u2019s Rule 21.\n\nCustomer understands that all other required applicable provisions of Rule 21 must also first be satisfied to demonstrate a completed Interconnection Request, which includes submission of the Detailed Study Deposit fee.\n\nShould customers have any questions concerning the process for demonstration of Manufacturer inverter derating for the purposes addressed above, please contact SCE at [InterconnectionQA@sce.com](mailto:InterconnectionQA@sce.com) InterconnectionQA@sce.com .\n\nCustomers may access form \u201cAttestation for Demonstration of Derated Inverter for Purposes of Calculating Rule 21 Detailed Study Deposit Fee\u201d at the following link: [Attestation for Derated Inverter.pdf](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Attestation_or_Derated_Inverter.pdf) Attestation for Derated Inverter.pdf",
+      "estimated_evidence_tokens": 332,
+      "estimated_embedding_tokens": 360,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Attestation for Demonstration of Derated Inverter"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0025",
+      "next_chunk_id": "sce_interconnection_web:c0027",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0027",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 27,
+      "block_ids": [
+        "sce_interconnection_web:b0137",
+        "sce_interconnection_web:b0138"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "SCE Methodology for Assessing Whether a Generator Requires or Contributes to Need for Network Upgrades in Rule 21 and WDAT"
+      ],
+      "evidence_text": "SCE Methodology for Assessing Whether a Generator Requires or Contributes to Need for Network Upgrades in Rule 21 and WDAT\n\nBeginning March 1, 2024, SCE will utilize this methodology [SCE's interim methodology for assessing contribution to RNUs.pptx](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE's_interim_methodology_for_assessing_contribution_to_RNUs.pdf) SCE's interim methodology for assessing contribution to RNUs.pptx as an interim process to assess whether a proposed Generating Facility is not reasonably anticipated to require or contribute to the need for Reliability Network Upgrades as part of the Screen Q assessment pursuant to Section G.3.a of SCE\u2019s Rule 21 Tariff and as part of the electrical independence assessment pursuant to Section 5.5 of SCE\u2019s WDAT Attachment I.",
+      "evidence_text_sha256": "sha256:61c8b2d2c1a24a5a285fb0e4b49c1ec3b5ba0c9a4a133dcc498e3fd6635729f6",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > SCE Methodology for Assessing Whether a Generator Requires or Contributes to Need for Network Upgrades in Rule 21 and WDAT\n\nSCE Methodology for Assessing Whether a Generator Requires or Contributes to Need for Network Upgrades in Rule 21 and WDAT\n\nBeginning March 1, 2024, SCE will utilize this methodology [SCE's interim methodology for assessing contribution to RNUs.pptx](https://www.sce.com/sites/default/files/custom-files/PDF_Files/SCE's_interim_methodology_for_assessing_contribution_to_RNUs.pdf) SCE's interim methodology for assessing contribution to RNUs.pptx as an interim process to assess whether a proposed Generating Facility is not reasonably anticipated to require or contribute to the need for Reliability Network Upgrades as part of the Screen Q assessment pursuant to Section G.3.a of SCE\u2019s Rule 21 Tariff and as part of the electrical independence assessment pursuant to Section 5.5 of SCE\u2019s WDAT Attachment I.",
+      "estimated_evidence_tokens": 144,
+      "estimated_embedding_tokens": 186,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "SCE Methodology for Assessing Whether a Generator Requires or Contributes to Need for Network Upgrades in Rule 21 and WDAT"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0026",
+      "next_chunk_id": "sce_interconnection_web:c0028",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0028",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 28,
+      "block_ids": [
+        "sce_interconnection_web:b0139",
+        "sce_interconnection_web:b0140",
+        "sce_interconnection_web:b0141",
+        "sce_interconnection_web:b0142"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "table"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Rule 21 Distribution Group Study Application Window"
+      ],
+      "evidence_text": "Rule 21 Distribution Group Study Application Window\n\nIn accordance with SCE's Rule 21 generator interconnection procedures, SCE will open a Distribution Group Study (DGS) Application Window within the following schedule:\n\nDGS Application Window Schedule\n\n| Cluster | Opening Date | Closing Date |\n| --- | --- | --- |\n| DGS Cluster 22 | Saturday, August 15, 2026 | Tuesday, September 15, 2026 |",
+      "evidence_text_sha256": "sha256:783a2e9290996841c246293466925e2bdd996ab245acbded4bacb201f6d151fa",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Rule 21 Distribution Group Study Application Window\n\nRule 21 Distribution Group Study Application Window\n\nIn accordance with SCE's Rule 21 generator interconnection procedures, SCE will open a Distribution Group Study (DGS) Application Window within the following schedule:\n\nDGS Application Window Schedule\n\n| Cluster | Opening Date | Closing Date |\n| --- | --- | --- |\n| DGS Cluster 22 | Saturday, August 15, 2026 | Tuesday, September 15, 2026 |",
+      "estimated_evidence_tokens": 79,
+      "estimated_embedding_tokens": 108,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Rule 21 Distribution Group Study Application Window"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0027",
+      "next_chunk_id": "sce_interconnection_web:c0029",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0029",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 29,
+      "block_ids": [
+        "sce_interconnection_web:b0143",
+        "sce_interconnection_web:b0144"
+      ],
+      "block_types": [
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Rule 21 Distribution Group Study Application Window"
+      ],
+      "evidence_text": "- DGS22 - Section E.2.c of SCE\u2019s Rule 21 tariff states that there will normally be two Distribution Group Study Application windows annually. The first Distribution Group Study Application window will usually open on March 1 and close on March 31. The second Distribution Group Study Application window will usually open on September 1 and close on September 30. SCE\u2019s Rule 21 also states that SCE, as the Distribution Provider, may change the Distribution Group Study Application window interval and opening or closing dates. Any changes are to be posted on the SCE\u2019s website and if there is a conflict between the Distribution Group Study Application window interval and opening or closing dates posted on the Distribution Provider\u2019s website and the dates identified in Rule 21, the dates posted on the Distribution Provider\u2019s website shall apply. As permitted under Rule 21 Section E.2.c, SCE provided notice on January 9, 2026, that it was revising the 2026 Distribution Group Study Application windows due to abnormal circumstances resulting from the delayed resumption of Queue Cluster 15 and adjusted the schedule as follows: The Distribution Group Study Application window normally scheduled to open on March 1, 2026, and close on March 31, 2026, will not occur. SCE will hold one Distribution Group Study Application window in 2026, opening on September 1, 2026, and closing on September 30, 2026. On July 1, 2026, SCE provided further notice that the Distribution Group Study Application window previously scheduled for September 1 through September 30, 2026, will instead open on August 15, 2026, and close on September 15, 2026. This change reflects the advancement of the Queue Cluster 16 Application Window previously scheduled to open October 12, 2026, that is now scheduled to open on September 11, 2026, preserves the previous sequence of studies, and removes dependency on the Queue Cluster 16 base case model, which could otherwise delay completion of the Distribution Group Study. SCE will continue to accept Rule 21 Fast Track interconnection requests, without any changes or revisions to that process. Apply using our online GIPT application form. Apply using our online [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT application form. Please note that in order to consider your application package complete for processing, both the application fee and study deposit must be paid by the close of the application window.\n\n- The Distribution Group Study Application window normally scheduled to open on March 1, 2026, and close on March 31, 2026, will not occur.",
+      "evidence_text_sha256": "sha256:17383d2d4de2f0b33d46d4eb66ee41e70b20d2004d10f5ae581cc4eeea378e9c",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Rule 21 Distribution Group Study Application Window\n\n- DGS22 - Section E.2.c of SCE\u2019s Rule 21 tariff states that there will normally be two Distribution Group Study Application windows annually. The first Distribution Group Study Application window will usually open on March 1 and close on March 31. The second Distribution Group Study Application window will usually open on September 1 and close on September 30. SCE\u2019s Rule 21 also states that SCE, as the Distribution Provider, may change the Distribution Group Study Application window interval and opening or closing dates. Any changes are to be posted on the SCE\u2019s website and if there is a conflict between the Distribution Group Study Application window interval and opening or closing dates posted on the Distribution Provider\u2019s website and the dates identified in Rule 21, the dates posted on the Distribution Provider\u2019s website shall apply. As permitted under Rule 21 Section E.2.c, SCE provided notice on January 9, 2026, that it was revising the 2026 Distribution Group Study Application windows due to abnormal circumstances resulting from the delayed resumption of Queue Cluster 15 and adjusted the schedule as follows: The Distribution Group Study Application window normally scheduled to open on March 1, 2026, and close on March 31, 2026, will not occur. SCE will hold one Distribution Group Study Application window in 2026, opening on September 1, 2026, and closing on September 30, 2026. On July 1, 2026, SCE provided further notice that the Distribution Group Study Application window previously scheduled for September 1 through September 30, 2026, will instead open on August 15, 2026, and close on September 15, 2026. This change reflects the advancement of the Queue Cluster 16 Application Window previously scheduled to open October 12, 2026, that is now scheduled to open on September 11, 2026, preserves the previous sequence of studies, and removes dependency on the Queue Cluster 16 base case model, which could otherwise delay completion of the Distribution Group Study. SCE will continue to accept Rule 21 Fast Track interconnection requests, without any changes or revisions to that process. Apply using our online GIPT application form. Apply using our online [GIPT](https://gridinterconnection.sce.com/prweb/app/default/JwjzxWBsk0gJoubYmkBqgUAL94hRcnV1*/!STANDARD) GIPT application form. Please note that in order to consider your application package complete for processing, both the application fee and study deposit must be paid by the close of the application window.\n\n- The Distribution Group Study Application window normally scheduled to open on March 1, 2026, and close on March 31, 2026, will not occur.",
+      "estimated_evidence_tokens": 487,
+      "estimated_embedding_tokens": 516,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Rule 21 Distribution Group Study Application Window"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0028",
+      "next_chunk_id": "sce_interconnection_web:c0030",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0030",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 30,
+      "block_ids": [
+        "sce_interconnection_web:b0145",
+        "sce_interconnection_web:b0146",
+        "sce_interconnection_web:b0147"
+      ],
+      "block_types": [
+        "list_item",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Rule 21 Distribution Group Study Application Window"
+      ],
+      "evidence_text": "- SCE will hold one Distribution Group Study Application window in 2026, opening on September 1, 2026, and closing on September 30, 2026.\n\nInterconnection Requests to be studied under the Distribution Group Study Process shall either be (a) an Independent Study Process Interconnection Request that passed screen Q and failed Screen R for which the Applicant elects to continue to the next available Distribution Group Study, or (b) an Interconnection Request submitted during a Distribution Group Study Application window that passes Screen Q. Please refer to Rule 21 for a description of Screens R and Q [Rule 21 Link](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=7gVxk9) Rule 21 Link .\n\nNew Interconnection Requests for the Independent Study Process will NOT be accepted during the Distribution Group Study application window dates listed above.",
+      "evidence_text_sha256": "sha256:c3a35101a4083a6d27a0e33285154592c880c9941914c9b7dfb0cdda0ed1cb5f",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Rule 21 Distribution Group Study Application Window\n\n- SCE will hold one Distribution Group Study Application window in 2026, opening on September 1, 2026, and closing on September 30, 2026.\n\nInterconnection Requests to be studied under the Distribution Group Study Process shall either be (a) an Independent Study Process Interconnection Request that passed screen Q and failed Screen R for which the Applicant elects to continue to the next available Distribution Group Study, or (b) an Interconnection Request submitted during a Distribution Group Study Application window that passes Screen Q. Please refer to Rule 21 for a description of Screens R and Q [Rule 21 Link](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=7gVxk9) Rule 21 Link .\n\nNew Interconnection Requests for the Independent Study Process will NOT be accepted during the Distribution Group Study application window dates listed above.",
+      "estimated_evidence_tokens": 166,
+      "estimated_embedding_tokens": 195,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Rule 21 Distribution Group Study Application Window"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0029",
+      "next_chunk_id": "sce_interconnection_web:c0031",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0031",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 31,
+      "block_ids": [
+        "sce_interconnection_web:b0148",
+        "sce_interconnection_web:b0149",
+        "sce_interconnection_web:b0150"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Rule 21 Material Modification Notification"
+      ],
+      "evidence_text": "Rule 21 Material Modification Notification\n\nOn June 24, 2021, the CPUC confirmed Advice Letter 4461-E/E-A related to submitting Modifications to Rule 21 Requests.\n\nA notification to SCE is required for certain modifications to a generating facility. Please refer to the [Rule 21 tariff](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=7gVxk9) Rule 21 tariff sections Ee. and F.2.a. (Table F.1) for additional information. The notification form is available here: [Modification Notification](https://www.sce.com/sites/default/files/custom-files/Fillable-ELECTRIC_FORMS_14-987.pdf) Modification Notification .",
+      "evidence_text_sha256": "sha256:c3970f7e7fe69ea2ffecd76ca6771edb9d5405b45b60ef9d15acc35c0335ff15",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Rule 21 Material Modification Notification\n\nRule 21 Material Modification Notification\n\nOn June 24, 2021, the CPUC confirmed Advice Letter 4461-E/E-A related to submitting Modifications to Rule 21 Requests.\n\nA notification to SCE is required for certain modifications to a generating facility. Please refer to the [Rule 21 tariff](https://edisonintl.sharepoint.com/:b:/t/Public/TM2/ETLN2XxZ3_dAiVEsfxL0uTsBTpceysqoFPUD8ifehSL2pw?e=7gVxk9) Rule 21 tariff sections Ee. and F.2.a. (Table F.1) for additional information. The notification form is available here: [Modification Notification](https://www.sce.com/sites/default/files/custom-files/Fillable-ELECTRIC_FORMS_14-987.pdf) Modification Notification .",
+      "estimated_evidence_tokens": 140,
+      "estimated_embedding_tokens": 167,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Rule 21 Material Modification Notification"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0030",
+      "next_chunk_id": "sce_interconnection_web:c0032",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0032",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 32,
+      "block_ids": [
+        "sce_interconnection_web:b0151",
+        "sce_interconnection_web:b0152",
+        "sce_interconnection_web:b0153",
+        "sce_interconnection_web:b0154",
+        "sce_interconnection_web:b0155",
+        "sce_interconnection_web:b0156",
+        "sce_interconnection_web:b0157",
+        "sce_interconnection_web:b0158"
+      ],
+      "block_types": [
+        "heading",
+        "heading",
+        "paragraph",
+        "list_item",
+        "list_item",
+        "paragraph",
+        "list_item",
+        "list_item"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Accelerated Permission-To-Operate (PTO) Process",
+        "Installing a Rule 21 Non-Export Energy Storage system sized less than or equal to 10kW?"
+      ],
+      "evidence_text": "Accelerated Permission-To-Operate (PTO) Process\n\nInstalling a Rule 21 Non-Export Energy Storage system sized less than or equal to 10kW?\n\nAccelerate your project on the path to obtaining Permission to Operate. Providing sufficient documentation up-front can greatly reduce review and processing timelines.\n\n- Please refer to this [checklist](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUNWv__i00NJhUiUEBiAcQcBnnpVlCcIiGZGk1qOEQmfeg?e=1ncPsu) checklist for more information to see if your project is eligible.\n\n- A [presentation](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EQPp2epb4b5JhKqyPuAPxqgB92_lk71CNkcZ4WbgNCkG8A?e=uGTkgt) presentation from 7/1/2020 is also available for your review.\n\nPre-Approved Single Line Diagrams for projects selecting Protection Options 3 or 6 are now available for use. You may download these documents and attach them to your Interconnection Request submittal. If these do not accurately reflect your project, or you are using a different protection option, then you will need to provide your own Single Line Diagram with your Interconnection Request.\n\n- [Protection Option 3 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EY0jMhdU2ChNpRJXmAN1jCsB1fFfNIuFPVsisS9IJL1f2g?e=dTnYkb) Protection Option 3 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW\n\n- [Protection Option 6 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EVA3mDpsuglFuEa9J29bYRABZGt_DvRxpe2xp3NYmn9sPg?e=InHOEP) Protection Option 6 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW",
+      "evidence_text_sha256": "sha256:39034297194ffcbed57723889528a9e216cc2e8ec4057887b931e495e90d2c19",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Accelerated Permission-To-Operate (PTO) Process > Installing a Rule 21 Non-Export Energy Storage system sized less than or equal to 10kW?\n\nAccelerated Permission-To-Operate (PTO) Process\n\nInstalling a Rule 21 Non-Export Energy Storage system sized less than or equal to 10kW?\n\nAccelerate your project on the path to obtaining Permission to Operate. Providing sufficient documentation up-front can greatly reduce review and processing timelines.\n\n- Please refer to this [checklist](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EUNWv__i00NJhUiUEBiAcQcBnnpVlCcIiGZGk1qOEQmfeg?e=1ncPsu) checklist for more information to see if your project is eligible.\n\n- A [presentation](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EQPp2epb4b5JhKqyPuAPxqgB92_lk71CNkcZ4WbgNCkG8A?e=uGTkgt) presentation from 7/1/2020 is also available for your review.\n\nPre-Approved Single Line Diagrams for projects selecting Protection Options 3 or 6 are now available for use. You may download these documents and attach them to your Interconnection Request submittal. If these do not accurately reflect your project, or you are using a different protection option, then you will need to provide your own Single Line Diagram with your Interconnection Request.\n\n- [Protection Option 3 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EY0jMhdU2ChNpRJXmAN1jCsB1fFfNIuFPVsisS9IJL1f2g?e=dTnYkb) Protection Option 3 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW\n\n- [Protection Option 6 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW](https://edisonintl.sharepoint.com/:b:/t/Public/Misc/EVA3mDpsuglFuEa9J29bYRABZGt_DvRxpe2xp3NYmn9sPg?e=InHOEP) Protection Option 6 Single Line Diagram Template for Rule 21 Non-Export Energy Storage Less than 10kW",
+      "estimated_evidence_tokens": 331,
+      "estimated_embedding_tokens": 378,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Accelerated Permission-To-Operate (PTO) Process"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0031",
+      "next_chunk_id": "sce_interconnection_web:c0033",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0033",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 33,
+      "block_ids": [
+        "sce_interconnection_web:b0159",
+        "sce_interconnection_web:b0160"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Information regarding request to transfer between Rule 21 interconnection process and Wholesale Distribution Access Tariff (WDAT) interconnection process"
+      ],
+      "evidence_text": "Information regarding request to transfer between Rule 21 interconnection process and Wholesale Distribution Access Tariff (WDAT) interconnection process\n\nThe following is a White Paper regarding workable options for interconnection customers to transfer from a Rule 21 Interconnection Request to a Wholesale Distribution Access Tariff (WDAT) Interconnection Agreement: [White Paper](https://www.sce.com/sites/default/files/inline-files/Rule21_WhitePaperonTransferprocess.pdf) White Paper .",
+      "evidence_text_sha256": "sha256:d0046d9902eb92d8f226d5a5038e6b6ef51782854f78423063598d771a1d5bd3",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Information regarding request to transfer between Rule 21 interconnection process and Wholesale Distribution Access Tariff (WDAT) interconnection process\n\nInformation regarding request to transfer between Rule 21 interconnection process and Wholesale Distribution Access Tariff (WDAT) interconnection process\n\nThe following is a White Paper regarding workable options for interconnection customers to transfer from a Rule 21 Interconnection Request to a Wholesale Distribution Access Tariff (WDAT) Interconnection Agreement: [White Paper](https://www.sce.com/sites/default/files/inline-files/Rule21_WhitePaperonTransferprocess.pdf) White Paper .",
+      "estimated_evidence_tokens": 82,
+      "estimated_embedding_tokens": 124,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Information regarding request to transfer between Rule 21 interconnection process and Wholesale Distribution Access Tariff (WDAT) interconnection process"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0032",
+      "next_chunk_id": "sce_interconnection_web:c0034",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0034",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 34,
+      "block_ids": [
+        "sce_interconnection_web:b0161",
+        "sce_interconnection_web:b0162"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "CRC Suspension for Microgrids"
+      ],
+      "evidence_text": "CRC Suspension for Microgrids\n\n[CRC Suspension for Microgrids](https://www.sce.com/sites/default/files/inline-files/ELECTRIC_FORMS_14-990_Fillable.pdf) CRC Suspension for Microgrids",
+      "evidence_text_sha256": "sha256:edac6ecbc0f8801f0f5f39731cb44d4ac787abcb2ad5e280e3b14fed600838d0",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > CRC Suspension for Microgrids\n\nCRC Suspension for Microgrids\n\n[CRC Suspension for Microgrids](https://www.sce.com/sites/default/files/inline-files/ELECTRIC_FORMS_14-990_Fillable.pdf) CRC Suspension for Microgrids",
+      "estimated_evidence_tokens": 37,
+      "estimated_embedding_tokens": 63,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "CRC Suspension for Microgrids"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0033",
+      "next_chunk_id": "sce_interconnection_web:c0035",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "sce_interconnection_web:c0035",
+      "schema_version": "1.0",
+      "document_id": "sce_interconnection_web",
+      "source_id": "sce_interconnection_web",
+      "source_hash": "sha256:34fdeeecdcee0f868f959e1c044b328df6a4dcdb0b918af6141fa87bccec4506",
+      "chunk_ordinal": 35,
+      "block_ids": [
+        "sce_interconnection_web:b0163",
+        "sce_interconnection_web:b0164",
+        "sce_interconnection_web:b0165"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "What Happens After Submitting Your Application for Interconnection",
+        "Limited Generation Profile"
+      ],
+      "evidence_text": "Limited Generation Profile\n\nThe California Public Utilities Commission directed SCE to allow generating customers the Limited Generation Profile (LGP) option. The LGP option allows DERs to perform within existing Integration Capacity Analysis (ICA) hosting capacity to avoid distribution grid upgrades. The LGP option allows the generator to use Interconnection Capacity Analysis-Static Grid (ICA-SG) values to maximize their generation using a time-varying export profile. For more information on the LGP Interconnection Process, see the following link: [Interconnection Process for Limited Generation Profile Projects.](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Interconnection%20Process%20for%20Limited%20Generation%20Profile%20Projects.pdf) Interconnection Process for Limited Generation Profile Projects.\n\nDISCLAIMER: The guidelines in this section are provided with the intent to help SCE\u2019s customers understand SCE\u2019s Interconnection Procedures. However, in the case of discrepancies with SCE\u2019s rules, such tariffs and regulations will prevail.",
+      "evidence_text_sha256": "sha256:d65257df8161bbf624b894b0cd6be1c8d65a37edf0f3cab819dc04f45b05073d",
+      "embedding_text": "title: SCE Rule 21 interconnection web page | text: Section: What Happens After Submitting Your Application for Interconnection > Limited Generation Profile\n\nLimited Generation Profile\n\nThe California Public Utilities Commission directed SCE to allow generating customers the Limited Generation Profile (LGP) option. The LGP option allows DERs to perform within existing Integration Capacity Analysis (ICA) hosting capacity to avoid distribution grid upgrades. The LGP option allows the generator to use Interconnection Capacity Analysis-Static Grid (ICA-SG) values to maximize their generation using a time-varying export profile. For more information on the LGP Interconnection Process, see the following link: [Interconnection Process for Limited Generation Profile Projects.](https://www.sce.com/sites/default/files/custom-files/PDF_Files/Interconnection%20Process%20for%20Limited%20Generation%20Profile%20Projects.pdf) Interconnection Process for Limited Generation Profile Projects.\n\nDISCLAIMER: The guidelines in this section are provided with the intent to help SCE\u2019s customers understand SCE\u2019s Interconnection Procedures. However, in the case of discrepancies with SCE\u2019s rules, such tariffs and regulations will prevail.",
+      "estimated_evidence_tokens": 180,
+      "estimated_embedding_tokens": 205,
+      "citation": {
+        "heading_path": [
+          "What Happens After Submitting Your Application for Interconnection",
+          "Limited Generation Profile"
+        ],
+        "pdf_page_end": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "supporting_process",
+        "retrieval_tier": "default_current",
+        "currency_status": "current_candidate"
+      },
+      "previous_chunk_id": "sce_interconnection_web:c0034",
+      "next_chunk_id": null,
+      "chunking_flags": []
+    }
+  ],
+  "chunking_summary": {
+    "input_blocks": 165,
+    "output_chunks": 35,
+    "historical_only": false,
+    "chunks_over_hard_limit": 0
+  }
+}

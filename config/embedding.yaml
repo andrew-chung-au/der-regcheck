@@ -1,0 +1,8 @@
+embedding:
+  model_id: nomic-ai/nomic-embed-text-v1.5
+  revision: e9b6763023c676ca8431644204f50c2b100d9aab
+  prefix_query: "search_query: "
+  prefix_document: "search_document: "
+  batch_size: 64
+  max_retries: 3
+  output_dir: data/processed/embeddings

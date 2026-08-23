@@ -1,0 +1,49 @@
+# config/retrieval.yaml
+# Retrieval hyperparameters for optimization
+
+# Hybrid retrieval alpha: weight for BM25 (0.0 = pure vector, 1.0 = pure BM25)
+hybrid_alpha: 0.5
+
+# Metadata weighting schemes for evaluation
+# Each scheme must sum to 1.0
+weighting_schemes:
+  equal:
+    source: 0.20
+    section: 0.20
+    page: 0.20
+    block_type: 0.20
+    authority: 0.20
+  source_heavy:
+    source: 0.40
+    section: 0.20
+    page: 0.15
+    block_type: 0.15
+    authority: 0.10
+  section_heavy:
+    source: 0.15
+    section: 0.40
+    page: 0.20
+    block_type: 0.15
+    authority: 0.10
+  page_heavy:
+    source: 0.15
+    section: 0.20
+    page: 0.40
+    block_type: 0.15
+    authority: 0.10
+  authority_heavy:
+    source: 0.10
+    section: 0.20
+    page: 0.20
+    block_type: 0.20
+    authority: 0.30
+
+reranking:
+  candidate_limit: 50
+  top_k: 10
+  max_tokens: 450
+
+query_rewriting:
+  hyde_max_tokens: 150
+  expansion_terms: 5
+  context: "DER interconnection requirements"

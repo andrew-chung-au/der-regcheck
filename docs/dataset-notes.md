@@ -1,18 +1,17 @@
 # Dataset notes
 
-
 ## Corpus overview
 
-**Market:** California, United States
-**Regulator:** California Public Utilities Commission (CPUC)
-**Primary utility:** Southern California Edison (SCE)
-**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification
-**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype
-**Total sources:** 6 public documents: 5 PDF and 1 HTML
-
+**Market:** California, United States  
+**Regulator:** California Public Utilities Commission (CPUC)  
+**Primary utility:** Southern California Edison (SCE)  
+**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification  
+**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype  
+**Total sources:** 6 public documents: 5 PDF and 1 HTML  
+**Total chunks:** 1,049 searchable chunks (2026-08-23)  
+**Embeddings:** 1,049 Nomic vectors (768-dim)  
 
 ---
-
 
 ## Data lifecycle
 
@@ -26,7 +25,16 @@ data/processed/extracted/
 → raw deterministic extraction outputs
 
 data/processed/normalised/
-→ deterministic evidence-block derivatives for future chunking and retrieval
+→ deterministic evidence-block derivatives for chunking
+
+data/processed/chunks/
+→ 1,049 searchable chunks with citations and metadata
+
+data/processed/embeddings/
+→ 1,049 Nomic embeddings (768-dim vectors)
+
+data/evaluation/
+→ 100 retrieval benchmarking queries, 8,100 evaluation results (v2), plus rewrite variants
 ```
 
 ### Raw corpus files
@@ -65,7 +73,7 @@ Raw extraction metadata includes:
 
 Normalised outputs in `data/processed/normalised/` are intentionally tracked.
 
-They are deterministic derivatives of raw extraction outputs and are the intended input to future structural chunking and retrieval stages.
+They are deterministic derivatives of raw extraction outputs and are the input to structural chunking.
 
 Normalised blocks preserve:
 
@@ -79,12 +87,80 @@ Normalised blocks preserve:
 
 The normalisation stage does not alter raw extraction artifacts.
 
+### Chunk outputs
+
+Chunk outputs in `data/processed/chunks/` are intentionally tracked.
+
+They are deterministic derivatives of normalised evidence blocks, designed for retrieval and embedding.
+
+Chunk metadata includes:
+
+- `chunk_id` (stable, source-scoped identifier)
+- `source_id` and `document_id`
+- `source_content_hash` (provenance)
+- `block_ids` (constituent normalised blocks)
+- `block_types` (heading, paragraph, list_item, table, etc.)
+- `evidence_text` (unchanged from normalised blocks, citation-grade)
+- `embedding_text` (evidence text with heading context prepended)
+- `heading_path` (for HTML and tariff sources)
+- `citation` (PDF pages, tariff sheets, Cal. PUC sheets, section IDs)
+- `source_policy` (authority tier, retrieval tier)
+- `neighbour_chunk_ids` (previous/next for navigation)
+- `oversized` flag (for blocks exceeding hard token limit)
+
+Chunking configuration (2026-08-23):
+
+- Soft max: 500 tokens
+- Hard max: 750 tokens
+- Overlap: 90 tokens (for oversized chunks only)
+- 1,049 chunks generated across 6 sources
+- 5 oversized chunks (all handbook TOC blocks, accepted as documented exceptions)
+
+### Embedding outputs
+
+Embedding outputs in `data/processed/embeddings/` are intentionally tracked.
+
+They are 768-dimensional vectors generated from chunk `embedding_text` using Nomic nomic-embed-text-v1.5.
+
+Embedding metadata includes:
+
+- `chunk_id` (matches chunk output)
+- `vector` (768-dim array)
+- `embedding_model` (`nomic-ai/nomic-embed-text-v1.5`)
+- `embedding_prefix` (`search_document:`)
+- `embedding_timestamp`
+
+Embedding configuration (2026-08-23):
+
+- Model: `nomic-ai/nomic-embed-text-v1.5`
+- Dimension: 768
+- Prefix: `search_document:` on chunk text, `search_query:` on query text
+- 1,049 embeddings generated (one per chunk)
+
+### Evaluation artifacts
+
+Evaluation artifacts in `data/evaluation/` are intentionally tracked.
+
+They support reproducible retrieval benchmarking without requiring database access or API credentials.
+
+**Tier 1: Retrieval benchmarking (v1 and v2)**
+
+- `queries.jsonl`: 100 LLM-generated queries (Gemini 3.5-flash-lite, 2026-08-23)
+- `evaluation_results.jsonl`:
+  - v1: 1,500 retrieval results (100 queries × 3 retrievers × 5 weightings)
+  - v2: 8,100 retrieval results (multiple retrievers × alphas × weightings, including reranking)
+- `evaluation_summary.json`: Aggregated metrics (nDCG@10, MRR, Recall@10, composite score)
+- `query_rewrites.jsonl`: Cached query-rewrite variants (original, hyde, expanded, hyde_expanded)
+- `query_rewrite_results.jsonl`: Rewrite evaluation results (technique × retriever × weighting)
+
+**Tier 2: RAG quality evaluation** (pending)
+
+- `rag_eval_cases.jsonl`: 5-10 open-ended questions (to be created)
+- `answer_results/`: Generated answers and human scores (to be created)
 
 ---
 
-
 ## Source list
-
 
 ### 1. CPUC Electric Rule 21 overview page
 
@@ -98,13 +174,12 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/01_cpuc_rule21_overview.html`
 - **Raw extraction method:** `beautifulsoup_main_content_blocks`
 - **Normalisation status:** Pass
+- **Chunk count:** 12 chunks
 - **Extraction issues:** None identified in the current review.
 - **Normalisation notes:** Preserves HTML heading paths, paragraphs, list items, and tables. The table-of-contents heading path is excluded from normalised evidence output.
 - **Notes:** Provides links to tariff, handbooks, and related CPUC pages. Useful for context and source discovery, not treated as a primary requirements source.
 
-
 ---
-
 
 ### 2. SCE Rule 21 tariff (PDF)
 
@@ -118,6 +193,7 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/02_sce_rule21_tariff.pdf`
 - **Raw extraction method:** `pypdf_page_text`
 - **Normalisation status:** Pass
+- **Chunk count:** 387 chunks
 - **Extraction issues:** PDF signature validation passes.
 - **Normalisation notes:**
   - Uses a dedicated deterministic SCE Rule 21 tariff parser.
@@ -130,9 +206,7 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Known limitation:** Raw `pypdf` layout artifacts can preserve spaces inside words. These are retained in citation-grade evidence text rather than automatically repaired.
 - **Notes:** Controlling document for interconnection, operating, and metering requirements. Contains sheet-level supersession cues such as `Cancelling Revised Cal. PUC Sheet No.`.
 
-
 ---
-
 
 ### 3. SCE Interconnection Handbook (PDF)
 
@@ -146,6 +220,7 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/03_sce_interconnection_handbook.pdf`
 - **Raw extraction method:** `pypdf_page_text`
 - **Normalisation status:** Pass
+- **Chunk count:** 562 chunks
 - **Extraction issues:**
   - Automated download intermittently returns HTML or SharePoint authentication material instead of a PDF.
   - Repeated automated requests triggered what appeared to be a temporary block.
@@ -154,11 +229,13 @@ The normalisation stage does not alter raw extraction artifacts.
   - Excludes cover, approval, table-of-contents, and DocuSign certificate pages.
   - Removes repeated document-control notices, version headers, effective-date headers, DocuSign envelope IDs, and `Requirement | Page N` page-header text.
   - Preserves PDF physical page locators and detected Part, Section, and clause hierarchy.
+- **Chunking notes:**
+  - 5 oversized chunks (1,033-1,561 tokens) are handbook TOC blocks.
+  - These are dense list-of-lists blocks, not substantive requirements.
+  - Accepted as documented exceptions without splitting mid-evidence.
 - **Notes:** Covers interconnection process details, protection requirements, telemetry, inverter performance, communications, metering, and testing-related requirements. Critical for technical research questions.
 
-
 ---
-
 
 ### 4. SCE Rule 21 interconnection web guidance
 
@@ -172,13 +249,12 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/04_sce_interconnection_web.html`
 - **Raw extraction method:** `beautifulsoup_main_content_blocks`
 - **Normalisation status:** Pass
+- **Chunk count:** 8 chunks
 - **Extraction issues:** None identified in the current review.
 - **Normalisation notes:** Preserves HTML heading paths, paragraphs, list items, and tables.
 - **Notes:** Summarises Rule 21 process, links to forms, testing information, pre-application information, study tracks, and Customer-Owned Telemetry procedures. Useful for process questions but not treated as a primary requirements source.
 
-
 ---
-
 
 ### 5. Smart Inverter Working Group Phase 2 Recommendations (PDF)
 
@@ -192,6 +268,7 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/05_siwg_phase2_recommendations.pdf`
 - **Raw extraction method:** `pypdf_page_text`
 - **Normalisation status:** Review
+- **Chunk count:** 68 chunks
 - **Extraction issues:** PDF signature validation passes.
 - **Normalisation notes:**
   - Excludes cover and contents pages.
@@ -199,9 +276,7 @@ The normalisation stage does not alter raw extraction artifacts.
   - Six early substantive blocks remain flagged with `no_detected_heading_path`.
 - **Notes:** Provides historical rationale for smart inverter functions, communications, and data categories. It must not be presented as a current controlling requirement unless a user explicitly requests historical or draft context.
 
-
 ---
-
 
 ### 6. SCE testing and certification instruction sheet (PDF)
 
@@ -215,6 +290,7 @@ The normalisation stage does not alter raw extraction artifacts.
 - **Local path:** `data/corpus/06_sce_testing_certification.pdf`
 - **Raw extraction method:** `pypdf_page_text`
 - **Normalisation status:** Review
+- **Chunk count:** 72 chunks
 - **Extraction issues:** PDF signature validation passes.
 - **Normalisation notes:**
   - Excludes cover/disclaimer and contents pages.
@@ -223,50 +299,48 @@ The normalisation stage does not alter raw extraction artifacts.
   - Seven blocks in early references and acronym material remain flagged with `no_detected_heading_path`.
 - **Notes:** Describes testing and certification procedures for equipment compliance. Supports tariff and handbook requirements but is not itself controlling.
 
-
 ---
-
 
 ## Source hierarchy summary
 
-| Authority level | Sources |
-|---|---|
-| Primary tariff / governing source | SCE Rule 21 tariff |
-| Primary technical handbook | SCE Interconnection Handbook |
-| Supporting implementation guidance | SCE testing and certification instruction |
-| Supporting process guidance | SCE Rule 21 interconnection web guidance |
-| Source discovery / regulatory context | CPUC Rule 21 overview page |
-| Historical/draft material | SIWG Phase 2 Recommendations |
-
+| Authority level | Sources | Chunk count |
+|---|---|---:|
+| Primary tariff / governing source | SCE Rule 21 tariff | 387 |
+| Primary technical handbook | SCE Interconnection Handbook | 562 |
+| Supporting implementation guidance | SCE testing and certification instruction | 72 |
+| Supporting process guidance | SCE Rule 21 interconnection web guidance | 8 |
+| Source discovery / regulatory context | CPUC Rule 21 overview page | 12 |
+| Historical/draft material | SIWG Phase 2 Recommendations | 68 |
+| **Total** | **6 sources** | **1,049** |
 
 ---
-
 
 ## Version and currency notes
 
 - All sources are tracked by content hash in `data/corpus/corpus_metadata.json`.
 - Raw extraction outputs retain the source content hash used for extraction.
 - Normalised blocks retain the source content hash used for evidence provenance.
+- Chunks retain the source content hash used for chunking.
+- Embeddings are derived from chunk `embedding_text` (not `evidence_text`).
 - Tariff normalisation preserves Rule 21 sheet number, Cal. PUC sheet number, effective date, and advice letter as citation metadata.
 - Tariff PDF includes explicit supersession cues such as `Cancelling Revised Cal. PUC Sheet No.`.
 - Web sources may change without explicit version markers; last-checked timestamps and hash changes are the primary currency signals.
 - The handbook required manual replacement due to automated download blocking; metadata records the reviewer, approval status, hash, and retrieval eligibility.
 - Normalised output quality must be reviewed after source refreshes, parser changes, or normalisation configuration changes.
-
+- Chunk output quality must be reviewed after chunking configuration changes.
 
 ---
 
-
 ## Quality and review notes
 
-The current normalisation review result is:
+The current normalisation and chunking review result is:
 
-| Source category | Result |
-|---|---|
-| Primary/current tariff and handbook sources | Pass |
-| HTML overview and process guidance sources | Pass |
-| Supporting testing instruction | Review; limited early-page heading-path warnings |
-| Historical SIWG source | Review; limited early-page heading-path warnings |
+| Source category | Normalisation result | Chunk count | Chunking notes |
+|---|---|---:|---|
+| Primary/current tariff and handbook sources | Pass | 949 | Handbook has 5 oversized TOC chunks (accepted) |
+| HTML overview and process guidance sources | Pass | 20 | No issues |
+| Supporting testing instruction | Review | 72 | Limited early-page heading-path warnings |
+| Historical SIWG source | Review | 68 | Limited early-page heading-path warnings |
 
 Interpretation rules:
 
@@ -275,14 +349,13 @@ Interpretation rules:
 - `fail` means a quality-report error was detected and the source must not proceed to downstream chunking or retrieval without correction.
 - A `no_detected_heading_path` warning is not a loss of physical PDF page provenance.
 - Review warnings should not be removed by broad heuristics solely to make the quality report green.
-
+- Oversized chunks (>750 tokens) are flagged but not split mid-evidence; handbook TOC blocks are accepted exceptions.
 
 ---
 
-
 ## Duplicates and exclusions
 
-**Duplicates:** No adjacent duplicate normalised blocks were detected in the current quality report.
+**Duplicates:** No adjacent duplicate normalised blocks or chunks were detected in the current quality reports.
 
 **Exclusions:**
 
@@ -293,10 +366,76 @@ Interpretation rules:
 - Testing instruction cover/disclaimer and contents pages are excluded from normalised evidence blocks.
 - SIWG cover and contents pages are excluded from normalised evidence blocks.
 - SIWG Phase 2 is excluded from normal current-requirement retrieval because it is historical/draft context.
-
+- Handbook TOC blocks exceeding 750 tokens are retained as documented exceptions (5 chunks).
 
 ---
 
+## Retrieval evaluation summary
+
+### v1 evaluation (2026-08-23)
+
+**Queries:** 100 LLM-generated (Gemini 3.5-flash-lite)  
+**Chunks:** 1,049  
+**Embeddings:** 1,049 (Nomic nomic-embed-text-v1.5, 768-dim)  
+**Results:** 1,500 (3 retrievers × 5 weightings)  
+
+**Selected configuration (v1):** Vector retrieval with equal weighting
+
+| Retriever | Weighting | nDCG@10 | MRR | Recall@10 |
+|---|---|---:|---:|---:|
+| Vector | Equal | 0.826 | 0.893 | 0.594 |
+| Hybrid | Equal | 0.777 | 0.903 | 0.613 |
+| BM25 | Equal | 0.745 | 0.815 | 0.563 |
+
+**Key findings (v1):**
+
+- Vector retrieval outperforms hybrid and BM25 on nDCG@10.
+- Hybrid has best MRR (better at getting #1 result right).
+- Weighting scheme has modest impact (4% range for vector).
+- Equal weighting performs best for vector retrieval.
+
+### v2 evaluation (2026-08-23, extended with reranking and composite score)
+
+**Queries:** 100  
+**Chunks:** 1,049  
+**Embeddings:** 1,049  
+**Results:** 8,100 retrieval records (multiple retrievers × alphas × weightings, including reranking)  
+
+**Top configurations by composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall):**
+
+| Rank | Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---|---:|---:|---:|---:|
+| 1 | hybrid_rerank__equal | 0.95080 | 0.95361 | 1.00000 | 0.96148 |
+| 2 | hybrid_rerank__authority_heavy | 0.95074 | 0.95361 | 1.00000 | 0.96145 |
+| 3 | hybrid_rerank__source_heavy | 0.95021 | 0.95361 | 1.00000 | 0.96119 |
+| 4 | vector_rerank__equal | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 5 | vector_rerank__authority_heavy | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 6 | vector_rerank__source_heavy | 0.94412 | 0.93750 | 0.99000 | 0.95131 |
+
+**Non-reranked top configurations (for comparison):**
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| vector__equal | 0.75740 | 0.89293 | 0.33081 | 0.71274 |
+| hybrid__equal | 0.70484 | 0.88124 | 0.32452 | 0.68170 |
+| bm25__equal | 0.64293 | 0.81559 | 0.30105 | 0.62635 |
+
+**Key findings (v2):**
+
+- Reranking dominates: best reranked nDCG@10 ≈ 0.951 vs best non-reranked ≈ 0.757.
+- Recall@10 jumps from ~0.33–0.61 (non-reranked) to 0.95–1.00 (reranked).
+- Among reranked configs, weighting has tiny effects (4th–5th decimal); equal weighting has a slight edge on composite.
+- Hybrid + rerank slightly edges vector + rerank on composite (0.96148 vs 0.95196).
+- Alpha (0.3–0.7) has modest impact relative to reranking; α = 0.5 chosen as default.
+- RRF k sweep (k ∈ {1, 20, 60, 100}) is planned to align with course experiments.
+
+**Selected configuration (v2):** Hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1).
+
+**Reference:** Full configuration rationale and decision record are in `docs/decisions.md` #11 (Embedding and retrieval evaluation v2), which supersedes #09.
+
+See `docs/evaluation-notes.md` for full details.
+
+---
 
 ## Future corpus extensions
 
@@ -307,3 +446,6 @@ Potential additions for later versions:
 - More working-group reports and CPUC decisions related to DER interconnection and smart inverters.
 - SCE forms, application instructions, and supporting process materials where their authority and currency can be recorded.
 - Other markets, including ERCOT, NYISO, and AEMO, for cross-market comparison.
+- Tier 2 RAG evaluation queries (5-10 open-ended questions with stronger model).
+- Manual answer quality scores for Tier 2 evaluation.
+- RRF k sweep results and any refinements to hybrid fusion configuration.

@@ -1,0 +1,1376 @@
+{
+  "schema_version": "1.0",
+  "document_id": "siwg_phase2_recommendations_pdf",
+  "source": {
+    "id": "siwg_phase2_recommendations_pdf",
+    "title": "Smart Inverter Working Group Phase 2 Recommendations (PDF)",
+    "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/rule21/smart-inverter-working-group/siwg_phase_2.pdf",
+    "source_org": "CPUC",
+    "content_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+    "last_checked": "2026-08-21T02:43:08.802036Z",
+    "is_current": true
+  },
+  "chunked_at": "2026-08-22T18:50:29.611555Z",
+  "chunking_method": "structural_block_assembly_v1",
+  "source_policy": {
+    "authority_tier": "historical_draft",
+    "retrieval_tier": "historical_only",
+    "currency_status": "historical"
+  },
+  "chunks": [
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0001",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 1,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p003:b0001",
+        "siwg_phase2_recommendations_pdf:p003:b0002",
+        "siwg_phase2_recommendations_pdf:p004:b0003",
+        "siwg_phase2_recommendations_pdf:p004:b0004"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "table"
+      ],
+      "heading_path": [],
+      "evidence_text": "Figures\n\nFigure 1: Communications between Utilities and individual DER systems, FDEMS, and REPS 3 Figure 2: Status and expected coverage in Rule 21 for communication aspects .................... 4 Figure 3: Conceptual Implementation of IEEE 2030.5 (SEP2) Communications with DER. ...... 6 SIWG Rule 21 Phase 2 Recommendations for the CPUC Page ii\n\nTables\n\nTable 1: Utility data monitoring and control requirements ................................................. 12 Table 2: Additional information required for interactions with aggregators ........................ 16 Table 3: Smart Inverter Use Cases ....................................................................................... 16 Table 4: List of SIWG Participants ........................................................................................ 23",
+      "evidence_text_sha256": "sha256:f70d957f9e0a890baadf1c6c12042a89d8fec97e816e354cad5e12279b275647",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Figures\n\nFigure 1: Communications between Utilities and individual DER systems, FDEMS, and REPS 3 Figure 2: Status and expected coverage in Rule 21 for communication aspects .................... 4 Figure 3: Conceptual Implementation of IEEE 2030.5 (SEP2) Communications with DER. ...... 6 SIWG Rule 21 Phase 2 Recommendations for the CPUC Page ii\n\nTables\n\nTable 1: Utility data monitoring and control requirements ................................................. 12 Table 2: Additional information required for interactions with aggregators ........................ 16 Table 3: Smart Inverter Use Cases ....................................................................................... 16 Table 4: List of SIWG Participants ........................................................................................ 23",
+      "estimated_evidence_tokens": 372,
+      "estimated_embedding_tokens": 387,
+      "citation": {
+        "pdf_page_start": 3,
+        "pdf_page_end": 4,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": null,
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0002",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0002",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 2,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p004:b0005",
+        "siwg_phase2_recommendations_pdf:p005:b0006"
+      ],
+      "block_types": [
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [],
+      "evidence_text": "SIWG Rule 21 Phase 2 Recommendations for the CPUC Page iii\n\n1. Introduction",
+      "evidence_text_sha256": "sha256:706d9327a8bdf80735dac2ef600b6ef1bf28a3d3d7300c6d4e87e0773dcdcb1a",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: SIWG Rule 21 Phase 2 Recommendations for the CPUC Page iii\n\n1. Introduction",
+      "estimated_evidence_tokens": 14,
+      "estimated_embedding_tokens": 29,
+      "citation": {
+        "pdf_page_start": 4,
+        "pdf_page_end": 5,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": []
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0001",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0003",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0003",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 3,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p005:b0007",
+        "siwg_phase2_recommendations_pdf:p005:b0008",
+        "siwg_phase2_recommendations_pdf:p006:b0009"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "1.1 Background to SIWG Phase 2"
+      ],
+      "evidence_text": "1.1 Background to SIWG Phase 2\n\nIn the January 2014 recommendations to the CPUC on Rule 21, the Smart Inverter Working Group (SIWG) described a three phase approach to the updating of Rule 21. Phase 1 defined seven autonomous functions (approved by the CPUC on December 18, 2014). Phase 2 described the need for communications, \u201cDuring Proposed Phase 2, the SIWG will define and propose an implementation plan for communication capabilities and standards for inverters. Some parts of the Proposed Phase 2 implementation plan are defined [in the SIWG recommendations document], in order to set out a broad road map. For example, basic communications requirements draw on existing communications standards, such as Internet specifications and the IEC 61850 communications standards for DER systems. Future SIWG discussions will adapt and refine communications standards to California-specific needs in a structure similar to that set out for Proposed Phase 1: definition of the standards, a transitional permissive period, collection and publication of operational data, and CPUC consideration of mandatory standards.\u201d As stated in the May 13, 2014 Scoping Ruling of Co mmissioner Picker, \u201c Next Steps for Improving Interconnections with Distributed Energy Resources: The Working Group Report also recommended a second phase to focus on communications between the grid operator and distributed energy resource, and a third phas e to identify and address additional advanced inverter functionalities. The Working Group should file and serve a proposed description of issues ready for Commission resolution and a proposed schedule for these issues no later than July 18, 2014. \u201d The SIWG filed those issues and continued to work on the Phase 2 issues via weekly calls and additional subgroup calls. A workshop to discuss many of the issues was held at the CPUC on October 24, 2014, covering data exchange requirements, the selection of a protocol, and cyber security requirements. Over the next months, decisions were made on initial recommendations for these and other communication issues, classifying them in one of the following categories: \u2022 Recommended to be included in Rule 21 \u2022 Recommended to be included in each utility\u2019s \u201c[Utility] 1 Generation Interconnection Handbook\u201d on requirements and options \u2022 Recommended to be included in a single \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d \u2022 Recommended to be decided by mutual utility-DER owner/operator agreements on a utility basis or an installation basis 1 [Utility] will be replaced by the name of the utility SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 1\n\n\u2022 Recommended to be left up to vendor or market decisions",
+      "evidence_text_sha256": "sha256:176e045667d6563c0b701dd012591e10cb276ddfa80e16613c1678d64c2bebde",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 1.1 Background to SIWG Phase 2\n\n1.1 Background to SIWG Phase 2\n\nIn the January 2014 recommendations to the CPUC on Rule 21, the Smart Inverter Working Group (SIWG) described a three phase approach to the updating of Rule 21. Phase 1 defined seven autonomous functions (approved by the CPUC on December 18, 2014). Phase 2 described the need for communications, \u201cDuring Proposed Phase 2, the SIWG will define and propose an implementation plan for communication capabilities and standards for inverters. Some parts of the Proposed Phase 2 implementation plan are defined [in the SIWG recommendations document], in order to set out a broad road map. For example, basic communications requirements draw on existing communications standards, such as Internet specifications and the IEC 61850 communications standards for DER systems. Future SIWG discussions will adapt and refine communications standards to California-specific needs in a structure similar to that set out for Proposed Phase 1: definition of the standards, a transitional permissive period, collection and publication of operational data, and CPUC consideration of mandatory standards.\u201d As stated in the May 13, 2014 Scoping Ruling of Co mmissioner Picker, \u201c Next Steps for Improving Interconnections with Distributed Energy Resources: The Working Group Report also recommended a second phase to focus on communications between the grid operator and distributed energy resource, and a third phas e to identify and address additional advanced inverter functionalities. The Working Group should file and serve a proposed description of issues ready for Commission resolution and a proposed schedule for these issues no later than July 18, 2014. \u201d The SIWG filed those issues and continued to work on the Phase 2 issues via weekly calls and additional subgroup calls. A workshop to discuss many of the issues was held at the CPUC on October 24, 2014, covering data exchange requirements, the selection of a protocol, and cyber security requirements. Over the next months, decisions were made on initial recommendations for these and other communication issues, classifying them in one of the following categories: \u2022 Recommended to be included in Rule 21 \u2022 Recommended to be included in each utility\u2019s \u201c[Utility] 1 Generation Interconnection Handbook\u201d on requirements and options \u2022 Recommended to be included in a single \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d \u2022 Recommended to be decided by mutual utility-DER owner/operator agreements on a utility basis or an installation basis 1 [Utility] will be replaced by the name of the utility SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 1\n\n\u2022 Recommended to be left up to vendor or market decisions",
+      "estimated_evidence_tokens": 473,
+      "estimated_embedding_tokens": 498,
+      "citation": {
+        "pdf_page_start": 5,
+        "pdf_page_end": 6,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "1.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0002",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0004",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0004",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 4,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p006:b0010",
+        "siwg_phase2_recommendations_pdf:p006:b0011",
+        "siwg_phase2_recommendations_pdf:p007:b0012"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "1.2 Utility Principles"
+      ],
+      "evidence_text": "1.2 Utility Principles\n\nThe utilities identified the following principles in developing their communication requirements: 1) Our goal is to establish co mmunications between the utility and external smart inverters and aggregator systems, and not define internal utility systems communications which are out of scope for Rule 21. 2) Where DER systems may have a \u201cmaterial impact\u201d on the power system, utilities will create the necessary communication infrastructure for real- time monitoring and control. 3) While SEP 2.0 / IEEE 2030.5 is our default protocol, there is potential under mutual utility/3 rd party agreement that alternative protocols may be used. 4) Utility communication requirements are just a subset of what an y DER implementation may consider, so DER implementations may add other \u201cvalue added\u201d functionality as long as they are not in conflict with the set of requirements as defined by the default protocol . 5) For external system interactions, utilities want a single default mandatory communications profile that addresses all communications layers to ensure interoperability across California. 6) A common test harness and 3rd party certification process es are pre ferred for validating implementations . The utilities do not want to be in the device/protocol validation business for DER. 7) Utilities want the communication requirements for all Phase 1 and Phase 3 DER use cases identified, including the functional requirements for DER management (including administrative actions), as well as the non -functional/performance requirements. 8) Utilities recognize that communication s with DER systems under Rule 21 are not intended for sub -second interactions and protection . 9) This is a technical specification only, other issues such as regulatory support and tariff issues are assumed to be handled outside of this specification and should not drive decisions 10) The utilities expect that technology both in DER systems and communi cations technology will continue to evolve and future revisions of our default protocol may be needed. 11) The primary use of DER performance data coming from inverters at this time is initially to improve planning models and generation/load forecasts. Howeve r it is SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 2\n\nunderstood that this purpose will evolve over time, possibly to provide more near - real-time operational support. 2. SIWG Phase 2 Recommendations for Communication Aspects to be Included in Rule 21",
+      "evidence_text_sha256": "sha256:12e1681574f942271997a7776e9f222fc7318afd60296df117e892d7bc5c042e",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 1.2 Utility Principles\n\n1.2 Utility Principles\n\nThe utilities identified the following principles in developing their communication requirements: 1) Our goal is to establish co mmunications between the utility and external smart inverters and aggregator systems, and not define internal utility systems communications which are out of scope for Rule 21. 2) Where DER systems may have a \u201cmaterial impact\u201d on the power system, utilities will create the necessary communication infrastructure for real- time monitoring and control. 3) While SEP 2.0 / IEEE 2030.5 is our default protocol, there is potential under mutual utility/3 rd party agreement that alternative protocols may be used. 4) Utility communication requirements are just a subset of what an y DER implementation may consider, so DER implementations may add other \u201cvalue added\u201d functionality as long as they are not in conflict with the set of requirements as defined by the default protocol . 5) For external system interactions, utilities want a single default mandatory communications profile that addresses all communications layers to ensure interoperability across California. 6) A common test harness and 3rd party certification process es are pre ferred for validating implementations . The utilities do not want to be in the device/protocol validation business for DER. 7) Utilities want the communication requirements for all Phase 1 and Phase 3 DER use cases identified, including the functional requirements for DER management (including administrative actions), as well as the non -functional/performance requirements. 8) Utilities recognize that communication s with DER systems under Rule 21 are not intended for sub -second interactions and protection . 9) This is a technical specification only, other issues such as regulatory support and tariff issues are assumed to be handled outside of this specification and should not drive decisions 10) The utilities expect that technology both in DER systems and communi cations technology will continue to evolve and future revisions of our default protocol may be needed. 11) The primary use of DER performance data coming from inverters at this time is initially to improve planning models and generation/load forecasts. Howeve r it is SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 2\n\nunderstood that this purpose will evolve over time, possibly to provide more near - real-time operational support. 2. SIWG Phase 2 Recommendations for Communication Aspects to be Included in Rule 21",
+      "estimated_evidence_tokens": 436,
+      "estimated_embedding_tokens": 458,
+      "citation": {
+        "pdf_page_start": 6,
+        "pdf_page_end": 7,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "1.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0003",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0005",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0005",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 5,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p007:b0013",
+        "siwg_phase2_recommendations_pdf:p007:b0014",
+        "siwg_phase2_recommendations_pdf:p007:b0015",
+        "siwg_phase2_recommendations_pdf:p007:b0016",
+        "siwg_phase2_recommendations_pdf:p007:b0017",
+        "siwg_phase2_recommendations_pdf:p007:b0018",
+        "siwg_phase2_recommendations_pdf:p007:b0019"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.1 Overview of Scope of Recommendations"
+      ],
+      "evidence_text": "2.1 Overview of Scope of Recommendations\n\nThe scope of the SIWG Phase 2 recommendations comprises the communications requirements between (see red lightning bolts indicating Wide Area Networks in Figure 1): 1. Utilities and individual DER Systems 2. Utilities and Facility DER Energy Management Systems (FDEMS) which manage DER systems within a facility, plant, and/or microgrid 3. Utilities and Retail Energy Providers (REP) / Aggregators / Fleet Operators which manage and operate DER systems at various facilities Level 4: Distribution Utility Operational Analysis and Control for Grid Operations DER Management System (DDEMS or DERMS) DER Communications System Utility Grid Circuit breaker Meter and PCC Level 2: Facilities DER Energy Management System (FDEMS) Level 1: Autonomous cyber-physical DER systems\n\nFacilities DER Energy Management Systems (FDEMS) Facilities Site WAN/LAN Facilities DER and Load Energy Management System EV as DER Controller PV Controller PV Equipment Diesel Controller ECP ECPECPECP Level 3: Utility and REP Information & Communications (ICT) Level 5: Retail Energy Provider (REP) and/or DER Aggregator\n\nBattery Equipment Battery Storage Controller Electric Vehicle Equipment Diesel Generator Facilities DER Energy Management Systems (FDEMS) Facilities Load Management Facilities Site Loads\n\n1 2 3 4 5 10 11 REP/Aggregator DER & Load Management System\n\nFigure 1: Communications between Utilities and individual DER systems, FDEMS, and REPS\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 3",
+      "evidence_text_sha256": "sha256:925bd34dda5e4511c5ace49056b1f6ab9d8f1275ea17e33d7635e7e515daec64",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.1 Overview of Scope of Recommendations\n\n2.1 Overview of Scope of Recommendations\n\nThe scope of the SIWG Phase 2 recommendations comprises the communications requirements between (see red lightning bolts indicating Wide Area Networks in Figure 1): 1. Utilities and individual DER Systems 2. Utilities and Facility DER Energy Management Systems (FDEMS) which manage DER systems within a facility, plant, and/or microgrid 3. Utilities and Retail Energy Providers (REP) / Aggregators / Fleet Operators which manage and operate DER systems at various facilities Level 4: Distribution Utility Operational Analysis and Control for Grid Operations DER Management System (DDEMS or DERMS) DER Communications System Utility Grid Circuit breaker Meter and PCC Level 2: Facilities DER Energy Management System (FDEMS) Level 1: Autonomous cyber-physical DER systems\n\nFacilities DER Energy Management Systems (FDEMS) Facilities Site WAN/LAN Facilities DER and Load Energy Management System EV as DER Controller PV Controller PV Equipment Diesel Controller ECP ECPECPECP Level 3: Utility and REP Information & Communications (ICT) Level 5: Retail Energy Provider (REP) and/or DER Aggregator\n\nBattery Equipment Battery Storage Controller Electric Vehicle Equipment Diesel Generator Facilities DER Energy Management Systems (FDEMS) Facilities Load Management Facilities Site Loads\n\n1 2 3 4 5 10 11 REP/Aggregator DER & Load Management System\n\nFigure 1: Communications between Utilities and individual DER systems, FDEMS, and REPS\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 3",
+      "estimated_evidence_tokens": 263,
+      "estimated_embedding_tokens": 288,
+      "citation": {
+        "pdf_page_start": 7,
+        "pdf_page_end": 7,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0004",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0006",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0006",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 6,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p008:b0020",
+        "siwg_phase2_recommendations_pdf:p008:b0021"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.1 Overview of Scope of Recommendations"
+      ],
+      "evidence_text": "Other communications are indicated by the brown utility LAN (11), t he purple REP/Aggregator lightning bolts (4, 5) and the blue facility LANs (10), but these are out of scope for Rule 21. At a high level, communications include the following aspects: \u2022 Data \u201cprofiles\u201d of the data to be exchanged for monitoring and control, including the complete specification at all communication stack levels. \u2022 Data object models that define abstract data constructs and services \u2022 Application level protocols and services mapped from the data object models, including encoding protocols \u2022 Transport level protocols \u2022 Communication media or telecommunication provider services \u2022 Cyber security requirements These communication aspects are identified in Figure 2. The status of general agreement by the SIWG is indicated (green denotes general agreement), although there is not necessarily complete agreement. The expectation of which communication aspects will be covered in Rule 21 (and which will not) is also indicated. Utility DER-Related Applications and Databases \u201cApplication\u201d Protocol Communications Layers Info Model DER Controller of Smart Inverter Info Model \u201cTransport\u201d Protocol Communications Media \u2022 Utility private WAN \u2022 Cellphone GPRS \u2022 Public Internet \u2022 AMI network \u2022 Telecomm provider \u201cApplication\u201d Protocol \u201cTransport\u201d Protocol Communications Media Internet Protocols:TCP/IP Utility Protocol IEC 61850 Info Model Possible Communication Choices Facility or DER Protocol IEC 61850 Info Model Internet Protocols: IP Gateway/Translator between protocols or Common Protocol Agreement on IEC 61850 as Info Model Agreement on Internet Protocols For example, ModBus, GOOSE Agreement on IEC 61850 as Info Model Agreement on IP Utility agreement on SEP 2 as default protocol, with SIWG SEP 2 profile No restrictions on media General agreement on monitoring and control data requirements. Grouping? Testing details to be worked out Cyber security requirements. Utility privacy agreement although media types can affect performance and security Gateway/Translator to use utility- selected protocol Agreement that all Smart Inverter DER systems shall be CAPABLE of communications Decision on which DER systems shall implement communications to be made during interconnection process What Should Be Covered in Rule 21? Security requirements: policies & technologies Data sets and performance required by utilities Use IEC 61850 info model SEP2 Based on IEC 61850 Abstract Info Model TCP/IP Not included Not included Not included Not included Not included Status Cyber Security Profile of Data Exchanges Not included\n\nFigure 2: Status and expected coverage in Rule 21 for communication aspects SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 4",
+      "evidence_text_sha256": "sha256:ec0ffacb0a6a15a45f6bb9cab37f4ba1695309d201f54b6c731b0206087e8560",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.1 Overview of Scope of Recommendations\n\nOther communications are indicated by the brown utility LAN (11), t he purple REP/Aggregator lightning bolts (4, 5) and the blue facility LANs (10), but these are out of scope for Rule 21. At a high level, communications include the following aspects: \u2022 Data \u201cprofiles\u201d of the data to be exchanged for monitoring and control, including the complete specification at all communication stack levels. \u2022 Data object models that define abstract data constructs and services \u2022 Application level protocols and services mapped from the data object models, including encoding protocols \u2022 Transport level protocols \u2022 Communication media or telecommunication provider services \u2022 Cyber security requirements These communication aspects are identified in Figure 2. The status of general agreement by the SIWG is indicated (green denotes general agreement), although there is not necessarily complete agreement. The expectation of which communication aspects will be covered in Rule 21 (and which will not) is also indicated. Utility DER-Related Applications and Databases \u201cApplication\u201d Protocol Communications Layers Info Model DER Controller of Smart Inverter Info Model \u201cTransport\u201d Protocol Communications Media \u2022 Utility private WAN \u2022 Cellphone GPRS \u2022 Public Internet \u2022 AMI network \u2022 Telecomm provider \u201cApplication\u201d Protocol \u201cTransport\u201d Protocol Communications Media Internet Protocols:TCP/IP Utility Protocol IEC 61850 Info Model Possible Communication Choices Facility or DER Protocol IEC 61850 Info Model Internet Protocols: IP Gateway/Translator between protocols or Common Protocol Agreement on IEC 61850 as Info Model Agreement on Internet Protocols For example, ModBus, GOOSE Agreement on IEC 61850 as Info Model Agreement on IP Utility agreement on SEP 2 as default protocol, with SIWG SEP 2 profile No restrictions on media General agreement on monitoring and control data requirements. Grouping? Testing details to be worked out Cyber security requirements. Utility privacy agreement although media types can affect performance and security Gateway/Translator to use utility- selected protocol Agreement that all Smart Inverter DER systems shall be CAPABLE of communications Decision on which DER systems shall implement communications to be made during interconnection process What Should Be Covered in Rule 21? Security requirements: policies & technologies Data sets and performance required by utilities Use IEC 61850 info model SEP2 Based on IEC 61850 Abstract Info Model TCP/IP Not included Not included Not included Not included Not included Status Cyber Security Profile of Data Exchanges Not included\n\nFigure 2: Status and expected coverage in Rule 21 for communication aspects SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 4",
+      "estimated_evidence_tokens": 459,
+      "estimated_embedding_tokens": 484,
+      "citation": {
+        "pdf_page_start": 8,
+        "pdf_page_end": 8,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0005",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0007",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0007",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 7,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p009:b0022"
+      ],
+      "block_types": [
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.1 Overview of Scope of Recommendations"
+      ],
+      "evidence_text": "These agreements include: 1. Communications capability: DER systems with smart inverters shall be capable of communications although the implementation of those communication capabilities is a deployment decision and/or an upgrade decision. 2. Utility data monitoring and control requirements: The utilities have determined what data will be required at a minimum for the Phase 1 functions and selected Phase 3 functions, based on Use Cases, internal discussions, and discussions during the SIWG calls with the SunSpec Alliance which has worked with DER manufacturers and others on determining what data exchanges are supported by most smart inverter-based DER systems. Performance requirements have been outlined. 3. IEC 61850 abstract information model: The IEC 61850 abstract information model has been selected as providing the basis for the communications required for the Phase 1 functions and Phase 3 functions. Specifically IEC 61850-7-420 provides abstract information models for general data exchanges with DER systems, while IEC 61850-90-7 provides specific object models for the Phase 1 and Phase 3 functions. 4. Utility protocol: The utilities have determined that IEEE 2030.5 (also known as the Smart Energy Profile 2.0 (SEP 2)), is the default protocol which must be supported by individual DER systems, by facility DER energy management systems (FDEMS), and by aggregators of DER systems in order to communicate with the utility in support of smart inverter-defined functionality. The DER objects in IEEE 2030.5 were derived from the IEC 61850 abstract information model, and meet most if not all SIWG data requirements. See Figure 3 for an illustration of the use of IEEE 2030.5. 5. Internet protocols: The Internet protocols TCP/IP will be used. 6. Communications media: No restrictions or constraints are expected to be placed on the communications media so long as they can meet the utility performance and security requirements. Expected media types include cellphone channels, AMI networks, private utility networks, and the Internet. Telecommunications providers may also supply communication channels which are combinations of different media. 7. Cyber security requirements: Utilities are expected to identify cyber security requirements based in part on IEEE 2030.5 cyber security specifications and in part on utility security policies and procedures. These cyber security requirements are expected to include appropriately configured firewalls, role-based access control mechanisms, authentication and integrity of all messages, ability to provide confidentiality for some messages, key management requirements, communications channel performance requirements and monitoring, time synchronization across all systems, security monitoring, and audit logs of all significant alarms and events. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 5",
+      "evidence_text_sha256": "sha256:5622bb8c9e228060f1c7071cd8ab22c2073fb984c104644689d3fe9ecfe19a88",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.1 Overview of Scope of Recommendations\n\nThese agreements include: 1. Communications capability: DER systems with smart inverters shall be capable of communications although the implementation of those communication capabilities is a deployment decision and/or an upgrade decision. 2. Utility data monitoring and control requirements: The utilities have determined what data will be required at a minimum for the Phase 1 functions and selected Phase 3 functions, based on Use Cases, internal discussions, and discussions during the SIWG calls with the SunSpec Alliance which has worked with DER manufacturers and others on determining what data exchanges are supported by most smart inverter-based DER systems. Performance requirements have been outlined. 3. IEC 61850 abstract information model: The IEC 61850 abstract information model has been selected as providing the basis for the communications required for the Phase 1 functions and Phase 3 functions. Specifically IEC 61850-7-420 provides abstract information models for general data exchanges with DER systems, while IEC 61850-90-7 provides specific object models for the Phase 1 and Phase 3 functions. 4. Utility protocol: The utilities have determined that IEEE 2030.5 (also known as the Smart Energy Profile 2.0 (SEP 2)), is the default protocol which must be supported by individual DER systems, by facility DER energy management systems (FDEMS), and by aggregators of DER systems in order to communicate with the utility in support of smart inverter-defined functionality. The DER objects in IEEE 2030.5 were derived from the IEC 61850 abstract information model, and meet most if not all SIWG data requirements. See Figure 3 for an illustration of the use of IEEE 2030.5. 5. Internet protocols: The Internet protocols TCP/IP will be used. 6. Communications media: No restrictions or constraints are expected to be placed on the communications media so long as they can meet the utility performance and security requirements. Expected media types include cellphone channels, AMI networks, private utility networks, and the Internet. Telecommunications providers may also supply communication channels which are combinations of different media. 7. Cyber security requirements: Utilities are expected to identify cyber security requirements based in part on IEEE 2030.5 cyber security specifications and in part on utility security policies and procedures. These cyber security requirements are expected to include appropriately configured firewalls, role-based access control mechanisms, authentication and integrity of all messages, ability to provide confidentiality for some messages, key management requirements, communications channel performance requirements and monitoring, time synchronization across all systems, security monitoring, and audit logs of all significant alarms and events. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 5",
+      "estimated_evidence_tokens": 488,
+      "estimated_embedding_tokens": 513,
+      "citation": {
+        "pdf_page_start": 9,
+        "pdf_page_end": 9,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0006",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0008",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0008",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 8,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p010:b0023",
+        "siwg_phase2_recommendations_pdf:p010:b0024"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.1 Overview of Scope of Recommendations"
+      ],
+      "evidence_text": "DER Controller ModBus Comm Stack IEC 61850 Model DER Inverter/Controller SEP 2 Protocol Translator DER Inverter/Controller BACnet Protocol Translator Example Configurations for Smart Energy Profile (SEP 2) and DNP3 as Communications Protocols between Utilities and other Parties Facility Protocol (e.g. SEP2 or BACnet) Facility DER-Related Applications Facility DER Management System (FDEMS) \u2022 Commercial \u2022 Industrial \u2022 Power Plant \u2022 Microgrid \u2022 Military ModBus, GOOSE ModBus Aggregator/ Retail Energy Provider / Fleet Operator Aggregator DER-Related Applications SEP2 Based on IEC 61850 Abstract Data Model SEP2 Based on IEC 61850 Abstract Data Model Utility DER-Related Applications SEP2 Based on IEC 61850 Abstract Data Model Utility Internal Utility Protocol Communication media: \u2022 Utility private WAN \u2022 Cellular system \u2022 Internet \u2022 AMI network \u2022 Telecom provider mixed media \u2022 Power line carrier Internal Protocol DER Inverter/Controller Residential or Small Commercial DER System ModBus, GOOSE SEP2 Based on IEC 61850 Abstract Data Model Aggregator Selected Protocol Aggregator Selected Protocol IEC 61850 data objects over SEP2 DNP3 for direct SCADA management DNP3 if SCADA DER Inverter/Controller DER System under direct utility management ModBus, GOOSE SEP2DNP3 if SCADA Aggregator selected protocol Utilities can also use smart meters to monitor hourly net metering data Protocol Translator Protocol Translator Protocol Translator Protocol Translator 1 2 3 2 1 2 3 4 5 10 1\n\nFigure 3: Conceptual Implementatio n of IEEE 2030.5 (SEP2) Communications with DER.",
+      "evidence_text_sha256": "sha256:48443d99b587be9822fa7c9ef38753ec1a225cfb694575f535464ac919e76f8c",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.1 Overview of Scope of Recommendations\n\nDER Controller ModBus Comm Stack IEC 61850 Model DER Inverter/Controller SEP 2 Protocol Translator DER Inverter/Controller BACnet Protocol Translator Example Configurations for Smart Energy Profile (SEP 2) and DNP3 as Communications Protocols between Utilities and other Parties Facility Protocol (e.g. SEP2 or BACnet) Facility DER-Related Applications Facility DER Management System (FDEMS) \u2022 Commercial \u2022 Industrial \u2022 Power Plant \u2022 Microgrid \u2022 Military ModBus, GOOSE ModBus Aggregator/ Retail Energy Provider / Fleet Operator Aggregator DER-Related Applications SEP2 Based on IEC 61850 Abstract Data Model SEP2 Based on IEC 61850 Abstract Data Model Utility DER-Related Applications SEP2 Based on IEC 61850 Abstract Data Model Utility Internal Utility Protocol Communication media: \u2022 Utility private WAN \u2022 Cellular system \u2022 Internet \u2022 AMI network \u2022 Telecom provider mixed media \u2022 Power line carrier Internal Protocol DER Inverter/Controller Residential or Small Commercial DER System ModBus, GOOSE SEP2 Based on IEC 61850 Abstract Data Model Aggregator Selected Protocol Aggregator Selected Protocol IEC 61850 data objects over SEP2 DNP3 for direct SCADA management DNP3 if SCADA DER Inverter/Controller DER System under direct utility management ModBus, GOOSE SEP2DNP3 if SCADA Aggregator selected protocol Utilities can also use smart meters to monitor hourly net metering data Protocol Translator Protocol Translator Protocol Translator Protocol Translator 1 2 3 2 1 2 3 4 5 10 1\n\nFigure 3: Conceptual Implementatio n of IEEE 2030.5 (SEP2) Communications with DER.",
+      "estimated_evidence_tokens": 256,
+      "estimated_embedding_tokens": 281,
+      "citation": {
+        "pdf_page_start": 10,
+        "pdf_page_end": 10,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0007",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0009",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0009",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 9,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p010:b0025",
+        "siwg_phase2_recommendations_pdf:p010:b0026",
+        "siwg_phase2_recommendations_pdf:p011:b0027"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "2.2 SIWG Recommendations for Communication Requirements to be Included"
+      ],
+      "evidence_text": "2.2 SIWG Recommendations for Communication Requirements to be Included\n\nin Rule 21 The SIWG recommends that the following communication requirements are included in Rule 21: 1. All inverter- based DER systems shall be capable of communications 2. The scope of the SIWG Phase 2 shall be the communications requirements between (1) Utilities and individual DER Systems, (2) Ut ilities and Facility DER Energy Management Systems (FDEMS) which manage DER systems within a facility, plant, and/or microgrid, and (3) Utilities and Retail Energy Providers (REP) / Aggregators / Fleet Operators which manage and operate DER systems at vari ous facilities . 3. Each utility shall include sections in their individual \u201c [Utility] Generation Interconnection Handbook\u201d providing complete details and guidelines for the implementation of communications with DER systems . SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 6\n\n4. Each utility handbook shall make re ference to a common \u201c California IEEE 2030.5 Implementation Guide\u201d that will be developed and maintained collectively by the California IOU\u2019s. This implementation guide shall provide detailed communication requirements and implementation guidelines that en sure consistent interoperability of DER systems with all of the IOU\u2019s. This guide may be updated periodically to support advances in technology or updates in tariffs and other California DER rules . 5. The data exchange requirements shall be defined in \u201c DER Data Exchange Requirements\u201d document that shall be referenced by each utility\u2019s Generation Interconnection Handbook as the minimal that must be available to be compliant with Rule 21 (see example of minimal data exchange requirements in Section 3 ). Additional types of data may be exchanged by mutual agreement between the utility and DER operator/owner . 6. The DER system software shall be updateable via communications either remotely or at the customer site. The update protocol may be vendor specific . 7. The Transport Level protocol shall be TCP/IP . 8. The default Application Level protocol shall be the IEEE 2030.5 . The details of the IEEE 2030.5 profile ar e defined in the California IEEE 2030.5 Implementation Guide. 9. Other Application Level protocols may be used by mutual agreement , including IEEE 1815/DNP3 for SCADA real- time monitoring and control and IEC 61850. 10. Utility Generation Handbooks and the Proto col-Specific documents shall include cyber security and privacy requirements .. 11. Generic device communications registration management requirements shall be defined in each Utility Generation Implementation Handbook, including how to register individual DERs, Facility DER Energy Management Systems , and Aggregator s.",
+      "evidence_text_sha256": "sha256:250d0300b699f3b30cbef9600dd988797a40fd808f96d46f828f0d4ca0af9ba2",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.2 SIWG Recommendations for Communication Requirements to be Included\n\n2.2 SIWG Recommendations for Communication Requirements to be Included\n\nin Rule 21 The SIWG recommends that the following communication requirements are included in Rule 21: 1. All inverter- based DER systems shall be capable of communications 2. The scope of the SIWG Phase 2 shall be the communications requirements between (1) Utilities and individual DER Systems, (2) Ut ilities and Facility DER Energy Management Systems (FDEMS) which manage DER systems within a facility, plant, and/or microgrid, and (3) Utilities and Retail Energy Providers (REP) / Aggregators / Fleet Operators which manage and operate DER systems at vari ous facilities . 3. Each utility shall include sections in their individual \u201c [Utility] Generation Interconnection Handbook\u201d providing complete details and guidelines for the implementation of communications with DER systems . SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 6\n\n4. Each utility handbook shall make re ference to a common \u201c California IEEE 2030.5 Implementation Guide\u201d that will be developed and maintained collectively by the California IOU\u2019s. This implementation guide shall provide detailed communication requirements and implementation guidelines that en sure consistent interoperability of DER systems with all of the IOU\u2019s. This guide may be updated periodically to support advances in technology or updates in tariffs and other California DER rules . 5. The data exchange requirements shall be defined in \u201c DER Data Exchange Requirements\u201d document that shall be referenced by each utility\u2019s Generation Interconnection Handbook as the minimal that must be available to be compliant with Rule 21 (see example of minimal data exchange requirements in Section 3 ). Additional types of data may be exchanged by mutual agreement between the utility and DER operator/owner . 6. The DER system software shall be updateable via communications either remotely or at the customer site. The update protocol may be vendor specific . 7. The Transport Level protocol shall be TCP/IP . 8. The default Application Level protocol shall be the IEEE 2030.5 . The details of the IEEE 2030.5 profile ar e defined in the California IEEE 2030.5 Implementation Guide. 9. Other Application Level protocols may be used by mutual agreement , including IEEE 1815/DNP3 for SCADA real- time monitoring and control and IEC 61850. 10. Utility Generation Handbooks and the Proto col-Specific documents shall include cyber security and privacy requirements .. 11. Generic device communications registration management requirements shall be defined in each Utility Generation Implementation Handbook, including how to register individual DERs, Facility DER Energy Management Systems , and Aggregator s.",
+      "estimated_evidence_tokens": 476,
+      "estimated_embedding_tokens": 504,
+      "citation": {
+        "pdf_page_start": 10,
+        "pdf_page_end": 11,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0008",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0010",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0010",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 10,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p011:b0028",
+        "siwg_phase2_recommendations_pdf:p011:b0029"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.3 SIWG Communication Requirements Recommended to Be Included in each"
+      ],
+      "evidence_text": "2.3 SIWG Communication Requirements Recommended to Be Included in each\n\nUtility\u2019s \u201cGeneration Interconnection Handbook\u201d The SIWG recommends that the following topics are included in each utility \u2019s \u201c[Utility] Generation Interconnection Handbook \u201d that will be maintained by each utility Although each utility will develop and maintain their own Handbook, it is also recommended that coordination among the utilities ensure that these separate requirements are not contradictory : 1. Date and version of the [ Utility ] Generation Interconnection Handbook 2. Registration and enrollment processes for each utility\u2019s communication network 3. Categorizations of DER systems, such as by t ype of DER system, type of DER owner/operator, size of DER, location of DER within the utility grid, types of Groups for aggregated information, etc. These categorizations can be referred to when identifying certain requirements which may have different o ptions. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 7",
+      "evidence_text_sha256": "sha256:ac71b97424385bdd97c3c0b7fd502882f41712c1dcb93c88d4927d631d73bbbe",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.3 SIWG Communication Requirements Recommended to Be Included in each\n\n2.3 SIWG Communication Requirements Recommended to Be Included in each\n\nUtility\u2019s \u201cGeneration Interconnection Handbook\u201d The SIWG recommends that the following topics are included in each utility \u2019s \u201c[Utility] Generation Interconnection Handbook \u201d that will be maintained by each utility Although each utility will develop and maintain their own Handbook, it is also recommended that coordination among the utilities ensure that these separate requirements are not contradictory : 1. Date and version of the [ Utility ] Generation Interconnection Handbook 2. Registration and enrollment processes for each utility\u2019s communication network 3. Categorizations of DER systems, such as by t ype of DER system, type of DER owner/operator, size of DER, location of DER within the utility grid, types of Groups for aggregated information, etc. These categorizations can be referred to when identifying certain requirements which may have different o ptions. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 7",
+      "estimated_evidence_tokens": 172,
+      "estimated_embedding_tokens": 201,
+      "citation": {
+        "pdf_page_start": 11,
+        "pdf_page_end": 11,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0009",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0011",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0011",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 11,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p012:b0030"
+      ],
+      "block_types": [
+        "list_item"
+      ],
+      "heading_path": [
+        "2.3 SIWG Communication Requirements Recommended to Be Included in each"
+      ],
+      "evidence_text": "4. A separate \u201cDER Data Exchange Requirements\u201d document containing the minimum data exchange requirements (monitoring, settings, control) as agreed among the California utilities shall be referenced in each Handbook, based on the example data exchange items shown in Section 3. 5. Reference to the appropriate \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d which provides detailed specifications for implementing IEEE 2030.5 -based communications. 6. Additional optional parameters and messages to the shared California IEEE 2030.5 implementation guidelines. These options must be specified in a non- contradictory manner to avoid one utility\u2019s IEEE 2030.5 requirement from being incompatible with another utility\u2019s requirement 7. Additional communication profiles that may be permitted upon mutual agreement (e.g. IEEE 1815 (DNP3) for real -time interactions and IEC 61850 ) 8. Performance requirements, including periodicity of data exchanges, latency of data requests -responses, sizes of data files, error management, and cyber security impacts on data latency 9. Cyber security requirements for communications, including Authentication, Authorization, Accountability, and Data Integrity shall be included at a minimum. Other cyber security requirements, such as confidentiality shall be supported but may be enabled only when needed. References to relevant cyber security standards shall be included. 10. Cyber security management requirements outside the protocol cyber security, including key management, certificate authorities, and cyber security management procedures 11. Cyber security -related passwords and cryptographic keys shall be secured from unauthorized access 12. Privacy policies shall clearly define what types o f data shall be not available publicly, including individual data elements , utility aggregations of customer data, and third party aggregations of data 13. Testing and certification requirements (with reference s to the IEEE 2030.5 Implementation Guidelines for IEEE 2030.5 testing and certification.)",
+      "evidence_text_sha256": "sha256:1d78bcb31458413b3e4896137d657c161f681e0a4bfefcbdd6dcf1318f3b07ab",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.3 SIWG Communication Requirements Recommended to Be Included in each\n\n4. A separate \u201cDER Data Exchange Requirements\u201d document containing the minimum data exchange requirements (monitoring, settings, control) as agreed among the California utilities shall be referenced in each Handbook, based on the example data exchange items shown in Section 3. 5. Reference to the appropriate \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d which provides detailed specifications for implementing IEEE 2030.5 -based communications. 6. Additional optional parameters and messages to the shared California IEEE 2030.5 implementation guidelines. These options must be specified in a non- contradictory manner to avoid one utility\u2019s IEEE 2030.5 requirement from being incompatible with another utility\u2019s requirement 7. Additional communication profiles that may be permitted upon mutual agreement (e.g. IEEE 1815 (DNP3) for real -time interactions and IEC 61850 ) 8. Performance requirements, including periodicity of data exchanges, latency of data requests -responses, sizes of data files, error management, and cyber security impacts on data latency 9. Cyber security requirements for communications, including Authentication, Authorization, Accountability, and Data Integrity shall be included at a minimum. Other cyber security requirements, such as confidentiality shall be supported but may be enabled only when needed. References to relevant cyber security standards shall be included. 10. Cyber security management requirements outside the protocol cyber security, including key management, certificate authorities, and cyber security management procedures 11. Cyber security -related passwords and cryptographic keys shall be secured from unauthorized access 12. Privacy policies shall clearly define what types o f data shall be not available publicly, including individual data elements , utility aggregations of customer data, and third party aggregations of data 13. Testing and certification requirements (with reference s to the IEEE 2030.5 Implementation Guidelines for IEEE 2030.5 testing and certification.)",
+      "estimated_evidence_tokens": 344,
+      "estimated_embedding_tokens": 373,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 12,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0010",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0012",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0012",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 12,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p012:b0031",
+        "siwg_phase2_recommendations_pdf:p012:b0032"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.4 SIWG Communication Requirements Recommended to Be Included in a"
+      ],
+      "evidence_text": "2.4 SIWG Communication Requirements Recommended to Be Included in a\n\nSingle \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d The SIWG recommends that the following topics are included in a single \u201cCalifornia IEEE",
+      "evidence_text_sha256": "sha256:7b6ea95a99bf688fd98a9dbc8bdeb1a9309173773cb7984de3e2bed2c50508ff",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.4 SIWG Communication Requirements Recommended to Be Included in a\n\n2.4 SIWG Communication Requirements Recommended to Be Included in a\n\nSingle \u201cCalifornia IEEE 2030.5 Implementation Guide\u201d The SIWG recommends that the following topics are included in a single \u201cCalifornia IEEE",
+      "estimated_evidence_tokens": 37,
+      "estimated_embedding_tokens": 66,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 12,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.4"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0011",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0013",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0013",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 13,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p012:b0033",
+        "siwg_phase2_recommendations_pdf:p012:b0034",
+        "siwg_phase2_recommendations_pdf:p013:b0035"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "2030.5 Im plementation Guide\u201d that has been agreed to and will be maintained by the"
+      ],
+      "evidence_text": "2030.5 Im plementation Guide\u201d that has been agreed to and will be maintained by the\n\nutilities: 1. Date and version of the California IEEE 2030.5 Implementation Guide 2. The default data schemas for the data exchange requirements defined in the \u201cDER Data Exchange Requireme nts\u201d document. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 8\n\n3. Any specific configuration requirements for individual DER systems, facility energy management systems, and/or aggregators 4. Any additions or modifications to the minimal data exchange requirements that may be required for different types of implementations . 5. The default IEEE 2030.5 profile, including: a. An interpretation of all data elements and objects b. IEEE 2030.5 services for retrieving data, setting data values, and notifications c. IEEE 2030.5 services for updating Groups of DERs d. IEEE 2030.5 cyber security technologies and procedures e. IEEE 2030.5 optional fields, values and commands such that they do not conflict with the base interoperability standard. 6. References to other documents as necessary for details on compliance or as useful as guidelin es 7. Testing and certification requirements with references to facilities certified for performing such testing , such as the IEEE 2030.5 CSEP \u2013 Testing Certification Program and the SunSpec Alliance on ModBus Gateway to IEEE 2030.5 8. Identification of additional abstract IEC 61850 information model objects which could be translated to IEEE 2030.5 for additional functions .",
+      "evidence_text_sha256": "sha256:7641003816e0b56a4aa68da14dd0597804593f8bae673a7cf16f9f74a8bea4bb",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2030.5 Im plementation Guide\u201d that has been agreed to and will be maintained by the\n\n2030.5 Im plementation Guide\u201d that has been agreed to and will be maintained by the\n\nutilities: 1. Date and version of the California IEEE 2030.5 Implementation Guide 2. The default data schemas for the data exchange requirements defined in the \u201cDER Data Exchange Requireme nts\u201d document. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 8\n\n3. Any specific configuration requirements for individual DER systems, facility energy management systems, and/or aggregators 4. Any additions or modifications to the minimal data exchange requirements that may be required for different types of implementations . 5. The default IEEE 2030.5 profile, including: a. An interpretation of all data elements and objects b. IEEE 2030.5 services for retrieving data, setting data values, and notifications c. IEEE 2030.5 services for updating Groups of DERs d. IEEE 2030.5 cyber security technologies and procedures e. IEEE 2030.5 optional fields, values and commands such that they do not conflict with the base interoperability standard. 6. References to other documents as necessary for details on compliance or as useful as guidelin es 7. Testing and certification requirements with references to facilities certified for performing such testing , such as the IEEE 2030.5 CSEP \u2013 Testing Certification Program and the SunSpec Alliance on ModBus Gateway to IEEE 2030.5 8. Identification of additional abstract IEC 61850 information model objects which could be translated to IEEE 2030.5 for additional functions .",
+      "estimated_evidence_tokens": 278,
+      "estimated_embedding_tokens": 313,
+      "citation": {
+        "pdf_page_start": 12,
+        "pdf_page_end": 13,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2030.5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0012",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0014",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0014",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 14,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p013:b0036",
+        "siwg_phase2_recommendations_pdf:p013:b0037"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "2.5 SIWG Communication Requirements Recommended to Be Decided by"
+      ],
+      "evidence_text": "2.5 SIWG Communication Requirements Recommended to Be Decided by\n\nMutual Utility-DER Operator Agreements The following issues are recomme nded to be decided by mutual utility -DER operator agreements which may vary by utility and/or by installation : 1. Whether communications are to be established between the utility and (directly or indirectly) the DER system For instance, the larger DER systems already require communications, but the protocol and types of data to be exchanged may be updated. 2. Which DER systems are allocated to which Groups for purposes of aggregation. The method for updating these allocations dynamically is provided in the protocol-specific Implementation Guides. 3. Which protocol to be used (e.g. the default IEEE 2030.5, a real-time protocol such as IEEE 1815/DNP3, or another protocol) 4. What optional data may be exchanged 5. What options in the IEEE 2030.5 protocol may be used 6. Which cyber security options may be used in addition to those defined in the California IEEE 2030.5 Implementation Guide or could be needed for securing other protocols SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 9",
+      "evidence_text_sha256": "sha256:246c9dc149905d5f57ed449bb801d47591d387979963dd13834ee58be4098fff",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.5 SIWG Communication Requirements Recommended to Be Decided by\n\n2.5 SIWG Communication Requirements Recommended to Be Decided by\n\nMutual Utility-DER Operator Agreements The following issues are recomme nded to be decided by mutual utility -DER operator agreements which may vary by utility and/or by installation : 1. Whether communications are to be established between the utility and (directly or indirectly) the DER system For instance, the larger DER systems already require communications, but the protocol and types of data to be exchanged may be updated. 2. Which DER systems are allocated to which Groups for purposes of aggregation. The method for updating these allocations dynamically is provided in the protocol-specific Implementation Guides. 3. Which protocol to be used (e.g. the default IEEE 2030.5, a real-time protocol such as IEEE 1815/DNP3, or another protocol) 4. What optional data may be exchanged 5. What options in the IEEE 2030.5 protocol may be used 6. Which cyber security options may be used in addition to those defined in the California IEEE 2030.5 Implementation Guide or could be needed for securing other protocols SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 9",
+      "estimated_evidence_tokens": 214,
+      "estimated_embedding_tokens": 242,
+      "citation": {
+        "pdf_page_start": 13,
+        "pdf_page_end": 13,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.5"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0013",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0015",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0015",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 15,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p014:b0038",
+        "siwg_phase2_recommendations_pdf:p014:b0039",
+        "siwg_phase2_recommendations_pdf:p014:b0040",
+        "siwg_phase2_recommendations_pdf:p015:b0041"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "2.6 SIWG Communication Requirements Recommended to Be Left Up to"
+      ],
+      "evidence_text": "2.6 SIWG Communication Requirements Recommended to Be Left Up to\n\nVendor or Market Decisions At a minimum t he following issues are recommended to be left up to \u201cindustry\u201d, vendor, and/or general market decisions , although many additional issues are expected to be industry decisions : 1. The development of \u201cgateways\u201d that translate from other protocols to the utility communication protocols 2. The communication technologies used by the DER system between its communication module and the \u201cgateway\u201d to the utility 3. The communications media used between the \u201cgateways\u201d and the utility, so long as it does not pose a performance or security issue for the utility 4. Any other issues not covered in Rule 21 or the Utility Generation Interconnection Handbook\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 10\n\n3. Examples of Utility Data Monitoring and Control Requirements",
+      "evidence_text_sha256": "sha256:8c2233edf8751fd4fe15674256d2d4584f40a7d74bca0bc0c8222f77180934a7",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 2.6 SIWG Communication Requirements Recommended to Be Left Up to\n\n2.6 SIWG Communication Requirements Recommended to Be Left Up to\n\nVendor or Market Decisions At a minimum t he following issues are recommended to be left up to \u201cindustry\u201d, vendor, and/or general market decisions , although many additional issues are expected to be industry decisions : 1. The development of \u201cgateways\u201d that translate from other protocols to the utility communication protocols 2. The communication technologies used by the DER system between its communication module and the \u201cgateway\u201d to the utility 3. The communications media used between the \u201cgateways\u201d and the utility, so long as it does not pose a performance or security issue for the utility 4. Any other issues not covered in Rule 21 or the Utility Generation Interconnection Handbook\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 10\n\n3. Examples of Utility Data Monitoring and Control Requirements",
+      "estimated_evidence_tokens": 161,
+      "estimated_embedding_tokens": 190,
+      "citation": {
+        "pdf_page_start": 14,
+        "pdf_page_end": 15,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "2.6"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0014",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0016",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0016",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 16,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p015:b0042",
+        "siwg_phase2_recommendations_pdf:p015:b0043"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph"
+      ],
+      "heading_path": [
+        "3.1 Smart Inverter Use Cases as Basis for Data Requirements"
+      ],
+      "evidence_text": "3.1 Smart Inverter Use Cases as Basis for Data Requirements\n\nThe utilities reviewed the Phase 1 and Phase 3 functions as Use Cases to determine their data requirements. These are summarized below, along with indications of the importance to utilities (H, M, L): \u2022 Real Power DER Functions \u2212 Real power output at the PCC is limited to a maximum value by the DER owner/operator. This information must be provided to the utility. (H) \u2212 The utility limits the maximum real power output at the PCC by a command to the DER system, the facility ener gy management system, or the aggregator who manages the DER system. (H) \u2212 The utility sets the actual real power output at the PCC if permitted by tariff agreements. (M) \u2212 The utility schedules the actual real power output or limits the maximum real power output at the PCC for specific time periods. (H) \u2212 The utility sets the voltage -watt parameters for the DER system to modify its real power output autonomously in response to local voltage variations. (H) \u2212 The utility sets or schedules the storage of energy for l ater delivery, indicating time to start charging, charging rate and/or \u201ccharge -by\u201d time. (Applicable for energy storage; NA for PV systems) \u2022 Reactive Power DER Functions \u2212 The utility sets a fixed power factor parameter for the DER system (having a fixed power factor is a Phase 1 capability; updating the power factor is a Phase 3 capability). (H) \u2212 The utility sets the curves for volt- var control for the DER system to provide dynamic reactive power injection through autonomous responses to local voltage measurem ents (volt -var control is a Phase 1 function; updating the volt -var curves is a Phase 3 capability). (H) \u2212 The utility provides and/or updates the temperature/current/time -of-day var curves for the DER system to provide reactive power through autonomous responses to temperature, current, or time -of-day. (H for temperature) \u2022 Frequency Support DER Functions \u2212 Utility uses DER systems for frequency regulation by setting the curves for the DER systems to autonomously and rapidly modify real power output to counter minor frequency deviations. The utility can enable/disable the function. (H) \u2212 Utility uses DER systems for frequency regulation by issuing automatic generation control (AGC) commands. (M) SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 11",
+      "evidence_text_sha256": "sha256:f9b2a124ebbde83e5408464e763202eb038b31d9b219035d28a4350a7034db53",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.1 Smart Inverter Use Cases as Basis for Data Requirements\n\n3.1 Smart Inverter Use Cases as Basis for Data Requirements\n\nThe utilities reviewed the Phase 1 and Phase 3 functions as Use Cases to determine their data requirements. These are summarized below, along with indications of the importance to utilities (H, M, L): \u2022 Real Power DER Functions \u2212 Real power output at the PCC is limited to a maximum value by the DER owner/operator. This information must be provided to the utility. (H) \u2212 The utility limits the maximum real power output at the PCC by a command to the DER system, the facility ener gy management system, or the aggregator who manages the DER system. (H) \u2212 The utility sets the actual real power output at the PCC if permitted by tariff agreements. (M) \u2212 The utility schedules the actual real power output or limits the maximum real power output at the PCC for specific time periods. (H) \u2212 The utility sets the voltage -watt parameters for the DER system to modify its real power output autonomously in response to local voltage variations. (H) \u2212 The utility sets or schedules the storage of energy for l ater delivery, indicating time to start charging, charging rate and/or \u201ccharge -by\u201d time. (Applicable for energy storage; NA for PV systems) \u2022 Reactive Power DER Functions \u2212 The utility sets a fixed power factor parameter for the DER system (having a fixed power factor is a Phase 1 capability; updating the power factor is a Phase 3 capability). (H) \u2212 The utility sets the curves for volt- var control for the DER system to provide dynamic reactive power injection through autonomous responses to local voltage measurem ents (volt -var control is a Phase 1 function; updating the volt -var curves is a Phase 3 capability). (H) \u2212 The utility provides and/or updates the temperature/current/time -of-day var curves for the DER system to provide reactive power through autonomous responses to temperature, current, or time -of-day. (H for temperature) \u2022 Frequency Support DER Functions \u2212 Utility uses DER systems for frequency regulation by setting the curves for the DER systems to autonomously and rapidly modify real power output to counter minor frequency deviations. The utility can enable/disable the function. (H) \u2212 Utility uses DER systems for frequency regulation by issuing automatic generation control (AGC) commands. (M) SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 11",
+      "estimated_evidence_tokens": 473,
+      "estimated_embedding_tokens": 502,
+      "citation": {
+        "pdf_page_start": 15,
+        "pdf_page_end": 15,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0015",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0017",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0017",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 17,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p016:b0044"
+      ],
+      "block_types": [
+        "list_item"
+      ],
+      "heading_path": [
+        "3.1 Smart Inverter Use Cases as Basis for Data Requirements"
+      ],
+      "evidence_text": "\u2022 DER Response to Emergencies \u2212 Utility receives notification that a DER system disconnected from or reconnected to the utility grid. (H?) \u2212 Utility issues commands to the DER system to disconnect or reconnect. (M) \u2212 Utility updates the voltage ride -through curves (voltage ride -through is a Phase 1 function; updating the curves is a Phase 3 capability). (H) \u2212 Utility updates the frequency ride -through curves (frequency ride -through is a Phase 1 function; updating the curves is a Phase 3 capability). (H) \u2212 Utility receives notification that a facility or microgrid disconnected from or reconnected to the utility grid. ( H) \u2212 Utility issues a command to disconnect or reconnect a microgrid from the utility grid. (L) \u2212 Utility requests that the DER system provide \u201cspinning\u201d or operational reserve \u2022 Scheduling DER Output, Modes, and/or Functions \u2212 Utility provides schedules for real power settings, reactive settings, real power or reactive power limits, power factors, operational reserves , activating/deactivating modes, and other operational settings. Schedules may be for specific time periods or may repeat periodically, e.g. daily, weekly, or seasonally. Multiple schedules may be in effect so long as they do not conflict. Higher priority schedules preempt lower priority schedules. (H) \u2212 Utilities activate/deactivate schedules \u2212 Utility receives schedu les from DER systems that forecast their net real power and storage schedules.",
+      "evidence_text_sha256": "sha256:fe70e111ee63fabd7b8471bb883e08cee2a1d0f5c8572295d5e5972f742013f1",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.1 Smart Inverter Use Cases as Basis for Data Requirements\n\n\u2022 DER Response to Emergencies \u2212 Utility receives notification that a DER system disconnected from or reconnected to the utility grid. (H?) \u2212 Utility issues commands to the DER system to disconnect or reconnect. (M) \u2212 Utility updates the voltage ride -through curves (voltage ride -through is a Phase 1 function; updating the curves is a Phase 3 capability). (H) \u2212 Utility updates the frequency ride -through curves (frequency ride -through is a Phase 1 function; updating the curves is a Phase 3 capability). (H) \u2212 Utility receives notification that a facility or microgrid disconnected from or reconnected to the utility grid. ( H) \u2212 Utility issues a command to disconnect or reconnect a microgrid from the utility grid. (L) \u2212 Utility requests that the DER system provide \u201cspinning\u201d or operational reserve \u2022 Scheduling DER Output, Modes, and/or Functions \u2212 Utility provides schedules for real power settings, reactive settings, real power or reactive power limits, power factors, operational reserves , activating/deactivating modes, and other operational settings. Schedules may be for specific time periods or may repeat periodically, e.g. daily, weekly, or seasonally. Multiple schedules may be in effect so long as they do not conflict. Higher priority schedules preempt lower priority schedules. (H) \u2212 Utilities activate/deactivate schedules \u2212 Utility receives schedu les from DER systems that forecast their net real power and storage schedules.",
+      "estimated_evidence_tokens": 280,
+      "estimated_embedding_tokens": 309,
+      "citation": {
+        "pdf_page_start": 16,
+        "pdf_page_end": 16,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0016",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0018",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0018",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 18,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p016:b0045",
+        "siwg_phase2_recommendations_pdf:p016:b0046",
+        "siwg_phase2_recommendations_pdf:p016:b0047",
+        "siwg_phase2_recommendations_pdf:p016:b0048",
+        "siwg_phase2_recommendations_pdf:p016:b0049",
+        "siwg_phase2_recommendations_pdf:p017:b0050",
+        "siwg_phase2_recommendations_pdf:p017:b0051",
+        "siwg_phase2_recommendations_pdf:p017:b0052",
+        "siwg_phase2_recommendations_pdf:p017:b0053",
+        "siwg_phase2_recommendations_pdf:p017:b0054",
+        "siwg_phase2_recommendations_pdf:p017:b0055",
+        "siwg_phase2_recommendations_pdf:p017:b0056",
+        "siwg_phase2_recommendations_pdf:p017:b0057",
+        "siwg_phase2_recommendations_pdf:p017:b0058",
+        "siwg_phase2_recommendations_pdf:p017:b0059",
+        "siwg_phase2_recommendations_pdf:p017:b0060",
+        "siwg_phase2_recommendations_pdf:p017:b0061",
+        "siwg_phase2_recommendations_pdf:p017:b0062",
+        "siwg_phase2_recommendations_pdf:p017:b0063",
+        "siwg_phase2_recommendations_pdf:p017:b0064",
+        "siwg_phase2_recommendations_pdf:p017:b0065",
+        "siwg_phase2_recommendations_pdf:p017:b0066",
+        "siwg_phase2_recommendations_pdf:p017:b0067",
+        "siwg_phase2_recommendations_pdf:p017:b0068",
+        "siwg_phase2_recommendations_pdf:p017:b0069",
+        "siwg_phase2_recommendations_pdf:p017:b0070",
+        "siwg_phase2_recommendations_pdf:p017:b0071",
+        "siwg_phase2_recommendations_pdf:p017:b0072",
+        "siwg_phase2_recommendations_pdf:p017:b0073",
+        "siwg_phase2_recommendations_pdf:p017:b0074",
+        "siwg_phase2_recommendations_pdf:p017:b0075",
+        "siwg_phase2_recommendations_pdf:p017:b0076",
+        "siwg_phase2_recommendations_pdf:p018:b0077",
+        "siwg_phase2_recommendations_pdf:p018:b0078",
+        "siwg_phase2_recommendations_pdf:p018:b0079",
+        "siwg_phase2_recommendations_pdf:p018:b0080",
+        "siwg_phase2_recommendations_pdf:p018:b0081",
+        "siwg_phase2_recommendations_pdf:p018:b0082",
+        "siwg_phase2_recommendations_pdf:p018:b0083",
+        "siwg_phase2_recommendations_pdf:p018:b0084",
+        "siwg_phase2_recommendations_pdf:p018:b0085"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "3.2 Example of Minimal Data Requirements for Direct Interactions with DER"
+      ],
+      "evidence_text": "3.2 Example of Minimal Data Requirements for Direct Interactions with DER\n\nSystems and/or Facility DER Management Systems Table 1 contains examples of the expected utility data monitoring and control requirements for direct interactions with DER systems. The \u201c DER Data Exchange Requirements\u201d document will provide the minimum data exchange requirements. Additional data exchanges are always allowed. Table 1: Utility data monitoring and control requirements Administrative Messaging Requirements Information in headers\n\nUnique Plant or FDEMS ID\n\nMeter ID, Service Point ID, or other ECP ID Utility ID\n\nTimestamp of message and other header information Nameplate and/or \u201cas installed\u201d base information of DER System (for each DER System registered with utility) SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 12\n\nDER system manufacturer\n\nDER system model\n\nDER system version\n\nDER system serial number\n\nDER system type Location (lat long and /or street address) Basic information of DER system or of facility or plant (FDEMS) (ratings are the installed ratings which are different from capabilities which may change or be forecast based on customer or market issues) Operational authority (role) Watt rating\n\nVA rating\n\nVar rating\n\nCurrent rating\n\nPF rating\n\nMonitoring Data Sets Monitored analog measurements, aggregated by the FDEMS to reflect the PCC\n\nWatts\n\nVArs\n\nPower Factor\n\nHz, Frequency\n\nVA, Apparent Power\n\nA, Phase Currents\n\nPPV, Phase Voltages TmpCab, Temperature (as applicable)\n\n{Type of data collection or aggregation, e.g. indication of whether instantaneous, average over period, max, min, first, last} Monitored status, aggregated by the FDEMS for the PCC\n\nDER Connection Status\n\nPCC or ECP Connection Status\n\nInverter status\n\nDe-rated real power due to inability to meet stated rating Available real power\n\nAvailable vars\n\nStatus of limits (flags that get raised when a specified limit is reached)\n\nActive modes (flags that get raised when a control (mode) is enabled)\n\nRide-through status (flags on instantaneous ride-through state; does not count R-T events) Metered DER system values\n\nWh, Watt-hours, lifetime (or from reset time) accumulated AC energy SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 13\n\nVAh, VA-hours, lifetime (or from reset time) accumulated\n\nVArh, VArh, lifetime (or from reset time) accumulated Notification of alarms\n\nBinary alarm values (flags that get raised for specific types of alarms of a specific DER) Binary alarm values (flags that get raised for specific types of facility/plant alarms)\n\nSending Updates to Settings and/or I ssuing Control Commands Voltage Ride-Through\n\nDefault L/HVRT curves and settings\n\nCustom L/HVRT curves and settings\n\nVoltage\n\nDuration Frequency Ride-Through\n\nDefault L/HFRT curves and settings",
+      "evidence_text_sha256": "sha256:0fa656263a2b1db6111a65aa82e7c835450a36d2776210a838ea11178f172a22",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.2 Example of Minimal Data Requirements for Direct Interactions with DER\n\n3.2 Example of Minimal Data Requirements for Direct Interactions with DER\n\nSystems and/or Facility DER Management Systems Table 1 contains examples of the expected utility data monitoring and control requirements for direct interactions with DER systems. The \u201c DER Data Exchange Requirements\u201d document will provide the minimum data exchange requirements. Additional data exchanges are always allowed. Table 1: Utility data monitoring and control requirements Administrative Messaging Requirements Information in headers\n\nUnique Plant or FDEMS ID\n\nMeter ID, Service Point ID, or other ECP ID Utility ID\n\nTimestamp of message and other header information Nameplate and/or \u201cas installed\u201d base information of DER System (for each DER System registered with utility) SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 12\n\nDER system manufacturer\n\nDER system model\n\nDER system version\n\nDER system serial number\n\nDER system type Location (lat long and /or street address) Basic information of DER system or of facility or plant (FDEMS) (ratings are the installed ratings which are different from capabilities which may change or be forecast based on customer or market issues) Operational authority (role) Watt rating\n\nVA rating\n\nVar rating\n\nCurrent rating\n\nPF rating\n\nMonitoring Data Sets Monitored analog measurements, aggregated by the FDEMS to reflect the PCC\n\nWatts\n\nVArs\n\nPower Factor\n\nHz, Frequency\n\nVA, Apparent Power\n\nA, Phase Currents\n\nPPV, Phase Voltages TmpCab, Temperature (as applicable)\n\n{Type of data collection or aggregation, e.g. indication of whether instantaneous, average over period, max, min, first, last} Monitored status, aggregated by the FDEMS for the PCC\n\nDER Connection Status\n\nPCC or ECP Connection Status\n\nInverter status\n\nDe-rated real power due to inability to meet stated rating Available real power\n\nAvailable vars\n\nStatus of limits (flags that get raised when a specified limit is reached)\n\nActive modes (flags that get raised when a control (mode) is enabled)\n\nRide-through status (flags on instantaneous ride-through state; does not count R-T events) Metered DER system values\n\nWh, Watt-hours, lifetime (or from reset time) accumulated AC energy SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 13\n\nVAh, VA-hours, lifetime (or from reset time) accumulated\n\nVArh, VArh, lifetime (or from reset time) accumulated Notification of alarms\n\nBinary alarm values (flags that get raised for specific types of alarms of a specific DER) Binary alarm values (flags that get raised for specific types of facility/plant alarms)\n\nSending Updates to Settings and/or I ssuing Control Commands Voltage Ride-Through\n\nDefault L/HVRT curves and settings\n\nCustom L/HVRT curves and settings\n\nVoltage\n\nDuration Frequency Ride-Through\n\nDefault L/HFRT curves and settings",
+      "estimated_evidence_tokens": 495,
+      "estimated_embedding_tokens": 525,
+      "citation": {
+        "pdf_page_start": 16,
+        "pdf_page_end": 18,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0017",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0019",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0019",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 19,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p018:b0086",
+        "siwg_phase2_recommendations_pdf:p018:b0087",
+        "siwg_phase2_recommendations_pdf:p018:b0088",
+        "siwg_phase2_recommendations_pdf:p018:b0089",
+        "siwg_phase2_recommendations_pdf:p018:b0090",
+        "siwg_phase2_recommendations_pdf:p018:b0091",
+        "siwg_phase2_recommendations_pdf:p018:b0092",
+        "siwg_phase2_recommendations_pdf:p018:b0093",
+        "siwg_phase2_recommendations_pdf:p018:b0094",
+        "siwg_phase2_recommendations_pdf:p018:b0095",
+        "siwg_phase2_recommendations_pdf:p018:b0096",
+        "siwg_phase2_recommendations_pdf:p018:b0097",
+        "siwg_phase2_recommendations_pdf:p018:b0098",
+        "siwg_phase2_recommendations_pdf:p018:b0099",
+        "siwg_phase2_recommendations_pdf:p018:b0100",
+        "siwg_phase2_recommendations_pdf:p018:b0101",
+        "siwg_phase2_recommendations_pdf:p018:b0102",
+        "siwg_phase2_recommendations_pdf:p019:b0103",
+        "siwg_phase2_recommendations_pdf:p019:b0104",
+        "siwg_phase2_recommendations_pdf:p019:b0105",
+        "siwg_phase2_recommendations_pdf:p019:b0106",
+        "siwg_phase2_recommendations_pdf:p019:b0107",
+        "siwg_phase2_recommendations_pdf:p019:b0108",
+        "siwg_phase2_recommendations_pdf:p019:b0109",
+        "siwg_phase2_recommendations_pdf:p019:b0110",
+        "siwg_phase2_recommendations_pdf:p019:b0111",
+        "siwg_phase2_recommendations_pdf:p019:b0112",
+        "siwg_phase2_recommendations_pdf:p019:b0113",
+        "siwg_phase2_recommendations_pdf:p019:b0114",
+        "siwg_phase2_recommendations_pdf:p019:b0115",
+        "siwg_phase2_recommendations_pdf:p019:b0116",
+        "siwg_phase2_recommendations_pdf:p019:b0117",
+        "siwg_phase2_recommendations_pdf:p019:b0118"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "3.2 Example of Minimal Data Requirements for Direct Interactions with DER"
+      ],
+      "evidence_text": "Custom L/HFRT curves and settings\n\nFrequency\n\nDuration Dynamic Volt/VAr Control\n\nEnable a specific curve\n\nV reference, V reference offset\n\nTolerance\n\nSelected curve\n\nCurves\n\nDisable (default upon start-up)\n\nCustom Volt-Var Curves Ramping\n\nDefault ramp rate\n\nCustomized ramp rates Power Factor\n\nValue Soft Start\n\nRamp Rate\n\nTime Delay\n\nFixed\n\nRandomized within window Connect/Disconnect Command Limit Real Power (both readable and settable at the PCC) Frequency-Watt SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 14\n\nDefault Frequency-Watt\n\nCustom Frequency-Watt Volt-Watt\n\nEnable/disable\n\nCollection of settings\n\nPossible Future Functions (Optional) Dynamic Current Support\n\nEnable/disable\n\nCollection of settings Frequency Deviation Support\n\nEnable/disable\n\nCollection of settings Limit Reactive Power (both readable and settable at the PCC) Schedule output and/or modes at PCC (see pending IEC 61850-90-10)\n\nSet schedules\n\nStart Time\n\nEnd Time\n\nReal Power\n\nReactive Power\n\nSchedule of operations and modes\n\nEnable/disable specific schedule",
+      "evidence_text_sha256": "sha256:72370f902277a3126952234d60e146fafae451616bcce080267e9b003fb6095c",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.2 Example of Minimal Data Requirements for Direct Interactions with DER\n\nCustom L/HFRT curves and settings\n\nFrequency\n\nDuration Dynamic Volt/VAr Control\n\nEnable a specific curve\n\nV reference, V reference offset\n\nTolerance\n\nSelected curve\n\nCurves\n\nDisable (default upon start-up)\n\nCustom Volt-Var Curves Ramping\n\nDefault ramp rate\n\nCustomized ramp rates Power Factor\n\nValue Soft Start\n\nRamp Rate\n\nTime Delay\n\nFixed\n\nRandomized within window Connect/Disconnect Command Limit Real Power (both readable and settable at the PCC) Frequency-Watt SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 14\n\nDefault Frequency-Watt\n\nCustom Frequency-Watt Volt-Watt\n\nEnable/disable\n\nCollection of settings\n\nPossible Future Functions (Optional) Dynamic Current Support\n\nEnable/disable\n\nCollection of settings Frequency Deviation Support\n\nEnable/disable\n\nCollection of settings Limit Reactive Power (both readable and settable at the PCC) Schedule output and/or modes at PCC (see pending IEC 61850-90-10)\n\nSet schedules\n\nStart Time\n\nEnd Time\n\nReal Power\n\nReactive Power\n\nSchedule of operations and modes\n\nEnable/disable specific schedule",
+      "estimated_evidence_tokens": 168,
+      "estimated_embedding_tokens": 198,
+      "citation": {
+        "pdf_page_start": 18,
+        "pdf_page_end": 19,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0018",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0020",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0020",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 20,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p019:b0119",
+        "siwg_phase2_recommendations_pdf:p019:b0120",
+        "siwg_phase2_recommendations_pdf:p020:b0121",
+        "siwg_phase2_recommendations_pdf:p020:b0122",
+        "siwg_phase2_recommendations_pdf:p020:b0123",
+        "siwg_phase2_recommendations_pdf:p020:b0124",
+        "siwg_phase2_recommendations_pdf:p020:b0125",
+        "siwg_phase2_recommendations_pdf:p020:b0126",
+        "siwg_phase2_recommendations_pdf:p020:b0127",
+        "siwg_phase2_recommendations_pdf:p020:b0128",
+        "siwg_phase2_recommendations_pdf:p020:b0129",
+        "siwg_phase2_recommendations_pdf:p020:b0130",
+        "siwg_phase2_recommendations_pdf:p020:b0131",
+        "siwg_phase2_recommendations_pdf:p020:b0132",
+        "siwg_phase2_recommendations_pdf:p020:b0133"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "3.3 Additional Information for Interactions with Aggregators"
+      ],
+      "evidence_text": "3.3 Additional Information for Interactions with Aggregators\n\nUtilities will require aggregators to supply the same data as in Table 1, but aggregated by Group. In particular, utilities will provide aggregators with Groups that contain lists of DER systems. Groups may contain other nested Groups. DER systems may be in multiple Groups. These Groups may reflect different organizations of DER systems, such as: \u2022 Group of DER systems connected to a specific substation \u2022 Group of DER systems connected to a specific feeder \u2022 Group of DER systems connected to a specific feeder segment \u2022 Group of PV-based DER systems \u2022 Group of energy storage DER systems \u2022 Group of DER systems capable of providing \u201coperational reserves\u201d within specific time periods \u2022 Group of DER systems capable of providing black start services SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 15\n\n\u2022 Group of DER systems capable of providing volt-var support \u2022 Group of DER systems capable of providing frequency support In addition to the Group data, Table 2 identifies the additional data information which is expected to be needed for interactions between utilities and aggregators. Table 2: Additional information required for interactions with aggregators Administrative Information for Aggregators Heading information for all messages\n\nUnique Aggregator ID\n\nUtility ID\n\nGroup ID for this message\n\nTimestamp of message and other header information Aggregator information (may be handled off line)\n\nAggregator information\n\nAggregator capabilities\n\nList of DER UUIDs for each group Group information\n\nWatt rating\n\nVA rating\n\nVar rating\n\nCurrent rating\n\nPF rating",
+      "evidence_text_sha256": "sha256:c17e38f1401bbfbbbbc4f67a7c414a14f4c834e7ce7919ec7fb5ee28b92eae92",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.3 Additional Information for Interactions with Aggregators\n\n3.3 Additional Information for Interactions with Aggregators\n\nUtilities will require aggregators to supply the same data as in Table 1, but aggregated by Group. In particular, utilities will provide aggregators with Groups that contain lists of DER systems. Groups may contain other nested Groups. DER systems may be in multiple Groups. These Groups may reflect different organizations of DER systems, such as: \u2022 Group of DER systems connected to a specific substation \u2022 Group of DER systems connected to a specific feeder \u2022 Group of DER systems connected to a specific feeder segment \u2022 Group of PV-based DER systems \u2022 Group of energy storage DER systems \u2022 Group of DER systems capable of providing \u201coperational reserves\u201d within specific time periods \u2022 Group of DER systems capable of providing black start services SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 15\n\n\u2022 Group of DER systems capable of providing volt-var support \u2022 Group of DER systems capable of providing frequency support In addition to the Group data, Table 2 identifies the additional data information which is expected to be needed for interactions between utilities and aggregators. Table 2: Additional information required for interactions with aggregators Administrative Information for Aggregators Heading information for all messages\n\nUnique Aggregator ID\n\nUtility ID\n\nGroup ID for this message\n\nTimestamp of message and other header information Aggregator information (may be handled off line)\n\nAggregator information\n\nAggregator capabilities\n\nList of DER UUIDs for each group Group information\n\nWatt rating\n\nVA rating\n\nVar rating\n\nCurrent rating\n\nPF rating",
+      "estimated_evidence_tokens": 269,
+      "estimated_embedding_tokens": 295,
+      "citation": {
+        "pdf_page_start": 19,
+        "pdf_page_end": 20,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.3"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0019",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0021",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0021",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 21,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p020:b0134",
+        "siwg_phase2_recommendations_pdf:p020:b0135",
+        "siwg_phase2_recommendations_pdf:p020:b0136",
+        "siwg_phase2_recommendations_pdf:p021:b0137",
+        "siwg_phase2_recommendations_pdf:p021:b0138",
+        "siwg_phase2_recommendations_pdf:p021:b0139",
+        "siwg_phase2_recommendations_pdf:p021:b0140",
+        "siwg_phase2_recommendations_pdf:p021:b0141",
+        "siwg_phase2_recommendations_pdf:p022:b0142",
+        "siwg_phase2_recommendations_pdf:p022:b0143"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "3.4 Utility Performance Requirements for Interacting with Different Types of"
+      ],
+      "evidence_text": "3.4 Utility Performance Requirements for Interacting with Different Types of\n\nDER Systems Utilities have identified the performance requirements for the high priority DER functions , as summarized in Table 3: Table 3: Smart Inverter Use Cases Use Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object Real Power DER Functions Real power output at the PCC is limited to a maximum value by the DER owner/operator. This information must be provided to the utility. Limit Power Seconds Minutes Hourly / Day Ahead SetMaxWatts DERcontrol Opmodfixw SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 16\n\nUse Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object The utility sets the voltage-watt parameters for the DER system to modify its real power output autonomously in response to local voltage variations. Set Voltage / Watt Parameters Seconds Minutes Hourly / Day Ahead DERcontrol opmodvoltwatt The utility sets or modifies ramp rates, or settings for inverters, that gradually raise or lower power output. Set or Update Ramp Rates Seconds Minutes Hourly / Day Ahead DERCurve object rampDecTms rampIncTms Reactive Power DER Functions\n\nThe utility sets a fixed power factor parameter for the DER system (having a fixed power factor is a Phase 1 capability; updating the power factor is a Phase 3 capability). Set Fixed Power Factor Seconds Minutes Hourly / Day Ahead opmodfixedpf The utility sets the curves for volt- var control for the DER system to provide dynamic reactive power injection through autonomous responses to local voltage measurements (volt-var control is a Phase 1 function; updating the volt-var curves is a Phase 3 capability). Set Volt Var control curve Seconds Minutes Hourly / Day Ahead opmodvoltvar Selection between multiple curves not supported The utility provides and/or updates the var curves for the DER system to provide reactive power through autonomous responses Update VAR curves Seconds Minutes Hourly / Day Ahead opmodvoltvar Only single curves supported Frequency Support DER Functions\n\nUtility uses DER systems for frequency regulation by setting the curves for the DER systems to autonomously and rapidly modify real power output to counter minor frequency deviations. The utility can enable/disable the function. Update, enable, disable frequency watt curves Seconds Minutes Hourly / Day Ahead opmodfreqwatt DER Response to Emergencies\n\nUtility issues commands to the DER system to disconnect or reconnect. Disconnect Reconnect Seconds Minutes Hourly setgenconnect SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 17\n\nUse Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object Utility updates the voltage ride- through curves to change the anti- islanding settings. Update Voltage ride through curves Seconds Minutes Hourly opmodhvrt opmodlvrt Utility updates the frequency ride- through curves to change the anti- islanding settings . Update frequency ride through curves Seconds Minutes Hourly Not Supported Scheduling DER Output, Modes, and/or Functions",
+      "evidence_text_sha256": "sha256:e9de43e0b7f38e0ac82b5a61e797138e1f76873802b83768f9128c5088175745",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.4 Utility Performance Requirements for Interacting with Different Types of\n\n3.4 Utility Performance Requirements for Interacting with Different Types of\n\nDER Systems Utilities have identified the performance requirements for the high priority DER functions , as summarized in Table 3: Table 3: Smart Inverter Use Cases Use Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object Real Power DER Functions Real power output at the PCC is limited to a maximum value by the DER owner/operator. This information must be provided to the utility. Limit Power Seconds Minutes Hourly / Day Ahead SetMaxWatts DERcontrol Opmodfixw SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 16\n\nUse Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object The utility sets the voltage-watt parameters for the DER system to modify its real power output autonomously in response to local voltage variations. Set Voltage / Watt Parameters Seconds Minutes Hourly / Day Ahead DERcontrol opmodvoltwatt The utility sets or modifies ramp rates, or settings for inverters, that gradually raise or lower power output. Set or Update Ramp Rates Seconds Minutes Hourly / Day Ahead DERCurve object rampDecTms rampIncTms Reactive Power DER Functions\n\nThe utility sets a fixed power factor parameter for the DER system (having a fixed power factor is a Phase 1 capability; updating the power factor is a Phase 3 capability). Set Fixed Power Factor Seconds Minutes Hourly / Day Ahead opmodfixedpf The utility sets the curves for volt- var control for the DER system to provide dynamic reactive power injection through autonomous responses to local voltage measurements (volt-var control is a Phase 1 function; updating the volt-var curves is a Phase 3 capability). Set Volt Var control curve Seconds Minutes Hourly / Day Ahead opmodvoltvar Selection between multiple curves not supported The utility provides and/or updates the var curves for the DER system to provide reactive power through autonomous responses Update VAR curves Seconds Minutes Hourly / Day Ahead opmodvoltvar Only single curves supported Frequency Support DER Functions\n\nUtility uses DER systems for frequency regulation by setting the curves for the DER systems to autonomously and rapidly modify real power output to counter minor frequency deviations. The utility can enable/disable the function. Update, enable, disable frequency watt curves Seconds Minutes Hourly / Day Ahead opmodfreqwatt DER Response to Emergencies\n\nUtility issues commands to the DER system to disconnect or reconnect. Disconnect Reconnect Seconds Minutes Hourly setgenconnect SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 17\n\nUse Case Requirement Type Protocol\n\nIndustrial Aggregator Residential SEP2 Object Utility updates the voltage ride- through curves to change the anti- islanding settings. Update Voltage ride through curves Seconds Minutes Hourly opmodhvrt opmodlvrt Utility updates the frequency ride- through curves to change the anti- islanding settings . Update frequency ride through curves Seconds Minutes Hourly Not Supported Scheduling DER Output, Modes, and/or Functions",
+      "estimated_evidence_tokens": 499,
+      "estimated_embedding_tokens": 528,
+      "citation": {
+        "pdf_page_start": 20,
+        "pdf_page_end": 22,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.4"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0020",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0022",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0022",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 22,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p022:b0144",
+        "siwg_phase2_recommendations_pdf:p022:b0145",
+        "siwg_phase2_recommendations_pdf:p022:b0146"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "3.4 Utility Performance Requirements for Interacting with Different Types of"
+      ],
+      "evidence_text": "Utility provides full lifecycle control for schedules. Schedules may be for specific time periods or may repeat periodically, e.g. daily, weekly, seasonally. Multiple schedules may be in effect so long as they do not conflict. Higher priority schedules preempt lower priority schedules. Add, update, delete schedules Daily Daily Daily DER programs Registration Utility registers a DER system or facility after interconnection approval and installation Registration Hours Hours Hours Registration - Out of band process System Health and Monitoring\n\nUtility Monitors DER system operating status Receive operating status Seconds Hourly Hourly DERinfo/DERstatus Utility Monitors DER system operating capability, as opposed to name plate Receive system operating capability Seconds Hourly Hourly DERcapability Utility receives DER system metering information Receive DER system metering information Seconds Hourly Hourly Meterreading/usagepoint\n\n4. Cyber Security and Privacy Requirements",
+      "evidence_text_sha256": "sha256:231fec13b4f61392c35268e8792a0212186d74cb5021c019b7517e232acdb693",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 3.4 Utility Performance Requirements for Interacting with Different Types of\n\nUtility provides full lifecycle control for schedules. Schedules may be for specific time periods or may repeat periodically, e.g. daily, weekly, seasonally. Multiple schedules may be in effect so long as they do not conflict. Higher priority schedules preempt lower priority schedules. Add, update, delete schedules Daily Daily Daily DER programs Registration Utility registers a DER system or facility after interconnection approval and installation Registration Hours Hours Hours Registration - Out of band process System Health and Monitoring\n\nUtility Monitors DER system operating status Receive operating status Seconds Hourly Hourly DERinfo/DERstatus Utility Monitors DER system operating capability, as opposed to name plate Receive system operating capability Seconds Hourly Hourly DERcapability Utility receives DER system metering information Receive DER system metering information Seconds Hourly Hourly Meterreading/usagepoint\n\n4. Cyber Security and Privacy Requirements",
+      "estimated_evidence_tokens": 149,
+      "estimated_embedding_tokens": 178,
+      "citation": {
+        "pdf_page_start": 22,
+        "pdf_page_end": 22,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "3.4"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0021",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0023",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0023",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 23,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p022:b0147",
+        "siwg_phase2_recommendations_pdf:p022:b0148",
+        "siwg_phase2_recommendations_pdf:p023:b0149"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "list_item"
+      ],
+      "heading_path": [
+        "4.1 Cyber Security Requirements"
+      ],
+      "evidence_text": "4.1 Cyber Security Requirements\n\nGeneral requirements for cyber security shall be covered in Rule 21. Specific cyber security requirements may be included in utility handbooks or auxiliary documents. Basic cyber security requirements include: \u2022 Cyber security requirements shall be end-to-end, including across any intermediary systems. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 18\n\n\u2022 The implementation of these cyber security requirements shall be validated before data exchanges are commenced with utilities. \u2022 Cyber security requirements include Authentication, Authorization, Accountability, and Data Integrity at a minimum. Other cyber security requirements, such as confidentiality shall be supported but may be enabled only when needed. \u2022 Stored cyber security data, such as cryptographic keys and passwords, shall be secured from unauthorized access, including in any intermediary systems between the utility and DER systems \u2022 Privacy policies shall clearly define what types of data shall be not available publicly, including individual data elements and aggregations of data. When the following cyber securi ty questions are being answered by utilities , the responses should clarify what should be included in Rule 21 , what should be handled by in the Utility Generation Interconnection Handbook , and what should be provided by other sources . \u2022 What are the utility security policies for interacting with non-utility sites and equipment where the data to be exchange has operational impacts? \u2022 What utility security procedures must be followed by such non-utility sites in order for operational data to be exchanged? In particular, how can new DER sites be \"registered\" and tested for security compliance? \u2022 Are there different security requirements for different types of sites, e.g. small < 10 MW DER sites versus > 10 MW sites? \u2022 Have these security policies and procedures been clearly established or are they still being worked on? \u2022 Are there specific security technologies that must be used? Are there specific technologies that must not be used? \u2022 Some security technologies are specific to different communication protocols - are there preferred protocols from a security perspective? \u2022 Is there agreement that at least authentication and data integrity must be ensured? \u2022 When should non-repudiation / accountability be ensured? \u2022 When should confidentiality be ensured? \u2022 How is key management expected to be handled? PKI? What Certificate Authorities can/must be used? \u2022 Will Role-based Access Control (RBAC) be used to constrain the permitted actions? \u2022 Are these cyber security requirements accepted by all California utilities or are there major differences? \u2022 What other cyber security issues need to be resolved? SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 19",
+      "evidence_text_sha256": "sha256:02e74bdd7da32f35ca31c21e6b5f509ba452b6c44b2a6e4d8f11b11b51cc37bd",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.1 Cyber Security Requirements\n\n4.1 Cyber Security Requirements\n\nGeneral requirements for cyber security shall be covered in Rule 21. Specific cyber security requirements may be included in utility handbooks or auxiliary documents. Basic cyber security requirements include: \u2022 Cyber security requirements shall be end-to-end, including across any intermediary systems. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 18\n\n\u2022 The implementation of these cyber security requirements shall be validated before data exchanges are commenced with utilities. \u2022 Cyber security requirements include Authentication, Authorization, Accountability, and Data Integrity at a minimum. Other cyber security requirements, such as confidentiality shall be supported but may be enabled only when needed. \u2022 Stored cyber security data, such as cryptographic keys and passwords, shall be secured from unauthorized access, including in any intermediary systems between the utility and DER systems \u2022 Privacy policies shall clearly define what types of data shall be not available publicly, including individual data elements and aggregations of data. When the following cyber securi ty questions are being answered by utilities , the responses should clarify what should be included in Rule 21 , what should be handled by in the Utility Generation Interconnection Handbook , and what should be provided by other sources . \u2022 What are the utility security policies for interacting with non-utility sites and equipment where the data to be exchange has operational impacts? \u2022 What utility security procedures must be followed by such non-utility sites in order for operational data to be exchanged? In particular, how can new DER sites be \"registered\" and tested for security compliance? \u2022 Are there different security requirements for different types of sites, e.g. small < 10 MW DER sites versus > 10 MW sites? \u2022 Have these security policies and procedures been clearly established or are they still being worked on? \u2022 Are there specific security technologies that must be used? Are there specific technologies that must not be used? \u2022 Some security technologies are specific to different communication protocols - are there preferred protocols from a security perspective? \u2022 Is there agreement that at least authentication and data integrity must be ensured? \u2022 When should non-repudiation / accountability be ensured? \u2022 When should confidentiality be ensured? \u2022 How is key management expected to be handled? PKI? What Certificate Authorities can/must be used? \u2022 Will Role-based Access Control (RBAC) be used to constrain the permitted actions? \u2022 Are these cyber security requirements accepted by all California utilities or are there major differences? \u2022 What other cyber security issues need to be resolved? SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 19",
+      "estimated_evidence_tokens": 480,
+      "estimated_embedding_tokens": 503,
+      "citation": {
+        "pdf_page_start": 22,
+        "pdf_page_end": 23,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.1"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0022",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0024",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0024",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 24,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p024:b0150",
+        "siwg_phase2_recommendations_pdf:p024:b0151",
+        "siwg_phase2_recommendations_pdf:p025:b0152"
+      ],
+      "block_types": [
+        "heading",
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "4.2 Privacy Requirements"
+      ],
+      "evidence_text": "4.2 Privacy Requirements\n\nUtilities can utilize the confidential ity provisions that already exist in Rule 21 and make any associated provisions within the Rule 21 tari ff. One such provision would be to require aggregator s to have privacy agreement s with their customers. The agreement would say that the meter data, or solar output data, or whatever data is in question could be conveyed from the aggregator to the utility. Once the utility had the data the utility would abide by their own privacy rule s and other applicable state, federal, and CPUC rules. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 20\n\nA. Appendix A: Definitions of Terms and Acronyms Term Definition Aggregator A legal organisation that consolidates or aggregates a number of individual customers and/or small generators into a coherent group of business players. Area EPS electric power system (EPS) that serves Local EPSs CEC California Energy Commission Connected Condition of the DER system during which it is electrically linked to an EPS through an ECP. CPUC California Pu blic Utilities Commission CVR Conservation Voltage Reduction DER Distributed Energy Resource. Sources of electric power that are not directly connected to a bulk power transmission system. DER includes both generators and energy storage technologies, and sometimes may include controllable loads. DOE Department of Ener gy ECP Electrical Connection Point : point of electrical connection between the DER source of energy (generation or storage) and any electric power system (EPS) EPRI Electric Power Research Institute EPS Electric Power System : facilities that deliver ele ctric power to a load FDEMS Facilities DER Energy Management Systems ICT Information and Communications Technologies I-DER For the purposes of this document, I -DER is defined as inverter -based Distributed Energy Resources IEC International Electrotechnical Commission IEC 61850 -7-420 Communication networks and systems for power utility automation - Part 7 -420: Basic communication structure - Distributed energy resources logical nodes IEC 61850 -90-7 Communication networks and systems for power utility automation - Part 90 -7: Object models for power converters in distributed energy resources (DER) systems IEEE Institute of Electrical and Electronic Engineers SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 21",
+      "evidence_text_sha256": "sha256:88db986e7bdecf8d1be2b65828a0e70929834a41fbde0e7916df3f4059bd75e7",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.2 Privacy Requirements\n\n4.2 Privacy Requirements\n\nUtilities can utilize the confidential ity provisions that already exist in Rule 21 and make any associated provisions within the Rule 21 tari ff. One such provision would be to require aggregator s to have privacy agreement s with their customers. The agreement would say that the meter data, or solar output data, or whatever data is in question could be conveyed from the aggregator to the utility. Once the utility had the data the utility would abide by their own privacy rule s and other applicable state, federal, and CPUC rules. SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 20\n\nA. Appendix A: Definitions of Terms and Acronyms Term Definition Aggregator A legal organisation that consolidates or aggregates a number of individual customers and/or small generators into a coherent group of business players. Area EPS electric power system (EPS) that serves Local EPSs CEC California Energy Commission Connected Condition of the DER system during which it is electrically linked to an EPS through an ECP. CPUC California Pu blic Utilities Commission CVR Conservation Voltage Reduction DER Distributed Energy Resource. Sources of electric power that are not directly connected to a bulk power transmission system. DER includes both generators and energy storage technologies, and sometimes may include controllable loads. DOE Department of Ener gy ECP Electrical Connection Point : point of electrical connection between the DER source of energy (generation or storage) and any electric power system (EPS) EPRI Electric Power Research Institute EPS Electric Power System : facilities that deliver ele ctric power to a load FDEMS Facilities DER Energy Management Systems ICT Information and Communications Technologies I-DER For the purposes of this document, I -DER is defined as inverter -based Distributed Energy Resources IEC International Electrotechnical Commission IEC 61850 -7-420 Communication networks and systems for power utility automation - Part 7 -420: Basic communication structure - Distributed energy resources logical nodes IEC 61850 -90-7 Communication networks and systems for power utility automation - Part 90 -7: Object models for power converters in distributed energy resources (DER) systems IEEE Institute of Electrical and Electronic Engineers SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 21",
+      "estimated_evidence_tokens": 399,
+      "estimated_embedding_tokens": 421,
+      "citation": {
+        "pdf_page_start": 24,
+        "pdf_page_end": 25,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0023",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0025",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0025",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 25,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p026:b0153",
+        "siwg_phase2_recommendations_pdf:p027:b0154"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "4.2 Privacy Requirements"
+      ],
+      "evidence_text": "Term Definition IEEE 1815 IEEE Standard for Electric Power Systems Communications \u2014 Distributed Net work Protocol (DNP3) IEEE 2030.5 IEEE Standard for Electric Power Systems Communications \u2014 IEEE Adoption of Smart Energy Profile 2.0 Application Protocol Standard Inverter A machine, device, or system that changes direct -current power to alternating -current power. ISO Independent System Operator ISO International Standards Organization Local EPS An EPS contained entirely within a single premises or group of premises. OIR Order Instituting Rulemaking P Real power (measured in watts) PCC Point of Common Coupling, the point where a Local EPS is connected to an Area EPS. PF Power Factor (ratio between real power and apparent power), expressed as W/VA or as cos \u03c6, the phase angle between the current and the voltage) Q Reactive power (me asured in volt -ampere reactive or VArs) REP Retail Energy Provider RTO Regional Transmission Organization SIWG Smart Inverter Working Group UL Underwriters Laboratory VAr or var Volt-ampere reactive SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 22\n\nB. Appendix B: Smart Inverter Working Group Participants The following list includes all participants in the Smart Inverter Working Group through February 2015. Table 4: List of SIWG Participants Company Full Name ABB Jaspreet Singh ABB Roger White ABB Ronnie Pettersson Advanced Energy Travis Bizjack AE Solar Energy Verena Sheldon AEI Alvaro Zanon AEI Christopher Heinzer AEI John Foster AEI Michael Mills -Price AEI (Advanced Energy Inverters) Bill Randle American Solar Direct Paolo Guggia Apparent Inc Jacqueline Desouza Apparent Inc Stefan Matan APS David Narang APS Jimi Diaz APS Marques Montes APS America Ryan Simpson Aspen Ashley Spaulding Aspen Katie Elder ASU Faraz Ebneali Balch Leonard Tillman Black & Veatch Dan Wilson Black & Veatch E.A. Sutton Bloom Energy Carl Cottuli Bloom Energy Prasad PMSVVSV Bloom Energy Rajesh Gopinath Bonfiglioli Davide Grandi Bonfiglioli Elie Nasr Bonfiglioli Matthew Charles Bonfiglioli Robert Lenke Bonfiglioli Sven Kollbach Bosch Ian Tilford California Energy Commission Cassandra Ayala California Energy Commission Gabriel Taylor California Energy Commission John Mathias California Energy Commission Linda Kelly SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 23",
+      "evidence_text_sha256": "sha256:16eeb76b204010453f7eda4b00c2e9e306dbf9b5393325863c6de4e7e8918712",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.2 Privacy Requirements\n\nTerm Definition IEEE 1815 IEEE Standard for Electric Power Systems Communications \u2014 Distributed Net work Protocol (DNP3) IEEE 2030.5 IEEE Standard for Electric Power Systems Communications \u2014 IEEE Adoption of Smart Energy Profile 2.0 Application Protocol Standard Inverter A machine, device, or system that changes direct -current power to alternating -current power. ISO Independent System Operator ISO International Standards Organization Local EPS An EPS contained entirely within a single premises or group of premises. OIR Order Instituting Rulemaking P Real power (measured in watts) PCC Point of Common Coupling, the point where a Local EPS is connected to an Area EPS. PF Power Factor (ratio between real power and apparent power), expressed as W/VA or as cos \u03c6, the phase angle between the current and the voltage) Q Reactive power (me asured in volt -ampere reactive or VArs) REP Retail Energy Provider RTO Regional Transmission Organization SIWG Smart Inverter Working Group UL Underwriters Laboratory VAr or var Volt-ampere reactive SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 22\n\nB. Appendix B: Smart Inverter Working Group Participants The following list includes all participants in the Smart Inverter Working Group through February 2015. Table 4: List of SIWG Participants Company Full Name ABB Jaspreet Singh ABB Roger White ABB Ronnie Pettersson Advanced Energy Travis Bizjack AE Solar Energy Verena Sheldon AEI Alvaro Zanon AEI Christopher Heinzer AEI John Foster AEI Michael Mills -Price AEI (Advanced Energy Inverters) Bill Randle American Solar Direct Paolo Guggia Apparent Inc Jacqueline Desouza Apparent Inc Stefan Matan APS David Narang APS Jimi Diaz APS Marques Montes APS America Ryan Simpson Aspen Ashley Spaulding Aspen Katie Elder ASU Faraz Ebneali Balch Leonard Tillman Black & Veatch Dan Wilson Black & Veatch E.A. Sutton Bloom Energy Carl Cottuli Bloom Energy Prasad PMSVVSV Bloom Energy Rajesh Gopinath Bonfiglioli Davide Grandi Bonfiglioli Elie Nasr Bonfiglioli Matthew Charles Bonfiglioli Robert Lenke Bonfiglioli Sven Kollbach Bosch Ian Tilford California Energy Commission Cassandra Ayala California Energy Commission Gabriel Taylor California Energy Commission John Mathias California Energy Commission Linda Kelly SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 23",
+      "estimated_evidence_tokens": 384,
+      "estimated_embedding_tokens": 406,
+      "citation": {
+        "pdf_page_start": 26,
+        "pdf_page_end": 27,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0024",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0026",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0026",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 26,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p028:b0155",
+        "siwg_phase2_recommendations_pdf:p029:b0156"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "4.2 Privacy Requirements"
+      ],
+      "evidence_text": "Company Full Name California Energy Commission Matt Coldwell California Energy Commission Rachel MacDonald California Independent System Operator Dennis Peters California Independent System Operator John Blatchford California Public Utilities Commission Adam Langton California Public Utilities Commission Aloke Gupta California Public Utilities Commission Anthony Mazy California Public Utilities Commission Charles Mee California Public Utilities Commission Connie Chen California Public Utilities Commission Eric Martinot California Public Utilities Commission Jamie Ormond California Public Utilities Commission Keith White California Public Utilities Commission Marc Monbouquette California Public Utilities Commission Noel Crisotomo California Public Utilities Commission Rachel Peterson California Public Utilities Commission Radu Ciupagea California Public Utilities Commission Ryan Yamamoto California Public Utilities Commission Thomas Roberts California Public Utilities Commission Valerie Kao California Public Utilities Commission Wendy Al -Mukdad CASEIA Brad Heavner Clean Coalition Bob O'Hagan Clean Coalition Sahm White Clean Power Finance David Inda Clean Power Finance Greg Sellers CODA Energy Milissa Marona Consultant John Nunneley Consultant Michael Sheehan Department of Energy Alvin Razon Department of Energy Guohui Yuan Eaton Derek Pearson Electric Power Research Institute Brian Seal Electric Power Research Institute Lindsey Rogers Empower Micro Systems Jon Bonanno Empower Micro Systems Mika Nuotio Empower Micro Systems Inc. Regan Arndt Enecsys Aaron Jungrieis Enecsys Jim Miller Enecsys Steve Deffley EnerNex Grant Gilchrist Enphase Energy Chris Eich Enphase Energy Daniel Lewis SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 24\n\nCompany Full Name Enphase Energy John Berdner Enphase Energy Ken Laudel Enphase Energy Mark Baldassari Enphase Energy Vladimir Bronstein Federal Energy Regulatory Commission Ray Palmer Five Star International Mark Osborn Fronius Brian Lydic General Electric Bebic General Microgrids Terry Mohn Grid Cloud Systems Inc. John Gillerman Gridco Systems Darrell Furlong Gridco Systems Jeff Lo Gridco Systems Jim Simonelli GSD Energy Consultants Paul Duncan Hamon Engineering, Inc Marvin Hamon Hawaii Public Utilities Commission David C. Parsons Hawaiian Electric Company, Inc. Demy Bucaneg Imperial Irrigation District Enrique De Leon Imperial Irrigation District Guadelupe Ontiveros Imperial Irrigation District Javier Meza Individual (energy storage focus) Gary Sorkin IoT Connected Industries & Energy Practice Faramarz Maghsoodlou, Ph.D. Itron, Inc. George Simons Itron, Inc. Joe Ballif Itron, Inc. William Marin Kaco Energy Bill Reaugh Kaco Energy D Devir LADWP Fernado Pardo LADWP Matt Hone LLC, Power Innovation Consultants Russ Neal Loggerware Bob Fox Matzinger -Keegan Josh Barklow, PE Minnesota Department of Commerce Lise Trudeau Minnesota Department of Commerce Stacy Miller MIS Labs James W. Romlein Sr. PE National Grid Babak Enayati National Grid James Cleary National Institute of Standards and Technology Allen Hefner National Renewable Energy Laboratory James Cale National Renewable Energy Laboratory Michael Coddington National Renewable Energy Laboratory Sudipta Chakraborty National Renewable Energy Laboratory Thomas Basso SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 25",
+      "evidence_text_sha256": "sha256:61dd1385d05c9e2a769d6bbcb3793c18d638f45ef7446f9a377e618722e4f171",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.2 Privacy Requirements\n\nCompany Full Name California Energy Commission Matt Coldwell California Energy Commission Rachel MacDonald California Independent System Operator Dennis Peters California Independent System Operator John Blatchford California Public Utilities Commission Adam Langton California Public Utilities Commission Aloke Gupta California Public Utilities Commission Anthony Mazy California Public Utilities Commission Charles Mee California Public Utilities Commission Connie Chen California Public Utilities Commission Eric Martinot California Public Utilities Commission Jamie Ormond California Public Utilities Commission Keith White California Public Utilities Commission Marc Monbouquette California Public Utilities Commission Noel Crisotomo California Public Utilities Commission Rachel Peterson California Public Utilities Commission Radu Ciupagea California Public Utilities Commission Ryan Yamamoto California Public Utilities Commission Thomas Roberts California Public Utilities Commission Valerie Kao California Public Utilities Commission Wendy Al -Mukdad CASEIA Brad Heavner Clean Coalition Bob O'Hagan Clean Coalition Sahm White Clean Power Finance David Inda Clean Power Finance Greg Sellers CODA Energy Milissa Marona Consultant John Nunneley Consultant Michael Sheehan Department of Energy Alvin Razon Department of Energy Guohui Yuan Eaton Derek Pearson Electric Power Research Institute Brian Seal Electric Power Research Institute Lindsey Rogers Empower Micro Systems Jon Bonanno Empower Micro Systems Mika Nuotio Empower Micro Systems Inc. Regan Arndt Enecsys Aaron Jungrieis Enecsys Jim Miller Enecsys Steve Deffley EnerNex Grant Gilchrist Enphase Energy Chris Eich Enphase Energy Daniel Lewis SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 24\n\nCompany Full Name Enphase Energy John Berdner Enphase Energy Ken Laudel Enphase Energy Mark Baldassari Enphase Energy Vladimir Bronstein Federal Energy Regulatory Commission Ray Palmer Five Star International Mark Osborn Fronius Brian Lydic General Electric Bebic General Microgrids Terry Mohn Grid Cloud Systems Inc. John Gillerman Gridco Systems Darrell Furlong Gridco Systems Jeff Lo Gridco Systems Jim Simonelli GSD Energy Consultants Paul Duncan Hamon Engineering, Inc Marvin Hamon Hawaii Public Utilities Commission David C. Parsons Hawaiian Electric Company, Inc. Demy Bucaneg Imperial Irrigation District Enrique De Leon Imperial Irrigation District Guadelupe Ontiveros Imperial Irrigation District Javier Meza Individual (energy storage focus) Gary Sorkin IoT Connected Industries & Energy Practice Faramarz Maghsoodlou, Ph.D. Itron, Inc. George Simons Itron, Inc. Joe Ballif Itron, Inc. William Marin Kaco Energy Bill Reaugh Kaco Energy D Devir LADWP Fernado Pardo LADWP Matt Hone LLC, Power Innovation Consultants Russ Neal Loggerware Bob Fox Matzinger -Keegan Josh Barklow, PE Minnesota Department of Commerce Lise Trudeau Minnesota Department of Commerce Stacy Miller MIS Labs James W. Romlein Sr. PE National Grid Babak Enayati National Grid James Cleary National Institute of Standards and Technology Allen Hefner National Renewable Energy Laboratory James Cale National Renewable Energy Laboratory Michael Coddington National Renewable Energy Laboratory Sudipta Chakraborty National Renewable Energy Laboratory Thomas Basso SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 25",
+      "estimated_evidence_tokens": 471,
+      "estimated_embedding_tokens": 493,
+      "citation": {
+        "pdf_page_start": 28,
+        "pdf_page_end": 29,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0025",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0027",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0027",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 27,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p030:b0157",
+        "siwg_phase2_recommendations_pdf:p031:b0158"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "4.2 Privacy Requirements"
+      ],
+      "evidence_text": "Company Full Name Navy Paul McDaniel Navy Vern Novstrup New England Independent System Operator John Black New York Dept. of Public Service Jason Pause Nordex Michael Edds Northern California Power Agency Jonathan Changus Northern Plains Power Michael Ropp NRG West Brian Theaker Office of Rate Payer Advocates Jose Aliaga -Caro Outback Power John Ummel Outback Power Phil Undercuffler Pacific Gas and Electric Art Anderson Pacific Gas and Electric Caitlin Henig Pacific Gas and Electric Chase Sun Pacific Gas and Electric Dewey Day Pacific Gas and Electric Jason Yan Pacific Gas and Electric Phuoc Tran Pacific Gas and Electric Stacy Walter PacificCorp Dennis Hansen PacificCorp Rohit Nair PG&E Natsu Cardenas, M PJM Bhavana Keshavamurthy PJM John Baranowski PJM Ken Schuyler PNG Joe Barra PowerHub Systems Glenn Skutt Princeton Power Darren Hammell Princeton Power Ken McCauley Princeton Power Martin Becker PsomasFMG Scott Harris Researcher Jonathan Kobayashi Researcher - California Smart Grid Center at CSU Sacramento Mohammad Vaziri, Ph.D., P.E Sacramento Municipal Utilities District Dave Brown Sacramento Municipal Utilities District Mark Rawson Sacramento Municipal Utilities District Obadiah Bartholomy Sacramento Municipal Utilities District TJ Vargas Salt River Project Catherine O\u2019Brien San Diego Gas & Electric Bill Cook San Diego Gas & Electric Brian Proctor San Diego Gas & Electric Chris Vera San Diego Gas & Electric David Weber SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 26\n\nCompany Full Name San Diego Gas & Electric Dean Kinports San Diego Gas & Electric Ellis Jones San Diego Gas & Electric Frank Goodman San Diego Gas & Electric Greg Smith San Diego Gas & Electric John Baranowski San Diego Gas & Electric Jonathan Newlander San Diego Gas & Electric Mike Turner San Diego Gas & Electric Ronald Simmons San Diego Gas & Electric Tom Bialek San Diego Gas and Electric Kahveh Atef Sandia National Laboratory Jay Johnson Sandia National Labs Sig Gonzalez SatCon Technology Leo Casey Schneider Electric Ben Baczenas Schneider Electric Taylor Hollis Siemens Industry, Inc. Prashanth Duvoor SMA Bernhard Ernst SMA Brett Henning SMA Joshua Hickman SMA America, LLC Emily Hwang SMA Global SE -Asia & N -America Christian Tschendel SmartSense Inc. Aaron Gregory SoCore Energy Frank Bergh Solar Bridge Technologies Kelly Mekechuk Solar Bridge Technologies Miles Bintz Solar Bridge Technologies Jonathan Ehlmann Solar City Alex Mayer Solar City Eric Carlson Solar City Jon Fiorelli Solar City Justin Chebahtah Solar City Ryan Hanley Solar Edge Technologies Dru Sutton Solectria Aegir Jonsson Solectria Soonwook Hong Solren Michael Zuercher -Martinson Solren Samer Arafa Southern California Edison Araya Gebeyehu Southern California Edison Jeff Gooding Southern California Edison Kathryn Enright Southern California Edison Matt Dwyer Southern California Edison Ricardo Montano Southern California Edison Richard Bravo SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 27",
+      "evidence_text_sha256": "sha256:ad7b57a77174fbe1bcdfc0b79114ab2619837fc24e656999eafc3dbad4e04161",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.2 Privacy Requirements\n\nCompany Full Name Navy Paul McDaniel Navy Vern Novstrup New England Independent System Operator John Black New York Dept. of Public Service Jason Pause Nordex Michael Edds Northern California Power Agency Jonathan Changus Northern Plains Power Michael Ropp NRG West Brian Theaker Office of Rate Payer Advocates Jose Aliaga -Caro Outback Power John Ummel Outback Power Phil Undercuffler Pacific Gas and Electric Art Anderson Pacific Gas and Electric Caitlin Henig Pacific Gas and Electric Chase Sun Pacific Gas and Electric Dewey Day Pacific Gas and Electric Jason Yan Pacific Gas and Electric Phuoc Tran Pacific Gas and Electric Stacy Walter PacificCorp Dennis Hansen PacificCorp Rohit Nair PG&E Natsu Cardenas, M PJM Bhavana Keshavamurthy PJM John Baranowski PJM Ken Schuyler PNG Joe Barra PowerHub Systems Glenn Skutt Princeton Power Darren Hammell Princeton Power Ken McCauley Princeton Power Martin Becker PsomasFMG Scott Harris Researcher Jonathan Kobayashi Researcher - California Smart Grid Center at CSU Sacramento Mohammad Vaziri, Ph.D., P.E Sacramento Municipal Utilities District Dave Brown Sacramento Municipal Utilities District Mark Rawson Sacramento Municipal Utilities District Obadiah Bartholomy Sacramento Municipal Utilities District TJ Vargas Salt River Project Catherine O\u2019Brien San Diego Gas & Electric Bill Cook San Diego Gas & Electric Brian Proctor San Diego Gas & Electric Chris Vera San Diego Gas & Electric David Weber SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 26\n\nCompany Full Name San Diego Gas & Electric Dean Kinports San Diego Gas & Electric Ellis Jones San Diego Gas & Electric Frank Goodman San Diego Gas & Electric Greg Smith San Diego Gas & Electric John Baranowski San Diego Gas & Electric Jonathan Newlander San Diego Gas & Electric Mike Turner San Diego Gas & Electric Ronald Simmons San Diego Gas & Electric Tom Bialek San Diego Gas and Electric Kahveh Atef Sandia National Laboratory Jay Johnson Sandia National Labs Sig Gonzalez SatCon Technology Leo Casey Schneider Electric Ben Baczenas Schneider Electric Taylor Hollis Siemens Industry, Inc. Prashanth Duvoor SMA Bernhard Ernst SMA Brett Henning SMA Joshua Hickman SMA America, LLC Emily Hwang SMA Global SE -Asia & N -America Christian Tschendel SmartSense Inc. Aaron Gregory SoCore Energy Frank Bergh Solar Bridge Technologies Kelly Mekechuk Solar Bridge Technologies Miles Bintz Solar Bridge Technologies Jonathan Ehlmann Solar City Alex Mayer Solar City Eric Carlson Solar City Jon Fiorelli Solar City Justin Chebahtah Solar City Ryan Hanley Solar Edge Technologies Dru Sutton Solectria Aegir Jonsson Solectria Soonwook Hong Solren Michael Zuercher -Martinson Solren Samer Arafa Southern California Edison Araya Gebeyehu Southern California Edison Jeff Gooding Southern California Edison Kathryn Enright Southern California Edison Matt Dwyer Southern California Edison Ricardo Montano Southern California Edison Richard Bravo SIWG Rule 21 Phase 2 Recommendations for the CPUC Page 27",
+      "estimated_evidence_tokens": 469,
+      "estimated_embedding_tokens": 491,
+      "citation": {
+        "pdf_page_start": 30,
+        "pdf_page_end": 31,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0026",
+      "next_chunk_id": "siwg_phase2_recommendations_pdf:c0028",
+      "chunking_flags": []
+    },
+    {
+      "chunk_id": "siwg_phase2_recommendations_pdf:c0028",
+      "schema_version": "1.0",
+      "document_id": "siwg_phase2_recommendations_pdf",
+      "source_id": "siwg_phase2_recommendations_pdf",
+      "source_hash": "sha256:ec3b415d5aed8a8ab50f18be5eb2f001079c9527eb3be90e89cafb872e2d86d5",
+      "chunk_ordinal": 28,
+      "block_ids": [
+        "siwg_phase2_recommendations_pdf:p032:b0159",
+        "siwg_phase2_recommendations_pdf:p032:b0160"
+      ],
+      "block_types": [
+        "paragraph",
+        "paragraph"
+      ],
+      "heading_path": [
+        "4.2 Privacy Requirements"
+      ],
+      "evidence_text": "Company Full Name Southern California Edison Roger Salas Southern California Edison Steven Robles P.E. Sparq Systems Ali Khajehoddin Sparq Systems Joe Drobrnik Sparq Systems Randy MacEwen SRA Joseph McCabe Sun Edison Curtis Seymour Sunspec Alliance Tom Tansy Turlock Irrigation District Ken Nold Turlock Irrigation District Wes Monier T\u00dcV Rheinland Group Matthias Heinze T\u00dcV Rheinland Group Zhiwang Zhu T\u00dcV Rheinland of North America, Inc. Gary Sorkin UCLA EK Lee Underwriters Laboratories Timothy Zgonena Underwriters Laboratories Tony Dorta University California Los Angeles Rajit Gadh Varentec, Inc. Andrew Dillon Varentec, Inc. Dr. Deepak Divan Varentec, Inc. Rohit Moghe Western University, Ontario Canada Rajiv K. Varma, Ph.D Winston Matthew Narensky Xanthus Consulting International Frances Cleveland Zenergy Studios Kristen Nicole\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 28",
+      "evidence_text_sha256": "sha256:231e4dce88fbfbd54814ab0809459a262fe72737e0e8c8d2679c5303bbb74752",
+      "embedding_text": "title: Smart Inverter Working Group Phase 2 Recommendations (PDF) | text: Section: 4.2 Privacy Requirements\n\nCompany Full Name Southern California Edison Roger Salas Southern California Edison Steven Robles P.E. Sparq Systems Ali Khajehoddin Sparq Systems Joe Drobrnik Sparq Systems Randy MacEwen SRA Joseph McCabe Sun Edison Curtis Seymour Sunspec Alliance Tom Tansy Turlock Irrigation District Ken Nold Turlock Irrigation District Wes Monier T\u00dcV Rheinland Group Matthias Heinze T\u00dcV Rheinland Group Zhiwang Zhu T\u00dcV Rheinland of North America, Inc. Gary Sorkin UCLA EK Lee Underwriters Laboratories Timothy Zgonena Underwriters Laboratories Tony Dorta University California Los Angeles Rajit Gadh Varentec, Inc. Andrew Dillon Varentec, Inc. Dr. Deepak Divan Varentec, Inc. Rohit Moghe Western University, Ontario Canada Rajiv K. Varma, Ph.D Winston Matthew Narensky Xanthus Consulting International Frances Cleveland Zenergy Studios Kristen Nicole\n\nSIWG Rule 21 Phase 2 Recommendations for the CPUC Page 28",
+      "estimated_evidence_tokens": 143,
+      "estimated_embedding_tokens": 165,
+      "citation": {
+        "pdf_page_start": 32,
+        "pdf_page_end": 32,
+        "printed_page_start": null,
+        "printed_page_end": null,
+        "section_ids": [
+          "4.2"
+        ]
+      },
+      "source_policy": {
+        "authority_tier": "historical_draft",
+        "retrieval_tier": "historical_only",
+        "currency_status": "historical"
+      },
+      "previous_chunk_id": "siwg_phase2_recommendations_pdf:c0027",
+      "next_chunk_id": null,
+      "chunking_flags": []
+    }
+  ],
+  "chunking_summary": {
+    "input_blocks": 160,
+    "output_chunks": 28,
+    "historical_only": true,
+    "chunks_over_hard_limit": 0
+  }
+}
