@@ -2,14 +2,14 @@
 
 ## Corpus overview
 
-**Market:** California, United States
-**Regulator:** California Public Utilities Commission (CPUC)
-**Primary utility:** Southern California Edison (SCE)
-**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification
-**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype
-**Total sources:** 6 public documents: 5 PDF and 1 HTML
-**Total chunks:** 1,049 searchable chunks (2026-08-23)
-**Embeddings:** 1,049 Nomic vectors (768-dim)
+**Market:** California, United States  
+**Regulator:** California Public Utilities Commission (CPUC)  
+**Primary utility:** Southern California Edison (SCE)  
+**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification  
+**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype  
+**Total sources:** 6 public documents: 5 PDF and 1 HTML  
+**Total chunks:** 1,049 searchable chunks (2026-08-23)  
+**Embeddings:** 1,049 Nomic vectors (768-dim)  
 
 ---
 
@@ -34,7 +34,7 @@ data/processed/embeddings/
 → 1,049 Nomic embeddings (768-dim vectors)
 
 data/evaluation/
-→ 100 retrieval benchmarking queries, 1,500 evaluation results
+→ 100 retrieval benchmarking queries, 8,100 evaluation results (v2), plus rewrite variants
 ```
 
 ### Raw corpus files
@@ -143,11 +143,15 @@ Evaluation artifacts in `data/evaluation/` are intentionally tracked.
 
 They support reproducible retrieval benchmarking without requiring database access or API credentials.
 
-**Tier 1: Retrieval benchmarking**
+**Tier 1: Retrieval benchmarking (v1 and v2)**
 
 - `queries.jsonl`: 100 LLM-generated queries (Gemini 3.5-flash-lite, 2026-08-23)
-- `evaluation_results.jsonl`: 1,500 retrieval results (100 queries × 3 retrievers × 5 weightings)
-- `evaluation_summary.json`: Aggregated metrics (nDCG@10, MRR, Recall@10)
+- `evaluation_results.jsonl`:
+  - v1: 1,500 retrieval results (100 queries × 3 retrievers × 5 weightings)
+  - v2: 8,100 retrieval results (multiple retrievers × alphas × weightings, including reranking)
+- `evaluation_summary.json`: Aggregated metrics (nDCG@10, MRR, Recall@10, composite score)
+- `query_rewrites.jsonl`: Cached query-rewrite variants (original, hyde, expanded, hyde_expanded)
+- `query_rewrite_results.jsonl`: Rewrite evaluation results (technique × retriever × weighting)
 
 **Tier 2: RAG quality evaluation** (pending)
 
@@ -368,27 +372,66 @@ Interpretation rules:
 
 ## Retrieval evaluation summary
 
-**Evaluation completed:** 2026-08-23
+### v1 evaluation (2026-08-23)
 
-**Queries:** 100 LLM-generated (Gemini 3.5-flash-lite)
-**Chunks:** 1,049
-**Embeddings:** 1,049 (Nomic nomic-embed-text-v1.5, 768-dim)
-**Results:** 1,500 (3 retrievers × 5 weightings)
+**Queries:** 100 LLM-generated (Gemini 3.5-flash-lite)  
+**Chunks:** 1,049  
+**Embeddings:** 1,049 (Nomic nomic-embed-text-v1.5, 768-dim)  
+**Results:** 1,500 (3 retrievers × 5 weightings)  
 
-**Selected configuration:** Vector retrieval with equal weighting
+**Selected configuration (v1):** Vector retrieval with equal weighting
 
-| Retriever | nDCG@10 | MRR | Recall@10 |
-|---|---:|---:|---:|
-| Vector (equal) | 0.826 | 0.893 | 0.594 |
-| Hybrid (equal) | 0.777 | 0.903 | 0.613 |
-| BM25 (equal) | 0.745 | 0.815 | 0.563 |
+| Retriever | Weighting | nDCG@10 | MRR | Recall@10 |
+|---|---|---:|---:|---:|
+| Vector | Equal | 0.826 | 0.893 | 0.594 |
+| Hybrid | Equal | 0.777 | 0.903 | 0.613 |
+| BM25 | Equal | 0.745 | 0.815 | 0.563 |
 
-**Key findings:**
+**Key findings (v1):**
 
-- Vector retrieval outperforms hybrid and BM25 on nDCG@10
-- Hybrid has best MRR (better at getting #1 result right)
-- Weighting scheme has modest impact (4% range for vector)
-- Equal weighting performs best for vector retrieval
+- Vector retrieval outperforms hybrid and BM25 on nDCG@10.
+- Hybrid has best MRR (better at getting #1 result right).
+- Weighting scheme has modest impact (4% range for vector).
+- Equal weighting performs best for vector retrieval.
+
+### v2 evaluation (2026-08-23, extended with reranking and composite score)
+
+**Queries:** 100  
+**Chunks:** 1,049  
+**Embeddings:** 1,049  
+**Results:** 8,100 retrieval records (multiple retrievers × alphas × weightings, including reranking)  
+
+**Top configurations by composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall):**
+
+| Rank | Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---|---:|---:|---:|---:|
+| 1 | hybrid_rerank__equal | 0.95080 | 0.95361 | 1.00000 | 0.96148 |
+| 2 | hybrid_rerank__authority_heavy | 0.95074 | 0.95361 | 1.00000 | 0.96145 |
+| 3 | hybrid_rerank__source_heavy | 0.95021 | 0.95361 | 1.00000 | 0.96119 |
+| 4 | vector_rerank__equal | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 5 | vector_rerank__authority_heavy | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 6 | vector_rerank__source_heavy | 0.94412 | 0.93750 | 0.99000 | 0.95131 |
+
+**Non-reranked top configurations (for comparison):**
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| vector__equal | 0.75740 | 0.89293 | 0.33081 | 0.71274 |
+| hybrid__equal | 0.70484 | 0.88124 | 0.32452 | 0.68170 |
+| bm25__equal | 0.64293 | 0.81559 | 0.30105 | 0.62635 |
+
+**Key findings (v2):**
+
+- Reranking dominates: best reranked nDCG@10 ≈ 0.951 vs best non-reranked ≈ 0.757.
+- Recall@10 jumps from ~0.33–0.61 (non-reranked) to 0.95–1.00 (reranked).
+- Among reranked configs, weighting has tiny effects (4th–5th decimal); equal weighting has a slight edge on composite.
+- Hybrid + rerank slightly edges vector + rerank on composite (0.96148 vs 0.95196).
+- Alpha (0.3–0.7) has modest impact relative to reranking; α = 0.5 chosen as default.
+- RRF k sweep (k ∈ {1, 20, 60, 100}) is planned to align with course experiments.
+
+**Selected configuration (v2):** Hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1).
+
+**Reference:** Full configuration rationale and decision record are in `docs/decisions.md` #11 (Embedding and retrieval evaluation v2), which supersedes #09.
 
 See `docs/evaluation-notes.md` for full details.
 
@@ -405,3 +448,4 @@ Potential additions for later versions:
 - Other markets, including ERCOT, NYISO, and AEMO, for cross-market comparison.
 - Tier 2 RAG evaluation queries (5-10 open-ended questions with stronger model).
 - Manual answer quality scores for Tier 2 evaluation.
+- RRF k sweep results and any refinements to hybrid fusion configuration.

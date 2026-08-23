@@ -1,12 +1,9 @@
 # Project log
 
-
 ## 2026-08-21 - California Rule 21 corpus selection and ingestion
-
 
 ### Goal
 Establish a minimal, public, source-provenanced corpus for DER interconnection research in the California Rule 21 / SCE context, and build a reproducible ingestion pipeline that handles blocked or unreliable downloads.
-
 
 ### What I did
 - Selected six core public sources from CPUC and SCE:
@@ -29,13 +26,11 @@ Establish a minimal, public, source-provenanced corpus for DER interconnection r
   - Extraction manifest with success, failure, and skipped categories
 - Manually replaced the SCE Interconnection Handbook after automated download was blocked and marked it approved in metadata.
 
-
 ### What I learned
 - SCE's handbook URL (`https://on.sce.com/InterconnectionHandbook`) is sensitive to repeated automated requests and can return HTML/SharePoint responses instead of PDF.
 - A simplified request (browser User-Agent only, no explicit Accept header, default redirect handling) matches the original working downloader behaviour and can recover PDFs when a more complex request fails.
 - Manual replacement with explicit metadata approval is a practical fallback when a source is intermittently blocked.
 - Keeping all latest downloaded files in one `data/corpus/` directory, with metadata controlling trust and eligibility, is simpler than splitting into multiple folders.
-
 
 ### Decision made
 - Use a two-tier download strategy: primary request with validation, then simplified-request fallback for PDFs that fail signature validation.
@@ -46,25 +41,20 @@ Establish a minimal, public, source-provenanced corpus for DER interconnection r
   - Manual review status and reviewer identity
 - Only extract sources with `eligible_for_extraction = true`.
 
-
 ### Problems
 - Initial attempts to add SharePoint URL parsing and alternate candidate downloads complicated the acquisition logic and broke the working behaviour.
 - Repeated automated requests to the handbook URL triggered what appears to be a temporary block, requiring manual replacement.
 - Documentation had not been written alongside development, making it harder to recall exact design choices.
-
 
 ### Next step
 - Write project documentation: `docs/project-log.md`, `docs/decisions.md`, `docs/dataset-notes.md`, `docs/evaluation-notes.md`, and `docs/runbook.md`.
 - Update `README.md` to reflect implemented behaviour rather than planned features.
 - Review raw extraction output quality before implementing chunking, retrieval, or database stages.
 
-
 ## 2026-08-22 - Raw extraction metadata and evidence normalisation
-
 
 ### Goal
 Create a deterministic, reviewable evidence-normalisation stage between raw extraction and future chunking, embedding, retrieval, and answer-generation stages.
-
 
 ### What I did
 - Updated `src/ingestion/extract_raw_content.py` to add:
@@ -92,7 +82,6 @@ Create a deterministic, reviewable evidence-normalisation stage between raw extr
   - Appendix B hierarchy reset
 - Generated normalised outputs and quality reports for all six corpus sources.
 
-
 ### What I learned
 - Raw extraction and evidence normalisation should be separate stages:
   - Raw extraction preserves source evidence and reproducibility
@@ -107,7 +96,6 @@ Create a deterministic, reviewable evidence-normalisation stage between raw extr
 - A generic PDF parser is insufficient for all source types without source-specific rules and regression tests.
 - Some `pypdf` layout artefacts remain in extracted evidence text, such as spaces inside words. These should not be automatically repaired in citation-grade evidence text.
 - Quality reports are useful for distinguishing hard failures from accepted review limitations.
-
 
 ### Decision made
 - Preserve `data/processed/extracted/` as immutable, page-preserving raw extraction artifacts.
@@ -124,14 +112,12 @@ Create a deterministic, reviewable evidence-normalisation stage between raw extr
 - Keep the SIWG Phase 2 Recommendations source as historical/draft context, excluded from normal current-requirement retrieval.
 - Accept limited `no_detected_heading_path` review flags in supporting testing-instruction content and historical SIWG material where page-level provenance remains available.
 
-
 ### Problems
 - The first generic tariff parser incorrectly classified all Roman-numeral entries as headings.
 - Initial tariff metadata regexes captured trailing hyphens instead of full values such as `4963-E` and `85469-E`.
 - Appendix B initially inherited the preceding Section O hierarchy rather than resetting to its own top-level structure.
 - The handbook normaliser initially retained a non-substantive `Requirement | Page 1` page-header block.
 - Supporting testing-instruction and historical SIWG front matter still has limited heading-path coverage.
-
 
 ### Next step
 - Update project documentation to describe the raw-extraction and normalisation boundary.
@@ -187,9 +173,7 @@ Transform normalised evidence blocks into searchable chunks while preserving cit
 - Generate evaluation queries
 - Compare BM25, vector, and hybrid retrieval
 
----
-
-## 2026-08-23 - Embedding and retrieval evaluation
+## 2026-08-23 - Embedding and retrieval evaluation (initial)
 
 ### Goal
 Evaluate retrieval approaches (BM25, vector, hybrid) with multiple metadata weighting schemes.
@@ -199,7 +183,7 @@ Evaluate retrieval approaches (BM25, vector, hybrid) with multiple metadata weig
   - 768-dimensional vectors
   - `search_document:` prefix on embedding text
   - Batched inference with retry logic
-- Generated 100 synthetic queries with Gemini 3.5-flash-lite:
+- Generated 100 synthetic queries with Gemini 2.5 Flash Lite:
   - LLM-generated from sampled chunks
   - Query types: product_capability, market_analysis, evidence_governance, technical_deep_dive, broad_research
   - Gold metadata preserved for each query
@@ -232,8 +216,6 @@ Evaluate retrieval approaches (BM25, vector, hybrid) with multiple metadata weig
 - Load chunks into PostgreSQL/pgvector
 - Build production retrieval layer
 - Add RAG generation with Gemini
-
----
 
 ## 2026-08-23 - Production database and retrieval
 
@@ -280,3 +262,65 @@ Build production-ready RAG infrastructure with PostgreSQL/pgvector.
 - Add reranking (cross-encoder)
 - Add query rewriting
 - Build API or Streamlit interface
+
+## 2026-08-23 - Comprehensive retrieval evaluation with reranking and query rewrites
+
+### Goal
+Run a thorough, methodologically consistent evaluation of retrieval strategies, including:
+- Multiple retrievers (BM25, vector, hybrid, hybrid+r erank, vector+r erank)
+- Multiple metadata weighting schemes
+- Multiple hybrid alpha values
+- Query rewrite techniques (original, HyDE, expansion, combined)
+- Composite scoring to select a single recommended configuration
+
+### What I did
+- Extended `src/evaluation/evaluate_retrieval.py` to:
+  - Evaluate all combinations of:
+    - 5 retrievers: `bm25`, `vector`, `hybrid`, `hybrid_rerank`, `vector_rerank`
+    - 5 weightings: `equal`, `authority_heavy`, `page_heavy`, `section_heavy`, `source_heavy`
+    - 3 alphas: 0.3, 0.5, 0.7 (for hybrid)
+  - Use BAAI/bge-reranker-base for reranking top-50 candidates to 10
+  - Checkpoint results at `(query_id, alpha, retriever, weighting)` granularity for resumable runs
+  - Add `--mode rewrites-full` to evaluate query rewrites across all retrievers and weightings
+- Generated 8,100 evaluation records:
+  - 100 queries × 3 alphas × 5 retrievers × 5 weightings = 7,500 retrieval rows
+  - Plus rewrite variants (4 techniques × 4 retrievers × 5 weightings × 100 queries = 8,000 additional rows in a separate file)
+- Updated `src/evaluation/summarise_evaluation.py` to:
+  - Compute composite score: `0.5 * nDCG@10 + 0.3 * MRR + 0.2 * Recall@10`
+  - Show ranked tables by each metric and by composite score
+  - Recommend a single configuration by composite score
+- Key findings:
+  - Reranking dominates: all top 6 configurations are `hybrid_rerank` or `vector_rerank`
+  - Best configuration: `hybrid_rerank__equal`
+    - nDCG@10: 0.95080
+    - MRR: 0.95361
+    - Recall@10: 1.00000
+    - Composite: 0.96148
+  - Other reranked weightings (`authority_heavy`, `source_heavy`) are within ~0.0003 on composite (effectively tied)
+  - Non-reranked methods are clearly behind (best composite ~0.713 for `vector__equal`)
+  - Query rewrites show small gains:
+    - All techniques (original, HyDE, expanded, combined) have nDCG@10 ~ 0.905–0.927
+    - Original query is already strong; rewrite gains are marginal
+
+### What I learned
+- Reranking provides the largest single improvement (nDCG@10 from ~0.75 to ~0.95)
+- Weighting scheme matters much less once you rerank
+- Hybrid + rerank slightly edges vector + rerank on composite score
+- Query rewrites are not worth the complexity for this corpus (original query is already near-optimal)
+- Fine-grained checkpointing (`query_id, alpha, retriever, weighting`) makes iterative evaluation practical
+
+### Decision made
+- Use `hybrid_rerank__equal` with alpha = 0.5 for production retrieval
+- Keep reranker settings: `candidate_limit=50`, `top_k=10`, `max_tokens=450`, `batch_size=16`
+- Do not use query rewrites in production (original query is sufficient)
+- Document evaluation as complete and methodologically consistent across retrievers, weightings, and alphas
+
+### Problems
+- Initial checkpointing was too coarse (`query_id, alpha` only), causing rerun issues when adding weightings
+- Fixed by tracking `(query_id, alpha, retriever, weighting)` tuples
+- Some reranked weightings appeared tied at 3 decimals; increased to 5 decimals to show small differences
+
+### Next step
+- Finalise documentation: `README.md`, `docs/decisions.md`, `docs/evaluation-notes.md`, `docs/runbook.md`
+- Optionally add RRF k sweep (e.g. k ∈ {1, 20, 60, 100}) in a future iteration
+- Build RAG generation pipeline with Gemini using the selected retrieval configuration

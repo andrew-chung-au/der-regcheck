@@ -2,9 +2,9 @@
 
 ## Overview
 
-This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run retrieval evaluation, and prepare for answer generation.
+This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run retrieval evaluation (Tier 1 v1 and v2), and prepare for answer generation.
 
-**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, and retrieval evaluation are implemented. Answer generation, RAG quality evaluation, monitoring, and interface stages are under development.
+**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, and extended retrieval evaluation (including reranking and composite scoring) are implemented. Answer generation, RAG quality evaluation (Tier 2), monitoring, and interface stages are under development.
 
 ---
 
@@ -211,23 +211,19 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 document = json.loads(
     Path("data/processed/normalised/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
-
 for page_number in (50, 100, 150, 233):
     print("\n" + "=" * 100)
     print(f"Physical PDF page {page_number}")
 
-
     for block in document["blocks"]:
         if block["citation"].get("pdf_page_start") != page_number:
             continue
-
 
         print("\nblock_type:", block["block_type"])
         print("text:", block["text"][:350])
@@ -254,18 +250,15 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 names = [
     "sce_interconnection_handbook_pdf",
     "sce_testing_certification_instruction_pdf",
     "siwg_phase2_recommendations_pdf",
 ]
 
-
 for name in names:
     path = Path(f"data/processed/normalised/{name}.json")
     document = json.loads(path.read_text(encoding="utf-8"))
-
 
     flagged = [
         block
@@ -273,11 +266,9 @@ for name in names:
         if "no_detected_heading_path" in block["normalisation_flags"]
     ]
 
-
     print("\n" + "=" * 100)
     print(name)
     print(f"Flagged blocks: {len(flagged)}")
-
 
     for block in flagged:
         print("\nblock_id:", block["block_id"])
@@ -344,17 +335,14 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 document = json.loads(
     Path("data/processed/chunks/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
-
 print(f"Total chunks: {len(document['chunks'])}")
 print(f"Oversized chunks: {sum(1 for c in document['chunks'] if c['oversized'])}")
-
 
 # Inspect a sample chunk
 chunk = document["chunks"]
@@ -415,7 +403,6 @@ data/processed/embeddings/embedding_manifest.json
 uv run python - <<'PY'
 import json
 from pathlib import Path
-
 
 # Load first 5 embeddings
 with open("data/processed/embeddings/embeddings.jsonl", "r") as f:
@@ -484,37 +471,34 @@ Loaded 1,049 embeddings into database
 ```bash
 uv run python - <<'PY'
 import psycopg2
-from psycopg2.extras import execute_values
-
 
 conn = psycopg2.connect(
     "postgresql://postgres:postgres@localhost:5432/der_regcheck"
 )
 cur = conn.cursor()
 
-
 # Count chunks
 cur.execute("SELECT COUNT(*) FROM chunks")
 print(f"Chunks: {cur.fetchone()}")
-
 
 # Count embeddings
 cur.execute("SELECT COUNT(*) FROM chunk_embeddings")
 print(f"Embeddings: {cur.fetchone()}")
 
+# Sample similarity search (dummy vector shown; replace with a real 768-dim query embedding)
+dummy_vector = [0.0] * 768
+vector_str = "[" + ",".join(str(x) for x in dummy_vector) + "]"
 
-# Sample similarity search
-cur.execute("""
+cur.execute(f"""
     SELECT chunk_id, source_id, 
-           1 - (embedding <=> '[0.1, 0.2, 0.3, ...]'::vector) AS similarity
+           1 - (embedding <=> '{vector_str}'::vector) AS similarity
     FROM chunk_embeddings
     ORDER BY similarity DESC
     LIMIT 5
 """)
-print("\nTop 5 similar chunks:")
+print("\nTop 5 similar chunks (dummy query):")
 for row in cur.fetchall():
-    print(f"  {row} ({row}): {row:.4f}")
-
+    print(f"  {row} | {row} | similarity: {row:.4f}")
 
 cur.close()
 conn.close()
@@ -523,12 +507,12 @@ PY
 
 ---
 
-## Run retrieval evaluation
+## Run retrieval evaluation (Tier 1)
 
 ### Generate evaluation queries
 
 ```bash
-uv run python src/evaluation/generate_queries.py \
+uv run python -m src.evaluation.generate_synthetic_queries \
   --chunks-dir data/processed/chunks \
   --output-file data/evaluation/queries.jsonl \
   --num-queries 100 \
@@ -539,54 +523,55 @@ Expected output:
 
 - 100 LLM-generated queries with gold chunk metadata.
 
-### Run retrieval evaluation
+### Run retrieval evaluation (v1-style: BM25, vector, hybrid; no rerank)
 
 ```bash
-uv run python src/evaluation/evaluate_retrieval.py \
-  --queries-file data/evaluation/queries.jsonl \
-  --output-file data/evaluation/evaluation_results.jsonl \
-  --retrievers bm25,vector,hybrid \
-  --weightings equal,source_heavy,section_heavy,page_heavy,authority_heavy
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --chunks-dir data/processed/chunks \
+  --output data/evaluation/evaluation_results_v1.jsonl \
+  --alphas "0.5" \
+  --rerank-weightings "equal" \
+  --rerank-only \
+  --overwrite
+```
+
+Then, if you want a pure v1-style set without reranking, you can restrict analysis to the non-reranked rows in the summary step, or run a separate evaluation script variant. The current unified script supports both v1 and v2 configurations; the key is how you interpret the results.
+
+### Run retrieval evaluation (v2: extended with reranking and multiple alphas)
+
+```bash
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --chunks-dir data/processed/chunks \
+  --output data/evaluation/evaluation_results.jsonl \
+  --alphas "0.3,0.5,0.7" \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
 ```
 
 Expected output:
 
-- 1,500 evaluation results (100 queries × 3 retrievers × 5 weightings).
-- Metrics: nDCG@10, MRR, Recall@10.
+- 8,100 retrieval records (multiple retrievers × alphas × weightings, including reranking).
+- Metrics: nDCG@10, MRR, Recall@10, and composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall).
 
 ### Review evaluation results
 
 ```bash
-uv run python - <<'PY'
-import json
-from pathlib import Path
-
-
-results = json.loads(
-    Path("data/evaluation/evaluation_summary.json").read_text(encoding="utf-8")
-)
-
-
-print("Retrieval evaluation results:")
-print("=" * 80)
-
-
-for retriever in ["vector", "hybrid", "bm25"]:
-    for weighting in ["equal"]:
-        key = f"{retriever}_{weighting}"
-        metrics = results[key]
-        print(f"\n{retriever.upper()} ({weighting}):")
-        print(f"  nDCG@10:  {metrics['ndcg_at_10']:.3f}")
-        print(f"  MRR:      {metrics['mrr']:.3f}")
-        print(f"  Recall@10: {metrics['recall_at_10']:.3f}")
-PY
+uv run python -m src.evaluation.summarise_evaluation \
+  --input data/evaluation/evaluation_results.jsonl \
+  --output data/evaluation/evaluation_summary.json \
+  --top-n 10 \
+  --decimals 5
 ```
 
-Expected results:
+Expected highlights (v2):
 
-- Vector (equal): nDCG@10 ≈ 0.826, MRR ≈ 0.893, Recall@10 ≈ 0.594
-- Hybrid (equal): nDCG@10 ≈ 0.777, MRR ≈ 0.903, Recall@10 ≈ 0.613
-- BM25 (equal): nDCG@10 ≈ 0.745, MRR ≈ 0.815, Recall@10 ≈ 0.563
+- Top configuration by composite: `hybrid_rerank__equal` (composite ≈ 0.96148).
+- Reranked configurations dominate non-reranked on all metrics.
+- Weighting differences among reranked configs are in the 4th–5th decimal.
+
+See `docs/evaluation-notes.md` and `docs/decisions.md` #11 for interpretation and the selected production configuration (hybrid + rerank, equal weighting, α = 0.5).
 
 ---
 
@@ -595,14 +580,14 @@ Expected results:
 ### Test production retrieval
 
 ```bash
-uv run python src/retrieval/retrieve.py \
+uv run python -m src.retrieval.retrieve \
   --query "What does SCE Rule 21 require for smart inverter reactive power?" \
   --top-k 5
 ```
 
 Expected output:
 
-- Top 5 retrieved chunks with metadata and citations.
+- Top 5 retrieved chunks with metadata and citations, using the production configuration (hybrid + rerank, equal weighting).
 
 ---
 
@@ -646,18 +631,20 @@ uv run python src/scripts/load_chunks_to_db.py \
   --chunks-dir data/processed/chunks \
   --embeddings-file data/processed/embeddings/embeddings.jsonl
 
-# 7. Re-run evaluation
+# 7. Re-run evaluation (v2: extended with reranking and multiple alphas)
 rm -rf data/evaluation/*
-uv run python src/evaluation/generate_queries.py \
+uv run python -m src.evaluation.generate_synthetic_queries \
   --chunks-dir data/processed/chunks \
   --output-file data/evaluation/queries.jsonl \
   --num-queries 100 \
   --model gemini-3.5-flash-lite
-uv run python src/evaluation/evaluate_retrieval.py \
-  --queries-file data/evaluation/queries.jsonl \
-  --output-file data/evaluation/evaluation_results.jsonl \
-  --retrievers bm25,vector,hybrid \
-  --weightings equal,source_heavy,section_heavy,page_heavy,authority_heavy
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --chunks-dir data/processed/chunks \
+  --output data/evaluation/evaluation_results.jsonl \
+  --alphas "0.3,0.5,0.7" \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
 ```
 
 ---
@@ -696,7 +683,7 @@ uv run streamlit run app/main.py
 *To be implemented:*
 
 ```bash
-uv run python src/generation/answer_question.py \
+uv run python -m src.generation.answer_question \
   --query "What are the communications requirements for DER in SCE?" \
   --top-k 10 \
   --model gemini-3.5-flash-lite
@@ -707,7 +694,7 @@ uv run python src/generation/answer_question.py \
 *To be implemented:*
 
 ```bash
-uv run python src/generation/generate_brief.py \
+uv run python -m src.generation.generate_brief \
   --request "Early market assessment for DER communications and control" \
   --top-k 15 \
   --model gemini-3.5-flash-lite
@@ -776,9 +763,10 @@ docker compose ps
 
 ### Retrieval evaluation produces unexpected metrics
 
-- Verify queries are diverse and well-formed: `cat data/evaluation/queries.jsonl | head`
+- Verify queries are diverse and well-formed: `head data/evaluation/queries.jsonl`
 - Check metadata matching logic in `src/evaluation/evaluate_retrieval.py`.
 - Confirm chunk metadata includes all required fields (source_id, section_ids, etc.).
+- Compare against `docs/evaluation-notes.md` and `docs/decisions.md` #11 to ensure you're interpreting v1 vs v2 results correctly.
 
 ---
 
@@ -789,9 +777,11 @@ docker compose ps
 - ✅ Preserve citation-grade evidence text separately from embedding-oriented context text. **Completed**
 - ✅ Add source authority, retrieval tier, currency, and applicability metadata to chunks. **Completed**
 - ✅ Implement PostgreSQL + pgvector knowledge base. **Completed**
-- ✅ Implement lexical, vector, hybrid retrieval and evaluation. **Completed**
+- ✅ Implement lexical, vector, hybrid retrieval and evaluation (v1). **Completed**
+- ✅ Extend evaluation to include reranking, multiple alphas, all weightings, and composite scoring (v2). **Completed**
 - ✅ Create a labelled retrieval evaluation set (100 queries). **Completed**
-- ⏳ Implement reranking and source-aware filtering. **Pending**
+- ⏳ Run RRF k sweep (k ∈ {1, 20, 60, 100}) to align with course experiments. **Pending**
+- ⏳ Implement source-aware filtering and tier-based retrieval constraints. **Pending**
 - ⏳ Implement grounded answer and preliminary market-entry evidence-brief generation. **Pending**
 - ⏳ Implement RAG quality evaluation (Tier 2) with 5-10 open-ended questions. **Pending**
 - ⏳ Implement a Streamlit interface, feedback capture, and monitoring. **Pending**

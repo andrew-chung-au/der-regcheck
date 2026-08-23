@@ -2,7 +2,7 @@
 
 > An evidence-first RAG prototype for DER interconnection and market-entry research.
 
-**Project status:** Ingestion, normalisation, chunking, embedding, database, and retrieval evaluation implemented. Answer generation, interface, and monitoring planned.
+**Project status:** Ingestion, normalisation, chunking, embedding, database, and extended retrieval evaluation (including reranking and composite scoring) implemented. Answer generation, interface, and monitoring planned.
 
 ---
 
@@ -86,7 +86,7 @@ Embedding generation (Nomic 768-dim vectors)
 PostgreSQL + pgvector knowledge base (1,049 chunks + embeddings)
             |
             v
-Lexical, vector, hybrid retrieval evaluation ✅
+Lexical, vector, hybrid, and reranked retrieval evaluation ✅
             |
             v
 Future grounded answer generation with citations
@@ -101,6 +101,7 @@ Future Streamlit interface, feedback capture, and monitoring
 - Chunking preserves document hierarchy and citation metadata
 - Embeddings use `search_document:` prefix for asymmetric retrieval
 - Database uses pgvector with IVFFlat index for fast similarity search
+- Evaluation includes reranking (cross-encoder) and composite scoring
 
 For implementation details, see [`docs/runbook.md`](docs/runbook.md).
 
@@ -108,32 +109,44 @@ For implementation details, see [`docs/runbook.md`](docs/runbook.md).
 
 ## Retrieval evaluation
 
-### Baseline comparison (2026-08-23)
+### Extended evaluation (v2, 2026-08-23)
 
 **Evaluation setup:**
 - **100 queries** (LLM-generated, Gemini 3.5-flash-lite)
 - **1,049 chunks** (structural chunking over normalised evidence)
 - **1,049 embeddings** (Nomic nomic-embed-text-v1.5, 768-dim)
-- **1,500 evaluation results** (3 retrievers × 5 weightings)
-- **Metrics:** nDCG@10, MRR, Recall@10
+- **8,100 evaluation records** (multiple retrievers × alphas × weightings, including reranking)
+- **Metrics:** nDCG@10, MRR, Recall@10, composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall)
 
-**Results:**
+**Top configurations by composite score:**
 
-| Retriever | Weighting | nDCG@10 | MRR | Recall@10 |
-|---|---|---:|---:|---:|
-| **Vector (selected)** | **Equal** | **0.826** | 0.893 | 0.594 |
-| Hybrid | Equal | 0.777 | 0.903 | 0.613 |
-| BM25 | Equal | 0.745 | 0.815 | 0.563 |
+| Rank | Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---|---:|---:|---:|---:|
+| 1 | **hybrid_rerank__equal** (selected) | **0.95080** | **0.95361** | **1.00000** | **0.96148** |
+| 2 | hybrid_rerank__authority_heavy | 0.95074 | 0.95361 | 1.00000 | 0.96145 |
+| 3 | hybrid_rerank__source_heavy | 0.95021 | 0.95361 | 1.00000 | 0.96119 |
+| 4 | vector_rerank__equal | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 5 | vector_rerank__authority_heavy | 0.94542 | 0.93750 | 0.99000 | 0.95196 |
+| 6 | vector_rerank__source_heavy | 0.94412 | 0.93750 | 0.99000 | 0.95131 |
 
-**Key findings:**
-- Vector retrieval outperforms hybrid and BM25 on nDCG@10
-- Hybrid has best MRR (better at getting #1 result right)
-- Weighting scheme has modest impact (4% range for vector)
-- Equal weighting performs best for vector retrieval
+**Non-reranked top configurations (for comparison):**
 
-**Selected configuration:** Vector retrieval with equal weighting
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| vector__equal | 0.75740 | 0.89293 | 0.33081 | 0.71274 |
+| hybrid__equal | 0.70484 | 0.88124 | 0.32452 | 0.68170 |
+| bm25__equal | 0.64293 | 0.81559 | 0.30105 | 0.62635 |
 
-For full methodology, metadata matching approach, and future Tier 2 RAG quality evaluation, see [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
+**Key findings (v2):**
+- Reranking dominates: best reranked nDCG@10 ≈ 0.951 vs best non-reranked ≈ 0.757.
+- Recall@10 jumps from ~0.33–0.61 (non-reranked) to 0.95–1.00 (reranked).
+- Among reranked configs, weighting has tiny effects (4th–5th decimal); equal weighting has a slight edge on composite.
+- Hybrid + rerank slightly edges vector + rerank on composite (0.96148 vs 0.95196).
+- Alpha (0.3–0.7) has modest impact relative to reranking; α = 0.5 chosen as default.
+
+**Selected configuration (v2):** Hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1).
+
+For full methodology, metadata matching approach, and future Tier 2 RAG quality evaluation, see [`docs/evaluation-notes.md`](docs/evaluation-notes.md) and [`docs/decisions.md`](docs/decisions.md) #11.
 
 ---
 
@@ -169,9 +182,19 @@ docker compose up -d db
 uv run python src/database/init_db.py
 uv run python src/scripts/load_chunks_to_db.py
 
-# Run retrieval evaluation
-uv run python src/evaluation/generate_queries.py
-uv run python src/evaluation/evaluate_retrieval.py
+# Run retrieval evaluation (v2: extended with reranking and multiple alphas)
+uv run python -m src.evaluation.generate_synthetic_queries \
+  --chunks-dir data/processed/chunks \
+  --output-file data/evaluation/queries.jsonl \
+  --num-queries 100 \
+  --model gemini-3.5-flash-lite
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --chunks-dir data/processed/chunks \
+  --output data/evaluation/evaluation_results.jsonl \
+  --alphas "0.3,0.5,0.7" \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
 ```
 
 For complete setup instructions, troubleshooting, and output regeneration, see [`docs/runbook.md`](docs/runbook.md).
@@ -182,15 +205,15 @@ For complete setup instructions, troubleshooting, and output regeneration, see [
 
 ```text
 der-regcheck/
-├── compose.yaml                  # Docker Compose runtime
-├── config/                       # Normalisation and chunking rules
-├── data/                         # Processed corpus and evaluation
-├── docs/                         # Documentation
-├── src/                          # Python source code
-├── tests/                        # Regression tests
-├── pyproject.toml                # Project metadata
-├── README.md                     # This file
-└── uv.lock                       # Locked dependencies
+├── compose.yaml          # Docker Compose runtime
+├── config/               # Normalisation and chunking rules
+├── data/                 # Processed corpus and evaluation
+├── docs/                 # Documentation
+├── src/                  # Python source code
+├── tests/                # Regression tests
+├── pyproject.toml        # Project metadata
+├── README.md             # This file
+└── uv.lock               # Locked dependencies
 ```
 
 See [`docs/runbook.md`](docs/runbook.md) for the full directory structure.
@@ -207,12 +230,12 @@ See [`docs/runbook.md`](docs/runbook.md) for the full directory structure.
 | Structural chunking | ✅ Implemented |
 | Embedding generation | ✅ Implemented |
 | PostgreSQL + pgvector | ✅ Implemented |
-| Retrieval evaluation | ✅ Implemented (BM25, vector, hybrid) |
+| Retrieval evaluation | ✅ Implemented (BM25, vector, hybrid, reranked; multiple alphas and weightings) |
 | Answer generation | ⏳ Planned |
 | Streamlit interface | ⏳ Planned |
 | Monitoring dashboard | ⏳ Planned |
-| Reranking | ⏳ Planned |
-| Query rewriting | ⏳ Planned |
+| Source-aware filtering | ⏳ Planned |
+| RRF k sweep (course-aligned) | ⏳ Planned |
 
 For detailed progress and next steps, see [`docs/project-log.md`](docs/project-log.md).
 
@@ -221,8 +244,9 @@ For detailed progress and next steps, see [`docs/project-log.md`](docs/project-l
 ## Key decisions
 
 - **Structural chunking** over fixed-size splitting to preserve document hierarchy
-- **Vector retrieval** selected over hybrid for best nDCG@10 (0.826)
-- **Two-tier evaluation:** automated retrieval benchmarking (100 queries) + manual RAG quality evaluation (planned 5-10 questions)
+- **Hybrid + rerank retrieval** selected for best composite score (0.96148) and near-perfect Recall@10
+- **Equal weighting** selected for simplicity and marginal edge among near-tied reranked configs
+- **Two-tier evaluation:** automated retrieval benchmarking (100 queries, 8,100 results) + manual RAG quality evaluation (planned 5-10 questions)
 - **Source hierarchy metadata** embedded in chunks for authority-aware retrieval
 
 For rationale and alternatives considered, see [`docs/decisions.md`](docs/decisions.md).
@@ -236,6 +260,7 @@ For rationale and alternatives considered, see [`docs/decisions.md`](docs/decisi
 - Some PDF extraction artifacts remain in evidence text (layout issues from pypdf)
 - Review warnings exist for 2 sources (heading-path limitations in front matter)
 - Answer generation not yet implemented
+- RRF k sweep and source-aware filtering not yet implemented
 
 See "Limitations and responsible use" in [`docs/dataset-notes.md`](docs/dataset-notes.md) for full details.
 
@@ -244,9 +269,9 @@ See "Limitations and responsible use" in [`docs/dataset-notes.md`](docs/dataset-
 ## Documentation
 
 - [`docs/project-log.md`](docs/project-log.md) — Working journal and stage-by-stage progress
-- [`docs/decisions.md`](docs/decisions.md) — Key design choices and trade-offs
+- [`docs/decisions.md`](docs/decisions.md) — Key design choices and trade-offs (including #11: retrieval evaluation v2)
 - [`docs/dataset-notes.md`](docs/dataset-notes.md) — Corpus details, source hierarchy, and quality notes
-- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval evaluation framework and results
+- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval evaluation framework and results (v1 and v2)
 - [`docs/runbook.md`](docs/runbook.md) — Setup, reproduction, and troubleshooting
 
 ---

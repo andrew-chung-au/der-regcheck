@@ -12,8 +12,9 @@
 | [06](#06-evaluation-strategy) | Evaluation strategy | Active | No |
 | [07](#07-raw-extraction-and-evidence-normalisation) | Raw extraction and evidence normalisation | Active | No |
 | [08](#08-structural-chunking-and-citation-preservation) | Structural chunking and citation preservation | Active | No |
-| [09](#09-embedding-and-retrieval-evaluation) | Embedding and retrieval evaluation | Active | No |
+| [09](#09-embedding-and-retrieval-evaluation) | Embedding and retrieval evaluation | Superseded | Yes (by [11](#11-embedding-and-retrieval-evaluation-v2)) |
 | [10](#10-production-database-and-retrieval) | Production database and retrieval | Active | No |
+| [11](#11-embedding-and-retrieval-evaluation-v2) | Embedding and retrieval evaluation v2 | Active | No |
 
 ---
 
@@ -313,3 +314,46 @@ Assign each source an authority level and retrieval tier:
 - PostgreSQL with pgvector adds operational complexity but scales better.
 - Separate storage for eval and production requires sync but maintains reproducibility.
 - IVFFlat index is faster but approximate (acceptable for RAG retrieval).
+
+---
+
+## 11. Embedding and retrieval evaluation v2
+
+**Decision:**
+- Embed 1,049 chunks with Nomic nomic-embed-text-v1.5 (768-dim vectors, `search_document:` prefix).
+- Generate 100 synthetic queries with Gemini 3.5-flash-lite (LLM-generated from sampled chunks).
+- Evaluate multiple retrieval approaches:
+  - BM25 (token overlap)
+  - Vector (cosine similarity)
+  - Hybrid (reciprocal-rank fusion of BM25 + vector with configurable α and RRF k)
+  - Hybrid + reranking (cross-encoder on top of hybrid candidates)
+  - Vector + reranking (cross-encoder on top of vector candidates)
+- Test five metadata weighting schemes: equal, source-heavy, section-heavy, page-heavy, authority-heavy.
+- Sweep hybrid α ∈ {0.3, 0.5, 0.7} and plan RRF k ∈ {1, 20, 60, 100} (course-aligned).
+- Compute metrics: nDCG@10, MRR, Recall@10, and a composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall).
+- Save results to JSONL (8,100 records for retrieval, plus rewrite variants), reproducible without database.
+- Use hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1) for production.
+
+**Reason:**
+- Reranked retrievers dominate on all metrics:
+  - Best: hybrid_rerank__equal (nDCG@10 ≈ 0.951, MRR ≈ 0.954, Recall@10 = 1.000, composite ≈ 0.961).
+  - Vector_rerank__equal is close (nDCG@10 ≈ 0.945, MRR ≈ 0.938, Recall@10 ≈ 0.990).
+- Non-reranked methods are clearly behind (best vector__equal nDCG@10 ≈ 0.757, composite ≈ 0.713).
+- Among reranked configurations, weighting scheme has tiny effects (differences in 4th–5th decimal); equal weighting is chosen for simplicity and marginal edge on composite score.
+- Hybrid α has modest impact relative to the reranking effect; 0.5 is a sensible default.
+- RRF k sweep is planned to align with course experiments; expected to fine-tune hybrid behaviour without changing the main conclusion that reranking dominates.
+
+**Alternatives considered:**
+- Using only vector or only BM25 (would miss large gains from reranking).
+- Choosing a more complex weighting scheme (e.g. authority-heavy) for production.
+- Selecting vector_rerank instead of hybrid_rerank (slightly lower composite, but similar profile).
+- Running only a single α or a single weighting scheme (would under-explore the design space).
+
+**Trade-offs:**
+- Reranking adds latency and a model dependency (BAAI/bge-reranker-base) but yields large quality gains.
+- Equal weighting is simpler to justify and implement, at the cost of ignoring small, uncertain gains from tuned weightings.
+- File-based evaluation is reproducible and peer-review friendly, but requires separate database logic for production.
+- Synthetic queries are scalable and systematic, but may not capture all real-world query patterns; manual queries can be added later.
+
+**Supersedes:**
+- [Decision 09](#09-embedding-and-retrieval-evaluation) (earlier, smaller-scale retrieval evaluation with only BM25, vector, and basic hybrid, and no reranking or composite score).
