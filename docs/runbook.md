@@ -2,9 +2,9 @@
 
 ## Overview
 
-This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run production-aligned retrieval evaluation, and prepare for answer generation.
+This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run production-aligned retrieval evaluation, run answer-generation evaluation, and prepare the runtime application.
 
-**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, production PostgreSQL/pgvector retrieval evaluation, cached query-rewrite evaluation, evaluator regression tests, and summariser regression tests are implemented. Historical file-based evaluations (v1 and v2) are retained as offline-baseline artifacts. The production-aligned PostgreSQL evaluation completed on 2026-09-05 is authoritative for the deployed retrieval path. Answer generation, Tier 2 RAG quality evaluation, monitoring, and interface stages are under development.
+**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, production PostgreSQL/pgvector retrieval evaluation, cached query-rewrite evaluation, evaluator regression tests, summariser regression tests, answer-generation evaluation, and Streamlit interface are implemented. Historical file-based evaluations (v1 and v2) are retained as offline-baseline artifacts. The production-aligned PostgreSQL evaluation completed on 2026-09-05 is authoritative for the deployed retrieval path. The runtime application uses original-query vector retrieval with reranking and the `v3_few_shot_grounded_rag` prompt.
 
 ---
 
@@ -34,7 +34,7 @@ For a new or independently reproduced setup:
 
 ```bash
 uv add requests beautifulsoup4 pypdf pyyaml \
-  sentence-transformers pgvector psycopg2-binary
+  sentence-transformers pgvector psycopg2-binary streamlit
 ```
 
 Current pipeline dependencies:
@@ -46,6 +46,7 @@ Current pipeline dependencies:
 - `sentence-transformers` for Nomic embedding generation and cross-encoder reranking
 - `pgvector` for PostgreSQL vector similarity search
 - `psycopg2-binary` for the PostgreSQL driver
+- `streamlit` for the user interface
 
 ### Configure environment variables
 
@@ -233,19 +234,23 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
+
 document = json.loads(
     Path("data/processed/normalised/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
+
 for page_number in (50, 100, 150, 233):
     print("\n" + "=" * 100)
     print(f"Physical PDF page {page_number}")
 
+
     for block in document["blocks"]:
         if block["citation"].get("pdf_page_start") != page_number:
             continue
+
 
         print("\nblock_type:", block["block_type"])
         print("text:", block["text"][:350])
@@ -272,15 +277,18 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
+
 names = [
     "sce_interconnection_handbook_pdf",
     "sce_testing_certification_instruction_pdf",
     "siwg_phase2_recommendations_pdf",
 ]
 
+
 for name in names:
     path = Path(f"data/processed/normalised/{name}.json")
     document = json.loads(path.read_text(encoding="utf-8"))
+
 
     flagged = [
         block
@@ -288,9 +296,11 @@ for name in names:
         if "no_detected_heading_path" in block["normalisation_flags"]
     ]
 
+
     print("\n" + "=" * 100)
     print(name)
     print(f"Flagged blocks: {len(flagged)}")
+
 
     for block in flagged:
         print("\nblock_id:", block["block_id"])
@@ -357,14 +367,17 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
+
 document = json.loads(
     Path("data/processed/chunks/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
+
 print(f"Total chunks: {len(document['chunks'])}")
 print(f"Oversized chunks: {sum(1 for c in document['chunks'] if c['oversized'])}")
+
 
 chunk = document["chunks"]
 print("\n" + "=" * 100)
@@ -424,6 +437,7 @@ data/processed/embeddings/embedding_manifest.json
 ```bash
 uv run python - <<'PY'
 import json
+
 
 with open("data/processed/embeddings/embeddings.jsonl", "r", encoding="utf-8") as file:
     for index, line in enumerate(file):
@@ -494,16 +508,21 @@ uv run python - <<'PY'
 import os
 import psycopg2
 
+
 database_url = os.environ["DATABASE_URL"]
+
 
 conn = psycopg2.connect(database_url)
 cur = conn.cursor()
 
+
 cur.execute("SELECT COUNT(*) FROM chunks")
 print(f"Chunks: {cur.fetchone()}")
 
+
 cur.execute("SELECT COUNT(*) FROM chunk_embeddings")
 print(f"Embeddings: {cur.fetchone()}")
+
 
 cur.close()
 conn.close()
@@ -556,10 +575,10 @@ The deployed retrieval path can use:
 - Runtime query embedding using Nomic `search_query:`
 - Cross-encoder reranking using `BAAI/bge-reranker-base`
 
-The current selected production configuration is:
+The runtime application uses:
 
 ```text
-Expanded query
+Original user query
 → pgvector vector retrieval
 → BAAI/bge-reranker-base cross-encoder reranking
 → top 10 evidence chunks
@@ -613,7 +632,7 @@ uv run python -m src.evaluation.evaluate_retrieval \
   --resume
 ```
 
-If the evaluator requires an explicit database argument in the current implementation, add it using the project’s configured database URL:
+If the evaluator requires an explicit database argument in the current implementation, add it using the project's configured database URL:
 
 ```bash
 uv run python -m src.evaluation.evaluate_retrieval \
@@ -652,24 +671,7 @@ The summariser must:
 
 ### Expected v3 retrieval highlights
 
-| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
-|---|---:|---:|---:|---:|
-| Vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
-| Vector rerank, authority-heavy weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
-| Hybrid rerank, equal weighting, alpha 0.50 | 0.94589 | 0.92500 | 0.09625 | 0.76969 |
-| Hybrid rerank, section-heavy weighting, alpha 0.30 | 0.93240 | 0.60800 | 0.11019 | 0.67065 |
-| Hybrid, equal weighting, alpha 0.50 | 0.76700 | 0.87293 | 0.08580 | 0.66253 |
-| Vector, equal weighting | 0.76330 | 0.87293 | 0.08480 | 0.66049 |
-| Lexical, equal weighting | 0.15420 | 0.15500 | 0.00690 | 0.12499 |
-
-Interpret the results as follows:
-
-- Reranking is the dominant observed retrieval-quality improvement.
-- Vector reranking has the strongest observed nDCG@10, MRR, and composite score.
-- Hybrid reranking is a near-tied alternative under equal weighting and alpha 0.50.
-- Equal weighting is the selected default because it ties for the strongest vector-rerank score and is simplest to justify.
-- Recall@10 is metadata-derived and must not be interpreted as the proportion of real user questions answered successfully.
-- See `docs/evaluation-notes.md` and `docs/decisions.md` #12 for full interpretation and limitations.
+For the expected v3 retrieval highlights, metric interpretations, and limitation caveats, please refer to [`docs/evaluation-notes.md`](evaluation-notes.md).
 
 ---
 
@@ -702,11 +704,11 @@ The completed grid contains:
 
 Only regenerate rewrites when intentionally revising the rewrite-generation method or benchmark. Otherwise, use the committed `data/evaluation/query_rewrites.jsonl` artifact.
 
-Use the project’s implemented rewrite-generation command and configured `LLM_MODEL`. The resulting file must retain the original query ID and record the rewrite technique, generated text, timestamp, and model.
+Use the project's implemented rewrite-generation command and configured `LLM_MODEL`. The resulting file must retain the original query ID and record the rewrite technique, generated text, timestamp, and model.
 
 ### Run the PostgreSQL rewrite evaluation
 
-Use the project’s implemented query-rewrite evaluation entry point. The required inputs and outputs are:
+Use the project's implemented query-rewrite evaluation entry point. The required inputs and outputs are:
 
 ```text
 Input queries:
@@ -726,20 +728,87 @@ The evaluation must use the same PostgreSQL corpus, metric implementation, weigh
 
 ### Expected rewrite highlights
 
-| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
-|---|---:|---:|---:|---:|
-| Expanded query + vector rerank, equal weighting | 0.94713 | 0.93583 | 0.09214 | 0.77274 |
-| Original query + vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
-| HyDE query + vector rerank, equal weighting | 0.89930 | 0.69980 | 0.08420 | 0.67643 |
-| HyDE-expanded query + vector rerank, equal weighting | 0.88720 | 0.67200 | 0.08060 | 0.66131 |
+For expected rewrite highlights, metric breakdowns, and interpretations of query expansion, please refer to [`docs/evaluation-notes.md`](evaluation-notes.md).
 
-Interpret the results as follows:
+---
 
-- Query expansion produced a modest increase in nDCG@10, MRR, and composite score.
-- Query expansion slightly reduced metadata-derived Recall@10.
-- HyDE and HyDE plus expansion reduced ranking quality on this benchmark.
-- HyDE is not enabled as a default rewrite technique.
-- The query-expansion advantage is small and requires paired statistical testing or manually judged relevance data before a strong superiority claim.
+## Run answer-generation evaluation
+
+### Evaluation conditions
+
+The answer-generation evaluation uses:
+
+- 24 fixed questions across six categories:
+  - `direct_factual`
+  - `multi_chunk_synthesis`
+  - `ambiguous_needs_clarification`
+  - `out_of_corpus`
+  - `high_stakes_boundary`
+  - `historical_source_handling`
+- Three prompt configurations:
+  - `v1_direct_rag`
+  - `v2_structured_grounded_rag`
+  - `v3_few_shot_grounded_rag`
+- Deterministic citation validation for every generated answer
+- LLM judge scoring on five dimensions:
+  - Groundedness
+  - Relevance
+  - Completeness
+  - Citation quality
+  - Appropriate uncertainty
+- Composite score:
+
+```text
+0.30 × Groundedness
++ 0.20 × Relevance
++ 0.20 × Completeness
++ 0.20 × Citation quality
++ 0.10 × Appropriate uncertainty
+```
+
+The evaluation design contains:
+
+```text
+- 24 unique questions.
+- 3 prompt configurations.
+- 72 intended unique answer evaluations.
+```
+
+The generated JSONL artifacts include repeated or checkpointed records, so raw record counts may exceed the intended unique-question evaluation count.
+
+### Run the answer-generation evaluation
+
+```bash
+uv run python -m src.evaluation.evaluate_llm_answers \
+  --mode generate \
+  --questions data/evaluation/llm_evaluation_questions.yaml \
+  --output data/evaluation/llm_answers.jsonl \
+  --prompt-versions "v1_direct_rag,v2_structured_grounded_rag,v3_few_shot_grounded_rag" \
+  --overwrite
+```
+
+### Judge the generated answers
+
+```bash
+uv run python -m src.evaluation.evaluate_llm_answers \
+  --mode judge \
+  --answers data/evaluation/llm_answers.jsonl \
+  --judge-output data/evaluation/llm_judge_scores.jsonl
+```
+
+### Summarise answer-generation results
+
+```bash
+uv run python -m src.evaluation.summarise_llm_evaluation \
+  --answers data/evaluation/llm_answers.jsonl \
+  --judge-scores data/evaluation/llm_judge_scores.jsonl \
+  --output data/evaluation/llm_evaluation_summary.json \
+  --report data/evaluation/llm_evaluation_report.md
+```
+
+### Expected answer-generation highlights
+
+For expected answer-generation highlights, prompt-version comparisons, and full interpretations, please refer to [`docs/evaluation-notes.md`](evaluation-notes.md).
 
 ---
 
@@ -750,10 +819,11 @@ Run regression tests before a deliberate re-evaluation or after changing evaluat
 ```bash
 uv run python -m unittest \
   tests.test_evaluate_retrieval \
-  tests.test_summarise_evaluation
+  tests.test_summarise_evaluation \
+  tests.test_answer_generator
 ```
 
-These tests cover evaluator and summary behaviour, including grouping, unique-query counting, variability calculations, and composite-score ranking.
+These tests cover evaluator and summary behaviour, including grouping, unique-query counting, variability calculations, composite-score ranking, and answer-generation citation validation.
 
 ---
 
@@ -778,6 +848,10 @@ data/evaluation/evaluation_results_postgres.jsonl
 data/evaluation/evaluation_summary_postgres.json
 data/evaluation/query_rewrite_results_postgres.jsonl
 data/evaluation/query_rewrite_summary_postgres.json
+data/evaluation/llm_answers.jsonl
+data/evaluation/llm_judge_scores.jsonl
+data/evaluation/llm_evaluation_summary.json
+data/evaluation/llm_evaluation_report.md
 ```
 
 ---
@@ -839,7 +913,8 @@ uv run python src/scripts/load_chunks_to_db.py \
 # 9. Run evaluator regression tests
 uv run python -m unittest \
   tests.test_evaluate_retrieval \
-  tests.test_summarise_evaluation
+  tests.test_summarise_evaluation \
+  tests.test_answer_generator
 
 # 10. Re-run the production-aligned PostgreSQL retrieval grid
 rm -f data/evaluation/evaluation_results_postgres.jsonl
@@ -865,7 +940,7 @@ uv run python -m src.evaluation.summarise_evaluation \
 
 Do not delete `data/evaluation/queries.jsonl` or `data/evaluation/query_rewrites.jsonl` during a routine rerun if the goal is comparable evaluation against the established benchmark.
 
-If the query set, rewrite set, corpus, embedding model, chunking configuration, evaluator logic, or database retrieval logic changes, record a new dated evaluation condition rather than silently replacing the v3 result.
+If the query set, rewrite set, corpus, embedding model, chunking configuration, evaluator logic, database retrieval logic, or answer-generation prompt changes, record a new dated evaluation condition rather than silently replacing the v3 result.
 
 ---
 
@@ -873,11 +948,20 @@ If the query set, rewrite set, corpus, embedding model, chunking configuration, 
 
 ### Run the Streamlit app
 
-*To be implemented:*
-
 ```bash
-uv run streamlit run app/main.py
+uv run streamlit run src/ui/streamlit_app.py
 ```
+
+The app provides:
+
+- Question input with example question buttons
+- Answer status badge (Answered, Partial, Needs clarification, Insufficient evidence, High-stakes boundary)
+- Main answer with inline citation labels
+- Expandable evidence cards
+- Explicit disclaimer banner
+- Feedback widgets
+
+The app uses the `v3_few_shot_grounded_rag` prompt configuration and the runtime retrieval path without query expansion.
 
 ---
 
@@ -885,27 +969,30 @@ uv run streamlit run app/main.py
 
 ### Generate grounded answers
 
-*To be implemented:*
+The application core provides a CLI path for asking a question and receiving a structured, source-grounded answer with validated citations.
+
+Use the project’s implemented CLI command:
 
 ```bash
-uv run python -m src.generation.answer_question \
-  --query "What are the communications requirements for DER in SCE?" \
-  --top-k 10 \
-  --model gemini-3.5-flash-lite
+uv run python -m src.scripts.demo_rag \
+  --query "What are the communications requirements for DER in SCE?"
 ```
 
-### Generate evidence briefs
+The answer-generation pipeline:
 
-*To be implemented:*
+- Retrieves evidence using the runtime PostgreSQL/pgvector path.
+- Uses the original user query without query expansion.
+- Applies vector retrieval and cross-encoder reranking.
+- Generates a structured answer using `v3_few_shot_grounded_rag`.
+- Validates citations deterministically against the supplied evidence.
+- Fails closed when citations are invalid or evidence is insufficient.
+- Preserves source hierarchy, source currency, applicability conditions, uncertainty, and citation locators.
+
+For the interactive interface, run:
 
 ```bash
-uv run python -m src.generation.generate_brief \
-  --request "Early market assessment for DER communications and control" \
-  --top-k 15 \
-  --model gemini-3.5-flash-lite
+uv run streamlit run src/ui/streamlit_app.py
 ```
-
-Answer generation must preserve source hierarchy, source currency, applicability conditions, uncertainty, and citation locators.
 
 ---
 
@@ -990,6 +1077,15 @@ docker compose ps
 - Interpret Recall@10 as metadata-defined chunk coverage, not end-user answer success.
 - Consult `docs/evaluation-notes.md` and `docs/decisions.md` #12 for the evaluation protocol and limitations.
 
+### Answer-generation evaluation produces unexpected results
+
+- Confirm `data/evaluation/llm_evaluation_questions.yaml` contains the intended 24 fixed questions.
+- Confirm the retrieval path is functioning and returning evidence for each question.
+- Check deterministic citation validation in `src/generation/citation_validator.py`.
+- Confirm the LLM judge is scoring all five dimensions.
+- Distinguish between the evaluated benchmark and future manual RAG-quality assessment.
+- Consult `docs/evaluation-notes.md` and `docs/decisions.md` #14 for the evaluation protocol and limitations.
+
 ---
 
 ## Next steps
@@ -1005,10 +1101,12 @@ docker compose ps
 - ✅ Complete the PostgreSQL retrieval grid: 100 queries × 3 alphas × 5 retrieval variants × 5 weightings = 7,500 records. **Completed 2026-09-05**
 - ✅ Complete the cached PostgreSQL query-rewrite evaluation: 8,000 records. **Completed 2026-09-05**
 - ✅ Implement evaluator and summariser regression tests. **Completed**
-- ✅ Select the production retrieval configuration: expanded query + vector rerank. **Completed**
+- ✅ Select the production retrieval configuration: original query + vector rerank. **Completed**
+- ✅ Implement answer-generation evaluation with 24 fixed questions and LLM judge. **Completed 2026-09-05**
+- ✅ Select the production prompt configuration: `v3_few_shot_grounded_rag`. **Completed 2026-09-05**
+- ✅ Implement Streamlit interface with evidence inspection and feedback capture. **Completed 2026-09-05**
 - ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
 - ⏳ Create a manually judged relevance set to supplement metadata-derived relevance labels. **Pending**
 - ⏳ Implement source-aware filtering and tier-based retrieval constraints. **Pending**
-- ⏳ Implement grounded answer and preliminary market-entry evidence-brief generation. **Pending**
-- ⏳ Implement RAG quality evaluation (Tier 2) with 5-10 open-ended questions. **Pending**
-- ⏳ Implement a Streamlit interface, feedback capture, and monitoring. **Pending**
+- ⏳ Implement RAG quality evaluation (Tier 2) with 5-10 open-ended questions and manual scoring. **Pending**
+- ⏳ Add monitoring and analytics for production usage. **Pending**

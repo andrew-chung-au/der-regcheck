@@ -1,4 +1,15 @@
-"""End-to-end database-backed hybrid retrieval for DER RegCheck."""
+"""End-to-end database-backed retrieval for DER RegCheck.
+
+This module provides the runtime retrieval interface, defaulting to the
+selected v3 configuration:
+
+    Expanded query
+    → pgvector vector retrieval
+    → BAAI/bge-reranker-base reranking
+    → top 10 evidence chunks
+
+Hybrid retrieval remains available as an explicitly named experimental method.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -10,6 +21,8 @@ import yaml
 from transformers import AutoModel, AutoTokenizer
 
 from src.database.db_connection import get_connection
+from src.observability.timing import timed
+from src.retrieval.production_pipeline import retrieve_vector_reranked
 from src.retrieval.rerank import Reranker
 from src.retrieval.retrieve import Retriever
 
@@ -104,18 +117,58 @@ class RuntimeRetriever:
     def retrieve(
         self,
         question: str,
-        final_k: int = 5,
+        final_k: int = 10,
     ) -> list[dict[str, Any]]:
-        """Return the final reranked chunks for one user question."""
-        if final_k <= 0:
-            raise ValueError("final_k must be positive.")
+        """Run the selected v3 vector-rerank retrieval path.
 
+        This is the default production retrieval method, using:
+        - pgvector vector retrieval
+        - BAAI/bge-reranker-base cross-encoder reranking
+        - Top-k final results (default: 10)
+
+        Args:
+            question: The query string (typically an expanded query).
+            final_k: Number of final reranked chunks to return.
+
+        Returns:
+            List of reranked chunk dictionaries.
+        """
+        with timed("embed_query"):
+            query_embedding = self.embed_query(question)
+
+        with timed("vector_rerank"):
+            return retrieve_vector_reranked(
+                query_text=question,
+                query_embedding=query_embedding,
+                reranker=self.reranker,
+                candidate_limit=self.candidate_limit,
+                final_k=final_k,
+                rerank_max_tokens=self.max_tokens,
+                rerank_batch_size=self.batch_size,
+            )
+
+    def retrieve_hybrid_reranked(
+        self,
+        question: str,
+        final_k: int = 10,
+    ) -> list[dict[str, Any]]:
+        """Experimental hybrid retrieval with reranking.
+
+        This method is retained for experimentation and comparison,
+        but is not the selected production configuration.
+
+        Args:
+            question: The query string.
+            final_k: Number of final reranked chunks to return.
+
+        Returns:
+            List of reranked chunk dictionaries from hybrid retrieval.
+        """
         query_embedding = self.embed_query(question)
 
         with get_connection() as conn:
             database_retriever = Retriever(conn)
-
-            candidates = database_retriever.search_hybrid(
+            hybrid_candidates = database_retriever.search_hybrid(
                 query=question,
                 query_embedding=query_embedding,
                 top_k=self.candidate_limit,
@@ -124,7 +177,7 @@ class RuntimeRetriever:
 
         return self.reranker.rerank(
             query=question,
-            chunks=candidates,
+            chunks=hybrid_candidates,
             top_k=final_k,
             candidate_limit=self.candidate_limit,
             max_tokens=self.max_tokens,
