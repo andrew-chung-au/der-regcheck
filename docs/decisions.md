@@ -14,7 +14,8 @@
 | [08](#08-structural-chunking-and-citation-preservation) | Structural chunking and citation preservation | Active | No |
 | [09](#09-embedding-and-retrieval-evaluation) | Embedding and retrieval evaluation | Superseded | Yes (by [11](#11-embedding-and-retrieval-evaluation-v2)) |
 | [10](#10-production-database-and-retrieval) | Production database and retrieval | Active | No |
-| [11](#11-embedding-and-retrieval-evaluation-v2) | Embedding and retrieval evaluation v2 | Active | No |
+| [11](#11-embedding-and-retrieval-evaluation-v2) | Embedding and retrieval evaluation v2 | Superseded | Yes (by [12](#12-production-aligned-postgresql-retrieval-evaluation)) |
+| [12](#12-production-aligned-postgresql-retrieval-evaluation) | Production-aligned PostgreSQL retrieval evaluation | Active | No |
 
 ---
 
@@ -356,4 +357,152 @@ Assign each source an authority level and retrieval tier:
 - Synthetic queries are scalable and systematic, but may not capture all real-world query patterns; manual queries can be added later.
 
 **Supersedes:**
-- [Decision 09](#09-embedding-and-retrieval-evaluation) (earlier, smaller-scale retrieval evaluation with only BM25, vector, and basic hybrid, and no reranking or composite score).
+- [Decision 09](#09-embedding-and-retrieval-evaluation) as the historical file-based evaluation decision.
+
+**Superseded by:**
+- [Decision 12](#12-production-aligned-postgresql-retrieval-evaluation) as the authoritative production retrieval-evaluation and selection decision.
+
+---
+
+## 12. Production-aligned PostgreSQL retrieval evaluation
+
+**Decision:**
+- Treat the PostgreSQL/pgvector retrieval evaluation completed on 2026-09-05 as the authoritative final retrieval evaluation for DER RegCheck.
+- Retain Decisions 09 and 11 and their file-based results as historical offline-baseline artifacts rather than directly comparable production results.
+- Evaluate the fixed benchmark of 100 synthetic queries against the 1,049-chunk production corpus using the deployed retrieval path:
+  - PostgreSQL full-text lexical retrieval
+  - pgvector vector retrieval
+  - PostgreSQL-backed hybrid retrieval
+  - Runtime Nomic query embedding
+  - `BAAI/bge-reranker-base` cross-encoder reranking
+- Retain the five metadata weighting schemes:
+  - Equal
+  - Source-heavy
+  - Section-heavy
+  - Page-heavy
+  - Authority-heavy
+- Sweep hybrid alpha values of 0.3, 0.5, and 0.7.
+- Use JSONL checkpointing and persisted summaries for reproducible, resumable evaluation.
+- Evaluate cached query-rewrite variants:
+  - Original query
+  - Expanded query
+  - HyDE query
+  - HyDE-expanded query
+- Compute nDCG@10, MRR, Recall@10, and the documented composite score:
+
+```text
+0.5 × nDCG@10 + 0.3 × MRR + 0.2 × Recall@10
+```
+
+- Select expanded-query vector retrieval with cross-encoder reranking as the current default retrieval configuration:
+
+```text
+Expanded query
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+```
+
+- Use equal metadata weighting as the default evaluation configuration.
+- Keep hybrid alpha at 0.5 if hybrid retrieval is used.
+- Disable HyDE as a default query-rewrite technique.
+
+**Reason:**
+- The deployed runtime uses PostgreSQL full-text retrieval, pgvector vector retrieval, runtime query embeddings, and cross-encoder reranking. Final retrieval claims should therefore be based on that runtime path rather than a separate file-based evaluator.
+- The historical evaluator used locally loaded embeddings and a lightweight lexical-overlap baseline. It tested a different experimental condition even though it used the same query benchmark and corpus.
+- The full production-aligned retrieval grid completed:
+
+```text
+100 queries
+× 3 alpha values
+× 5 retrieval variants
+× 5 metadata weighting schemes
+= 7,500 evaluation records
+```
+
+- The cached production-aligned query-rewrite grid completed:
+
+```text
+100 queries
+× 4 rewrite techniques
+× 4 retrieval variants
+× 5 metadata weighting schemes
+= 8,000 evaluation records
+```
+
+- Reranking was the dominant observed performance improvement in the deployed retrieval evaluation:
+  - Vector retrieval with equal weighting: nDCG@10 = 0.76330.
+  - Vector retrieval with reranking and equal weighting: nDCG@10 = 0.94627.
+- Vector reranking achieved the strongest observed ranking result:
+  - nDCG@10 = 0.94627.
+  - MRR = 0.92500.
+  - Recall@10 = 0.09625.
+  - Composite = 0.76989.
+- Hybrid reranking was effectively tied on the leading ranking metrics but was marginally lower on composite score:
+  - Hybrid rerank, equal weighting, alpha = 0.50: nDCG@10 = 0.94589.
+  - MRR = 0.92500.
+  - Recall@10 = 0.09625.
+  - Composite = 0.76969.
+- The expanded-query vector-rerank configuration achieved the highest observed query-rewrite composite score:
+  - nDCG@10 = 0.94713.
+  - MRR = 0.93583.
+  - Recall@10 = 0.09214.
+  - Composite = 0.77274.
+- Query expansion improved ranking metrics only modestly relative to the original vector-rerank query:
+  - nDCG@10 increase: 0.00086.
+  - MRR increase: 0.01083.
+  - Composite-score increase: 0.00285.
+- HyDE and HyDE-expanded variants reduced ranking quality on this corpus.
+- Equal and authority-heavy weighting tied for the strongest vector-rerank score. Equal weighting is selected because it is simpler to explain and maintain.
+- PostgreSQL lexical retrieval was substantially weaker than vector retrieval in this benchmark:
+  - Lexical retrieval with equal weighting: nDCG@10 = 0.15420.
+  - Vector retrieval with equal weighting: nDCG@10 = 0.76330.
+
+**Alternatives considered:**
+- Retaining the historical file-based v2 hybrid-rerank result as the final production selection.
+- Selecting hybrid reranking instead of vector reranking.
+- Using the original query rather than query expansion.
+- Enabling HyDE or HyDE plus query expansion.
+- Selecting authority-heavy weighting rather than equal weighting.
+- Replacing PostgreSQL/pgvector with a dedicated vector database.
+- Removing historical file-based results from project documentation.
+
+**Trade-offs:**
+- Reranking adds latency and dependency on `BAAI/bge-reranker-base`, but it produced the main observed ranking-quality improvement.
+- Query expansion slightly improved nDCG@10, MRR, and composite score, but reduced Recall@10 and has not yet been validated with a paired statistical test.
+- Vector reranking is simpler than hybrid reranking because it does not depend on the weak lexical baseline, though hybrid reranking remains a viable near-tied alternative.
+- Equal weighting is transparent and simple, but metadata weighting itself is an evaluation mechanism rather than a demonstrated runtime relevance policy.
+- The 100 queries are synthetic and generated from the indexed corpus. They provide controlled comparative coverage but may not represent real user-query distributions.
+- Relevance is metadata-derived rather than manually judged semantic relevance.
+- Recall@10 measures recovery of chunks that satisfy the metadata relevance threshold. It must not be interpreted as the share of real user questions answered successfully.
+- Migrating from the file-based evaluator to the PostgreSQL evaluator changed multiple implementation details simultaneously. The comparison does not establish that PostgreSQL alone changed performance.
+- Tier 1 retrieval metrics do not demonstrate end-to-end groundedness, citation correctness, source-hierarchy handling, completeness, or regulatory applicability. Tier 2 RAG quality evaluation remains required.
+- Historical file-based evaluation artifacts remain valuable for reproducibility and development history, but keeping both evaluators increases documentation and maintenance overhead.
+
+**Evidence and artifacts:**
+- `data/evaluation/queries.jsonl`
+  - Fixed 100-query Tier 1 benchmark.
+- `data/evaluation/query_rewrites.jsonl`
+  - Cached original, expanded, HyDE, and HyDE-expanded query variants.
+- `data/evaluation/evaluation_results_postgres.jsonl`
+  - Production-aligned PostgreSQL retrieval-grid results.
+- `data/evaluation/evaluation_summary_postgres.json`
+  - Aggregated production-aligned retrieval metrics and configuration rankings.
+- `data/evaluation/query_rewrite_results_postgres.jsonl`
+  - Production-aligned cached query-rewrite evaluation results.
+- `data/evaluation/query_rewrite_summary_postgres.json`
+  - Aggregated query-rewrite metrics and rankings.
+- `src/evaluation/evaluate_retrieval.py`
+  - PostgreSQL-aligned retrieval evaluator.
+- `src/evaluation/summarise_evaluation.py`
+  - Aggregation, unique-query counting, variability calculation, and composite-score ranking.
+- `tests/test_evaluate_retrieval.py`
+  - Evaluator regression tests.
+- `tests/test_summarise_evaluation.py`
+  - Summariser regression tests.
+- `docs/evaluation-notes.md`
+  - Full protocol, result tables, interpretation, and limitations.
+
+**Supersedes:**
+- [Decision 11](#11-embedding-and-retrieval-evaluation-v2) as the final production retrieval-selection decision.
+- Decision 11 remains valid as the historical file-based v2 evaluation record.

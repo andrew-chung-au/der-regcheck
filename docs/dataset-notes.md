@@ -2,14 +2,15 @@
 
 ## Corpus overview
 
-**Market:** California, United States  
-**Regulator:** California Public Utilities Commission (CPUC)  
-**Primary utility:** Southern California Edison (SCE)  
-**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification  
-**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype  
-**Total sources:** 6 public documents: 5 PDF and 1 HTML  
-**Total chunks:** 1,049 searchable chunks (2026-08-23)  
-**Embeddings:** 1,049 Nomic vectors (768-dim)  
+**Market:** California, United States
+**Regulator:** California Public Utilities Commission (CPUC)
+**Primary utility:** Southern California Edison (SCE)
+**Topic:** DER interconnection, technical requirements, communications/telemetry, testing, and certification
+**Corpus role:** v1 research corpus for the DER RegCheck evidence-first RAG prototype
+**Total sources:** 6 public documents: 5 PDF and 1 HTML
+**Total chunks:** 1,049 searchable chunks (2026-08-23)
+**Embeddings:** 1,049 Nomic vectors (768-dim)
+**Authoritative retrieval evaluation:** Production-aligned PostgreSQL/pgvector evaluation completed 2026-09-05
 
 ---
 
@@ -34,7 +35,9 @@ data/processed/embeddings/
 → 1,049 Nomic embeddings (768-dim vectors)
 
 data/evaluation/
-→ 100 retrieval benchmarking queries, 8,100 evaluation results (v2), plus rewrite variants
+→ 100 retrieval benchmarking queries
+→ historical file-based v1/v2 retrieval artifacts
+→ authoritative PostgreSQL/pgvector v3 retrieval and query-rewrite artifacts
 ```
 
 ### Raw corpus files
@@ -120,7 +123,7 @@ Chunking configuration (2026-08-23):
 
 Embedding outputs in `data/processed/embeddings/` are intentionally tracked.
 
-They are 768-dimensional vectors generated from chunk `embedding_text` using Nomic nomic-embed-text-v1.5.
+They are 768-dimensional vectors generated from chunk `embedding_text` using Nomic `nomic-embed-text-v1.5`.
 
 Embedding metadata includes:
 
@@ -141,17 +144,34 @@ Embedding configuration (2026-08-23):
 
 Evaluation artifacts in `data/evaluation/` are intentionally tracked.
 
-They support reproducible retrieval benchmarking without requiring database access or API credentials.
+They preserve both historical file-based experiments and the authoritative production-aligned PostgreSQL evaluation.
 
-**Tier 1: Retrieval benchmarking (v1 and v2)**
+**Tier 1 query benchmark:**
 
-- `queries.jsonl`: 100 LLM-generated queries (Gemini 3.5-flash-lite, 2026-08-23)
+- `queries.jsonl`: 100 LLM-generated queries (`gemini-3.5-flash-lite`, 2026-08-23)
+- `query_rewrites.jsonl`: Cached query-rewrite variants (`original`, `expanded`, `hyde`, `hyde_expanded`)
+
+**Historical file-based retrieval evaluation artifacts (v1 and v2):**
+
 - `evaluation_results.jsonl`:
   - v1: 1,500 retrieval results (100 queries × 3 retrievers × 5 weightings)
-  - v2: 8,100 retrieval results (multiple retrievers × alphas × weightings, including reranking)
-- `evaluation_summary.json`: Aggregated metrics (nDCG@10, MRR, Recall@10, composite score)
-- `query_rewrites.jsonl`: Cached query-rewrite variants (original, hyde, expanded, hyde_expanded)
-- `query_rewrite_results.jsonl`: Rewrite evaluation results (technique × retriever × weighting)
+  - v2: historical file-based retrieval results, including reranking, alpha sweeps, weighting schemes, and composite scoring
+- `evaluation_summary.json`: Historical aggregated metrics
+- `query_rewrite_results.jsonl`: Historical cached query-rewrite evaluation results
+- Historical v1 and v2 results are retained as offline-baseline artifacts and must not be directly compared numerically with v3.
+
+**Authoritative production-aligned PostgreSQL evaluation artifacts (v3, 2026-09-05):**
+
+- `evaluation_results_postgres.jsonl`:
+  - 7,500 retrieval evaluation records
+  - 100 queries × 3 alpha values × 5 retrieval variants × 5 metadata weighting schemes
+- `evaluation_summary_postgres.json`:
+  - Aggregated nDCG@10, MRR, Recall@10, variability, composite score, and ranked configurations
+- `query_rewrite_results_postgres.jsonl`:
+  - 8,000 cached query-rewrite evaluation records
+  - 100 queries × 4 rewrite techniques × 4 retrieval variants × 5 metadata weighting schemes
+- `query_rewrite_summary_postgres.json`:
+  - Aggregated rewrite-evaluation metrics and ranked configurations
 
 **Tier 2: RAG quality evaluation** (pending)
 
@@ -321,13 +341,14 @@ They support reproducible retrieval benchmarking without requiring database acce
 - Raw extraction outputs retain the source content hash used for extraction.
 - Normalised blocks retain the source content hash used for evidence provenance.
 - Chunks retain the source content hash used for chunking.
-- Embeddings are derived from chunk `embedding_text` (not `evidence_text`).
+- Embeddings are derived from chunk `embedding_text` rather than `evidence_text`.
 - Tariff normalisation preserves Rule 21 sheet number, Cal. PUC sheet number, effective date, and advice letter as citation metadata.
 - Tariff PDF includes explicit supersession cues such as `Cancelling Revised Cal. PUC Sheet No.`.
 - Web sources may change without explicit version markers; last-checked timestamps and hash changes are the primary currency signals.
 - The handbook required manual replacement due to automated download blocking; metadata records the reviewer, approval status, hash, and retrieval eligibility.
 - Normalised output quality must be reviewed after source refreshes, parser changes, or normalisation configuration changes.
 - Chunk output quality must be reviewed after chunking configuration changes.
+- A source refresh that changes source content, normalised evidence, chunks, or embeddings requires a new dated retrieval evaluation before the current v3 result is treated as applicable to the refreshed corpus.
 
 ---
 
@@ -372,14 +393,14 @@ Interpretation rules:
 
 ## Retrieval evaluation summary
 
-### v1 evaluation (2026-08-23)
+### Historical v1 evaluation (file-based, 2026-08-23)
 
-**Queries:** 100 LLM-generated (Gemini 3.5-flash-lite)  
-**Chunks:** 1,049  
-**Embeddings:** 1,049 (Nomic nomic-embed-text-v1.5, 768-dim)  
-**Results:** 1,500 (3 retrievers × 5 weightings)  
+**Queries:** 100 LLM-generated (`gemini-3.5-flash-lite`)
+**Chunks:** 1,049
+**Embeddings:** 1,049 (Nomic `nomic-embed-text-v1.5`, 768-dim)
+**Results:** 1,500 (100 queries × 3 retrievers × 5 weightings)
 
-**Selected configuration (v1):** Vector retrieval with equal weighting
+**Selected configuration (v1):** Vector retrieval with equal weighting.
 
 | Retriever | Weighting | nDCG@10 | MRR | Recall@10 |
 |---|---|---:|---:|---:|
@@ -390,16 +411,18 @@ Interpretation rules:
 **Key findings (v1):**
 
 - Vector retrieval outperforms hybrid and BM25 on nDCG@10.
-- Hybrid has best MRR (better at getting #1 result right).
-- Weighting scheme has modest impact (4% range for vector).
+- Hybrid has best MRR.
+- Weighting scheme has modest impact.
 - Equal weighting performs best for vector retrieval.
 
-### v2 evaluation (2026-08-23, extended with reranking and composite score)
+**Historical status:** v1 used the earlier file-based, in-memory evaluator. It is retained as an offline baseline and is not directly comparable numerically with v3.
 
-**Queries:** 100  
-**Chunks:** 1,049  
-**Embeddings:** 1,049  
-**Results:** 8,100 retrieval records (multiple retrievers × alphas × weightings, including reranking)  
+### Historical v2 evaluation (file-based, 2026-08-23)
+
+**Queries:** 100
+**Chunks:** 1,049
+**Embeddings:** 1,049
+**Results:** Historical file-based evaluation with reranking, multiple alphas, metadata weightings, composite scoring, and cached query-rewrite variants.
 
 **Top configurations by composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall):**
 
@@ -422,18 +445,133 @@ Interpretation rules:
 
 **Key findings (v2):**
 
-- Reranking dominates: best reranked nDCG@10 ≈ 0.951 vs best non-reranked ≈ 0.757.
-- Recall@10 jumps from ~0.33–0.61 (non-reranked) to 0.95–1.00 (reranked).
-- Among reranked configs, weighting has tiny effects (4th–5th decimal); equal weighting has a slight edge on composite.
-- Hybrid + rerank slightly edges vector + rerank on composite (0.96148 vs 0.95196).
-- Alpha (0.3–0.7) has modest impact relative to reranking; α = 0.5 chosen as default.
-- RRF k sweep (k ∈ {1, 20, 60, 100}) is planned to align with course experiments.
+- Reranking dominated the historical file-based evaluation.
+- Hybrid plus reranking slightly exceeded vector plus reranking under the historical composite score.
+- Weighting had small effects among the leading reranked configurations.
+- Alpha had a smaller observed effect than reranking.
 
 **Selected configuration (v2):** Hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1).
 
-**Reference:** Full configuration rationale and decision record are in `docs/decisions.md` #11 (Embedding and retrieval evaluation v2), which supersedes #09.
+**Historical status:** v2 used the earlier file-based, in-memory evaluator. Its results are retained for development history but are not directly comparable with the deployed PostgreSQL evaluation.
 
-See `docs/evaluation-notes.md` for full details.
+### Authoritative v3 evaluation (production-aligned PostgreSQL/pgvector, 2026-09-05)
+
+**Purpose:** Evaluate the deployed retrieval path rather than the earlier file-based evaluator.
+
+**Queries:** 100 fixed LLM-generated benchmark queries
+**Chunks:** 1,049
+**Embeddings:** Runtime Nomic query embeddings and pgvector document retrieval
+**Retrieval backend:** PostgreSQL full-text retrieval and pgvector vector retrieval
+**Reranker:** `BAAI/bge-reranker-base`
+**Candidate limit:** 50
+**Final output size:** Top 10 chunks
+**Hybrid alpha values:** 0.3, 0.5, 0.7
+**Metadata weightings:** Equal, source-heavy, section-heavy, page-heavy, authority-heavy
+
+**Completed retrieval grid:**
+
+```text
+100 queries
+× 3 alpha values
+× 5 retrieval variants
+× 5 metadata weighting schemes
+= 7,500 retrieval evaluation records
+```
+
+**Retrieval variants:**
+
+- PostgreSQL lexical retrieval
+- pgvector vector retrieval
+- PostgreSQL-backed hybrid retrieval
+- Hybrid retrieval with cross-encoder reranking
+- Vector retrieval with cross-encoder reranking
+
+**Final retrieval results:**
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| Vector rerank, equal weighting | **0.94627** | **0.92500** | 0.09625 | **0.76989** |
+| Vector rerank, authority-heavy weighting | **0.94627** | **0.92500** | 0.09625 | **0.76989** |
+| Hybrid rerank, equal weighting, alpha 0.50 | 0.94589 | **0.92500** | 0.09625 | 0.76969 |
+| Hybrid rerank, section-heavy weighting, alpha 0.30 | 0.93240 | 0.60800 | **0.11019** | 0.67065 |
+| Hybrid, equal weighting, alpha 0.50 | 0.76700 | 0.87293 | 0.08580 | 0.66253 |
+| Vector, equal weighting | 0.76330 | 0.87293 | 0.08480 | 0.66049 |
+| Lexical, equal weighting | 0.15420 | 0.15500 | 0.00690 | 0.12499 |
+
+**Key findings (v3):**
+
+- Cross-encoder reranking produced the main observed ranking-quality improvement.
+- Vector reranking achieved the highest observed nDCG@10, MRR, and composite score.
+- Hybrid reranking was effectively tied on leading ranking metrics, but had a marginally lower composite score.
+- Equal and authority-heavy weighting tied for the strongest vector-rerank result; equal weighting is the simpler default.
+- Hybrid reranking with section-heavy weighting achieved the highest Recall@10 but did not lead on nDCG@10, MRR, or composite score.
+- Alpha had little practical effect after reranking.
+- PostgreSQL lexical retrieval was substantially weaker than vector retrieval on this benchmark.
+
+### v3 cached query-rewrite evaluation
+
+**Completed query-rewrite grid:**
+
+```text
+100 queries
+× 4 rewrite techniques
+× 4 retrieval variants
+× 5 metadata weighting schemes
+= 8,000 query-rewrite evaluation records
+```
+
+**Rewrite techniques:**
+
+- `original`
+- `expanded`
+- `hyde`
+- `hyde_expanded`
+
+**Leading rewrite results:**
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| Expanded query + vector rerank, equal weighting | **0.94713** | **0.93583** | 0.09214 | **0.77274** |
+| Original query + vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
+| HyDE query + vector rerank, equal weighting | 0.89930 | 0.69980 | 0.08420 | 0.67643 |
+| HyDE-expanded query + vector rerank, equal weighting | 0.88720 | 0.67200 | 0.08060 | 0.66131 |
+
+**Query-rewrite findings:**
+
+- Query expansion produced a modest improvement in nDCG@10, MRR, and composite score compared with the original query.
+- Query expansion reduced Recall@10 slightly.
+- HyDE and HyDE plus expansion reduced ranking quality on this corpus.
+- The observed expansion improvement is small and requires paired statistical testing or manually judged relevance data before a strong superiority claim.
+
+### Current selected retrieval configuration
+
+```text
+Expanded query
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+```
+
+**Selection rationale:**
+
+- Highest observed production-aligned composite score: 0.77274.
+- Highest observed production-aligned nDCG@10: 0.94713.
+- Highest observed production-aligned MRR: 0.93583.
+- Simpler than hybrid retrieval because it does not depend on the relatively weak lexical baseline.
+- HyDE is disabled because it reduced retrieval quality in the benchmark.
+- The production-aligned evaluation is authoritative because it measures the deployed PostgreSQL/pgvector retrieval path.
+
+### Evaluation limitations
+
+- The historical file-based v1 and v2 scores are separate experimental conditions and are not directly comparable with v3.
+- Migrating the evaluator changed multiple implementation details, so the evaluation cannot show that PostgreSQL alone caused any observed difference.
+- Relevance is metadata-derived rather than independently human-labelled semantic relevance.
+- Recall@10 measures retrieval of the metadata-defined relevant set, not the proportion of user questions answered successfully.
+- The benchmark queries are synthetic and generated from the corpus; they may not represent real user-query distributions.
+- Tier 1 retrieval scores do not establish answer groundedness, citation correctness, completeness, source hierarchy handling, or regulatory applicability.
+- Tier 2 answer-quality evaluation is required before making end-to-end RAG-quality claims.
+
+**Reference:** See `docs/evaluation-notes.md` for the complete evaluation protocol, interpretation, limitations, and Tier 2 RAG-evaluation plan. See `docs/decisions.md` #12 for the authoritative production-aligned retrieval-selection decision.
 
 ---
 
@@ -448,4 +586,6 @@ Potential additions for later versions:
 - Other markets, including ERCOT, NYISO, and AEMO, for cross-market comparison.
 - Tier 2 RAG evaluation queries (5-10 open-ended questions with stronger model).
 - Manual answer quality scores for Tier 2 evaluation.
-- RRF k sweep results and any refinements to hybrid fusion configuration.
+- Paired statistical testing of original versus expanded query variants.
+- A manually judged relevance set to complement metadata-derived relevance labels.
+- Source refresh and re-evaluation procedures as the corpus evolves.
