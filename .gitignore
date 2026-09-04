@@ -29,3 +29,5 @@ data/corpus/
 # OS
 .DS_Store
 Thumbs.db
+# Local backup of superseded embedding outputs
+data/processed/embeddings_pre_normalization/

@@ -2,9 +2,9 @@
 
 ## Overview
 
-This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run retrieval evaluation (Tier 1 v1 and v2), and prepare for answer generation.
+This runbook describes how to reproduce the DER RegCheck v1 environment, download the corpus, extract raw source content, normalise evidence blocks, generate searchable chunks, create embeddings, load the database, run production-aligned retrieval evaluation, and prepare for answer generation.
 
-**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, and extended retrieval evaluation (including reranking and composite scoring) are implemented. Answer generation, RAG quality evaluation (Tier 2), monitoring, and interface stages are under development.
+**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, production PostgreSQL/pgvector retrieval evaluation, cached query-rewrite evaluation, evaluator regression tests, and summariser regression tests are implemented. Historical file-based evaluations (v1 and v2) are retained as offline-baseline artifacts. The production-aligned PostgreSQL evaluation completed on 2026-09-05 is authoritative for the deployed retrieval path. Answer generation, Tier 2 RAG quality evaluation, monitoring, and interface stages are under development.
 
 ---
 
@@ -13,6 +13,7 @@ This runbook describes how to reproduce the DER RegCheck v1 environment, downloa
 - Python 3.11+
 - `uv` for dependency management: [https://github.com/astral-sh/uv](https://github.com/astral-sh/uv)
 - Docker and Docker Compose for PostgreSQL with pgvector
+- A configured `.env` file containing the database and LLM settings required by the project
 
 ---
 
@@ -42,9 +43,30 @@ Current pipeline dependencies:
 - `beautifulsoup4` for HTML main-content extraction
 - `pypdf` for page-preserving PDF text extraction
 - `pyyaml` for source-specific normalisation configuration
-- `sentence-transformers` for Nomic embedding generation
+- `sentence-transformers` for Nomic embedding generation and cross-encoder reranking
 - `pgvector` for PostgreSQL vector similarity search
-- `psycopg2-binary` for PostgreSQL database driver
+- `psycopg2-binary` for the PostgreSQL driver
+
+### Configure environment variables
+
+Create a local environment file if one does not already exist:
+
+```bash
+cp .env.example .env
+```
+
+Set the project-specific values in `.env`:
+
+```dotenv
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/der_regcheck
+LLM_PROVIDER=<provider>
+LLM_API_KEY=<api_key>
+LLM_MODEL=gemini-3.5-flash-lite
+EMBEDDING_MODEL=nomic-ai/nomic-embed-text-v1.5
+RERANKER_MODEL=BAAI/bge-reranker-base
+```
+
+Do not commit `.env` or API keys.
 
 ---
 
@@ -79,7 +101,7 @@ uv run python src/ingestion/download_california_rule21_docs.py \
   --reviewer your-name
 ```
 
-This validates the local replacement, updates its hash, records the manual replacement method, records reviewer approval, and enables extraction and default retrieval according to corpus metadata.
+This validates the local replacement, updates its hash, records the manual-replacement method, records reviewer approval, and enables extraction and default retrieval according to corpus metadata.
 
 ### Inspect corpus metadata
 
@@ -289,11 +311,11 @@ Chunking transforms normalised evidence blocks into searchable units for retriev
 
 The chunking stage:
 
-- Preserves `evidence_text` unchanged from normalised blocks (citation-grade).
-- Prepends heading context to `embedding_text` (for retrieval quality).
-- Merges citation metadata (PDF pages, tariff sheets, section IDs).
-- Links neighbour chunks (previous/next for navigation).
-- Flags oversized blocks without splitting mid-evidence.
+- Preserves `evidence_text` unchanged from normalised blocks.
+- Prepends heading context to `embedding_text`.
+- Merges citation metadata, including PDF pages, tariff sheets, and section IDs.
+- Links neighbour chunks for navigation.
+- Flags oversized blocks without splitting evidence mid-block.
 
 ### Run chunking
 
@@ -344,7 +366,6 @@ document = json.loads(
 print(f"Total chunks: {len(document['chunks'])}")
 print(f"Oversized chunks: {sum(1 for c in document['chunks'] if c['oversized'])}")
 
-# Inspect a sample chunk
 chunk = document["chunks"]
 print("\n" + "=" * 100)
 print(f"Chunk {chunk['chunk_id']}")
@@ -360,9 +381,9 @@ PY
 Expected chunking behaviour includes:
 
 - 1,049 total chunks across 6 sources.
-- 5 oversized chunks (all handbook TOC blocks, 1,033-1,561 tokens).
-- `evidence_text` unchanged from normalised blocks.
-- `embedding_text` has heading context prepended.
+- 5 oversized chunks, all handbook table-of-contents blocks of 1,033-1,561 tokens.
+- `evidence_text` remains unchanged from normalised blocks.
+- `embedding_text` includes heading context.
 - Neighbour links enable navigation.
 
 ---
@@ -375,8 +396,9 @@ Embeddings enable vector similarity search for retrieval.
 
 The embedding stage:
 
-- Uses Nomic nomic-embed-text-v1.5 (768-dim vectors).
-- Applies `search_document:` prefix to chunk `embedding_text`.
+- Uses Nomic `nomic-embed-text-v1.5`.
+- Applies the `search_document:` prefix to chunk `embedding_text`.
+- Produces 768-dimensional vectors.
 - Preserves chunk metadata for traceability.
 
 ### Run embedding generation
@@ -402,26 +424,24 @@ data/processed/embeddings/embedding_manifest.json
 ```bash
 uv run python - <<'PY'
 import json
-from pathlib import Path
 
-# Load first 5 embeddings
-with open("data/processed/embeddings/embeddings.jsonl", "r") as f:
-    for i, line in enumerate(f):
-        if i >= 5:
+with open("data/processed/embeddings/embeddings.jsonl", "r", encoding="utf-8") as file:
+    for index, line in enumerate(file):
+        if index >= 5:
             break
-        emb = json.loads(line)
-        print(f"\nChunk {emb['chunk_id']}")
-        print(f"Vector dimension: {len(emb['vector'])}")
-        print(f"Model: {emb['embedding_model']}")
-        print(f"Prefix: {emb['embedding_prefix']}")
+        embedding = json.loads(line)
+        print(f"\nChunk {embedding['chunk_id']}")
+        print(f"Vector dimension: {len(embedding['vector'])}")
+        print(f"Model: {embedding['embedding_model']}")
+        print(f"Prefix: {embedding['embedding_prefix']}")
 PY
 ```
 
 Expected embedding outputs:
 
-- 1,049 embeddings (one per chunk).
+- 1,049 embeddings, one per chunk.
 - 768-dimensional vectors.
-- `search_document:` prefix applied.
+- `search_document:` prefix applied to document embedding input.
 
 ---
 
@@ -439,7 +459,7 @@ Wait for PostgreSQL to be ready:
 docker compose logs db | grep "database system is ready"
 ```
 
-### Create the knowledge base schema
+### Create the knowledge-base schema
 
 ```bash
 uv run python src/database/init_db.py
@@ -447,9 +467,10 @@ uv run python src/database/init_db.py
 
 This creates:
 
-- `chunks` table (full chunk metadata)
-- `chunk_embeddings` table (768-dim vectors with pgvector)
-- IVFFlat index for fast similarity search
+- `chunks` table for chunk text and metadata
+- `chunk_embeddings` table for 768-dimensional vectors
+- pgvector indexes required by the configured database schema
+- PostgreSQL full-text retrieval structures required by lexical retrieval
 
 ### Load chunks into the database
 
@@ -470,46 +491,34 @@ Loaded 1,049 embeddings into database
 
 ```bash
 uv run python - <<'PY'
+import os
 import psycopg2
 
-conn = psycopg2.connect(
-    "postgresql://postgres:postgres@localhost:5432/der_regcheck"
-)
+database_url = os.environ["DATABASE_URL"]
+
+conn = psycopg2.connect(database_url)
 cur = conn.cursor()
 
-# Count chunks
 cur.execute("SELECT COUNT(*) FROM chunks")
 print(f"Chunks: {cur.fetchone()}")
 
-# Count embeddings
 cur.execute("SELECT COUNT(*) FROM chunk_embeddings")
 print(f"Embeddings: {cur.fetchone()}")
-
-# Sample similarity search (dummy vector shown; replace with a real 768-dim query embedding)
-dummy_vector = [0.0] * 768
-vector_str = "[" + ",".join(str(x) for x in dummy_vector) + "]"
-
-cur.execute(f"""
-    SELECT chunk_id, source_id, 
-           1 - (embedding <=> '{vector_str}'::vector) AS similarity
-    FROM chunk_embeddings
-    ORDER BY similarity DESC
-    LIMIT 5
-""")
-print("\nTop 5 similar chunks (dummy query):")
-for row in cur.fetchall():
-    print(f"  {row} | {row} | similarity: {row:.4f}")
 
 cur.close()
 conn.close()
 PY
 ```
 
+Do not use an all-zero dummy embedding to validate relevance or ranking quality. Use the retrieval command below so the project generates a real query embedding.
+
 ---
 
-## Run retrieval evaluation (Tier 1)
+## Generate evaluation queries
 
-### Generate evaluation queries
+### Generate the fixed benchmark
+
+Run this only when intentionally creating a new benchmark. Do not regenerate queries when reproducing the established v3 result.
 
 ```bash
 uv run python -m src.evaluation.generate_synthetic_queries \
@@ -521,63 +530,17 @@ uv run python -m src.evaluation.generate_synthetic_queries \
 
 Expected output:
 
-- 100 LLM-generated queries with gold chunk metadata.
+- 100 LLM-generated queries.
+- Gold chunk IDs and metadata.
+- Query source and generation metadata.
 
-### Run retrieval evaluation (v1-style: BM25, vector, hybrid; no rerank)
-
-```bash
-uv run python -m src.evaluation.evaluate_retrieval \
-  --queries data/evaluation/queries.jsonl \
-  --chunks-dir data/processed/chunks \
-  --output data/evaluation/evaluation_results_v1.jsonl \
-  --alphas "0.5" \
-  --rerank-weightings "equal" \
-  --rerank-only \
-  --overwrite
-```
-
-Then, if you want a pure v1-style set without reranking, you can restrict analysis to the non-reranked rows in the summary step, or run a separate evaluation script variant. The current unified script supports both v1 and v2 configurations; the key is how you interpret the results.
-
-### Run retrieval evaluation (v2: extended with reranking and multiple alphas)
-
-```bash
-uv run python -m src.evaluation.evaluate_retrieval \
-  --queries data/evaluation/queries.jsonl \
-  --chunks-dir data/processed/chunks \
-  --output data/evaluation/evaluation_results.jsonl \
-  --alphas "0.3,0.5,0.7" \
-  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
-  --resume
-```
-
-Expected output:
-
-- 8,100 retrieval records (multiple retrievers × alphas × weightings, including reranking).
-- Metrics: nDCG@10, MRR, Recall@10, and composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall).
-
-### Review evaluation results
-
-```bash
-uv run python -m src.evaluation.summarise_evaluation \
-  --input data/evaluation/evaluation_results.jsonl \
-  --output data/evaluation/evaluation_summary.json \
-  --top-n 10 \
-  --decimals 5
-```
-
-Expected highlights (v2):
-
-- Top configuration by composite: `hybrid_rerank__equal` (composite ≈ 0.96148).
-- Reranked configurations dominate non-reranked on all metrics.
-- Weighting differences among reranked configs are in the 4th–5th decimal.
-
-See `docs/evaluation-notes.md` and `docs/decisions.md` #11 for interpretation and the selected production configuration (hybrid + rerank, equal weighting, α = 0.5).
+The current production-aligned benchmark is `data/evaluation/queries.jsonl`. Treat it as fixed for direct configuration comparisons.
 
 ---
 
-## Run retrieval (production)
+## Run production retrieval
 
-### Test production retrieval
+### Test the deployed retrieval path
 
 ```bash
 uv run python -m src.retrieval.retrieve \
@@ -585,15 +548,245 @@ uv run python -m src.retrieval.retrieve \
   --top-k 5
 ```
 
-Expected output:
+The deployed retrieval path can use:
 
-- Top 5 retrieved chunks with metadata and citations, using the production configuration (hybrid + rerank, equal weighting).
+- PostgreSQL full-text lexical retrieval
+- pgvector vector retrieval
+- PostgreSQL-backed hybrid retrieval
+- Runtime query embedding using Nomic `search_query:`
+- Cross-encoder reranking using `BAAI/bge-reranker-base`
+
+The current selected production configuration is:
+
+```text
+Expanded query
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+```
+
+Inspect returned source metadata and citation locators before treating any result as evidence for a requirement.
+
+---
+
+## Run retrieval evaluation
+
+### Evaluation conditions
+
+The authoritative Tier 1 v3 evaluation uses:
+
+| Component | Configuration |
+|---|---|
+| Query benchmark | 100 fixed synthetic queries |
+| Corpus | 1,049 indexed chunks |
+| Retrieval backend | PostgreSQL full-text search and pgvector |
+| Retrieval variants | Lexical, vector, hybrid, hybrid rerank, vector rerank |
+| Hybrid alpha values | 0.3, 0.5, 0.7 |
+| Metadata weightings | Equal, source-heavy, section-heavy, page-heavy, authority-heavy |
+| Embedding model | `nomic-ai/nomic-embed-text-v1.5` |
+| Reranker | `BAAI/bge-reranker-base` |
+| Reranker candidates | Top 50 |
+| Reranked output | Top 10 |
+| Metrics | nDCG@10, MRR, Recall@10, composite score |
+| Checkpointing | JSONL checkpointing and resume support |
+
+The v3 retrieval grid contains:
+
+```text
+100 queries
+× 3 alpha values
+× 5 retrieval variants
+× 5 metadata weighting schemes
+= 7,500 evaluation records
+```
+
+### Run the production-aligned PostgreSQL retrieval grid
+
+Ensure PostgreSQL is running and contains the current 1,049 chunks and embeddings before starting.
+
+```bash
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --output data/evaluation/evaluation_results_postgres.jsonl \
+  --alphas "0.3,0.5,0.7" \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
+```
+
+If the evaluator requires an explicit database argument in the current implementation, add it using the project’s configured database URL:
+
+```bash
+uv run python -m src.evaluation.evaluate_retrieval \
+  --queries data/evaluation/queries.jsonl \
+  --output data/evaluation/evaluation_results_postgres.jsonl \
+  --database-url "$DATABASE_URL" \
+  --alphas "0.3,0.5,0.7" \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
+```
+
+Use `--resume` to continue from JSONL checkpoints. Use `--overwrite` only when deliberately replacing the result artifact.
+
+### Summarise PostgreSQL retrieval results
+
+```bash
+uv run python -m src.evaluation.summarise_evaluation \
+  --input data/evaluation/evaluation_results_postgres.jsonl \
+  --output data/evaluation/evaluation_summary_postgres.json \
+  --top-n 10 \
+  --decimals 5
+```
+
+The summariser must:
+
+- Group records by configuration and alpha.
+- Count unique query IDs correctly.
+- Calculate variability across queries.
+- Calculate the composite score:
+
+```text
+0.5 × nDCG@10 + 0.3 × MRR + 0.2 × Recall@10
+```
+
+- Rank configurations by composite score.
+
+### Expected v3 retrieval highlights
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| Vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
+| Vector rerank, authority-heavy weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
+| Hybrid rerank, equal weighting, alpha 0.50 | 0.94589 | 0.92500 | 0.09625 | 0.76969 |
+| Hybrid rerank, section-heavy weighting, alpha 0.30 | 0.93240 | 0.60800 | 0.11019 | 0.67065 |
+| Hybrid, equal weighting, alpha 0.50 | 0.76700 | 0.87293 | 0.08580 | 0.66253 |
+| Vector, equal weighting | 0.76330 | 0.87293 | 0.08480 | 0.66049 |
+| Lexical, equal weighting | 0.15420 | 0.15500 | 0.00690 | 0.12499 |
+
+Interpret the results as follows:
+
+- Reranking is the dominant observed retrieval-quality improvement.
+- Vector reranking has the strongest observed nDCG@10, MRR, and composite score.
+- Hybrid reranking is a near-tied alternative under equal weighting and alpha 0.50.
+- Equal weighting is the selected default because it ties for the strongest vector-rerank score and is simplest to justify.
+- Recall@10 is metadata-derived and must not be interpreted as the proportion of real user questions answered successfully.
+- See `docs/evaluation-notes.md` and `docs/decisions.md` #12 for full interpretation and limitations.
+
+---
+
+## Run cached query-rewrite evaluation
+
+### Evaluation conditions
+
+The cached query-rewrite evaluation uses:
+
+- 100 fixed benchmark queries
+- Four cached rewrite techniques:
+  - `original`
+  - `expanded`
+  - `hyde`
+  - `hyde_expanded`
+- Four retrieval variants
+- Five metadata weighting schemes
+
+The completed grid contains:
+
+```text
+100 queries
+× 4 rewrite techniques
+× 4 retrieval variants
+× 5 metadata weighting schemes
+= 8,000 query-rewrite evaluation records
+```
+
+### Generate or refresh cached rewrites
+
+Only regenerate rewrites when intentionally revising the rewrite-generation method or benchmark. Otherwise, use the committed `data/evaluation/query_rewrites.jsonl` artifact.
+
+Use the project’s implemented rewrite-generation command and configured `LLM_MODEL`. The resulting file must retain the original query ID and record the rewrite technique, generated text, timestamp, and model.
+
+### Run the PostgreSQL rewrite evaluation
+
+Use the project’s implemented query-rewrite evaluation entry point. The required inputs and outputs are:
+
+```text
+Input queries:
+data/evaluation/queries.jsonl
+
+Cached rewrites:
+data/evaluation/query_rewrites.jsonl
+
+Output results:
+data/evaluation/query_rewrite_results_postgres.jsonl
+
+Output summary:
+data/evaluation/query_rewrite_summary_postgres.json
+```
+
+The evaluation must use the same PostgreSQL corpus, metric implementation, weighting schemes, and reranking configuration as the main v3 retrieval evaluation.
+
+### Expected rewrite highlights
+
+| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
+|---|---:|---:|---:|---:|
+| Expanded query + vector rerank, equal weighting | 0.94713 | 0.93583 | 0.09214 | 0.77274 |
+| Original query + vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
+| HyDE query + vector rerank, equal weighting | 0.89930 | 0.69980 | 0.08420 | 0.67643 |
+| HyDE-expanded query + vector rerank, equal weighting | 0.88720 | 0.67200 | 0.08060 | 0.66131 |
+
+Interpret the results as follows:
+
+- Query expansion produced a modest increase in nDCG@10, MRR, and composite score.
+- Query expansion slightly reduced metadata-derived Recall@10.
+- HyDE and HyDE plus expansion reduced ranking quality on this benchmark.
+- HyDE is not enabled as a default rewrite technique.
+- The query-expansion advantage is small and requires paired statistical testing or manually judged relevance data before a strong superiority claim.
+
+---
+
+## Run evaluator regression tests
+
+Run regression tests before a deliberate re-evaluation or after changing evaluator or summariser logic.
+
+```bash
+uv run python -m unittest \
+  tests.test_evaluate_retrieval \
+  tests.test_summarise_evaluation
+```
+
+These tests cover evaluator and summary behaviour, including grouping, unique-query counting, variability calculations, and composite-score ranking.
+
+---
+
+## Historical file-based evaluation
+
+Historical v1 and v2 evaluation artifacts use a separate file-based, in-memory evaluator.
+
+They remain useful for development history and offline experimentation, but they are not the authoritative production result and must not be numerically compared directly with v3.
+
+Use the historical commands and artifacts only when reproducing those earlier experimental conditions:
+
+```text
+data/evaluation/evaluation_results.jsonl
+data/evaluation/evaluation_summary.json
+data/evaluation/query_rewrite_results.jsonl
+```
+
+For current production conclusions, use:
+
+```text
+data/evaluation/evaluation_results_postgres.jsonl
+data/evaluation/evaluation_summary_postgres.json
+data/evaluation/query_rewrite_results_postgres.jsonl
+data/evaluation/query_rewrite_summary_postgres.json
+```
 
 ---
 
 ## Regenerate pipeline outputs
 
 ### Full pipeline regeneration
+
+A corpus refresh changes the evidence, chunks, embeddings, and database state. If the fixed query set remains valid, rerun the PostgreSQL v3 retrieval and rewrite evaluations after loading the refreshed corpus.
 
 ```bash
 # 1. Re-download corpus
@@ -609,62 +802,74 @@ uv run python src/processing/normalise_documents.py \
   --config config/normalisation.yaml \
   --output-dir data/processed/normalised
 
-# 4. Re-run chunking
+# 4. Re-run normalisation quality checks
+uv run python src/processing/quality_check_normalised.py \
+  --normalised-dir data/processed/normalised \
+  --output-json data/processed/normalised/quality_report.json \
+  --output-md data/processed/normalised/quality_report.md
+
+# 5. Re-run chunking
 rm -rf data/processed/chunks/*
 uv run python src/processing/chunk_documents.py \
   --normalised-dir data/processed/normalised \
   --config config/chunking.yaml \
   --output-dir data/processed/chunks
 
-# 5. Re-run embedding
+# 6. Re-run chunk quality checks
+uv run python src/processing/quality_check_chunks.py \
+  --chunks-dir data/processed/chunks \
+  --output-json data/processed/chunks/quality_report.json \
+  --output-md data/processed/chunks/quality_report.md
+
+# 7. Re-run embeddings
 rm -rf data/processed/embeddings/*
 uv run python src/processing/generate_embeddings.py \
   --chunks-dir data/processed/chunks \
   --output-dir data/processed/embeddings \
   --model nomic-ai/nomic-embed-text-v1.5
 
-# 6. Re-load database
-docker compose down db
+# 8. Recreate and load the database
+docker compose down
 docker compose up -d db
 uv run python src/database/init_db.py
 uv run python src/scripts/load_chunks_to_db.py \
   --chunks-dir data/processed/chunks \
   --embeddings-file data/processed/embeddings/embeddings.jsonl
 
-# 7. Re-run evaluation (v2: extended with reranking and multiple alphas)
-rm -rf data/evaluation/*
-uv run python -m src.evaluation.generate_synthetic_queries \
-  --chunks-dir data/processed/chunks \
-  --output-file data/evaluation/queries.jsonl \
-  --num-queries 100 \
-  --model gemini-3.5-flash-lite
+# 9. Run evaluator regression tests
+uv run python -m unittest \
+  tests.test_evaluate_retrieval \
+  tests.test_summarise_evaluation
+
+# 10. Re-run the production-aligned PostgreSQL retrieval grid
+rm -f data/evaluation/evaluation_results_postgres.jsonl
+rm -f data/evaluation/evaluation_summary_postgres.json
+
 uv run python -m src.evaluation.evaluate_retrieval \
   --queries data/evaluation/queries.jsonl \
-  --chunks-dir data/processed/chunks \
-  --output data/evaluation/evaluation_results.jsonl \
+  --output data/evaluation/evaluation_results_postgres.jsonl \
   --alphas "0.3,0.5,0.7" \
   --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
-  --resume
+  --overwrite
+
+# 11. Summarise the production-aligned retrieval grid
+uv run python -m src.evaluation.summarise_evaluation \
+  --input data/evaluation/evaluation_results_postgres.jsonl \
+  --output data/evaluation/evaluation_summary_postgres.json \
+  --top-n 10 \
+  --decimals 5
+
+# 12. Re-run cached query-rewrite evaluation using the project's rewrite evaluator
+# Keep the cached query-rewrite artifact fixed unless deliberately regenerating it.
 ```
+
+Do not delete `data/evaluation/queries.jsonl` or `data/evaluation/query_rewrites.jsonl` during a routine rerun if the goal is comparable evaluation against the established benchmark.
+
+If the query set, rewrite set, corpus, embedding model, chunking configuration, evaluator logic, or database retrieval logic changes, record a new dated evaluation condition rather than silently replacing the v3 result.
 
 ---
 
-## Run the application (planned)
-
-### Set environment variables
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` to set:
-
-```dotenv
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/der_regcheck
-LLM_PROVIDER=<provider>
-LLM_API_KEY=<api_key>
-EMBEDDING_MODEL=nomic-ai/nomic-embed-text-v1.5
-```
+## Run the application
 
 ### Run the Streamlit app
 
@@ -676,7 +881,7 @@ uv run streamlit run app/main.py
 
 ---
 
-## Generate answers (planned)
+## Generate answers
 
 ### Generate grounded answers
 
@@ -699,6 +904,8 @@ uv run python -m src.generation.generate_brief \
   --top-k 15 \
   --model gemini-3.5-flash-lite
 ```
+
+Answer generation must preserve source hierarchy, source currency, applicability conditions, uncertainty, and citation locators.
 
 ---
 
@@ -733,22 +940,23 @@ uv run python -m src.generation.generate_brief \
 - Determine whether the block is:
   - cover, contents, disclaimer, page-header, or document-control material;
   - substantive text requiring a source-specific heading rule; or
-  - accepted supporting/historical context with page-level provenance.
+  - accepted supporting or historical context with page-level provenance.
 - Do not add broad generic heuristics solely to eliminate warnings.
-- Record accepted limitations in `docs/decisions.md` and `docs/project-log.md`.
+- Record accepted limitations in `docs/decisions.md`, `docs/dataset-notes.md`, and the project log.
 
 ### Chunking produces oversized chunks
 
 - Check `data/processed/chunks/quality_report.md` for oversized chunk details.
-- Verify these are acceptable (e.g., handbook TOC blocks).
+- Verify whether the chunks are acceptable, such as handbook table-of-contents blocks.
 - If substantive content is oversized, consider adjusting `config/chunking.yaml` thresholds.
-- Do not split mid-evidence; accept documented exceptions.
+- Do not split citation-grade evidence mid-block; record accepted exceptions.
 
 ### Embedding generation fails
 
 - Confirm `sentence-transformers` is installed.
-- Verify internet connectivity for model download (or use cached model).
-- Check `data/processed/chunks/` exists and contains valid chunk JSON files.
+- Verify internet connectivity for model download or use a cached model.
+- Check that `data/processed/chunks/` exists and contains valid chunk JSON files.
+- Confirm the model name is `nomic-ai/nomic-embed-text-v1.5`.
 
 ### Database connection fails
 
@@ -759,14 +967,28 @@ docker compose ps
 ```
 
 - Verify `DATABASE_URL` in `.env`.
-- Check that the `pgvector` extension is installed and enabled.
+- Check that the pgvector extension is installed and enabled.
+- Confirm the database schema has been created with `src/database/init_db.py`.
+
+### PostgreSQL evaluation fails or resumes unexpectedly
+
+- Confirm PostgreSQL is running and contains 1,049 chunks and 1,049 embeddings.
+- Confirm `DATABASE_URL` is available to the evaluator.
+- Inspect the existing JSONL output before choosing `--resume`, `--overwrite`, or a new dated output file.
+- Use `--resume` only when continuing the same benchmark, corpus, evaluator implementation, and configuration grid.
+- Use `--overwrite` only when deliberately replacing an incomplete or invalid artifact.
+- Run evaluator regression tests after changing evaluation logic.
 
 ### Retrieval evaluation produces unexpected metrics
 
-- Verify queries are diverse and well-formed: `head data/evaluation/queries.jsonl`
+- Confirm `data/evaluation/queries.jsonl` contains the intended fixed benchmark.
+- Confirm the database contains chunks and embeddings derived from the intended corpus version.
 - Check metadata matching logic in `src/evaluation/evaluate_retrieval.py`.
-- Confirm chunk metadata includes all required fields (source_id, section_ids, etc.).
-- Compare against `docs/evaluation-notes.md` and `docs/decisions.md` #11 to ensure you're interpreting v1 vs v2 results correctly.
+- Confirm chunk metadata includes required fields such as `source_id`, `section_ids`, `block_types`, citation pages, and authority-tier metadata.
+- Confirm the summariser groups by alpha and counts unique query IDs correctly.
+- Distinguish historical file-based v1/v2 artifacts from the authoritative PostgreSQL v3 artifacts.
+- Interpret Recall@10 as metadata-defined chunk coverage, not end-user answer success.
+- Consult `docs/evaluation-notes.md` and `docs/decisions.md` #12 for the evaluation protocol and limitations.
 
 ---
 
@@ -777,10 +999,15 @@ docker compose ps
 - ✅ Preserve citation-grade evidence text separately from embedding-oriented context text. **Completed**
 - ✅ Add source authority, retrieval tier, currency, and applicability metadata to chunks. **Completed**
 - ✅ Implement PostgreSQL + pgvector knowledge base. **Completed**
-- ✅ Implement lexical, vector, hybrid retrieval and evaluation (v1). **Completed**
-- ✅ Extend evaluation to include reranking, multiple alphas, all weightings, and composite scoring (v2). **Completed**
-- ✅ Create a labelled retrieval evaluation set (100 queries). **Completed**
-- ⏳ Run RRF k sweep (k ∈ {1, 20, 60, 100}) to align with course experiments. **Pending**
+- ✅ Implement historical lexical, vector, and hybrid retrieval evaluation (v1). **Completed**
+- ✅ Implement historical file-based reranking, alpha sweeps, weighting schemes, and composite scoring (v2). **Completed**
+- ✅ Implement production-aligned PostgreSQL full-text, pgvector, hybrid, runtime embedding, and reranking evaluation. **Completed 2026-09-05**
+- ✅ Complete the PostgreSQL retrieval grid: 100 queries × 3 alphas × 5 retrieval variants × 5 weightings = 7,500 records. **Completed 2026-09-05**
+- ✅ Complete the cached PostgreSQL query-rewrite evaluation: 8,000 records. **Completed 2026-09-05**
+- ✅ Implement evaluator and summariser regression tests. **Completed**
+- ✅ Select the production retrieval configuration: expanded query + vector rerank. **Completed**
+- ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
+- ⏳ Create a manually judged relevance set to supplement metadata-derived relevance labels. **Pending**
 - ⏳ Implement source-aware filtering and tier-based retrieval constraints. **Pending**
 - ⏳ Implement grounded answer and preliminary market-entry evidence-brief generation. **Pending**
 - ⏳ Implement RAG quality evaluation (Tier 2) with 5-10 open-ended questions. **Pending**

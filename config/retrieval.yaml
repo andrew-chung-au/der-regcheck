@@ -1,11 +1,11 @@
-# config/retrieval.yaml
-# Retrieval hyperparameters for optimization
+# Retrieval settings for DER RegCheck.
 
-# Hybrid retrieval alpha: weight for BM25 (0.0 = pure vector, 1.0 = pure BM25)
+# Hybrid reciprocal-rank fusion:
+# 0.0 = vector only, 1.0 = lexical search only.
 hybrid_alpha: 0.5
 
-# Metadata weighting schemes for evaluation
-# Each scheme must sum to 1.0
+# Metadata weighting schemes used during evaluation.
+# Each scheme must sum to 1.0.
 weighting_schemes:
   equal:
     source: 0.20
@@ -42,6 +42,7 @@ reranking:
   candidate_limit: 50
   top_k: 10
   max_tokens: 450
+  batch_size: 16
 
 query_rewriting:
   hyde_max_tokens: 150

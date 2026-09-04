@@ -9,13 +9,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import yaml
-from transformers import AutoTokenizer, AutoModel
 import torch
+import torch.nn.functional as F
+import yaml
+from transformers import AutoModel, AutoTokenizer
+
 
 SCHEMA_VERSION = "1.0"
 ROOT = Path(__file__).resolve().parents[2]
-EXCLUDED_INPUTS = {"chunk_manifest.json", "chunk_quality_report.json", "chunk_quality_report.md"}
+EXCLUDED_INPUTS = {
+    "chunk_manifest.json",
+    "chunk_quality_report.json",
+    "chunk_quality_report.md",
+}
 
 
 def now_iso() -> str:
@@ -41,7 +47,9 @@ def embed_batch(
     prefix: str,
     device: str,
 ) -> list[list[float]]:
+    """Embed and L2-normalize a batch of texts."""
     prefixed = [prefix + text for text in texts]
+
     encoded = tokenizer(
         prefixed,
         padding=True,
@@ -53,8 +61,15 @@ def embed_batch(
     with torch.no_grad():
         outputs = model(**encoded)
 
-    embeddings = outputs.last_hidden_state[:, 0, :].cpu().tolist()
-    return embeddings
+    pooled_embeddings = outputs.last_hidden_state[:, 0, :]
+
+    normalized_embeddings = F.normalize(
+        pooled_embeddings,
+        p=2,
+        dim=1,
+    )
+
+    return normalized_embeddings.cpu().tolist()
 
 
 def embed_document(
@@ -77,9 +92,17 @@ def embed_document(
         batch = chunks[index : index + batch_size]
         texts = [chunk["embedding_text"] for chunk in batch]
 
+        embeddings: list[list[float]] | None = None
+
         for attempt in range(max_retries):
             try:
-                embeddings = embed_batch(texts, model, tokenizer, prefix, device)
+                embeddings = embed_batch(
+                    texts,
+                    model,
+                    tokenizer,
+                    prefix,
+                    device,
+                )
                 break
             except Exception as error:
                 if attempt == max_retries - 1:
@@ -91,9 +114,9 @@ def embed_document(
                                 "failed_at": now_iso(),
                             }
                         )
-                    embeddings = None
                     break
-                time.sleep(2 ** attempt)
+
+                time.sleep(2**attempt)
 
         if embeddings is None:
             continue
@@ -130,8 +153,16 @@ def embed_document(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input-dir", type=Path, default=ROOT / "data/processed/chunks")
-    parser.add_argument("--config", type=Path, default=ROOT / "config/embedding.yaml")
+    parser.add_argument(
+        "--input-dir",
+        type=Path,
+        default=ROOT / "data/processed/chunks",
+    )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=ROOT / "config/embedding.yaml",
+    )
     args = parser.parse_args()
 
     input_dir = absolute(args.input_dir)
@@ -167,16 +198,24 @@ def main() -> None:
     }
 
     for path in sorted(
-        item for item in input_dir.glob("*.json") if item.name not in EXCLUDED_INPUTS
+        item
+        for item in input_dir.glob("*.json")
+        if item.name not in EXCLUDED_INPUTS
     ):
         try:
             document = load_json(path)
-            result = embed_document(document, config, model, tokenizer, device)
+            result = embed_document(
+                document,
+                config,
+                model,
+                tokenizer,
+                device,
+            )
 
             jsonl_path = output_dir / f"{document['document_id']}.jsonl"
-            with jsonl_path.open("w", encoding="utf-8") as f:
+            with jsonl_path.open("w", encoding="utf-8") as file:
                 for record in result["records"]:
-                    f.write(json.dumps(record) + "\n")
+                    file.write(json.dumps(record) + "\n")
 
             manifest["documents"].append(
                 {
@@ -192,7 +231,8 @@ def main() -> None:
 
             print(
                 f"Embedded: {document['document_id']} "
-                f"({result['chunks_embedded']} chunks, {result['chunks_failed']} failures)"
+                f"({result['chunks_embedded']} chunks, "
+                f"{result['chunks_failed']} failures)"
             )
 
         except Exception as error:
@@ -206,7 +246,10 @@ def main() -> None:
             print(f"FAILED: {path.name}: {error}")
 
     manifest_path = output_dir / "embedding_manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2),
+        encoding="utf-8",
+    )
     print(f"Embedding manifest: {manifest_path}")
 
     if manifest["failures"]:

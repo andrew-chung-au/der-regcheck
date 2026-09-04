@@ -282,9 +282,9 @@ Run a thorough, methodologically consistent evaluation of retrieval strategies, 
   - Use BAAI/bge-reranker-base for reranking top-50 candidates to 10
   - Checkpoint results at `(query_id, alpha, retriever, weighting)` granularity for resumable runs
   - Add `--mode rewrites-full` to evaluate query rewrites across all retrievers and weightings
-- Generated 8,100 evaluation records:
+- Generated 15,500 evaluation records across two result files:
   - 100 queries × 3 alphas × 5 retrievers × 5 weightings = 7,500 retrieval rows
-  - Plus rewrite variants (4 techniques × 4 retrievers × 5 weightings × 100 queries = 8,000 additional rows in a separate file)
+  - 4 rewrite techniques × 4 retrievers × 5 weightings × 100 queries = 8,000 rewrite rows
 - Updated `src/evaluation/summarise_evaluation.py` to:
   - Compute composite score: `0.5 * nDCG@10 + 0.3 * MRR + 0.2 * Recall@10`
   - Show ranked tables by each metric and by composite score
@@ -324,3 +324,39 @@ Run a thorough, methodologically consistent evaluation of retrieval strategies, 
 - Finalise documentation: `README.md`, `docs/decisions.md`, `docs/evaluation-notes.md`, `docs/runbook.md`
 - Optionally add RRF k sweep (e.g. k ∈ {1, 20, 60, 100}) in a future iteration
 - Build RAG generation pipeline with Gemini using the selected retrieval configuration
+
+## 2026-09-05 - Production-aligned PostgreSQL retrieval re-evaluation
+
+### Goal
+Re-evaluate retrieval and cached query-rewrite variants using the deployed PostgreSQL/pgvector retrieval path rather than the earlier file-based, in-memory evaluator.
+
+### What I did
+- Migrated evaluation retrieval to the deployed production components:
+  - PostgreSQL full-text lexical retrieval
+  - pgvector vector retrieval
+  - PostgreSQL-backed hybrid retrieval
+  - Runtime query embedding
+  - Cross-encoder reranking
+- Preserved the fixed benchmark of 100 evaluation queries and 1,049 indexed chunks.
+- Retained retrieval variants, alpha sweeps, metadata weighting schemes, JSONL checkpointing, and cached query-rewrite evaluation.
+- Updated `src/evaluation/summarise_evaluation.py` to group results by alpha, count unique queries correctly, calculate variability, and rank configurations by the documented composite score.
+- Added and passed evaluator and summariser regression tests.
+- Completed the full PostgreSQL retrieval grid and rewrite evaluation; detailed commands, metrics, results, and limitations are recorded in `docs/evaluation-notes.md`.
+
+### What I learned
+- The earlier file-based evaluator and the deployed PostgreSQL evaluator are separate experimental conditions, despite using the same query benchmark and corpus.
+- Final claims should use the PostgreSQL results because they measure the runtime retrieval path.
+- Reranking produced the main ranking-quality improvement; query expansion was evaluated as a possible refinement, while HyDE was not selected for default use.
+
+### Decision made
+- Treat the PostgreSQL/pgvector results as the authoritative final retrieval evaluation.
+- Preserve earlier file-based results as historical offline-baseline artifacts, not directly comparable final results.
+- Record the selected production configuration and its supporting metrics in `docs/evaluation-notes.md` and `docs/decisions.md`.
+
+### Problems
+- The original evaluator used locally loaded embeddings and a lightweight lexical-overlap baseline rather than the deployed retrieval path.
+- Migrating evaluators changed multiple implementation details simultaneously, preventing a controlled causal claim that PostgreSQL alone changed performance.
+
+### Next step
+- Finalise `docs/evaluation-notes.md` with the evaluation protocol, final result tables, interpretation, and limitations.
+- Update `docs/decisions.md`, `docs/runbook.md`, and `README.md`.
