@@ -15,7 +15,7 @@ It covers:
 - Interpretation of source authority, currency, applicability, and uncertainty
 - Empirical retrieval evaluation results (historical Tier 1 v1 and v2; authoritative production-aligned Tier 1 v3)
 
-**Status:** Evaluation framework defined. Raw extraction, deterministic normalisation, chunking, embedding, and Tier 1 retrieval benchmarking are complete. Historical file-based evaluations were completed on 2026-08-23 (v1 and v2). The production-aligned PostgreSQL/pgvector retrieval and cached query-rewrite evaluations were completed on 2026-09-05 (v3) and are the authoritative results for the deployed retrieval path. Answer generation and RAG quality evaluation remain to be implemented.
+**Status:** Evaluation framework defined. Raw extraction, deterministic normalisation, chunking, embedding, and Tier 1 retrieval benchmarking are complete. Historical file-based evaluations were completed on 2026-08-23 (v1 and v2). The production-aligned PostgreSQL/pgvector retrieval and cached query-rewrite evaluations were completed on 2026-09-05 (v3) and are the authoritative results for the deployed retrieval path. Answer-generation evaluation was completed on 2026-09-05 using 24 fixed questions and an LLM judge; `v3_few_shot_grounded_rag` is selected as the runtime prompt.
 
 ---
 
@@ -93,7 +93,7 @@ DER RegCheck uses two complementary evaluation approaches:
 
 **Purpose:** Evaluate end-to-end RAG quality on realistic, open-ended questions that require multi-evidence synthesis.
 
-**Query set:** 5-10 open-ended questions, originally LLM-generated with Gemini 2.5 Pro or similar, each with multiple relevant chunks across sources.
+**Query set:** 5–10 open-ended questions, originally LLM-generated with Gemini 3.5 Flash Lite, each with multiple relevant chunks across sources.
 
 **Metrics:** Human-scored rubric (groundedness, citation correctness, source hierarchy, completeness, usefulness, and related dimensions).
 
@@ -110,6 +110,8 @@ DER RegCheck uses two complementary evaluation approaches:
 **Location:** `data/evaluation/rag_eval_cases.jsonl` (to be created), `data/evaluation/answer_results/` (to be created).
 
 **Relationship:** Tier 1 tells you which retriever is strongest under the benchmark. Tier 2 tells you whether the selected retriever produces grounded, useful answers.
+
+**Status for this submission:** The manually reviewed Tier 2 evaluation was not completed for this submission. The completed 24-question LLM-judged evaluation is a prompt-selection and citation-validation study, not a replacement for independent human scoring of end-to-end RAG quality. Manual Tier 2 evaluation remains future work for a later version.
 
 ---
 
@@ -490,12 +492,25 @@ Expanded query
 → top 10 evidence chunks
 ```
 
-**Selection rationale:**
-- Highest observed composite score in the production-aligned evaluation.
-- Highest observed nDCG@10 and MRR.
-- Simpler than hybrid retrieval because it does not depend on the weak lexical baseline.
-- Query expansion produced only a modest measured improvement and should be treated as a refinement, not a conclusively superior method.
-- HyDE is disabled because it reduced retrieval quality on this benchmark.
+For the selection rationale outlining why these choices were made, please refer to [`docs/decisions.md`](decisions.md).
+
+### Runtime configuration: disable query expansion for latency
+
+**Date:** 2026-09-05
+
+**Decision:**
+Disable query expansion in the runtime application to achieve acceptable user experience. The retrieval system uses the selected v3 configuration (vector + rerank) with the original user question rather than expanded queries.
+
+For the rationale behind this engineering trade-off, please refer to [`docs/decisions.md`](decisions.md).
+
+**Impact:**
+- Expected nDCG@10 reduction: ~0.00086 (from 0.94713 to ~0.94627).
+- Latency improvement: ~36 seconds per query (75% reduction).
+- User experience: significantly improved for demo and portfolio purposes.
+
+**Future work:**
+- Consider re-enabling expansion if API latency can be reduced through caching, faster models, or batch processing.
+- The expansion logic remains available in the codebase for future optimization.
 
 ### v3 interpretation and limitations
 
@@ -506,7 +521,7 @@ Expanded query
 - Synthetic queries provide scalable, controlled coverage but may not represent the distribution of real user questions.
 - Recall@10 measures recovery of metadata-defined related chunks and should not be interpreted as end-user answer success.
 - Retrieval metrics do not demonstrate answer groundedness, citation correctness, completeness, or regulatory applicability.
-- Tier 2 RAG quality evaluation remains necessary before making end-to-end quality claims.
+- The completed prompt-comparison evaluation supports selection of the runtime prompt, but it does not establish full end-to-end RAG quality. A manually reviewed Tier 2 evaluation remains future work for a later version.
 
 ---
 
@@ -710,9 +725,9 @@ Generated-answer evaluation must not begin until:
 
 - ✅ Tier 1 retrieval baseline exists. **Completed**
 - ✅ Retrieved evidence retains source and locator metadata. **Completed**
-- ⏳ The answer generator can cite retrieved evidence blocks or chunks. **Pending**
-- ⏳ The generation prompt distinguishes source authority, currency, applicability, uncertainty, and historical context. **Pending**
-- ⏳ The system can state when evidence is insufficient rather than infer unsupported requirements. **Pending**
+- ✅ The answer generator can cite retrieved evidence blocks or chunks. **Completed 2026-09-05**
+- ✅ The generation prompt distinguishes source authority, currency, applicability, uncertainty, and historical context. **Completed 2026-09-05**
+- ✅ The system can state when evidence is insufficient rather than infer unsupported requirements. **Completed 2026-09-05**
 
 ### Evaluation rubric
 
@@ -780,80 +795,146 @@ Regardless of numerical score, mark an answer as failed if it:
 
 ### Prompt variants to test
 
-*To be defined after answer generation is implemented.*
+---
 
-Candidate variants:
+## Completed answer-generation evaluation (2026-09-05)
 
-- Base grounded-answer prompt with mandatory citations.
-- Prompt with explicit source-hierarchy instructions.
-- Prompt with explicit current-versus-historical source handling.
-- Prompt requiring an applicability and uncertainty section.
-- Prompt requiring an evidence-gap and validation-actions section.
-- Preliminary market-entry evidence-brief template.
-- Concise evidence-answer template for focused questions.
+### Evaluation set
+
+- 24 fixed questions across six categories (four questions each):
+  - `direct_factual`
+  - `multi_chunk_synthesis`
+  - `ambiguous_needs_clarification`
+  - `out_of_corpus`
+  - `high_stakes_boundary`
+  - `historical_source_handling`
+- Three prompt configurations tested:
+  - `v1_direct_rag`: direct RAG prompt
+  - `v2_structured_grounded_rag`: structured prompt with explicit grounding instructions
+  - `v3_few_shot_grounded_rag`: few-shot grounded prompt with examples
+- Each prompt variant received the same retrieved evidence pack for a question.
+- Generation produced 72 answer records (24 questions × 3 prompts).
+
+### Deterministic validation
+
+Every generated answer was checked independently of the LLM judge. Validation verified that:
+
+- Citation labels refer only to supplied evidence labels.
+- Material claims are not left uncited under the answer schema.
+- Unknown citation labels fail closed.
+- Empty retrieval results produce an insufficient-evidence response rather than an inferred answer.
+
+### LLM judge rubric
+
+The judge model was `gemini-3.5-flash-lite`. It scored each answer from 1 to 5 on:
+
+- **Groundedness:** whether claims remain supported by supplied evidence and source-status limits.
+- **Relevance:** whether the answer addresses the actual question.
+- **Completeness:** whether it covers material supported points and caveats.
+- **Citation quality:** whether citations are valid, claim-linked, and authority-aware.
+- **Appropriate uncertainty:** whether it communicates limits, clarification needs, and decision boundaries.
+
+The per-answer composite was:
+
+```text
+0.30 × Groundedness
++ 0.20 × Relevance
++ 0.20 × Completeness
++ 0.20 × Citation quality
++ 0.10 × Appropriate uncertainty
+```
+
+The composite has a maximum of `5.0`. It is an aggregate answer-quality indicator, not a probability of correctness.
+
+### Selection guardrail
+
+A prompt configuration was eligible for production selection only if its deterministic citation-validity rate was 100%.
+
+Among eligible configurations, the highest mean composite score was selected. Mean groundedness was the tie-breaker.
+
+### Results
+
+| Prompt version | Answer records | Citation-valid rate | Mean composite |
+|---|---:|---:|---:|
+| `v1_direct_rag` | 74 | 94.6% | 4.7509 |
+| `v2_structured_grounded_rag` | 74 | 97.3% | **4.8670** |
+| `v3_few_shot_grounded_rag` | 74 | **100.0%** | 4.8110 |
+
+**Record-count note:** The evaluation design targeted 24 unique questions per prompt version, or 72 intended unique answer evaluations in total. The aggregate artifacts contain 74 answer records per prompt version because of repeated or checkpointed records. The 74 records should not be interpreted as 74 distinct questions; unique-question coverage is 24 questions per prompt version when deduplicated by question ID and prompt version.
+
+### Selection
+
+`v3_few_shot_grounded_rag` is selected as the runtime prompt because it is the only configuration meeting the 100% citation-validity guardrail. Although v2 achieved the highest mean composite score, it did not meet the citation guardrail.
+
+The selected v3 mean composite of `4.8110` is `96.2%` of the maximum possible score of `5.0`.
+
+This selection does not establish that v3 is universally the best prompt. It establishes that v3 is the best eligible configuration under the documented guardrail, question set, judge rubric, and recorded evaluation run.
+
+### Evaluation artifacts
+
+- `data/evaluation/llm_evaluation_questions.yaml`: 24 fixed evaluation questions.
+- `data/evaluation/llm_answers.jsonl`: Generated answer records and deterministic validation results.
+- `data/evaluation/llm_judge_scores.jsonl`: Per-answer judge scores and rationales.
+- `data/evaluation/llm_evaluation_summary.json`: Prompt-level aggregates and selected configuration.
+- `data/evaluation/llm_evaluation_report.md`: Human-readable answer-evaluation report.
+- `src/evaluation/evaluate_llm_answers.py`: Answer generation and judging harness.
+- `src/evaluation/summarise_llm_evaluation.py`: Aggregation, selection, and report generation.
+- `src/generation/answer_generator.py`, `src/generation/citation_validator.py`, `src/generation/prompts.py`: Generation components.
+- `tests/test_answer_generator.py`: Citation/schema/unit tests.
 
 ---
 
 ## Configuration-selection decisions
 
+For detailed explanations on *why* specific configurations—such as chunking approaches, embedding models, query expansion, and reranking parameters—were selected over alternatives, please refer to the rationale documented in [`docs/decisions.md`](decisions.md).
+
 **Selected configuration (v1, historical file-based evaluation, 2026-08-23):**
 
-| Component | Selection | Rationale |
-|---|---|---|
-| **Chunking** | Structural block assembly | Preserves citations, keeps headings with content |
-| **Embedding model** | Nomic `nomic-embed-text-v1.5` | 768-dim, asymmetric retrieval (`search_document:`/`search_query:`) |
-| **Retrieval** | Vector (cosine similarity) | Best v1 nDCG@10 (0.826) |
-| **Weighting scheme** | Equal (all metadata = 0.20) | Best performance for v1 vector retrieval |
-| **Hybrid method** | Reciprocal Rank Fusion (alpha=0.5) | Good v1 MRR (0.903) but lower nDCG than vector |
-| **Reranking** | Not yet implemented in v1 | Added in v2 |
-| **Source filtering** | Not yet implemented | Pending source-tier and currency rules |
-| **Answer generation** | Pending | Gemini 3.5 Flash-Lite or stronger planned |
-| **Prompt variant** | Pending | Base grounded-answer prompt with citations planned |
+| Component | Selection |
+|---|---|
+| **Chunking** | Structural block assembly |
+| **Embedding model** | Nomic `nomic-embed-text-v1.5` |
+| **Retrieval** | Vector (cosine similarity) |
+| **Weighting scheme** | Equal (all metadata = 0.20) |
+| **Hybrid method** | Reciprocal Rank Fusion (alpha=0.5) |
+| **Reranking** | Not yet implemented in v1 |
+| **Source filtering** | Not yet implemented  |
+| **Answer generation** | Not yet implemented in v1  |
+| **Prompt variant** | Not yet implemented in v1  |
 
 **Selected configuration (v2, historical file-based evaluation, 2026-08-23):**
 
-| Component | Selection | Rationale |
-|---|---|---|
-| **Chunking** | Structural block assembly | Preserves citations, keeps headings with content |
-| **Embedding model** | Nomic `nomic-embed-text-v1.5` | 768-dim, asymmetric retrieval (`search_document:`/`search_query:`) |
-| **Retrieval** | Hybrid + rerank (`BAAI/bge-reranker-base`) | Best historical v2 composite score (0.961), nDCG@10 ≈ 0.951, Recall@10 = 1.000 |
-| **Hybrid α** | 0.5 | Balanced BM25 + vector contribution; modest sensitivity across 0.3–0.7 |
-| **RRF k** | 1 | Historical implementation default |
-| **Weighting scheme** | Equal (all metadata = 0.20) | Small historical composite edge; simple to justify |
-| **Reranking** | Implemented (cross-encoder on top-50 candidates → top-10) | Large quality gain in historical offline evaluation |
-| **Source filtering** | Not yet implemented | Pending source-tier and currency rules |
-| **Answer generation** | Pending | Gemini 3.5 Flash-Lite or stronger planned |
-| **Prompt variant** | Pending | Base grounded-answer prompt with citations planned |
+| Component | Selection |
+|---|---|
+| **Chunking** | Structural block assembly |
+| **Embedding model** | Nomic `nomic-embed-text-v1.5` |
+| **Retrieval** | Hybrid + rerank (`BAAI/bge-reranker-base`) |
+| **Hybrid α** | 0.5 |
+| **RRF k** | 1 |
+| **Weighting scheme** | Equal (all metadata = 0.20) |
+| **Reranking** | Implemented (cross-encoder on top-50 candidates → top-10) |
+| **Source filtering** | Not yet implemented |
+| **Answer generation** | Not yet implemented in v2 |
+| **Prompt variant** | Not yet implemented in v2 |
 
 **Selected configuration (v3, production-aligned PostgreSQL evaluation, 2026-09-05):**
 
-| Component | Selection | Rationale |
-|---|---|---|
-| **Evaluation backend** | PostgreSQL full-text search and pgvector | Measures the deployed runtime retrieval path |
-| **Chunking** | Structural block assembly | Preserves citation-grade evidence text and heading context |
-| **Embedding model** | Nomic `nomic-embed-text-v1.5` | 768-dim asymmetric document/query embeddings |
-| **Query treatment** | Expansion | Highest observed production-aligned composite score; improvement is modest |
-| **Retrieval** | Vector retrieval | Strongest observed ranking result after reranking; simpler than hybrid |
-| **Reranking** | `BAAI/bge-reranker-base` | Largest observed improvement in top-rank quality |
-| **Candidate limit** | 50 | Candidate pool passed to the reranker |
-| **Final output** | Top 10 chunks | Matches nDCG@10 and Recall@10 evaluation cutoff |
-| **Weighting scheme** | Equal | Tied strongest vector-rerank result; simplest default |
-| **Hybrid alpha** | 0.5 if hybrid is used | Marginally strongest equal-weight hybrid-rerank result; alpha effect is small |
-| **HyDE** | Disabled | Reduced retrieval quality in the production-aligned benchmark |
-| **Source filtering** | Not yet implemented | Pending source-tier and currency rules |
-| **Answer generation** | Pending | Requires Tier 2 evaluation |
-| **Prompt variant** | Pending | Base grounded-answer prompt with citations planned |
-
-**Trade-offs:**
-
-- Reranking adds latency and a dependency on `BAAI/bge-reranker-base`, but it produced the largest observed ranking-quality improvement.
-- Query expansion gave a small composite-score improvement, but a paired test is required before treating it as conclusively superior.
-- Vector retrieval with reranking is simpler than hybrid retrieval and avoids dependence on a weak lexical baseline.
-- Equal weighting is simple to justify and tied for the strongest vector-rerank result under the metadata-based metric.
-- PostgreSQL production-aligned evaluation measures runtime behaviour, while the file-based evaluations remain useful historical baselines.
-- Synthetic queries are scalable and systematic but may not capture all real-world query patterns.
-- Metadata-derived relevance enables automated comparison but does not substitute for manually judged semantic relevance.
-- Two-tier evaluation balances scalable retrieval benchmarking with realistic RAG-answer evaluation.
+| Component | Selection |
+|---|---|
+| **Evaluation backend** | PostgreSQL full-text search and pgvector |
+| **Chunking** | Structural block assembly |
+| **Embedding model** | Nomic `nomic-embed-text-v1.5` |
+| **Query treatment** | Expansion |
+| **Retrieval** | Vector retrieval |
+| **Reranking** | `BAAI/bge-reranker-base` |
+| **Candidate limit** | 50 |
+| **Final output** | Top 10 chunks |
+| **Weighting scheme** | Equal |
+| **Hybrid alpha** | 0.5 if hybrid is used |
+| **HyDE** | Disabled |
+| **Source filtering** | Not yet implemented |
+| **Answer generation** | Implemented |
+| **Prompt variant** | `v3_few_shot_grounded_rag` |
 
 ---
 
@@ -930,8 +1011,8 @@ Evaluation records should be reproducible without requiring raw corpus downloads
 - ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
 - ⏳ Create a manually judged relevance set to complement metadata-derived labels. **Pending**
 - ⏳ Create Tier 2 query set (5-10 open-ended questions, stronger model or manual review). **Pending**
-- ⏳ Implement answer generation with citation support. **Pending**
-- ⏳ Generate answers for Tier 2 questions. **Pending**
-- ⏳ Score answers using the RAG rubric. **Pending**
-- ⏳ Record empirical RAG-quality results and answer-generation configuration decisions in this document. **Pending**
-- ⏳ Update `docs/decisions.md`, `docs/runbook.md`, and `README.md` to reference the production-aligned v3 selection. **Pending**
+- ⏳ Implement answer generation with citation support. **Completed 2026-09-05**
+- ⏳ Generate answers for Tier 2 questions. **Completed 2026-09-05 (24 fixed questions)**
+- ⏳ Score answers using the RAG rubric. **Completed 2026-09-05 (LLM judge)**
+- ⏳ Record empirical RAG-quality results and answer-generation configuration decisions in this document. **Completed 2026-09-05**
+- ⏳ Update `docs/decisions.md`, `docs/runbook.md`, and `README.md` to reference the production-aligned v3 selection. **Completed 2026-09-05**

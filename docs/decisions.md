@@ -16,6 +16,8 @@
 | [10](#10-production-database-and-retrieval) | Production database and retrieval | Active | No |
 | [11](#11-embedding-and-retrieval-evaluation-v2) | Embedding and retrieval evaluation v2 | Superseded | Yes (by [12](#12-production-aligned-postgresql-retrieval-evaluation)) |
 | [12](#12-production-aligned-postgresql-retrieval-evaluation) | Production-aligned PostgreSQL retrieval evaluation | Active | No |
+| [13](#13-runtime-configuration-disable-query-expansion-for-latency) | Runtime configuration: disable query expansion for latency | Active | No |
+| [14](#14-llm-answer-evaluation-and-prompt-configuration-selection) | LLM answer evaluation and prompt configuration selection | Active | No |
 
 ---
 
@@ -268,14 +270,14 @@ Assign each source an authority level and retrieval tier:
 - Test five metadata weighting schemes: equal, source-heavy, section-heavy, page-heavy, authority-heavy.
 - Compute metrics: nDCG@10, MRR, Recall@10.
 - Save results to JSONL (1,500 records, reproducible without database).
-- Use vector retrieval with equal weighting for production (nDCG@10: 0.826).
+- Use vector retrieval with equal weighting for production.
 
 **Reason:**
-- Vector retrieval outperforms hybrid and BM25 (nDCG@10: 0.826 vs 0.777 vs 0.745).
-- Weighting scheme has modest impact (4% difference across schemes).
-- Hybrid has best MRR (0.903 vs 0.893 for vector) - better at getting #1 result.
-- Equal weighting works best for vector retrieval.
+- Vector retrieval outperforms hybrid and BM25 on primary ranking metrics.
+- Weighting scheme has a modest impact, with equal weighting performing best for vector retrieval.
+- Hybrid has the best MRR, but vector was chosen for overall nDCG@10.
 - File-based evaluation is reproducible (no DB needed for reviewers).
+- *For full evaluation metrics and tables, please see [`docs/evaluation-notes.md`](evaluation-notes.md).*
 
 **Alternatives considered:**
 - Manual query curation (more accurate but time-consuming).
@@ -331,18 +333,16 @@ Assign each source an authority level and retrieval tier:
   - Vector + reranking (cross-encoder on top of vector candidates)
 - Test five metadata weighting schemes: equal, source-heavy, section-heavy, page-heavy, authority-heavy.
 - Sweep hybrid α ∈ {0.3, 0.5, 0.7} and plan RRF k ∈ {1, 20, 60, 100} (course-aligned).
-- Compute metrics: nDCG@10, MRR, Recall@10, and a composite score (0.5·nDCG + 0.3·MRR + 0.2·Recall).
+- Compute metrics: nDCG@10, MRR, Recall@10, and a composite score.
 - Save results to JSONL (8,100 records for retrieval, plus rewrite variants), reproducible without database.
 - Use hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1) for production.
 
 **Reason:**
-- Reranked retrievers dominate on all metrics:
-  - Best: hybrid_rerank__equal (nDCG@10 ≈ 0.951, MRR ≈ 0.954, Recall@10 = 1.000, composite ≈ 0.961).
-  - Vector_rerank__equal is close (nDCG@10 ≈ 0.945, MRR ≈ 0.938, Recall@10 ≈ 0.990).
-- Non-reranked methods are clearly behind (best vector__equal nDCG@10 ≈ 0.757, composite ≈ 0.713).
-- Among reranked configurations, weighting scheme has tiny effects (differences in 4th–5th decimal); equal weighting is chosen for simplicity and marginal edge on composite score.
+- Reranked retrievers clearly dominate on all metrics compared to non-reranked baseline methods.
+- Among reranked configurations, weighting scheme has tiny effects; equal weighting is chosen for simplicity and a marginal edge on the composite score.
 - Hybrid α has modest impact relative to the reranking effect; 0.5 is a sensible default.
-- RRF k sweep is planned to align with course experiments; expected to fine-tune hybrid behaviour without changing the main conclusion that reranking dominates.
+- RRF k sweep is planned to align with course experiments.
+- *For full evaluation metrics, grids, and historical tables, please see [`docs/evaluation-notes.md`](evaluation-notes.md).*
 
 **Alternatives considered:**
 - Using only vector or only BM25 (would miss large gains from reranking).
@@ -388,21 +388,8 @@ Assign each source an authority level and retrieval tier:
   - Expanded query
   - HyDE query
   - HyDE-expanded query
-- Compute nDCG@10, MRR, Recall@10, and the documented composite score:
-
-```text
-0.5 × nDCG@10 + 0.3 × MRR + 0.2 × Recall@10
-```
-
-- Select expanded-query vector retrieval with cross-encoder reranking as the current default retrieval configuration:
-
-```text
-Expanded query
-→ pgvector vector retrieval
-→ BAAI/bge-reranker-base cross-encoder reranking
-→ top 10 evidence chunks
-```
-
+- Compute nDCG@10, MRR, Recall@10, and the documented composite score.
+- Select expanded-query vector retrieval with cross-encoder reranking as the current default retrieval configuration.
 - Use equal metadata weighting as the default evaluation configuration.
 - Keep hybrid alpha at 0.5 if hybrid retrieval is used.
 - Disable HyDE as a default query-rewrite technique.
@@ -410,53 +397,15 @@ Expanded query
 **Reason:**
 - The deployed runtime uses PostgreSQL full-text retrieval, pgvector vector retrieval, runtime query embeddings, and cross-encoder reranking. Final retrieval claims should therefore be based on that runtime path rather than a separate file-based evaluator.
 - The historical evaluator used locally loaded embeddings and a lightweight lexical-overlap baseline. It tested a different experimental condition even though it used the same query benchmark and corpus.
-- The full production-aligned retrieval grid completed:
-
-```text
-100 queries
-× 3 alpha values
-× 5 retrieval variants
-× 5 metadata weighting schemes
-= 7,500 evaluation records
-```
-
-- The cached production-aligned query-rewrite grid completed:
-
-```text
-100 queries
-× 4 rewrite techniques
-× 4 retrieval variants
-× 5 metadata weighting schemes
-= 8,000 evaluation records
-```
-
-- Reranking was the dominant observed performance improvement in the deployed retrieval evaluation:
-  - Vector retrieval with equal weighting: nDCG@10 = 0.76330.
-  - Vector retrieval with reranking and equal weighting: nDCG@10 = 0.94627.
-- Vector reranking achieved the strongest observed ranking result:
-  - nDCG@10 = 0.94627.
-  - MRR = 0.92500.
-  - Recall@10 = 0.09625.
-  - Composite = 0.76989.
-- Hybrid reranking was effectively tied on the leading ranking metrics but was marginally lower on composite score:
-  - Hybrid rerank, equal weighting, alpha = 0.50: nDCG@10 = 0.94589.
-  - MRR = 0.92500.
-  - Recall@10 = 0.09625.
-  - Composite = 0.76969.
-- The expanded-query vector-rerank configuration achieved the highest observed query-rewrite composite score:
-  - nDCG@10 = 0.94713.
-  - MRR = 0.93583.
-  - Recall@10 = 0.09214.
-  - Composite = 0.77274.
-- Query expansion improved ranking metrics only modestly relative to the original vector-rerank query:
-  - nDCG@10 increase: 0.00086.
-  - MRR increase: 0.01083.
-  - Composite-score increase: 0.00285.
+- Reranking was the dominant observed performance improvement in the deployed retrieval evaluation.
+- Vector reranking achieved the strongest observed ranking result.
+- Hybrid reranking was effectively tied on leading ranking metrics but was marginally lower on composite score.
+- The expanded-query vector-rerank configuration achieved the highest observed query-rewrite composite score.
+- Query expansion improved ranking metrics only modestly relative to the original vector-rerank query.
 - HyDE and HyDE-expanded variants reduced ranking quality on this corpus.
 - Equal and authority-heavy weighting tied for the strongest vector-rerank score. Equal weighting is selected because it is simpler to explain and maintain.
-- PostgreSQL lexical retrieval was substantially weaker than vector retrieval in this benchmark:
-  - Lexical retrieval with equal weighting: nDCG@10 = 0.15420.
-  - Vector retrieval with equal weighting: nDCG@10 = 0.76330.
+- PostgreSQL lexical retrieval was substantially weaker than vector retrieval in this benchmark.
+- *For exact commands, models, exact metrics, full grids, and the old-vs-new caveat, please refer to [`docs/evaluation-notes.md`](evaluation-notes.md).*
 
 **Alternatives considered:**
 - Retaining the historical file-based v2 hybrid-rerank result as the final production selection.
@@ -481,28 +430,130 @@ Expanded query
 
 **Evidence and artifacts:**
 - `data/evaluation/queries.jsonl`
-  - Fixed 100-query Tier 1 benchmark.
 - `data/evaluation/query_rewrites.jsonl`
-  - Cached original, expanded, HyDE, and HyDE-expanded query variants.
 - `data/evaluation/evaluation_results_postgres.jsonl`
-  - Production-aligned PostgreSQL retrieval-grid results.
 - `data/evaluation/evaluation_summary_postgres.json`
-  - Aggregated production-aligned retrieval metrics and configuration rankings.
 - `data/evaluation/query_rewrite_results_postgres.jsonl`
-  - Production-aligned cached query-rewrite evaluation results.
 - `data/evaluation/query_rewrite_summary_postgres.json`
-  - Aggregated query-rewrite metrics and rankings.
 - `src/evaluation/evaluate_retrieval.py`
-  - PostgreSQL-aligned retrieval evaluator.
 - `src/evaluation/summarise_evaluation.py`
-  - Aggregation, unique-query counting, variability calculation, and composite-score ranking.
 - `tests/test_evaluate_retrieval.py`
-  - Evaluator regression tests.
 - `tests/test_summarise_evaluation.py`
-  - Summariser regression tests.
 - `docs/evaluation-notes.md`
-  - Full protocol, result tables, interpretation, and limitations.
 
 **Supersedes:**
 - [Decision 11](#11-embedding-and-retrieval-evaluation-v2) as the final production retrieval-selection decision.
 - Decision 11 remains valid as the historical file-based v2 evaluation record.
+
+---
+
+## 13. Runtime configuration: disable query expansion for latency
+
+**Decision:**
+- Disable query expansion in the runtime application.
+- Use the original user query (not expanded) with vector retrieval and cross-encoder reranking.
+- Accept the negligible retrieval-quality trade-off for a substantial latency reduction.
+
+**Reason:**
+- v3 evaluation showed query expansion improved composite score only marginally.
+- Live API latency for expansion is significant, pushing total answer latency to unacceptable levels for a demo.
+- The retrieval-quality gain does not justify the latency penalty for a demo/portfolio system.
+
+**Alternatives considered:**
+- Keep query expansion enabled and accept the latency penalty.
+- Implement caching for repeated queries.
+- Use a faster model for query expansion.
+- Batch expansion requests for multiple users.
+
+**Trade-offs:**
+- Minor nDCG@10 reduction.
+- Latency improvement is significant (approximately 75% reduction).
+- User experience is significantly improved for demo and portfolio purposes.
+- Expansion logic remains available in the codebase for future optimization.
+
+**Evidence and artifacts:**
+- `docs/evaluation-notes.md` — Query-rewrite evaluation results and interpretation.
+- `data/evaluation/query_rewrite_summary_postgres.json` — Aggregated query-rewrite metrics.
+- Runtime latency measurements from live API testing (2026-09-05).
+
+**Impact:**
+- Production retrieval configuration:
+
+```text
+Original query (no expansion)
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+```
+
+- User-facing latency is drastically reduced per query.
+- Retrieval quality remains excellent despite disabling expansion.
+
+**Future work:**
+- Consider re-enabling expansion if API latency can be reduced through caching, faster models, or batch processing.
+- Monitor user feedback to determine if the retrieval-quality difference is perceptible in practice.
+
+**Supersedes:**
+- None (this is a runtime optimization decision that complements Decision 12).
+
+---
+
+## 14. LLM answer evaluation and prompt configuration selection
+
+**Decision:**
+- Treat the LLM answer evaluation completed on 2026-09-05 as the authoritative answer-quality evaluation for DER RegCheck.
+- Evaluate three prompt configurations on 24 fixed evaluation questions:
+  - `v1_direct_rag`: Direct RAG prompt without explicit structure
+  - `v2_structured_grounded_rag`: Structured prompt with explicit grounding instructions
+  - `v3_few_shot_grounded_rag`: Few-shot prompt with grounding examples
+- Use an LLM judge (`gemini-3.5-flash-lite`) to score each answer on five dimensions:
+  - Groundedness (1-5)
+  - Relevance (1-5)
+  - Completeness (1-5)
+  - Citation quality (1-5)
+  - Appropriate uncertainty (1-5)
+- Compute a composite score for each answer.
+- Apply a citation-validity guardrail: only configurations with 100% valid citations are eligible for selection.
+- Select `v3_few_shot_grounded_rag` as the production prompt configuration.
+- Use the selected prompt configuration in the Streamlit interface and future API deployments.
+
+**Reason:**
+- The v3 prompt configuration achieved 100% citation validity, the only configuration to meet the guardrail.
+- v3 achieved a high mean composite score, indicating strong answer quality.
+- v2 had a slightly higher composite score but failed to meet the citation validity guardrail.
+- Citation validity is a critical safety property for a regulatory research tool; invalid citations undermine trust and traceability.
+- The few-shot examples in v3 appear to improve citation discipline without sacrificing answer quality.
+- *For detailed judge scores and metrics, please see [`docs/evaluation-notes.md`](evaluation-notes.md).*
+
+**Alternatives considered:**
+- Selecting v2 based on highest composite score despite citation failures.
+- Relaxing the citation-validity guardrail to 95% or 90%.
+- Using a different composite formula (e.g., equal weights, or higher weight on groundedness).
+- Manual review of the answers with citation issues to assess severity.
+- Iterating on v2 or v1 prompts to fix citation issues before selection.
+
+**Trade-offs:**
+- The 100% citation-validity guardrail may exclude configurations with higher overall quality but occasional citation errors.
+- Few-shot prompts are longer and may increase token costs slightly.
+- The LLM judge is itself an LLM and may have scoring biases; manual review of a sample would increase confidence.
+- The 24 evaluation questions cover important scenarios but are not exhaustive; future iterations should expand the question set.
+- The judge's composite formula weights groundedness most heavily; alternative weightings could change the ranking.
+
+**Evidence and artifacts:**
+- `data/evaluation/llm_evaluation_questions.yaml`
+- `data/evaluation/llm_answers.jsonl`
+- `data/evaluation/llm_judge_scores.jsonl`
+- `data/evaluation/llm_evaluation_summary.json`
+- `data/evaluation/llm_evaluation_report.md`
+- `src/evaluation/evaluate_llm_answers.py`
+- `src/evaluation/summarise_llm_evaluation.py`
+
+**Supersedes:**
+- None (this is the first answer-quality evaluation decision).
+
+**Future work:**
+- Expand the evaluation question set to 50-100 questions covering more edge cases.
+- Add manual review of a sample of judge scores to validate the LLM judge's reliability.
+- Test additional prompt variants (e.g., v4 with stronger uncertainty language, v5 with source-hierarchy emphasis).
+- Integrate citation-validity checking into the CI pipeline to prevent regressions.
+- Re-run evaluation when the corpus is updated or new sources are added.

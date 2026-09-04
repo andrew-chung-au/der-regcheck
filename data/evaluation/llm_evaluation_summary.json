@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-09-04T20:06:09.768684Z",
+  "answers_file": "/home/andrew/projects/der-regcheck/data/evaluation/llm_answers.jsonl",
+  "judge_scores_file": "/home/andrew/projects/der-regcheck/data/evaluation/llm_judge_scores.jsonl",
+  "total_answers": 222,
+  "total_judge_scores": 2752,
+  "prompt_versions_evaluated": [
+    "v1_direct_rag",
+    "v2_structured_grounded_rag",
+    "v3_few_shot_grounded_rag"
+  ],
+  "min_citation_validity_threshold": 1.0,
+  "summaries": [
+    {
+      "prompt_version": "v1_direct_rag",
+      "total_answers": 74,
+      "citation_valid_count": 70,
+      "citation_valid_rate": 0.9459459459459459,
+      "mean_groundedness": 4.9092,
+      "mean_relevance": 4.6465,
+      "mean_completeness": 4.4962,
+      "mean_citation_quality": 4.7935,
+      "mean_uncertainty": 4.9092,
+      "mean_composite": 4.7509,
+      "std_composite": 0.4711,
+      "best_composite": 5.0,
+      "worst_composite": 3.2
+    },
+    {
+      "prompt_version": "v2_structured_grounded_rag",
+      "total_answers": 74,
+      "citation_valid_count": 72,
+      "citation_valid_rate": 0.972972972972973,
+      "mean_groundedness": 5.0,
+      "mean_relevance": 4.7263,
+      "mean_completeness": 4.6281,
+      "mean_citation_quality": 4.9804,
+      "mean_uncertainty": 5.0,
+      "mean_composite": 4.867,
+      "std_composite": 0.2183,
+      "best_composite": 5.0,
+      "worst_composite": 4.2
+    },
+    {
+      "prompt_version": "v3_few_shot_grounded_rag",
+      "total_answers": 74,
+      "citation_valid_count": 74,
+      "citation_valid_rate": 1.0,
+      "mean_groundedness": 4.9484,
+      "mean_relevance": 4.6989,
+      "mean_completeness": 4.556,
+      "mean_citation_quality": 4.9154,
+      "mean_uncertainty": 4.9242,
+      "mean_composite": 4.811,
+      "std_composite": 0.3446,
+      "best_composite": 5.0,
+      "worst_composite": 3.6
+    }
+  ],
+  "selected_configuration": {
+    "prompt_version": "v3_few_shot_grounded_rag",
+    "mean_composite": 4.811,
+    "mean_groundedness": 4.9484,
+    "citation_valid_rate": 1.0
+  }
+}

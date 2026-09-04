@@ -2,7 +2,7 @@
 
 > An evidence-first RAG prototype for DER interconnection and market-entry research.
 
-**Project status:** Ingestion, normalisation, chunking, embedding, PostgreSQL/pgvector database loading, and production-aligned retrieval evaluation are implemented. The authoritative retrieval evaluation uses the deployed PostgreSQL retrieval path, including runtime query embedding, lexical/vector retrieval, cross-encoder reranking, and cached query-rewrite evaluation. Answer generation, interface, source-aware retrieval constraints, and monitoring remain planned.
+**Project status:** Ingestion, normalisation, chunking, embedding, PostgreSQL/pgvector database loading, production-aligned retrieval evaluation, answer-generation evaluation, and Streamlit interface are implemented. The authoritative retrieval evaluation uses the deployed PostgreSQL retrieval path with runtime query embedding, vector retrieval, and cross-encoder reranking. The runtime application disables query expansion for latency reasons and uses the `v3_few_shot_grounded_rag` prompt configuration selected under a 100% deterministic citation-validity guardrail.
 
 ---
 
@@ -31,8 +31,8 @@ DER RegCheck helps teams research DER interconnection requirements by retrieving
 
 It supports two modes:
 
-1. **Focused questions:** “What does SCE Rule 21 require for smart inverter reactive power?”
-2. **Market-entry research:** “What should we review before pursuing a DER communications opportunity in SCE territory?”
+1. **Focused questions:** "What does SCE Rule 21 require for smart inverter reactive power?"
+2. **Market-entry research:** "What should we review before pursuing a DER communications opportunity in SCE territory?"
 
 The system distinguishes primary tariff requirements from supporting guidance and historical material, with traceable citations to source documents.
 
@@ -42,19 +42,7 @@ The system distinguishes primary tariff requirements from supporting guidance an
 
 ## Data sources
 
-The v1 corpus contains six public sources from the California Public Utilities Commission (CPUC) and Southern California Edison (SCE):
-
-| Source | Role | Authority level | Chunk count |
-|---|---|---|---:|
-| SCE Rule 21 tariff | Primary interconnection requirements | Governing source | 387 |
-| SCE Interconnection Handbook | Technical implementation | Primary technical | 562 |
-| SCE testing instruction | Equipment certification | Supporting guidance | 72 |
-| SCE Rule 21 web guidance | Process guidance | Supporting process | 8 |
-| CPUC Rule 21 overview | Regulatory context | Source discovery | 12 |
-| SIWG Phase 2 Recommendations | Historical rationale | Historical/draft | 68 |
-| **Total** |  |  | **1,049** |
-
-For full source details, URLs, processing notes, source hierarchy, and quality status, see [`docs/dataset-notes.md`](docs/dataset-notes.md).
+The v1 corpus contains six public sources from the California Public Utilities Commission (CPUC) and Southern California Edison (SCE). For full source details, URLs, processing notes, chunk counts, authority levels, and quality status, please see [`docs/dataset-notes.md`](docs/dataset-notes.md).
 
 ---
 
@@ -90,16 +78,16 @@ PostgreSQL + pgvector knowledge base (1,049 chunks + embeddings)
 Runtime query embedding
             |
             v
-PostgreSQL lexical, pgvector vector, or hybrid retrieval
+pgvector vector retrieval
             |
             v
-Cross-encoder reranking where selected
+Cross-encoder reranking
             |
             v
-Future grounded answer generation with citations
+Grounded answer generation with citations (v3_few_shot_grounded_rag)
             |
             v
-Future Streamlit interface, feedback capture, and monitoring
+Streamlit interface, feedback capture, and monitoring
 ```
 
 **Key design choices:**
@@ -112,6 +100,7 @@ Future Streamlit interface, feedback capture, and monitoring
 - Reranking uses `BAAI/bge-reranker-base` on a candidate set before returning final evidence chunks.
 - Historical/draft SIWG material is excluded from default current-requirement retrieval.
 - Retrieval evaluation uses a fixed 100-query benchmark and metadata-derived relevance labels.
+- Answer-generation evaluation uses 24 fixed questions and an LLM judge under a 100% citation-validity guardrail.
 
 For implementation details, setup, evaluation commands, and troubleshooting, see [`docs/runbook.md`](docs/runbook.md).
 
@@ -121,86 +110,16 @@ For implementation details, setup, evaluation commands, and troubleshooting, see
 
 ### Authoritative evaluation: v3 (2026-09-05)
 
-The authoritative retrieval evaluation runs through the deployed PostgreSQL/pgvector retrieval path. It uses the same fixed corpus and query benchmark as prior evaluations, but the historical file-based evaluator and the PostgreSQL evaluator are separate experimental conditions.
+The authoritative retrieval evaluation runs through the deployed PostgreSQL/pgvector retrieval path. The top-performing configuration (Vector rerank, equal weighting) achieved an nDCG@10 of **0.94627** and a composite score of **0.76989**.
 
-**Evaluation setup:**
+For the comprehensive 7,500-record retrieval grid breakdown, query-rewrite evaluation findings, historical baseline comparisons, and full metric interpretation, please refer to the definitive results in [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
 
-- **100 queries:** LLM-generated using `gemini-3.5-flash-lite`.
-- **1,049 chunks:** Structural chunks assembled from normalised evidence blocks.
-- **1,049 embeddings:** Nomic `nomic-embed-text-v1.5`, 768-dimensional vectors.
-- **Retrieval backend:** PostgreSQL full-text lexical retrieval and pgvector vector retrieval.
-- **Reranker:** `BAAI/bge-reranker-base`.
-- **Candidate limit:** Top 50 candidates before reranking.
-- **Final result set:** Top 10 chunks.
-- **Hybrid alpha sweep:** 0.3, 0.5, and 0.7.
-- **Metadata weighting schemes:** Equal, source-heavy, section-heavy, page-heavy, and authority-heavy.
-- **Metrics:** nDCG@10, MRR, Recall@10, and composite score:
+### Runtime retrieval configuration
+
+The runtime application uses **original query** (not expanded) with vector retrieval and reranking:
 
 ```text
-0.5 × nDCG@10 + 0.3 × MRR + 0.2 × Recall@10
-```
-
-**Completed retrieval grid:**
-
-```text
-100 queries
-× 3 alpha values
-× 5 retrieval variants
-× 5 metadata weighting schemes
-= 7,500 retrieval evaluation records
-```
-
-### Final retrieval results
-
-| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
-|---|---:|---:|---:|---:|
-| **Vector rerank, equal weighting** | **0.94627** | **0.92500** | 0.09625 | **0.76989** |
-| Vector rerank, authority-heavy weighting | **0.94627** | **0.92500** | 0.09625 | **0.76989** |
-| Hybrid rerank, equal weighting, alpha 0.50 | 0.94589 | **0.92500** | 0.09625 | 0.76969 |
-| Hybrid rerank, section-heavy weighting, alpha 0.30 | 0.93240 | 0.60800 | **0.11019** | 0.67065 |
-| Hybrid, equal weighting, alpha 0.50 | 0.76700 | 0.87293 | 0.08580 | 0.66253 |
-| Vector, equal weighting | 0.76330 | 0.87293 | 0.08480 | 0.66049 |
-| Lexical, equal weighting | 0.15420 | 0.15500 | 0.00690 | 0.12499 |
-
-**Key findings:**
-
-- **Cross-encoder reranking is the primary observed retrieval-quality improvement.** Vector reranking increases nDCG@10 from 0.76330 to 0.94627.
-- **Vector reranking achieves the strongest observed ranking result** for nDCG@10, MRR, and composite score.
-- **Hybrid reranking is a near-tied alternative** under equal weighting and alpha 0.50, but its composite score is marginally lower.
-- **Equal and authority-heavy weighting tie** for the strongest vector-rerank result. Equal weighting is retained because it is easier to explain and maintain.
-- **Hybrid alpha has limited practical impact after reranking.**
-- **PostgreSQL lexical retrieval performs substantially worse** than vector retrieval on this benchmark.
-
-### Query-rewrite evaluation
-
-Cached query-rewrite variants were evaluated using the same PostgreSQL retrieval path:
-
-```text
-100 queries
-× 4 rewrite techniques
-× 4 retrieval variants
-× 5 metadata weighting schemes
-= 8,000 query-rewrite evaluation records
-```
-
-| Configuration | nDCG@10 | MRR | Recall@10 | Composite |
-|---|---:|---:|---:|---:|
-| **Expanded query + vector rerank, equal weighting** | **0.94713** | **0.93583** | 0.09214 | **0.77274** |
-| Original query + vector rerank, equal weighting | 0.94627 | 0.92500 | 0.09625 | 0.76989 |
-| HyDE query + vector rerank, equal weighting | 0.89930 | 0.69980 | 0.08420 | 0.67643 |
-| HyDE-expanded query + vector rerank, equal weighting | 0.88720 | 0.67200 | 0.08060 | 0.66131 |
-
-**Query-rewrite findings:**
-
-- Query expansion produces a modest increase in nDCG@10, MRR, and composite score.
-- Query expansion slightly reduces metadata-derived Recall@10.
-- HyDE and HyDE plus expansion reduce ranking quality on this corpus.
-- The observed expansion advantage is small; it requires paired statistical testing or a manually judged relevance set before a strong superiority claim.
-
-### Selected configuration
-
-```text
-Expanded query
+Original user query
 → pgvector vector retrieval
 → BAAI/bge-reranker-base cross-encoder reranking
 → top 10 evidence chunks
@@ -208,19 +127,61 @@ Expanded query
 
 **Why this configuration:**
 
-- Highest observed composite score: 0.77274.
-- Highest observed nDCG@10: 0.94713.
-- Highest observed MRR: 0.93583.
-- Simpler than hybrid retrieval because it does not depend on the weaker lexical baseline.
-- HyDE is disabled because it reduces benchmark performance.
+- Query expansion improved composite score by only 0.00285 (approximately 0.37%).
+- Live expansion latency: approximately 32-36 seconds.
+- Total answer latency with expansion: approximately 50 seconds.
+- Total answer latency without expansion: approximately 14 seconds.
+- The retrieval-quality gain does not justify the latency penalty for the intended use case.
 
-### Historical results
+This is a data-driven engineering decision. The expansion implementation remains available for future re-assessment if caching, model choice, or infrastructure changes the latency trade-off.
 
-The earlier v1 and v2 results were produced by a file-based, in-memory evaluator using locally loaded embeddings and a lightweight lexical-overlap baseline.
+---
 
-They are retained as historical offline-baseline artifacts, but they are **not directly comparable** with v3 because the evaluator and retrieval implementation changed. The v3 PostgreSQL/pgvector evaluation is the basis for current production retrieval claims.
+## Answer-generation evaluation
 
-For full methodology, relevance scoring, historical results, result artifacts, and Tier 2 RAG-quality evaluation plans, see [`docs/evaluation-notes.md`](docs/evaluation-notes.md) and [`docs/decisions.md`](docs/decisions.md) #12.
+### Evaluation setup (2026-09-05)
+
+- **24 fixed questions** across six categories:
+  - `direct_factual`
+  - `multi_chunk_synthesis`
+  - `ambiguous_needs_clarification`
+  - `out_of_corpus`
+  - `high_stakes_boundary`
+  - `historical_source_handling`
+- **Three prompt configurations:**
+  - `v1_direct_rag`: direct RAG prompt
+  - `v2_structured_grounded_rag`: structured prompt with explicit grounding instructions
+  - `v3_few_shot_grounded_rag`: few-shot grounded prompt with examples
+- **Deterministic citation validation** for every generated answer
+- **LLM judge** (`gemini-3.5-flash-lite`) scoring on five dimensions:
+  - Groundedness
+  - Relevance
+  - Completeness
+  - Citation quality
+  - Appropriate uncertainty
+- **Composite score:**
+
+```text
+0.30 × Groundedness
++ 0.20 × Relevance
++ 0.20 × Completeness
++ 0.20 × Citation quality
++ 0.10 × Appropriate uncertainty
+```
+
+### Results
+
+| Prompt version | Citation-valid rate | Mean composite |
+|---|---:|---:|
+| `v1_direct_rag` | 94.6% | 4.7509 |
+| `v2_structured_grounded_rag` | 97.3% | **4.8670** |
+| `v3_few_shot_grounded_rag` | **100.0%** | 4.8110 |
+
+### Selected configuration
+
+`v3_few_shot_grounded_rag` is selected as the runtime prompt because it is the only configuration meeting the 100% deterministic citation-validity guardrail. The selected v3 mean composite of 4.8110 is 96.2% of the maximum possible score of 5.0.
+
+For full methodology, judge rubric, limitations, and artifacts, see [`docs/evaluation-notes.md`](docs/evaluation-notes.md) and [`docs/decisions.md`](docs/decisions.md) #14.
 
 ---
 
@@ -267,25 +228,14 @@ uv run python src/scripts/load_chunks_to_db.py \
 # Run evaluator regression tests
 uv run python -m unittest \
   tests.test_evaluate_retrieval \
-  tests.test_summarise_evaluation
+  tests.test_summarise_evaluation \
+  tests.test_answer_generator
 
-# Run the production-aligned PostgreSQL retrieval grid
-uv run python -m src.evaluation.evaluate_retrieval \
-  --queries data/evaluation/queries.jsonl \
-  --output data/evaluation/evaluation_results_postgres.jsonl \
-  --alphas "0.3,0.5,0.7" \
-  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
-  --resume
-
-# Summarise the results
-uv run python -m src.evaluation.summarise_evaluation \
-  --input data/evaluation/evaluation_results_postgres.jsonl \
-  --output data/evaluation/evaluation_summary_postgres.json \
-  --top-n 10 \
-  --decimals 5
+# Run the Streamlit app
+uv run streamlit run src/ui/streamlit_app.py
 ```
 
-For complete setup instructions, database checks, query-rewrite evaluation, troubleshooting, and safe regeneration guidance, see [`docs/runbook.md`](docs/runbook.md).
+For complete setup instructions, database checks, retrieval evaluation, answer-generation evaluation, troubleshooting, and safe regeneration guidance, see [`docs/runbook.md`](docs/runbook.md).
 
 ---
 
@@ -325,10 +275,10 @@ See [`docs/runbook.md`](docs/runbook.md) for the complete directory structure an
 | Production-aligned retrieval evaluation | ✅ Completed 2026-09-05 |
 | Cached query-rewrite evaluation | ✅ Completed 2026-09-05 |
 | Evaluator and summariser regression tests | ✅ Implemented |
+| Answer-generation evaluation | ✅ Completed 2026-09-05 |
+| Streamlit interface | ✅ Implemented 2026-09-05 |
 | Source-aware filtering | ⏳ Planned |
-| Answer generation | ⏳ Planned |
-| Tier 2 RAG quality evaluation | ⏳ Planned |
-| Streamlit interface | ⏳ Planned |
+| Tier 2 RAG quality evaluation (manual) | ⏳ Planned |
 | Feedback capture and monitoring | ⏳ Planned |
 
 For detailed progress and next steps, see [`docs/project-log.md`](docs/project-log.md).
@@ -339,14 +289,15 @@ For detailed progress and next steps, see [`docs/project-log.md`](docs/project-l
 
 - **Structural chunking** instead of fixed-size splitting, to preserve document hierarchy and citation context.
 - **PostgreSQL + pgvector** as the production retrieval backend.
-- **Expanded query + vector retrieval + cross-encoder reranking** as the current selected retrieval configuration.
+- **Original query + vector retrieval + cross-encoder reranking** as the runtime retrieval configuration (query expansion disabled for latency).
 - **Equal metadata weighting** as the default evaluation setting because it ties for the top vector-rerank score and is simple to justify.
 - **HyDE disabled by default** because it reduced retrieval quality in the production-aligned benchmark.
 - **Historical file-based v1/v2 evaluations retained** as offline-baseline artifacts, not as final production results.
 - **Two-tier evaluation:** fixed-benchmark retrieval evaluation plus future manual RAG answer-quality evaluation.
 - **Source hierarchy metadata** retained in chunks to distinguish governing, technical, supporting, and historical material.
+- **`v3_few_shot_grounded_rag` prompt** selected under a 100% deterministic citation-validity guardrail.
 
-For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/decisions.md), especially Decision 12.
+For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/decisions.md), especially Decisions 12, 13, and 14.
 
 ---
 
@@ -361,22 +312,24 @@ For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/deci
 - Recall@10 measures recovery of metadata-defined related chunks, not the share of real user questions successfully answered.
 - Moving from the historical file-based evaluator to PostgreSQL changed multiple implementation details; the comparison cannot show that PostgreSQL alone changed performance.
 - Query expansion has only a small observed gain and needs paired statistical testing or manual relevance judgments.
-- Source-aware filtering, answer generation, citation validation, and Tier 2 RAG answer-quality evaluation are not yet implemented.
+- The answer-generation evaluation uses an LLM judge, which may contain systematic scoring bias.
+- The 24-question prompt-evaluation set is useful for regression testing but is not exhaustive.
+- Source-aware filtering, Tier 2 manual RAG answer-quality evaluation, and production monitoring are not yet implemented.
 
-See [`docs/dataset-notes.md`](docs/dataset-notes.md) and [`docs/evaluation-notes.md`](docs/evaluation-notes.md) for detailed source, evaluation, and responsible-use limitations.
+See [`docs/dataset-notes.md`](docs/dataset-notes.md), [`docs/evaluation-notes.md`](docs/evaluation-notes.md), and [`docs/decisions.md`](docs/decisions.md) for detailed source, evaluation, and responsible-use limitations.
 
 ---
 
 ## Documentation
 
 - [`docs/project-log.md`](docs/project-log.md) — Working journal and stage-by-stage progress
-- [`docs/decisions.md`](docs/decisions.md) — Design choices and trade-offs, including Decision 12
+- [`docs/decisions.md`](docs/decisions.md) — Design choices and trade-offs, including Decisions 12, 13, and 14
 - [`docs/dataset-notes.md`](docs/dataset-notes.md) — Corpus details, source hierarchy, processing, and quality notes
-- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval protocol, historical v1/v2 context, authoritative v3 results, and Tier 2 plan
+- [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval protocol, historical v1/v2 context, authoritative v3 results, answer-generation evaluation, and Tier 2 plan
 - [`docs/runbook.md`](docs/runbook.md) — Setup, reproduction, evaluation, and troubleshooting
 
 ---
 
 ## License
 
-MIT License. Public source documents remain subject to their original publishers’ terms.
+MIT License. Public source documents remain subject to their original publishers' terms.

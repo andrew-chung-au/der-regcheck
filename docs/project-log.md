@@ -1,5 +1,20 @@
 # Project log
 
+## Log index
+
+| Date | Stage | Topic | Status |
+|---|---|---|---|
+| [2026-08-21](#2026-08-21---california-rule-21-corpus-selection-and-ingestion) | Ingestion | Corpus selection and download pipeline | ✅ Complete |
+| [2026-08-22](#2026-08-22---raw-extraction-metadata-and-evidence-normalisation) | Processing | Raw extraction and evidence normalisation | ✅ Complete |
+| [2026-08-23](#2026-08-23---structural-chunking-and-citation-preservation) | Processing | Structural chunking | ✅ Complete |
+| [2026-08-23](#2026-08-23---embedding-and-retrieval-evaluation-initial) | Evaluation | Initial retrieval evaluation (v1) | ✅ Complete |
+| [2026-08-23](#2026-08-23---production-database-and-retrieval) | Infrastructure | PostgreSQL/pgvector setup | ✅ Complete |
+| [2026-08-23](#2026-08-23---comprehensive-retrieval-evaluation-with-reranking-and-query-rewrites) | Evaluation | Extended retrieval evaluation (v2) | ✅ Complete |
+| [2026-09-05](#2026-09-05---production-aligned-postgresql-retrieval-re-evaluation) | Evaluation | PostgreSQL-aligned evaluation (v3) | ✅ Complete |
+| [2026-09-05](#2026-09-05---application-core-rag-pipeline-and-cli) | Development | Application core: RAG pipeline and CLI | ✅ Complete |
+| [2026-09-05](#2026-09-05---llm-answer-evaluation-and-prompt-selection) | Evaluation | LLM answer evaluation and prompt selection | ✅ Complete |
+| [2026-09-05](#2026-09-05---streamlit-interface) | Development | Streamlit interface | ✅ Complete |
+
 ## 2026-08-21 - California Rule 21 corpus selection and ingestion
 
 ### Goal
@@ -196,11 +211,12 @@ Evaluate retrieval approaches (BM25, vector, hybrid) with multiple metadata weig
 - Saved results to JSONL (1,500 records, reproducible)
 
 ### What I learned
-- Vector retrieval outperforms hybrid and BM25 (nDCG@10: 0.826 vs 0.777 vs 0.745)
-- Weighting scheme has modest impact (4% difference across schemes)
-- Hybrid has best MRR (0.903 vs 0.893 for vector)
-- Equal weighting works best for vector retrieval
-- Section-heavy helps hybrid slightly
+- Vector retrieval outperforms hybrid and BM25 on primary ranking metrics.
+- Weighting scheme has modest impact across schemes.
+- Hybrid has best MRR compared to standard vector.
+- Equal weighting works best for vector retrieval.
+- Section-heavy helps hybrid slightly.
+- *Note: Exact metrics are cataloged in `docs/evaluation-notes.md`.*
 
 ### Decision made
 - Use vector retrieval with equal weighting for production
@@ -267,7 +283,7 @@ Build production-ready RAG infrastructure with PostgreSQL/pgvector.
 
 ### Goal
 Run a thorough, methodologically consistent evaluation of retrieval strategies, including:
-- Multiple retrievers (BM25, vector, hybrid, hybrid+r erank, vector+r erank)
+- Multiple retrievers (BM25, vector, hybrid, hybrid+rerank, vector+rerank)
 - Multiple metadata weighting schemes
 - Multiple hybrid alpha values
 - Query rewrite techniques (original, HyDE, expansion, combined)
@@ -286,31 +302,25 @@ Run a thorough, methodologically consistent evaluation of retrieval strategies, 
   - 100 queries × 3 alphas × 5 retrievers × 5 weightings = 7,500 retrieval rows
   - 4 rewrite techniques × 4 retrievers × 5 weightings × 100 queries = 8,000 rewrite rows
 - Updated `src/evaluation/summarise_evaluation.py` to:
-  - Compute composite score: `0.5 * nDCG@10 + 0.3 * MRR + 0.2 * Recall@10`
+  - Compute composite score formula
   - Show ranked tables by each metric and by composite score
   - Recommend a single configuration by composite score
 - Key findings:
-  - Reranking dominates: all top 6 configurations are `hybrid_rerank` or `vector_rerank`
-  - Best configuration: `hybrid_rerank__equal`
-    - nDCG@10: 0.95080
-    - MRR: 0.95361
-    - Recall@10: 1.00000
-    - Composite: 0.96148
-  - Other reranked weightings (`authority_heavy`, `source_heavy`) are within ~0.0003 on composite (effectively tied)
-  - Non-reranked methods are clearly behind (best composite ~0.713 for `vector__equal`)
-  - Query rewrites show small gains:
-    - All techniques (original, HyDE, expanded, combined) have nDCG@10 ~ 0.905–0.927
-    - Original query is already strong; rewrite gains are marginal
+  - Reranking dominates: all top configurations are `hybrid_rerank` or `vector_rerank`
+  - Best configuration: `hybrid_rerank__equal` (see `docs/evaluation-notes.md` for exact metrics)
+  - Other reranked weightings performed similarly, appearing effectively tied.
+  - Non-reranked methods are clearly behind.
+  - Query rewrites show small gains, but original query is already near-optimal.
 
 ### What I learned
-- Reranking provides the largest single improvement (nDCG@10 from ~0.75 to ~0.95)
+- Reranking provides the largest single ranking improvement.
 - Weighting scheme matters much less once you rerank
 - Hybrid + rerank slightly edges vector + rerank on composite score
 - Query rewrites are not worth the complexity for this corpus (original query is already near-optimal)
 - Fine-grained checkpointing (`query_id, alpha, retriever, weighting`) makes iterative evaluation practical
 
 ### Decision made
-- Use `hybrid_rerank__equal` with alpha = 0.5 for production retrieval
+- Use `hybrid_rerank__equal` with alpha = 0.5 for production retrieval (see `docs/decisions.md` for final superseding rationale)
 - Keep reranker settings: `candidate_limit=50`, `top_k=10`, `max_tokens=450`, `batch_size=16`
 - Do not use query rewrites in production (original query is sufficient)
 - Document evaluation as complete and methodologically consistent across retrievers, weightings, and alphas
@@ -360,3 +370,149 @@ Re-evaluate retrieval and cached query-rewrite variants using the deployed Postg
 ### Next step
 - Finalise `docs/evaluation-notes.md` with the evaluation protocol, final result tables, interpretation, and limitations.
 - Update `docs/decisions.md`, `docs/runbook.md`, and `README.md`.
+
+---
+
+## 2026-09-05 - Application core: RAG pipeline and CLI
+
+### Goal
+Build the production application core: a command-line user can ask a DER research question and receive a source-grounded, validated, uncertainty-aware response.
+
+### What I did
+- Introduced domain models and service boundary in `src/generation/`:
+  - `schemas.py`: `StructuredAnswerOutput` Pydantic model
+  - `prompts.py`: Prompt instruction templates for v1, v2, v3 configurations
+  - `citation_validator.py`: Deterministic citation validation against supplied evidence labels
+  - `answer_generator.py`: Answer generation with citation validation and fail-closed behavior
+- Wired existing retrieval pipeline into production service:
+  - `src/retrieval/runtime_retriever.py`: Production retrieval with query expansion capability (disabled for latency per Decision 13)
+  - Evidence packet building with source-authority policy
+- Added real LLM provider adapter:
+  - `src/llm_client.py`: Gemini client with structured output generation
+- Implemented **v2_structured_grounded_rag** as provisional runtime prompt
+- Added CLI `ask` command in `src/scripts/demo_rag.py`
+- Stored traces and added observability module `src/observability/`
+- Added comprehensive tests:
+  - Citation/schema/unit tests in `tests/test_answer_generator.py`
+  - All 7 tests passing
+- Added `pytest.ini` for test configuration
+
+### What I learned
+- Citation validation must be deterministic and fail-closed to prevent hallucinated sources
+- Structured output schemas (Pydantic) improve reliability and testability
+- Prompt versioning allows systematic comparison without code changes
+- Query expansion adds significant latency (~36 seconds) with marginal retrieval benefit
+
+### Decision made
+- Use fail-closed citation validation: answers with invalid citations are rejected
+- Store traces for debugging and future evaluation
+- Use Pydantic schemas for all structured outputs
+- Disable query expansion in runtime (see Decision 13)
+
+### Problems
+- Initial implementation allowed uncited claims to pass validation
+- Fixed by implementing strict fail-closed validation in tests
+- Query expansion latency made the system unusable for demos (~50 seconds total)
+- Resolved by disabling expansion (Decision 13)
+
+### Next step
+- Build LLM evaluation harness to compare prompt configurations
+- Select production prompt based on empirical evidence
+- Build Streamlit interface
+
+---
+
+## 2026-09-05 - LLM answer evaluation and prompt selection
+
+### Goal
+Add systematic answer-quality evaluation: prove why the production prompt configuration is selected using empirical evidence from 24 fixed evaluation questions.
+
+### What I did
+- Created `src/evaluation/evaluate_llm_answers.py`:
+  - Loads 24 fixed evaluation questions from `data/evaluation/llm_evaluation_questions.yaml`
+  - Retrieves evidence once per question using production retrieval path
+  - Generates answers for v1, v2, v3 prompt configurations using same evidence pack
+  - Records all answer artifacts with full traceability
+  - Runs deterministic citation validation for every generated answer
+  - Judges each answer using LLM judge (`gemini-3.5-flash-lite`) on 5 dimensions
+  - Computes composite scores
+- Created `src/evaluation/summarise_llm_evaluation.py`:
+  - Aggregates judge scores by prompt version
+  - Applies citation-validity guardrail (100% required)
+  - Selects best prompt configuration
+  - Produces JSON summary and markdown report
+- Generated evaluation artifacts:
+  - `data/evaluation/llm_answers.jsonl`
+  - `data/evaluation/llm_judge_scores.jsonl`
+  - `data/evaluation/llm_evaluation_summary.json`
+  - `data/evaluation/llm_evaluation_report.md`
+
+### What I learned
+- v3 (few-shot grounded RAG) achieved 100% citation validity (only configuration to meet guardrail)
+- v2 had the highest composite score but failed the citation validity guardrail.
+- v1 had the lowest scores on both dimensions.
+- Citation validity is a critical safety property for regulatory research tools
+- Few-shot examples improve citation discipline without sacrificing quality
+
+### Decision made
+- Select `v3_few_shot_grounded_rag` as production prompt configuration (Decision 14)
+- Apply 100% citation-validity guardrail for all future prompt selections
+- Use LLM judge for systematic answer-quality evaluation
+- Store evaluation artifacts for reproducibility and future iteration
+
+### Problems
+- v2 had 2 answers with citation issues
+- Manually reviewed and confirmed these were real citation failures
+- Decision: reject v2 despite higher composite score (safety first)
+
+### Next step
+- Update production service default prompt to v3
+- Build Streamlit interface
+- Add feedback capture and monitoring
+- Update README with evaluation results
+
+---
+
+## 2026-09-05 - Streamlit interface
+
+### Goal
+Build a Streamlit interface: a reviewer can use the actual app, inspect evidence, and understand limits.
+
+### What I did
+- Created `src/ui/streamlit_app.py` with:
+  - Question input (text field + 5 example question buttons)
+  - Answer status badge (Answered, Partial, Needs clarification, Insufficient evidence, High-stakes boundary)
+  - Main answer with inline citation labels [S1], [S2], etc.
+  - Expandable evidence cards showing:
+    - Source title (heading path)
+    - Source class (authority tier)
+    - Page/section (section IDs, PDF page)
+    - Excerpt (evidence text)
+    - Retrieval rank
+    - Score (rerank score)
+  - Explicit disclaimer banner: "Not legal, engineering, regulatory, or compliance advice"
+  - Feedback widgets (thumbs up/down + optional comment)
+  - Feedback saved to `data/feedback/feedback.jsonl`
+- Configured app to use v3 prompt (`v3_few_shot_grounded_rag`)
+- Tested with example questions
+
+### What I learned
+- Streamlit provides rapid UI development with minimal code
+- Evidence cards help users understand retrieval and verify citations
+- Status badges communicate answer quality and uncertainty clearly
+- Feedback capture is essential for future iteration
+
+### Decision made
+- Use Streamlit as the primary interface for demos and portfolio
+- Keep UI simple: question → answer → evidence → feedback
+- Explicitly communicate limitations and uncertainty
+
+### Problems
+- None major
+- App runs successfully with `streamlit run src/ui/streamlit_app.py`
+
+### Next step
+- Test app with real users and collect feedback
+- Add monitoring and analytics
+- Consider multi-page app for different question types
+- Update README with app usage instructions

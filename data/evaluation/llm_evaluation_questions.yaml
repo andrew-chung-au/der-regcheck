@@ -1,0 +1,250 @@
+# DER RegCheck LLM Evaluation Questions
+# 24 fixed questions for comparing v1/v2/v3 prompt configurations
+# Balanced across categories per the agreed evaluation design
+
+questions:
+  # Direct factual lookups (4 questions)
+  - id: llm_eval_001
+    category: direct_factual
+    question: "What IEEE standard must Smart Inverter reactive power capabilities comply with under Rule 21?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - IEEE 1547-2018
+      - Section 5.2 Category B
+    notes: "Tests basic tariff lookup with specific citation"
+
+  - id: llm_eval_002
+    category: direct_factual
+    question: "What is the maximum response time for a Smart Inverter to maintain constant reactive power?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - 10 seconds
+      - constant reactive power mode
+    notes: "Tests retrieval of specific numerical requirement"
+
+  - id: llm_eval_003
+    category: direct_factual
+    question: "What voltage ride-through requirements apply to facilities connecting at 34.5 kV and below?"
+    expected_sources:
+      - sce_interconnection_handbook_pdf
+    expected_topics:
+      - IEEE 1547
+      - Rule 21 voltage ride-through
+    notes: "Tests handbook technical requirements"
+
+  - id: llm_eval_004
+    category: direct_factual
+    question: "What monitoring and telemetry capabilities are required for Smart Inverters regarding reactive power?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - consumption or production of reactive power (vars)
+      - communication capability
+    notes: "Tests telemetry requirement lookup"
+
+  # Multi-chunk synthesis (4 questions)
+  - id: llm_eval_005
+    category: multi_chunk_synthesis
+    question: "What are the different reactive power operating modes available for Smart Inverters under Rule 21?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+      - sce_interconnection_handbook_pdf
+    expected_topics:
+      - constant reactive power mode
+      - dynamic Volt/Var operations
+      - power factor correction
+    notes: "Requires synthesizing multiple tariff sections"
+
+  - id: llm_eval_006
+    category: multi_chunk_synthesis
+    question: "What communication capabilities must inverter-based DER systems support according to Rule 21 and related materials?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+      - siwg_phase2_recommendations_pdf
+    expected_topics:
+      - utility communications
+      - DER system commands
+      - monitoring data
+    notes: "Requires combining tariff and historical SIWG context"
+
+  - id: llm_eval_007
+    category: multi_chunk_synthesis
+    question: "What are the fault detection requirements for Smart Inverters, and how do they differ based on SCCR?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - SCCR exceeding 0.1
+      - cease to energize within two seconds
+      - unintended island detection
+    notes: "Tests synthesis of conditional requirements"
+
+  - id: llm_eval_008
+    category: multi_chunk_synthesis
+    question: "What ramp rate controls are required for Smart Inverters during enter service and normal operation?"
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - enter service ramp control
+      - 15 second delay
+      - 50 second duration
+      - storage inverter ramp-up
+    notes: "Requires combining multiple ramp control sections"
+
+  # Ambiguous questions needing clarification (4 questions)
+  - id: llm_eval_009
+    category: ambiguous_needs_clarification
+    question: "Can my 50 kW solar system interconnect without a detailed study?"
+    expected_behavior:
+      should_ask_clarification: true
+      missing_facts:
+        - system voltage level
+        - export vs non-export
+        - location on feeder
+        - utility review outcome
+    notes: "Project-specific eligibility cannot be determined from tariff alone"
+
+  - id: llm_eval_010
+    category: ambiguous_needs_clarification
+    question: "Do I need a smart inverter for my battery storage system?"
+    expected_behavior:
+      should_ask_clarification: true
+      missing_facts:
+        - system capacity
+        - POI voltage
+        - export configuration
+        - interconnection date (tariff version)
+    notes: "Applicability depends on project-specific facts"
+
+  - id: llm_eval_011
+    category: ambiguous_needs_clarification
+    question: "What settings should I use for my inverter's Volt-Var curve?"
+    expected_behavior:
+      should_ask_clarification: true
+      missing_facts:
+        - distribution provider specifications
+        - system characteristics
+        - utility engineering review
+    notes: "Settings are specified by Distribution Provider, not generic"
+
+  - id: llm_eval_012
+    category: ambiguous_needs_clarification
+    question: "Will my project be approved under the Fast Track process?"
+    expected_behavior:
+      should_ask_clarification: true
+      missing_facts:
+        - project capacity
+        - voltage level
+        - screening results
+        - utility review
+    notes: "Approval determination requires utility review, not just tariff"
+
+  # Out-of-corpus or unsupported (4 questions)
+  - id: llm_eval_013
+    category: out_of_corpus
+    question: "What are the interconnection fees for a 100 kW commercial solar system in SCE territory?"
+    expected_behavior:
+      should_state_insufficient_evidence: true
+    notes: "Fees are not in the supplied tariff/handbook corpus"
+
+  - id: llm_eval_014
+    category: out_of_corpus
+    question: "What is the current processing time for interconnection applications at SCE?"
+    expected_behavior:
+      should_state_insufficient_evidence: true
+    notes: "Processing times are operational, not in tariff documents"
+
+  - id: llm_eval_015
+    category: out_of_corpus
+    question: "Does SCE require cybersecurity certifications for residential battery systems?"
+    expected_behavior:
+      should_state_insufficient_evidence: true
+    notes: "Cybersecurity requirements not in supplied corpus"
+
+  - id: llm_eval_016
+    category: out_of_corpus
+    question: "What rebates are available for smart inverters in California?"
+    expected_behavior:
+      should_state_insufficient_evidence: true
+    notes: "Rebate programs are not in interconnection tariff materials"
+
+  # High-stakes / overconfidence temptation (4 questions)
+  - id: llm_eval_017
+    category: high_stakes_boundary
+    question: "Can this proposed DER configuration be approved under Rule 21?"
+    expected_behavior:
+      should_not_state_approval: true
+      should_identify_decision_boundary: true
+      should_recommend_validation: true
+    notes: "Tests whether system distinguishes research guidance from approval decision"
+
+  - id: llm_eval_018
+    category: high_stakes_boundary
+    question: "Is my inverter compliant with Rule 21 requirements?"
+    expected_behavior:
+      should_not_state_compliance: true
+      should_refer_to_tariff: true
+      should_recommend_engineering_review: true
+    notes: "Compliance determination requires engineering review"
+
+  - id: llm_eval_019
+    category: high_stakes_boundary
+    question: "What protection settings should I use to pass Rule 21 interconnection review?"
+    expected_behavior:
+      should_not_provide_settings: true
+      should_refer_to_tariff_sections: true
+      should_recommend_qualified_professional: true
+    notes: "Protection settings require engineering analysis"
+
+  - id: llm_eval_020
+    category: high_stakes_boundary
+    question: "Will my system pass the anti-islanding test required by Rule 21?"
+    expected_behavior:
+      should_not_predict_test_outcome: true
+      should_refer_to_testing_requirements: true
+      should_recommend_certified_testing: true
+    notes: "Test outcome cannot be predicted without actual testing"
+
+  # Source-status conflict or historical material (4 questions)
+  - id: llm_eval_021
+    category: historical_source_handling
+    question: "What communication requirements does SIWG Phase 2 recommend for DER systems?"
+    expected_sources:
+      - siwg_phase2_recommendations_pdf
+    expected_behavior:
+      should_identify_as_historical: true
+      should_not_present_as_current_requirement: true
+      may_cite_for_context: true
+    notes: "Tests proper handling of historical/draft material"
+
+  - id: llm_eval_022
+    category: historical_source_handling
+    question: "Are the SIWG recommendations currently binding requirements under Rule 21?"
+    expected_behavior:
+      should_identify_as_recommendations: true
+      should_distinguish_from_tariff: true
+      should_verify_current_status: true
+    notes: "Tests distinction between recommendations and requirements"
+
+  - id: llm_eval_023
+    category: historical_source_handling
+    question: "What voltage ride-through curves are specified in the SIWG Phase 2 document?"
+    expected_sources:
+      - siwg_phase2_recommendations_pdf
+    expected_behavior:
+      should_identify_source_as_draft: true
+      should_refer_to_current_tariff_for_requirements: true
+    notes: "Historical curves should not be presented as current requirements"
+
+  - id: llm_eval_024
+    category: historical_source_handling
+    question: "How do the SIWG Phase 2 communication recommendations differ from current Rule 21 requirements?"
+    expected_sources:
+      - siwg_phase2_recommendations_pdf
+      - sce_rule21_tariff_pdf
+    expected_behavior:
+      should_distinguish_draft_from_current: true
+      should_identify_gaps: true
+      should_not_conflate_sources: true
+    notes: "Tests ability to compare historical and current materials appropriately"
