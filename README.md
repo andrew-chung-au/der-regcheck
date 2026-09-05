@@ -2,7 +2,7 @@
 
 > An evidence-first RAG prototype for DER interconnection and market-entry research.
 
-**Project status:** Ingestion, normalisation, chunking, embedding, PostgreSQL/pgvector database loading, production-aligned retrieval evaluation, answer-generation evaluation, and Streamlit interface are implemented. The authoritative retrieval evaluation uses the deployed PostgreSQL retrieval path with runtime query embedding, vector retrieval, and cross-encoder reranking. The runtime application disables query expansion for latency reasons and uses the `v3_few_shot_grounded_rag` prompt configuration selected under a 100% deterministic citation-validity guardrail.
+**Project status:** Ingestion, normalisation, chunking, embedding, PostgreSQL/pgvector database loading, production-aligned retrieval evaluation, answer-generation evaluation, and Streamlit interface are implemented. The authoritative retrieval evaluation uses the deployed PostgreSQL retrieval path with runtime query embedding, vector retrieval, and cross-encoder reranking. The runtime application disables query expansion for latency reasons and uses the `v3_few_shot_grounded_rag` prompt configuration selected under a 100% deterministic citation-validity guardrail. A PostgreSQL-backed answer cache, feedback capture, manual-review workflow, and seven-chart Monitoring dashboard are implemented; aggregate Tier 2 human-review results remain pending.
 
 ---
 
@@ -87,7 +87,10 @@ Cross-encoder reranking
 Grounded answer generation with citations (v3_few_shot_grounded_rag)
             |
             v
-Streamlit interface, feedback capture, and monitoring
+Configuration-aware answer cache (PostgreSQL)
+            |
+            v
+Streamlit interface, feedback capture, manual review, and monitoring
 ```
 
 **Key design choices:**
@@ -101,6 +104,8 @@ Streamlit interface, feedback capture, and monitoring
 - Historical/draft SIWG material is excluded from default current-requirement retrieval.
 - Retrieval evaluation uses a fixed 100-query benchmark and metadata-derived relevance labels.
 - Answer-generation evaluation uses 24 fixed questions and an LLM judge under a 100% citation-validity guardrail.
+- Answers are cached by question text and configuration hash to avoid repeated generation for identical queries.
+- Feedback and manual-review scores are stored as separate events linked to cached answers.
 
 For implementation details, setup, evaluation commands, and troubleshooting, see [`docs/runbook.md`](docs/runbook.md).
 
@@ -114,9 +119,18 @@ The authoritative retrieval evaluation runs through the deployed PostgreSQL/pgve
 
 For the comprehensive 7,500-record retrieval grid breakdown, query-rewrite evaluation findings, historical baseline comparisons, and full metric interpretation, please refer to the definitive results in [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
 
-### Runtime retrieval configuration
+### Evaluation-best vs runtime retrieval configuration
 
-The runtime application uses **original query** (not expanded) with vector retrieval and reranking:
+The evaluation-best configuration used an expanded query:
+
+```text
+Expanded query
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+```
+
+The deployed runtime application uses the original user query:
 
 ```text
 Original user query
@@ -128,7 +142,7 @@ Original user query
 **Why this configuration:**
 
 - Query expansion improved composite score by only 0.00285 (approximately 0.37%).
-- Live expansion latency: approximately 32-36 seconds.
+- Live expansion latency: approximately 32–36 seconds.
 - Total answer latency with expansion: approximately 50 seconds.
 - Total answer latency without expansion: approximately 14 seconds.
 - The retrieval-quality gain does not justify the latency penalty for the intended use case.
@@ -277,9 +291,13 @@ See [`docs/runbook.md`](docs/runbook.md) for the complete directory structure an
 | Evaluator and summariser regression tests | ✅ Implemented |
 | Answer-generation evaluation | ✅ Completed 2026-09-05 |
 | Streamlit interface | ✅ Implemented 2026-09-05 |
+| PostgreSQL-backed answer cache | ✅ Implemented 2026-09-05 |
+| Feedback capture | ✅ Implemented 2026-09-05 |
+| Manual-review workflow (Tier 2) | ✅ Implemented 2026-09-05 |
+| Monitoring dashboard (seven charts) | ✅ Implemented 2026-09-05 |
 | Source-aware filtering | ⏳ Planned |
-| Tier 2 RAG quality evaluation (manual) | ⏳ Planned |
-| Feedback capture and monitoring | ⏳ Planned |
+| Tier 2 aggregate human-review results | ⏳ Pending sufficient reviews |
+| Paired statistical testing (query expansion) | ⏳ Planned |
 
 For detailed progress and next steps, see [`docs/project-log.md`](docs/project-log.md).
 
@@ -296,8 +314,11 @@ For detailed progress and next steps, see [`docs/project-log.md`](docs/project-l
 - **Two-tier evaluation:** fixed-benchmark retrieval evaluation plus future manual RAG answer-quality evaluation.
 - **Source hierarchy metadata** retained in chunks to distinguish governing, technical, supporting, and historical material.
 - **`v3_few_shot_grounded_rag` prompt** selected under a 100% deterministic citation-validity guardrail.
+- **Configuration-aware answer cache** to avoid repeated generation for identical questions and to anchor feedback and manual scores to stable answer snapshots.
+- **Separate feedback and manual-review event tables** to support multiple reviews per cached answer.
+- **Seven-chart Monitoring dashboard** with safe empty states and truthful cache-miss latency interpretation.
 
-For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/decisions.md), especially Decisions 12, 13, and 14.
+For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/decisions.md), especially Decisions 12, 13, 14, 15, 16, 17, 18, and 19.
 
 ---
 
@@ -314,7 +335,8 @@ For rationale, alternatives, and trade-offs, see [`docs/decisions.md`](docs/deci
 - Query expansion has only a small observed gain and needs paired statistical testing or manual relevance judgments.
 - The answer-generation evaluation uses an LLM judge, which may contain systematic scoring bias.
 - The 24-question prompt-evaluation set is useful for regression testing but is not exhaustive.
-- Source-aware filtering, Tier 2 manual RAG answer-quality evaluation, and production monitoring are not yet implemented.
+- Tier 2 aggregate human-review results are not yet stable until sufficient manual scores have been collected.
+- Source-aware filtering is not yet implemented.
 
 See [`docs/dataset-notes.md`](docs/dataset-notes.md), [`docs/evaluation-notes.md`](docs/evaluation-notes.md), and [`docs/decisions.md`](docs/decisions.md) for detailed source, evaluation, and responsible-use limitations.
 
@@ -323,7 +345,7 @@ See [`docs/dataset-notes.md`](docs/dataset-notes.md), [`docs/evaluation-notes.md
 ## Documentation
 
 - [`docs/project-log.md`](docs/project-log.md) — Working journal and stage-by-stage progress
-- [`docs/decisions.md`](docs/decisions.md) — Design choices and trade-offs, including Decisions 12, 13, and 14
+- [`docs/decisions.md`](docs/decisions.md) — Design choices and trade-offs, including Decisions 12–19
 - [`docs/dataset-notes.md`](docs/dataset-notes.md) — Corpus details, source hierarchy, processing, and quality notes
 - [`docs/evaluation-notes.md`](docs/evaluation-notes.md) — Retrieval protocol, historical v1/v2 context, authoritative v3 results, answer-generation evaluation, and Tier 2 plan
 - [`docs/runbook.md`](docs/runbook.md) — Setup, reproduction, evaluation, and troubleshooting

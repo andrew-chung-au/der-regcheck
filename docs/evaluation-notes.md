@@ -15,7 +15,25 @@ It covers:
 - Interpretation of source authority, currency, applicability, and uncertainty
 - Empirical retrieval evaluation results (historical Tier 1 v1 and v2; authoritative production-aligned Tier 1 v3)
 
-**Status:** Evaluation framework defined. Raw extraction, deterministic normalisation, chunking, embedding, and Tier 1 retrieval benchmarking are complete. Historical file-based evaluations were completed on 2026-08-23 (v1 and v2). The production-aligned PostgreSQL/pgvector retrieval and cached query-rewrite evaluations were completed on 2026-09-05 (v3) and are the authoritative results for the deployed retrieval path. Answer-generation evaluation was completed on 2026-09-05 using 24 fixed questions and an LLM judge; `v3_few_shot_grounded_rag` is selected as the runtime prompt.
+**Status:** Evaluation framework defined and implemented through the current
+prototype stage. Raw extraction, deterministic normalisation, structural
+chunking, embedding, and Tier 1 retrieval benchmarking are complete.
+Historical file-based evaluations were completed on 2026-08-23 (v1 and v2).
+The production-aligned PostgreSQL/pgvector retrieval and cached query-rewrite
+evaluations were completed on 2026-09-05 (v3) and are the authoritative
+retrieval results for the deployed retrieval path.
+
+Answer-generation evaluation was completed on 2026-09-05 using 24 fixed
+questions, three prompt configurations, deterministic citation validation, and
+an LLM judge. `v3_few_shot_grounded_rag` was selected as the runtime prompt
+because it was the only configuration to meet the 100% citation-validity
+guardrail.
+
+A separate 10-question Tier 2 set was created for realistic human RAG-quality
+review. The Streamlit Review workflow, PostgreSQL manual-score storage, and
+Monitoring coverage chart are implemented. Tier 2 review infrastructure is
+therefore complete, but aggregate Tier 2 human-review results should not be
+claimed until sufficient manual reviews have been recorded.
 
 ---
 
@@ -91,27 +109,124 @@ DER RegCheck uses two complementary evaluation approaches:
 
 ### Tier 2: RAG quality evaluation (manual, realistic)
 
-**Purpose:** Evaluate end-to-end RAG quality on realistic, open-ended questions that require multi-evidence synthesis.
+**Purpose:** Evaluate end-to-end RAG quality on realistic, open-ended questions that require evidence synthesis, source-hierarchy handling, clarification, uncertainty communication, and appropriate decision boundaries.
 
-**Query set:** 5–10 open-ended questions, originally LLM-generated with Gemini 3.5 Flash Lite, each with multiple relevant chunks across sources.
+**Question set:** 10 curated Tier 2 questions stored in
+`data/evaluation/tier2_questions.yaml`.
 
-**Metrics:** Human-scored rubric (groundedness, citation correctness, source hierarchy, completeness, usefulness, and related dimensions).
+The set includes questions covering:
+
+- Direct factual evidence lookup.
+- Multi-chunk synthesis.
+- Conditional or clarification-sensitive requests.
+- Out-of-corpus handling.
+- Historical or draft-source handling.
+- High-stakes regulatory, engineering, or compliance boundaries.
+
+Five Tier 2 questions are used as examples in the Streamlit Ask tab. All ten
+questions are available in the Review tab.
+
+**Human-review dimensions:**
+
+- Groundedness.
+- Relevance.
+- Completeness.
+- Citation quality.
+- Appropriate uncertainty.
+
+Each dimension is scored from 1 to 5. Reviewers may also record free-text
+notes.
+
+**Persistence:**
+
+- `manual_scores` in PostgreSQL is the operational source of truth.
+- `data/evaluation/tier2_manual_scores.jsonl` is retained as a portable
+  secondary log.
+- Each score is linked to a configuration-specific cached response through
+  `query_cache.cache_id`.
+- Multiple review events may be recorded for the same cached response.
 
 **Strengths:**
-- Realistic RAG evaluation of answers rather than retrieval ranking alone
-- Tests multi-evidence synthesis and source hierarchy reasoning
-- Captures answer-quality dimensions that retrieval metrics miss
+
+- Evaluates realistic answers rather than retrieval ranking alone.
+- Tests multi-evidence synthesis and source hierarchy reasoning.
+- Captures answer-quality dimensions that retrieval metrics miss.
+- Supports repeatable review through cached answer and evidence snapshots.
 
 **Limitations:**
-- Requires manual scoring
-- Smaller query set
-- Subject to human-judgment variability
 
-**Location:** `data/evaluation/rag_eval_cases.jsonl` (to be created), `data/evaluation/answer_results/` (to be created).
+- Requires manual scoring.
+- The question set is small.
+- Human scores may vary between reviewers.
+- Tier 2 aggregate results are not yet stable until sufficient reviews have
+  been recorded.
+- The Tier 2 set is not a substitute for the 24-question prompt-regression
+  evaluation.
 
-**Relationship:** Tier 1 tells you which retriever is strongest under the benchmark. Tier 2 tells you whether the selected retriever produces grounded, useful answers.
+**Relationship:** Tier 1 evaluates retrieval ranking under a fixed benchmark.
+The 24-question answer evaluation compares prompt configurations under a
+citation-validity guardrail. Tier 2 evaluates realistic end-to-end RAG
+usefulness through human review.
 
-**Status for this submission:** The manually reviewed Tier 2 evaluation was not completed for this submission. The completed 24-question LLM-judged evaluation is a prompt-selection and citation-validation study, not a replacement for independent human scoring of end-to-end RAG quality. Manual Tier 2 evaluation remains future work for a later version.
+**Status:** Tier 2 infrastructure is implemented. The question set, Streamlit
+Review workflow, PostgreSQL manual-score storage, JSONL secondary log, and
+Monitoring coverage chart are available. Aggregate Tier 2 human-review results
+remain pending until enough manual evaluations have been recorded.
+
+---
+
+## Evaluation observability and answer snapshots
+
+The application separates generated-answer persistence from feedback and manual
+evaluation.
+
+A successful cache miss creates a `query_cache` record containing:
+
+- Original question text.
+- Prompt version.
+- Retrieval configuration hash.
+- Answer status.
+- Direct answer.
+- Uncertainty statement.
+- Clarifying question, where applicable.
+- Evidence gaps.
+- Suggested research next steps.
+- Evidence snapshot.
+- Cache-miss generation latency.
+
+The configuration hash is derived from the runtime configuration, including:
+
+- Prompt version.
+- Top-K retrieval value.
+- Retrieval configuration identifier.
+
+This prevents an answer generated under one prompt or retrieval configuration
+from being reused as though it were generated under another.
+
+Feedback and manual review are separate event types:
+
+| Record | Purpose | Link |
+|---|---|---|
+| `query_cache` | Persist a configuration-specific answer and evidence snapshot | Primary response record |
+| `answer_feedback` | Store Helpful / Not helpful feedback and optional comments | `cache_id` |
+| `manual_scores` | Store structured human-review scores and notes | `cache_id` |
+
+Cache hits are not treated as full generation runs. Generation latency is
+recorded for cache misses only because a cache hit is a database lookup rather
+than a complete embedding, retrieval, reranking, and LLM-generation path.
+
+The Streamlit Monitoring tab reports:
+
+- Cached-query volume.
+- Answer-status distribution.
+- Feedback distribution.
+- Average manual-review scores.
+- Cache-miss latency over time.
+- Cache-miss latency by answer status.
+- Tier 2 review coverage.
+
+Charts use safe empty states when no valid records exist. The dashboard does
+not create artificial observations for demonstration purposes.
 
 ---
 
@@ -483,7 +598,9 @@ The completed PostgreSQL cached query-rewrite grid contains:
    - The observed gain supports expansion as a possible refinement.
    - A paired statistical test and manually judged relevance data would be needed before making a strong superiority claim.
 
-### Selected configuration (v3)
+### Evaluation-best configuration
+
+The highest-scoring PostgreSQL evaluation configuration was:
 
 ```text
 Expanded query
@@ -492,23 +609,57 @@ Expanded query
 → top 10 evidence chunks
 ```
 
-For the selection rationale outlining why these choices were made, please refer to [`docs/decisions.md`](decisions.md).
+This was the best evaluation configuration under the documented benchmark,
+metadata-derived relevance labels, and composite score.
+
+### Runtime configuration
+
+The deployed application does not use query expansion by default:
+
+```text
+Original user query
+→ pgvector vector retrieval
+→ BAAI/bge-reranker-base cross-encoder reranking
+→ top 10 evidence chunks
+→ v3_few_shot_grounded_rag answer generation
+```
+
+Query expansion was disabled as a runtime latency trade-off. The expanded-query
+configuration remains the evaluation winner, while the original-query
+configuration is the current application configuration.
+
+This distinction prevents the evaluation result from being misreported as the
+actual runtime behavior.
 
 ### Runtime configuration: disable query expansion for latency
 
 **Date:** 2026-09-05
 
 **Decision:**
-Disable query expansion in the runtime application to achieve acceptable user experience. The retrieval system uses the selected v3 configuration (vector + rerank) with the original user question rather than expanded queries.
 
-For the rationale behind this engineering trade-off, please refer to [`docs/decisions.md`](decisions.md).
+The PostgreSQL evaluation identified expanded-query vector reranking as the
+highest-scoring retrieval variant. The runtime application nevertheless uses
+the original user query with vector retrieval and cross-encoder reranking
+because query expansion added approximately 36 seconds of latency in live
+testing.
+
+This is an engineering distinction:
+
+- Expanded query + vector rerank is the evaluation-best configuration.
+- Original query + vector rerank is the deployed runtime configuration.
 
 **Impact:**
-- Expected nDCG@10 reduction: ~0.00086 (from 0.94713 to ~0.94627).
-- Latency improvement: ~36 seconds per query (75% reduction).
-- User experience: significantly improved for demo and portfolio purposes.
+
+- The runtime uses the original user question rather than an expanded query.
+- The expected retrieval-quality difference is small under the benchmark:
+  approximately 0.00086 nDCG@10 and 0.00285 composite-score difference.
+- The latency improvement is approximately 36 seconds per query, or roughly 75%
+  in the observed live test.
+- Configuration-aware answer caching reduces repeated generation for identical
+  questions and runtime configuration.
 
 **Future work:**
+
 - Consider re-enabling expansion if API latency can be reduced through caching, faster models, or batch processing.
 - The expansion logic remains available in the codebase for future optimization.
 
@@ -801,19 +952,20 @@ Regardless of numerical score, mark an answer as failed if it:
 
 ### Evaluation set
 
-- 24 fixed questions across six categories (four questions each):
-  - `direct_factual`
-  - `multi_chunk_synthesis`
-  - `ambiguous_needs_clarification`
-  - `out_of_corpus`
-  - `high_stakes_boundary`
-  - `historical_source_handling`
-- Three prompt configurations tested:
-  - `v1_direct_rag`: direct RAG prompt
-  - `v2_structured_grounded_rag`: structured prompt with explicit grounding instructions
-  - `v3_few_shot_grounded_rag`: few-shot grounded prompt with examples
-- Each prompt variant received the same retrieved evidence pack for a question.
-- Generation produced 72 answer records (24 questions × 3 prompts).
+- The evaluation design targeted 72 unique answer evaluations
+  (24 questions × 3 prompts).
+- The persisted artifacts contain repeated or checkpointed records, so raw
+  JSONL line counts must not be interpreted as unique-question coverage.
+- Unique-question coverage is 24 questions per prompt version after
+  deduplication by question ID and prompt version.
+
+Three prompt configurations tested:
+
+- `v1_direct_rag`: direct RAG prompt
+- `v2_structured_grounded_rag`: structured prompt with explicit grounding instructions
+- `v3_few_shot_grounded_rag`: few-shot grounded prompt with examples
+
+Each prompt variant received the same retrieved evidence pack for a question.
 
 ### Deterministic validation
 
@@ -854,11 +1006,11 @@ Among eligible configurations, the highest mean composite score was selected. Me
 
 ### Results
 
-| Prompt version | Answer records | Citation-valid rate | Mean composite |
-|---|---:|---:|---:|
-| `v1_direct_rag` | 74 | 94.6% | 4.7509 |
-| `v2_structured_grounded_rag` | 74 | 97.3% | **4.8670** |
-| `v3_few_shot_grounded_rag` | 74 | **100.0%** | 4.8110 |
+| Prompt version | Unique questions | Persisted records | Citation-valid rate | Mean composite |
+|---|---:|---:|---:|---:|
+| `v1_direct_rag` | 24 | 74 | 94.6% | 4.7509 |
+| `v2_structured_grounded_rag` | 24 | 74 | 97.3% | **4.8670** |
+| `v3_few_shot_grounded_rag` | 24 | 74 | **100.0%** | 4.8110 |
 
 **Record-count note:** The evaluation design targeted 24 unique questions per prompt version, or 72 intended unique answer evaluations in total. The aggregate artifacts contain 74 answer records per prompt version because of repeated or checkpointed records. The 74 records should not be interpreted as 74 distinct questions; unique-question coverage is 24 questions per prompt version when deduplicated by question ID and prompt version.
 
@@ -919,22 +1071,25 @@ For detailed explanations on *why* specific configurations—such as chunking ap
 
 **Selected configuration (v3, production-aligned PostgreSQL evaluation, 2026-09-05):**
 
-| Component | Selection |
-|---|---|
-| **Evaluation backend** | PostgreSQL full-text search and pgvector |
-| **Chunking** | Structural block assembly |
-| **Embedding model** | Nomic `nomic-embed-text-v1.5` |
-| **Query treatment** | Expansion |
-| **Retrieval** | Vector retrieval |
-| **Reranking** | `BAAI/bge-reranker-base` |
-| **Candidate limit** | 50 |
-| **Final output** | Top 10 chunks |
-| **Weighting scheme** | Equal |
-| **Hybrid alpha** | 0.5 if hybrid is used |
-| **HyDE** | Disabled |
-| **Source filtering** | Not yet implemented |
-| **Answer generation** | Implemented |
-| **Prompt variant** | `v3_few_shot_grounded_rag` |
+| Component | Evaluation selection | Runtime status |
+|---|---|---|
+| **Evaluation backend** | PostgreSQL full-text search and pgvector | Used |
+| **Chunking** | Structural block assembly | Used |
+| **Embedding model** | Nomic `nomic-embed-text-v1.5` | Used |
+| **Evaluation-best query treatment** | Expanded query | Evaluated, not enabled by default |
+| **Runtime query treatment** | Original user query | Used |
+| **Retrieval** | Vector retrieval | Used |
+| **Reranking** | `BAAI/bge-reranker-base` | Used |
+| **Candidate limit** | 50 | Used |
+| **Final output** | Top 10 chunks | Used |
+| **Weighting scheme** | Equal | Used |
+| **Hybrid alpha** | 0.5 if hybrid is used | Conditional |
+| **HyDE** | Disabled | Disabled |
+| **Source filtering** | Not yet implemented | Not implemented |
+| **Answer generation** | Implemented | Used |
+| **Prompt variant** | `v3_few_shot_grounded_rag` | Used |
+| **Answer cache** | PostgreSQL configuration-aware cache | Used |
+| **Manual review storage** | PostgreSQL `manual_scores` plus JSONL secondary log | Used |
 
 ---
 
@@ -974,11 +1129,26 @@ data/evaluation/
   query_rewrite_summary_postgres.json
     # Authoritative v3 PostgreSQL rewrite summary
 
-  rag_eval_cases.jsonl
-    # 5-10 open-ended questions for Tier 2; to be created
+  tier2_questions.yaml
+    # 10 realistic open-ended questions for manual Tier 2 review
 
-  answer_results/
-    # Generated answers and human scores; to be created
+  tier2_manual_scores.jsonl
+    # Secondary portable manual-review event log
+
+  llm_evaluation_questions.yaml
+    # 24 fixed questions for prompt comparison
+
+  llm_answers.jsonl
+    # Generated prompt-comparison answers and validation results
+
+  llm_judge_scores.jsonl
+    # LLM-judge scores for prompt comparison
+
+  llm_evaluation_summary.json
+    # Prompt-level aggregates and selected prompt
+
+  llm_evaluation_report.md
+    # Human-readable prompt-evaluation report
 
 docs/
   evaluation-notes.md
@@ -990,6 +1160,13 @@ docs/
   runbook.md
     # Reproducible operational instructions
 ```
+
+The authoritative operational records for cached answers, feedback, and manual
+scores are stored in PostgreSQL:
+
+- `query_cache`
+- `answer_feedback`
+- `manual_scores`
 
 Evaluation records should be reproducible without requiring raw corpus downloads, runtime feedback data, or external API credentials where feasible.
 
@@ -1008,11 +1185,13 @@ Evaluation records should be reproducible without requiring raw corpus downloads
 - ✅ Run the production-aligned PostgreSQL cached query-rewrite evaluation: 100 queries × 4 rewrite techniques × 4 retrieval variants × 5 weightings = 8,000 records. **Completed 2026-09-05**
 - ✅ Select a production retrieval configuration from the PostgreSQL evaluation. **Completed: expanded query + vector rerank**
 - ✅ Add evaluator and summariser regression tests. **Completed**
+- ✅ Create Tier 2 question set with 10 realistic open-ended questions. **Completed 2026-09-05**
+- ✅ Implement answer generation with citation support. **Completed 2026-09-05**
+- ✅ Complete the 24-question prompt-comparison evaluation with deterministic citation validation and an LLM judge. **Completed 2026-09-05**
+- ✅ Implement Streamlit Review workflow for Tier 2 manual evaluation. **Completed 2026-09-05**
+- ✅ Persist manual-review scores in PostgreSQL and JSONL. **Completed 2026-09-05**
+- ✅ Add Tier 2 coverage and manual-score monitoring. **Completed 2026-09-05**
+- ⏳ Collect sufficient manual reviews for stable Tier 2 aggregate results. **Pending**
 - ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
 - ⏳ Create a manually judged relevance set to complement metadata-derived labels. **Pending**
-- ⏳ Create Tier 2 query set (5-10 open-ended questions, stronger model or manual review). **Pending**
-- ⏳ Implement answer generation with citation support. **Completed 2026-09-05**
-- ⏳ Generate answers for Tier 2 questions. **Completed 2026-09-05 (24 fixed questions)**
-- ⏳ Score answers using the RAG rubric. **Completed 2026-09-05 (LLM judge)**
-- ⏳ Record empirical RAG-quality results and answer-generation configuration decisions in this document. **Completed 2026-09-05**
-- ⏳ Update `docs/decisions.md`, `docs/runbook.md`, and `README.md` to reference the production-aligned v3 selection. **Completed 2026-09-05**
+- ⏳ Validate a sample of LLM-judge scores against human reviewers. **Pending**
