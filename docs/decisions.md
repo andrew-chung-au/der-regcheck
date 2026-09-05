@@ -18,6 +18,11 @@
 | [12](#12-production-aligned-postgresql-retrieval-evaluation) | Production-aligned PostgreSQL retrieval evaluation | Active | No |
 | [13](#13-runtime-configuration-disable-query-expansion-for-latency) | Runtime configuration: disable query expansion for latency | Active | No |
 | [14](#14-llm-answer-evaluation-and-prompt-configuration-selection) | LLM answer evaluation and prompt configuration selection | Active | No |
+| [15](#15-streamlit-interface-adapter-and-tabbed-reviewer-workflow) | Streamlit interface adapter and tabbed reviewer workflow | Active | No |
+| [16](#16-postgresql-backed-configuration-aware-answer-cache) | PostgreSQL-backed configuration-aware answer cache | Active | No |
+| [17](#17-feedback-and-manual-review-event-model) | Feedback and manual-review event model | Active | No |
+| [18](#18-tier-2-manual-evaluation-separation-from-prompt-regression) | Tier 2 manual evaluation separation from prompt regression | Active | No |
+| [19](#19-monitoring-dashboard-and-cache-miss-latency-interpretation) | Monitoring dashboard and cache-miss latency interpretation | Active | No |
 
 ---
 
@@ -557,3 +562,336 @@ Original query (no expansion)
 - Test additional prompt variants (e.g., v4 with stronger uncertainty language, v5 with source-hierarchy emphasis).
 - Integrate citation-validity checking into the CI pipeline to prevent regressions.
 - Re-run evaluation when the corpus is updated or new sources are added.
+
+---
+
+## 15. Streamlit interface adapter and tabbed reviewer workflow
+
+**Decision:**
+- Use Streamlit as the primary reviewer-facing interface and portfolio demo.
+- Implement `src/ui/streamlit_app.py` as an interface adapter over the existing
+  production retrieval and answer-generation pipeline.
+- Provide five connected tabs: About, Ask, Evidence, Review, and Monitoring.
+- Use a shared selected cached response as the state boundary between tabs.
+- Use a sidebar for recent-query navigation rather than a dense static
+  information panel.
+
+**Reason:**
+- A tabbed interface separates concerns:
+  - Ask focuses on interaction and answer consumption.
+  - Evidence focuses on provenance inspection.
+  - Review focuses on human evaluation.
+  - Monitoring focuses on system and evaluation signals.
+- A shared selected-query model avoids disconnects between answer, evidence,
+  and review tabs.
+- Streamlit provides rapid UI development with minimal code and integrates
+  cleanly with the existing Python pipeline.
+- A sidebar for recent-query navigation is more useful than a large static
+  About panel for day-to-day review work.
+
+**Alternatives considered:**
+- Building a React or Vue frontend with a separate backend API.
+- Keeping a single long page with all information in one tab.
+- Using a different Python UI framework (e.g., Gradio, Dash).
+- Placing all project information in the sidebar instead of an About tab.
+
+**Trade-offs:**
+- Streamlit is simpler than a full frontend framework but less customizable.
+- A tabbed UI requires more navigation but improves clarity and focus.
+- A shared selected-query model requires careful state management but avoids
+  confusion between tabs.
+- A sidebar for navigation is less visible than a top-level menu but keeps
+  focus on the main content area.
+
+**Impact:**
+- Reviewers interact with the system through a single Streamlit application.
+- The UI does not duplicate retrieval or answer-generation logic; it calls
+  `AnswerGenerator` and existing retrieval components.
+- Evidence cards, status badges, and feedback widgets are standardized across
+  tabs.
+- The About tab centralizes static project information, runtime configuration,
+  project links, and responsible-use boundary.
+
+**Supersedes:**
+- None (this is the first interface-architecture decision).
+
+**Future work:**
+- Consider a separate frontend framework if more complex interactions are
+  required in future iterations.
+- Add multi-page navigation if the app grows beyond five tabs.
+- Improve responsive design for mobile and small-screen reviewers.
+
+---
+
+## 16. PostgreSQL-backed configuration-aware answer cache
+
+**Decision:**
+- Add a `query_cache` table to PostgreSQL to store configuration-specific
+  question/answer/evidence snapshots.
+- Compute a configuration hash from:
+  - Prompt version.
+  - Top-K value.
+  - Retrieval configuration identifier.
+- Use (question text, configuration hash) as the cache key.
+- Persist query/answer records immediately after successful generation; do not
+  require a feedback event before storing the response.
+- Load existing cached responses on cache hit instead of repeating retrieval,
+  reranking, and LLM generation.
+- Record cache-miss generation latency for each cached response.
+
+**Reason:**
+- Repeated questions, especially Tier 2 examples, should not re-run the full
+  RAG pipeline on every UI interaction.
+- A configuration-aware cache prevents reusing an answer created under a
+  different prompt or retrieval setup.
+- Persisting responses immediately simplifies observability and enables
+  feedback and manual review without re-generation.
+- Cache-miss latency is a useful operational metric for the end-to-end RAG
+  path.
+
+**Alternatives considered:**
+- Caching only in memory (would not survive restarts).
+- Caching only question text without configuration hash (would mix answers from
+  different prompt or retrieval setups).
+- Requiring a feedback event before storing a response (would lose unreviewed
+  answers).
+- Storing only question and answer text without evidence snapshot (would limit
+  review and debugging).
+
+**Trade-offs:**
+- Configuration-aware caching increases cache misses slightly but improves
+  answer-quality control.
+- Persisting all responses increases storage but enables comprehensive
+  observability and review.
+- Recording latency only on cache misses complicates analysis but provides a
+  truthful measure of the full RAG path.
+
+**Impact:**
+- Repeated questions with the same configuration load the existing response.
+- New questions are persisted immediately after successful generation.
+- Feedback and manual-review events are linked to a stable cached answer.
+- Monitoring can report cached query volume and cache-miss latency.
+
+**Evidence and artifacts:**
+- `src/database/db_init.py` — observability schema and `query_cache` table.
+- `src/observability/query_cache.py` — cache lookup and save functions.
+- `src/ui/streamlit_app.py` — cache integration in Ask and Review tabs.
+
+**Supersedes:**
+- None (this is the first caching decision).
+
+**Future work:**
+- Add cache invalidation when the corpus or retrieval configuration changes.
+- Consider TTL-based expiration for very old cached responses.
+- Add cache statistics (hit rate, miss rate, average latency) to monitoring.
+
+---
+
+## 17. Feedback and manual-review event model
+
+**Decision:**
+- Add `answer_feedback` and `manual_scores` tables to PostgreSQL.
+- Link both tables to `query_cache.cache_id`.
+- Store helpful/not-helpful feedback events in `answer_feedback`.
+- Store structured human evaluation events in `manual_scores` with:
+  - Groundedness (1–5).
+  - Relevance (1–5).
+  - Completeness (1–5).
+  - Citation quality (1–5).
+  - Appropriate uncertainty (1–5).
+  - Optional free-text notes.
+- Permit multiple feedback and manual-review events for a single cached answer.
+- Retain JSONL copies in:
+  - `data/feedback/feedback.jsonl`
+  - `data/evaluation/tier2_manual_scores.jsonl`
+- Treat PostgreSQL as the operational source of truth; JSONL records are
+  secondary portable artifacts.
+
+**Reason:**
+- Feedback and manual evaluations serve different purposes and should be stored
+  separately.
+- Linking to `cache_id` ensures scores and feedback are associated with a
+  specific persisted answer and evidence set.
+- Multiple events per cached answer support repeated review and multiple
+  reviewers.
+- JSONL copies provide simple portability during the prototype stage.
+
+**Alternatives considered:**
+- Storing only JSONL feedback and scores (would limit monitoring and
+  aggregation).
+- Using a single table for both feedback and scores (would mix different
+  event types).
+- Requiring exactly one feedback or score per cached answer (would prevent
+  repeated review).
+- Dropping JSONL entirely (would lose simple portable artifacts).
+
+**Trade-offs:**
+- Separate tables increase schema complexity but improve clarity and query
+  patterns.
+- Multiple events per answer increase storage but support richer evaluation.
+- Maintaining both PostgreSQL and JSONL increases write overhead but provides
+  redundancy and portability.
+
+**Impact:**
+- Reviewers can submit feedback and scores independently.
+- Monitoring can aggregate feedback counts and average scores.
+- Tier 2 evaluation is supported through structured manual scores.
+- Feedback and scores are linked to a stable cached answer for traceability.
+
+**Evidence and artifacts:**
+- `src/database/db_init.py` — `answer_feedback` and `manual_scores` tables.
+- `src/ui/streamlit_app.py` — feedback and score submission in Ask and Review.
+- `data/feedback/feedback.jsonl` — JSONL feedback log.
+- `data/evaluation/tier2_manual_scores.jsonl` — JSONL manual-score log.
+
+**Supersedes:**
+- None (this is the first feedback and review-model decision).
+
+**Future work:**
+- Add reviewer identity and role fields to support multi-reviewer workflows.
+- Add inter-rater reliability metrics when multiple reviewers score the same
+  answer.
+- Consider removing JSONL logs once PostgreSQL is fully trusted and backed up.
+
+---
+
+## 18. Tier 2 manual evaluation separation from prompt regression
+
+**Decision:**
+- Maintain two separate evaluation question sets:
+  - A 24-question set for prompt-regression evaluation (v1/v2/v3 comparison).
+  - A 10-question Tier 2 set for realistic manual RAG-quality evaluation.
+- Use the 24-question set to compare prompt configurations under deterministic
+  citation validation.
+- Use the Tier 2 set for human review of end-to-end RAG usefulness.
+- Use five Tier 2 questions as examples in the Ask tab.
+- Expose all Tier 2 questions in the Review tab.
+
+**Reason:**
+- The 24-question set includes adversarial and edge-case questions that are
+  valuable for prompt comparison but not representative of typical user
+  queries.
+- Tier 2 questions are designed to be realistic, open-ended DER research
+  questions suitable for human review.
+- Separating the sets avoids conflating prompt-regression results with
+  real-world RAG usefulness.
+- Using a subset of Tier 2 questions as examples keeps the Ask tab focused
+  while still exposing reviewers to realistic questions.
+
+**Alternatives considered:**
+- Using a single question set for both prompt regression and manual review.
+- Using only synthetic questions for both evaluation types.
+- Using only manual questions for both evaluation types.
+- Exposing all Tier 2 questions as examples in Ask.
+
+**Trade-offs:**
+- Maintaining two sets increases documentation and maintenance overhead.
+- The 24-question set may not represent typical user queries but is valuable
+  for stress-testing prompts.
+- Tier 2 questions are more realistic but require human review effort.
+- Using a subset of Tier 2 examples keeps Ask focused but may hide some
+  interesting questions from casual reviewers.
+
+**Impact:**
+- Prompt-regression evaluation remains focused on v1/v2/v3 comparison.
+- Tier 2 evaluation supports realistic human assessment of RAG quality.
+- The Ask tab provides a small, reviewer-friendly set of examples.
+- The Review tab provides access to the full Tier 2 set for comprehensive
+  evaluation.
+
+**Evidence and artifacts:**
+- `data/evaluation/llm_evaluation_questions.yaml` — 24-question prompt-regression set.
+- `data/evaluation/tier2_questions.yaml` — 10-question Tier 2 set.
+- `src/evaluation/evaluate_llm_answers.py` — prompt-regression evaluation.
+- `src/ui/streamlit_app.py` — Tier 2 question selection and scoring in Review.
+
+**Supersedes:**
+- None (this is the first Tier 2 separation decision).
+
+**Future work:**
+- Expand the Tier 2 set to 20–30 questions covering more scenarios.
+- Add manual review of a sample of 24-question answers to validate the LLM
+  judge's reliability.
+- Consider merging the sets if future evaluation shows they overlap significantly.
+
+---
+
+## 19. Monitoring dashboard and cache-miss latency interpretation
+
+**Decision:**
+- Implement a seven-chart monitoring dashboard in the Monitoring tab:
+  1. Answer-status distribution.
+  2. Helpful versus not-helpful feedback distribution.
+  3. Average manual-review scores by quality dimension.
+  4. Cache-miss generation latency over time.
+  5. Average cache-miss generation latency by answer status.
+  6. Cached query volume over time.
+  7. Tier 2 manual-review coverage.
+- Use Altair for chart layout control, including horizontal categorical bars,
+  horizontal category labels, responsive chart width, explicit chart height,
+  readable answer-status labels, and calendar-date formatting for
+  query-volume charts.
+- Use compact stable labels such as `T2-001` for Tier 2 coverage; keep full
+  question text accessible in the Review tab.
+- Provide safe empty states for all charts when no valid observations exist.
+- Distinguish cache hits from cache misses:
+  - Cache hits are fast database lookups.
+  - Cache-miss latency represents the end-to-end RAG path.
+  - Cache hits are not treated as full retrieval and answer-generation timing
+    observations.
+- Do not create artificial runtime records simply to populate charts.
+
+**Reason:**
+- A small set of focused charts provides actionable signals about answer
+  behavior, feedback, quality, and latency.
+- Altair provides explicit control over orientation, label placement, date
+  formatting, chart height, and responsive width, which simple Streamlit
+  charts do not.
+- Compact Tier 2 labels improve chart readability; full question text remains
+  available in Review.
+- Safe empty states prevent misleading zeros and clarify how reviewers can
+  populate each chart.
+- Distinguishing cache hits from cache misses provides a truthful measure of
+  the full RAG path and avoids conflating database lookups with generation
+  latency.
+
+**Alternatives considered:**
+- Using simple Streamlit bar charts for all monitoring charts.
+- Showing raw reranker scores in evidence cards and monitoring.
+- Creating artificial runtime records to populate charts for demo purposes.
+- Using a single composite chart instead of multiple focused charts.
+
+**Trade-offs:**
+- Altair requires more configuration but provides better control and
+  readability.
+- Compact Tier 2 labels improve chart clarity but require navigation to Review
+  for full question text.
+- Safe empty states may leave some charts blank initially but avoid misleading
+  interpretations.
+- Distinguishing cache hits from cache misses complicates analysis but provides
+  a truthful measure of the full RAG path.
+
+**Impact:**
+- Reviewers can inspect answer behavior, feedback, quality, and latency in one
+  place.
+- Charts remain truthful and interpretable even with sparse data.
+- Cache-miss latency is a reliable indicator of end-to-end RAG performance.
+- Tier 2 coverage is visible at a glance while full question text remains
+  accessible in Review.
+
+**Evidence and artifacts:**
+- `src/ui/streamlit_app.py` — Monitoring tab and seven-chart dashboard.
+- `src/database/db_init.py` — observability schema and tables.
+- `src/observability/query_cache.py` — cache lookup and save functions.
+- `data/feedback/feedback.jsonl` — JSONL feedback log.
+- `data/evaluation/tier2_manual_scores.jsonl` — JSONL manual-score log.
+
+**Supersedes:**
+- None (this is the first monitoring-dashboard decision).
+
+**Future work:**
+- Add cache-hit rate and average cache-hit latency charts.
+- Add inter-rater reliability metrics when multiple reviewers score the same
+  answer.
+- Consider adding time-series charts for feedback and scores over time.
+- Add drill-down views for individual cached answers from chart clicks.

@@ -13,6 +13,7 @@
 **Authoritative retrieval evaluation:** Production-aligned PostgreSQL/pgvector evaluation completed 2026-09-05
 **Runtime retrieval configuration:** Original user query → pgvector vector retrieval → `BAAI/bge-reranker-base` reranking → top 10 evidence chunks
 **Answer-generation evaluation:** 24-question prompt comparison completed 2026-09-05; `v3_few_shot_grounded_rag` selected under the deterministic citation-validity guardrail
+**Tier 2 RAG-quality evaluation:** 10 realistic open-ended questions created 2026-09-05; Streamlit Review workflow, PostgreSQL manual-score storage, and Monitoring coverage chart implemented; aggregate human-review results remain pending
 
 ---
 
@@ -42,6 +43,8 @@ data/evaluation/
 → authoritative PostgreSQL/pgvector v3 retrieval and query-rewrite artifacts
 → 24 fixed answer-evaluation questions
 → generated answers, citation-validation results, LLM judge scores, and prompt-selection reports
+→ 10 Tier 2 realistic RAG-quality questions
+→ manual-review scores (PostgreSQL authoritative; JSONL secondary log)
 ```
 
 ### Raw corpus files
@@ -200,12 +203,24 @@ They preserve both historical file-based experiments and the authoritative produ
   - `v3_few_shot_grounded_rag`
   - Selected because it was the only evaluated configuration with 100% deterministic citation validity
 
+**Tier 2 realistic RAG-quality evaluation (infrastructure complete 2026-09-05):**
+
+- `tier2_questions.yaml`:
+  - 10 realistic open-ended questions for manual RAG-quality review
+  - Categories: direct factual, multi-chunk synthesis, clarification-sensitive, out-of-corpus, historical-source handling, high-stakes boundary
+  - Five questions are used as examples in the Streamlit Ask tab; all ten are available in the Review tab
+- `tier2_manual_scores.jsonl`:
+  - Secondary portable manual-review event log
+  - PostgreSQL `manual_scores` table is the operational source of truth
+  - Each score is linked to a configuration-specific cached response through `query_cache.cache_id`
+  - Multiple review events may be recorded for the same cached response
+
 **Future manually reviewed RAG-quality evaluation:**
 
-- `rag_eval_cases.jsonl`:
-  - 5-10 open-ended questions for manual or independently reviewed end-to-end evaluation
-- `answer_results/`:
-  - Future generated answers and manual scores
+- Additional manual reviews to populate stable Tier 2 aggregate results
+- Independent or human answer-quality scoring to complement the completed LLM-judge prompt comparison
+- Paired statistical testing of original versus expanded query variants
+- A manually judged relevance set to complement metadata-derived relevance labels
 
 ---
 
@@ -435,7 +450,7 @@ Potential additions for later versions:
 - More working-group reports and CPUC decisions related to DER interconnection and smart inverters.
 - SCE forms, application instructions, and supporting process materials where their authority and currency can be recorded.
 - Other markets, including ERCOT, NYISO, and AEMO, for cross-market comparison.
-- A manually reviewed end-to-end RAG evaluation set of 5-10 realistic open-ended questions.
+- Additional manual reviews to populate stable Tier 2 aggregate results.
 - Independent or human answer-quality scoring to complement the completed LLM-judge prompt comparison.
 - Additional prompt configurations if future evidence indicates a better citation-validity and quality trade-off.
 - Paired statistical testing of original versus expanded query variants.

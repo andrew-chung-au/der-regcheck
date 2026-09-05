@@ -13,7 +13,7 @@
 | [2026-09-05](#2026-09-05---production-aligned-postgresql-retrieval-re-evaluation) | Evaluation | PostgreSQL-aligned evaluation (v3) | ✅ Complete |
 | [2026-09-05](#2026-09-05---application-core-rag-pipeline-and-cli) | Development | Application core: RAG pipeline and CLI | ✅ Complete |
 | [2026-09-05](#2026-09-05---llm-answer-evaluation-and-prompt-selection) | Evaluation | LLM answer evaluation and prompt selection | ✅ Complete |
-| [2026-09-05](#2026-09-05---streamlit-interface) | Development | Streamlit interface | ✅ Complete |
+| [2026-09-05](#2026-09-05---streamlit-interface-observability-and-manual-review) | Development | Streamlit interface, cache, manual review, and monitoring | ✅ Complete |
 
 ## 2026-08-21 - California Rule 21 corpus selection and ingestion
 
@@ -473,46 +473,350 @@ Add systematic answer-quality evaluation: prove why the production prompt config
 
 ---
 
-## 2026-09-05 - Streamlit interface
+## 2026-09-05 - Streamlit interface, observability, and manual review
 
 ### Goal
-Build a Streamlit interface: a reviewer can use the actual app, inspect evidence, and understand limits.
+
+Complete a reviewer-facing Streamlit interface adapter for the DER RegCheck
+evidence-first RAG pipeline and add lightweight operational monitoring,
+feedback capture, query caching, and Tier 2 human-evaluation support.
 
 ### What I did
-- Created `src/ui/streamlit_app.py` with:
-  - Question input (text field + 5 example question buttons)
-  - Answer status badge (Answered, Partial, Needs clarification, Insufficient evidence, High-stakes boundary)
-  - Main answer with inline citation labels [S1], [S2], etc.
-  - Expandable evidence cards showing:
-    - Source title (heading path)
-    - Source class (authority tier)
-    - Page/section (section IDs, PDF page)
-    - Excerpt (evidence text)
-    - Retrieval rank
-    - Score (rerank score)
-  - Explicit disclaimer banner: "Not legal, engineering, regulatory, or compliance advice"
-  - Feedback widgets (thumbs up/down + optional comment)
-  - Feedback saved to `data/feedback/feedback.jsonl`
-- Configured app to use v3 prompt (`v3_few_shot_grounded_rag`)
-- Tested with example questions
+
+- Implemented `src/ui/streamlit_app.py` as the Streamlit interface adapter
+  over the existing production retrieval and answer-generation pipeline.
+- Kept Streamlit as a presentation and interaction layer only:
+  - The UI calls `AnswerGenerator`.
+  - Retrieval, reranking, prompt selection, Gemini generation, and
+    deterministic citation validation remain in the existing pipeline.
+  - The UI does not duplicate retrieval or answer-generation logic.
+
+- Added a wide, responsive Streamlit layout:
+  - `layout="wide"` adapts to available browser and monitor width.
+  - Sidebar provides recent-query navigation rather than a dense static
+    information panel.
+  - Static project information, runtime configuration, project links, and
+    responsible-use boundary are located in the About tab.
+
+- Added five connected interface tabs:
+  - `About`
+  - `Ask`
+  - `Evidence`
+  - `Review`
+  - `Monitoring`
+
+- Added the Ask workflow:
+  - Free-text DER research question input.
+  - Five selectable example questions drawn from the Tier 2 question set.
+  - Human-readable Tier 2 labels in the select box, such as
+    `T2-003 — For a DER project in SCE territory...`.
+  - Configuration-aware cache lookup before a new RAG generation.
+  - Visible cache-hit and cache-miss messages.
+  - Cached answer rendering with status badge, uncertainty statement,
+    clarifying question, evidence gaps, and suggested next steps.
+  - Optional helpful/not-helpful feedback with optional free-text comment.
+
+- Added reviewer-facing answer status labels:
+  - `Answered`
+  - `Partial`
+  - `Needs clarification`
+  - `Insufficient evidence`
+  - `High-stakes boundary`
+
+- Added the Evidence workflow:
+  - All tabs operate on a shared selected cached response.
+  - Users can select a recent question from the sidebar and inspect the same
+    answer in Ask, evidence in Evidence, and scores in Review.
+  - Expandable evidence cards display:
+    - Stable source label such as `S1`.
+    - Source ID.
+    - Source class, combining authority tier and currency status.
+    - Heading path and available PDF page or section locator.
+    - Final retrieval rank.
+    - Preserved evidence excerpt.
+  - Raw reranker scores are not displayed in the default reviewer view because
+    the runtime retrieval path does not yet persist a consistent reranker score
+    for every cached evidence record.
+
+- Added PostgreSQL-backed response caching:
+  - Extended `src/database/db_init.py` with an observability schema.
+  - Added `query_cache` table containing:
+    - Question text.
+    - Configuration hash.
+    - Generated answer status and structured answer fields.
+    - Claims and evidence gaps.
+    - Evidence snapshot.
+    - Cache-miss generation latency.
+  - Added `src/observability/query_cache.py`.
+  - Cache identity is based on:
+    - Question text.
+    - Prompt version.
+    - Top-K value.
+    - Retrieval configuration identifier.
+  - Repeated questions with the same configuration load the existing response
+    instead of repeating retrieval, reranking, and LLM generation.
+  - New questions are persisted immediately after successful generation,
+    independent of whether feedback is submitted.
+
+- Added persistent feedback and manual-review event storage:
+  - `answer_feedback` table stores helpful/not-helpful feedback events linked
+    to `query_cache.cache_id`.
+  - `manual_scores` table stores human evaluation events linked to
+    `query_cache.cache_id`.
+  - Multiple feedback submissions can be associated with one cached response.
+  - Multiple manual-review records can be associated with one cached response,
+    supporting future repeated review or multiple reviewers.
+  - JSONL copies are also written to:
+    - `data/feedback/feedback.jsonl`
+    - `data/evaluation/tier2_manual_scores.jsonl`
+  - PostgreSQL is the operational source of truth; JSONL records are retained
+    as simple portable artifacts during this prototype stage.
+
+- Added a Tier 2 realistic RAG-quality evaluation workflow:
+  - Created `data/evaluation/tier2_questions.yaml`.
+  - Added 10 realistic, open-ended DER research questions.
+  - Kept the existing 24-question set separate as the prompt-regression suite.
+  - Tier 2 questions cover:
+    - Direct factual research.
+    - Multi-chunk synthesis.
+    - Conditional and clarification-sensitive questions.
+    - Out-of-corpus handling.
+    - High-stakes decision boundaries.
+    - Historical-source treatment.
+  - Five Tier 2 questions are used as example questions in Ask.
+  - The full Tier 2 set is selectable in Review.
+
+- Added the Review workflow:
+  - A reviewer can select:
+    - The currently selected recent query.
+    - A Tier 2 evaluation question.
+    - A custom question.
+  - Tier 2 question selection uses readable labels while preserving stable
+    identifiers such as `tier2_003` in the database.
+  - Reviewers can load a cached response or generate one on cache miss.
+  - Reviewers score each response from 1 to 5 on:
+    - Groundedness.
+    - Relevance.
+    - Completeness.
+    - Citation quality.
+    - Appropriate uncertainty.
+  - Reviewers can add free-text notes.
+  - Tier 2 expected behavior can be inspected from the Review tab.
+
+- Added a Monitoring workflow and dashboard:
+  - Uses real runtime data from PostgreSQL.
+  - Includes summary metrics for:
+    - Cached queries.
+    - Feedback events.
+    - Manual reviews.
+    - Tier 2 reviews.
+    - Tier 2 question coverage.
+  - Includes seven monitoring charts:
+    1. Answer-status distribution.
+    2. Helpful versus not-helpful feedback distribution.
+    3. Average manual-review scores by quality dimension.
+    4. Cache-miss generation latency over time.
+    5. Average cache-miss generation latency by answer status.
+    6. Cached query volume over time.
+    7. Tier 2 manual-review coverage.
+  - Uses Altair for chart layout control, including:
+    - Horizontal categorical bars.
+    - Horizontal category labels.
+    - Responsive chart width.
+    - Explicit chart height.
+    - Readable answer-status labels.
+    - Calendar-date formatting for query-volume charts.
+  - Tier 2 coverage uses compact stable labels such as `T2-001` rather than
+    long question text, because the full question remains accessible in Review.
+  - Every chart has a safe empty state for fresh databases, new machines, and
+    new Docker volumes.
+  - The dashboard does not create artificial runtime records simply to populate
+    charts.
+
+- Added local developer command support:
+  - Created a Makefile with targets for the Streamlit UI, database
+    initialization, tests, demo scripts, chunk loading, and Docker workflows.
+  - The primary local UI command is:
+    ```bash
+    make ui
+    ```
+  - Database schema initialization, including observability tables, is:
+    ```bash
+    make db-init
+    ```
+
+- Addressed local Streamlit development issues:
+  - Added repository-root path handling in `streamlit_app.py` so imports such
+    as `from src...` work when Streamlit executes the UI file directly.
+  - Used a project-level Streamlit configuration appropriate for WSL.
+  - Identified that optional `torchvision` warnings arise from Streamlit file
+    watching combined with optional Hugging Face Transformers image/video
+    modules, rather than from DER RegCheck RAG logic.
 
 ### What I learned
-- Streamlit provides rapid UI development with minimal code
-- Evidence cards help users understand retrieval and verify citations
-- Status badges communicate answer quality and uncertainty clearly
-- Feedback capture is essential for future iteration
+
+- A tabbed UI provides a clearer review workflow than placing all information
+  on one long scrolling page:
+  - Ask is focused on interaction and answer consumption.
+  - Evidence is focused on provenance inspection.
+  - Review is focused on human evaluation.
+  - Monitoring is focused on system and evaluation signals.
+
+- A sidebar is more useful as persistent query navigation than as a large static
+  About panel. The shared selected-query model avoids disconnects between
+  answer, evidence, and review tabs.
+
+- Query caching is both a performance feature and an evaluation-control feature:
+  - It reduces repeated LLM and reranking cost for identical questions.
+  - It provides a stable answer snapshot for a specific runtime configuration.
+  - It ensures manual feedback and reviewer scores are linked to a specific
+    persisted answer and evidence set.
+
+- Feedback, cache records, and manual evaluations have different purposes:
+  - `query_cache` stores one configuration-specific response snapshot.
+  - `answer_feedback` stores lightweight user-sentiment events.
+  - `manual_scores` stores structured human-quality evaluations.
+  - A single cached response can legitimately have multiple feedback and review
+    events.
+
+- The 24-question answer-generation set and Tier 2 set should remain separate:
+  - The 24-question set evaluates v1/v2/v3 prompt behavior, including
+    adversarial and edge-case questions.
+  - Tier 2 evaluates realistic end-to-end RAG usefulness through human review.
+  - UI examples are a small, reviewer-friendly subset of Tier 2.
+
+- Monitoring must distinguish cache hits from cache misses:
+  - Cache hits are fast database lookups.
+  - Cache-miss latency represents the end-to-end RAG path.
+  - Cache hits should not be treated as full retrieval and answer-generation
+    timing observations.
+
+- Monitoring dashboards need truthful empty states:
+  - Fresh databases should not show fabricated data.
+  - A chart with no valid observations should provide a specific explanation
+    of how a reviewer can populate it.
+  - Zero must not be used to represent missing manual-review scores.
+
+- Raw internal scores are not automatically helpful to reviewers:
+  - Final retrieval rank is consistently available and understandable.
+  - Reranker scores should only be shown when the runtime captures and
+    persists their semantics consistently.
 
 ### Decision made
-- Use Streamlit as the primary interface for demos and portfolio
-- Keep UI simple: question → answer → evidence → feedback
-- Explicitly communicate limitations and uncertainty
+
+- Use Streamlit as the primary reviewer-facing interface and portfolio demo.
+- Keep `src/ui/streamlit_app.py` under `src/ui/`; use the Makefile and Docker
+  commands as the reviewer-friendly launch surface rather than moving the app
+  entry point to the repository root.
+- Use a shared `selected_cache_id` as the state boundary between Ask, Evidence,
+  Review, and sidebar navigation.
+- Use PostgreSQL as the authoritative operational store for:
+  - Cached question/answer/evidence snapshots.
+  - User feedback events.
+  - Manual-review scores.
+  - Monitoring queries and dashboard aggregation.
+- Retain JSONL feedback and manual-score artifacts as secondary portable logs
+  during the prototype stage.
+- Cache responses using question text plus a configuration hash to avoid
+  reusing an answer created under a different prompt or retrieval setup.
+- Persist query/answer records immediately after successful generation; do not
+  require a feedback event before storing the response.
+- Permit multiple feedback and manual-review events for a single cached answer.
+- Use the existing 24-question set as the prompt-regression suite.
+- Use the new 10-question Tier 2 set for realistic manual RAG-quality review.
+- Use five Tier 2 questions as the Ask-tab examples and expose all Tier 2
+  questions in the Review tab.
+- Use seven charts in Monitoring, exceeding the five-chart course requirement:
+  - Answer status distribution.
+  - Feedback distribution.
+  - Average manual-review scores.
+  - Generation latency over time.
+  - Generation latency by answer status.
+  - Cached query volume over time.
+  - Tier 2 manual-review coverage.
+- Use Altair for monitoring charts where explicit orientation, label placement,
+  date formatting, chart height, and responsive width are needed.
+- Show final retrieval rank in evidence cards; defer reviewer-facing reranker
+  scores until consistent score persistence is implemented.
 
 ### Problems
-- None major
-- App runs successfully with `streamlit run src/ui/streamlit_app.py`
+
+- Streamlit runs an app file as a standalone script, which initially caused
+  `ModuleNotFoundError: No module named 'src'`.
+- Running the app through `python -m` resolved imports but did not create a
+  proper Streamlit browser session. The final approach keeps `streamlit run`
+  and explicitly adds the repository root to `sys.path`.
+- Iterative UI edits temporarily introduced indentation errors in the Ask and
+  Review action blocks.
+- Early sidebar behavior made it appear that questions were only stored after
+  feedback. The actual issue was UI refresh/state flow; query cache inserts now
+  occur immediately after generation and the selected cached response drives
+  navigation.
+- The initial example-question selector displayed raw Tier 2 identifiers rather
+  than descriptive labels. Select boxes now display readable labels while
+  retaining stable IDs internally.
+- Streamlit's file watcher inspected optional Transformers image/video modules
+  and produced noisy `torchvision` import warnings under the local WSL setup.
+  This was unrelated to the RAG functionality.
+- Simple Streamlit bar charts produced cramped or vertical category labels and
+  partially obscured axes for long values. The monitoring dashboard now uses
+  Altair with explicit horizontal chart configuration.
+- Initial date encoding in the query-volume chart displayed epoch-millisecond
+  values rather than human-readable dates. The chart now declares the field as
+  temporal and formats dates explicitly.
+- Existing cached evidence records do not contain reranker scores because the
+  current runtime does not persist that value; displaying `N/A` repeatedly was
+  not useful. The default evidence view now emphasizes final retrieval rank.
 
 ### Next step
-- Test app with real users and collect feedback
-- Add monitoring and analytics
-- Consider multi-page app for different question types
-- Update README with app usage instructions
+
+- Finalize the corresponding stable decisions in `docs/decisions.md`:
+  - Streamlit interface adapter and tabbed reviewer workflow.
+  - PostgreSQL-backed configuration-aware answer cache.
+  - Feedback and manual-review event model.
+  - Tier 2 manual evaluation separation from prompt regression.
+  - Monitoring dashboard and cache-miss latency interpretation.
+
+- Update `docs/evaluation-notes.md`:
+  - Clarify that the 24-question set is for prompt comparison.
+  - Document the 10-question Tier 2 realistic manual-review set.
+  - Define the 1–5 manual-review rubric and how scores are persisted.
+  - Keep actual Tier 2 results separate until sufficient human reviews exist.
+
+- Update `docs/runbook.md`:
+  - Add Makefile commands.
+  - Add Streamlit launch instructions.
+  - Add database initialization for observability tables.
+  - Add reviewer workflow instructions.
+  - Add instructions for populating Monitoring with real local records.
+  - Add Docker and Docker Compose steps once containerization is finalized.
+
+- Update `README.md`:
+  - Replace inaccurate claims that Streamlit or feedback monitoring was merely
+    planned, if present.
+  - Add a concise Milestone 3 reviewer-interface summary.
+  - Add local and containerized launch commands.
+  - Mention the seven-chart monitoring dashboard and safe empty states without
+    duplicating detailed implementation notes.
+
+- Add tests for:
+  - Query-cache lookup and save behavior.
+  - Cache-key configuration separation.
+  - Feedback insertion.
+  - Manual-score insertion.
+  - Monitoring aggregation helpers.
+  - Tier 2 question loading and UI label mapping.
+
+- Implement containerization fully:
+  - Add Dockerfile for Streamlit application.
+  - Extend `compose.yaml` to run database and application together.
+  - Persist PostgreSQL data through a Docker volume.
+  - Pass required environment variables securely through `.env`.
+  - Verify the complete application can run through Docker Compose.
+
+- Populate the dashboard with real local records before screenshots or demo:
+  - Submit at least three different questions.
+  - Re-submit one question to demonstrate a cache hit.
+  - Add at least one Helpful and one Not helpful feedback event.
+  - Save manual scores for at least two Tier 2 questions.
+  - Capture screenshots only after charts contain real records.

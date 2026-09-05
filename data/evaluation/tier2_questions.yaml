@@ -1,0 +1,196 @@
+# DER RegCheck Tier 2 Evaluation Questions
+# 10 realistic, open-ended questions for manual RAG-quality assessment
+# Intended for:
+#   - Manual scoring of end-to-end answer quality
+#   - Streamlit demo / example questions
+#   - Future monitoring and regression checks
+#
+# Categories align with the existing six-category schema:
+#   - direct_factual
+#   - multi_chunk_synthesis
+#   - ambiguous_needs_clarification
+#   - out_of_corpus
+#   - high_stakes_boundary
+#   - historical_source_handling
+
+
+questions:
+  # T2-01: Direct factual + light synthesis
+  - id: tier2_001
+    category: direct_factual
+    question: >
+      What does SCE Rule 21 require for smart inverter reactive power
+      capabilities, and which IEEE standard is referenced?
+    expected_sources:
+      - sce_rule21_tariff_pdf
+    expected_topics:
+      - IEEE 1547-2018
+      - Section 5.2 Category B
+      - reactive power capabilities
+    notes: >
+      Tests basic tariff lookup with specific citation; should be answered
+      with clear reference to the tariff and standard.
+
+
+  # T2-02: Multi-chunk synthesis (reactive power modes)
+  - id: tier2_002
+    category: multi_chunk_synthesis
+    question: >
+      What reactive power operating modes are described for smart inverters
+      in the SCE materials (for example, constant reactive power, Volt/Var,
+      power factor), and where are they defined?
+    expected_sources:
+      - sce_rule21_tariff_pdf
+      - sce_interconnection_handbook_pdf
+    expected_topics:
+      - constant reactive power mode
+      - dynamic Volt/Var operations
+      - power factor correction
+    notes: >
+      Requires synthesizing multiple tariff and handbook sections; should
+      distinguish governing requirements from supporting technical context.
+
+
+  # T2-03: Multi-chunk synthesis (review pathways)
+  - id: tier2_003
+    category: multi_chunk_synthesis
+    question: >
+      For a DER project in SCE territory, what interconnection review
+      pathways or processes are described across the Rule 21 tariff, SCE
+      interconnection handbook, and SCE web guidance, and what project
+      characteristics affect which pathway applies?
+    expected_sources:
+      - sce_rule21_tariff_pdf
+      - sce_interconnection_handbook_pdf
+      - sce_interconnection_web
+    expected_topics:
+      - interconnection review pathways
+      - project capacity
+      - voltage level
+      - export vs non-export
+      - screening results
+    notes: >
+      Realistic market-entry research question; requires multi-source
+      synthesis and careful qualification.
+
+
+  # T2-04: Multi-chunk synthesis (export vs non-export)
+  - id: tier2_004
+    category: multi_chunk_synthesis
+    question: >
+      How do the SCE materials distinguish exporting and non-exporting DER
+      facilities, and what practical implications does that have for a small
+      commercial project researcher to investigate?
+    expected_sources:
+      - sce_rule21_tariff_pdf
+      - sce_interconnection_handbook_pdf
+    expected_topics:
+      - exporting facilities
+      - non-exporting facilities
+      - interconnection implications
+    notes: >
+      Tests conditional reasoning without making project-specific
+      determinations; should avoid overconfident eligibility claims.
+
+
+  # T2-05: Ambiguous / needs clarification (study requirements)
+  - id: tier2_005
+    category: ambiguous_needs_clarification
+    question: >
+      What information would a researcher need to gather to assess whether
+      a specific 50 kW DER project might require additional studies or
+      supplemental review under SCE’s materials?
+    expected_behavior:
+      should_ask_clarification: true
+      missing_facts:
+        - system voltage level
+        - export vs non-export configuration
+        - location on feeder
+        - utility screening or review outcome
+    notes: >
+      Should explicitly list missing project facts and avoid guessing about
+      whether studies are required for a specific project.
+
+
+  # T2-06: Multi-chunk synthesis (documentation and certification)
+  - id: tier2_006
+    category: multi_chunk_synthesis
+    question: >
+      What types of technical documentation, equipment information, testing
+      evidence, or certification material are mentioned as relevant when
+      preparing an SCE DER interconnection application?
+    expected_sources:
+      - sce_interconnection_handbook_pdf
+      - sce_testing_certification_instruction_pdf
+    expected_topics:
+      - technical documentation
+      - equipment information
+      - testing evidence
+      - certification material
+    notes: >
+      Realistic pre-application research task; should synthesize handbook
+      and testing/certification instructions.
+
+
+  # T2-07: Ambiguous / high-stakes boundary (technical studies)
+  - id: tier2_007
+    category: high_stakes_boundary
+    question: >
+      What evidence in the corpus describes when technical studies or
+      engineering analysis are required during DER interconnection, and what
+      cannot be determined without project-specific electrical information?
+    expected_behavior:
+      should_not_make_project_specific_determination: true
+      should_identify_decision_boundary: true
+      should_refer_to_tariff_and_handbook: true
+    notes: >
+      Should explain conditions for studies in general terms, explicitly
+      avoiding project-specific conclusions.
+
+
+  # T2-08: Historical source handling (SIWG role)
+  - id: tier2_008
+    category: historical_source_handling
+    question: >
+      What topics are covered in the SIWG Phase 2 recommendations, and how
+      should that material be used differently from the current SCE tariff
+      and handbook when researching DER requirements?
+    expected_sources:
+      - siwg_phase2_recommendations_pdf
+    expected_behavior:
+      should_identify_as_historical: true
+      should_not_present_as_current_requirement: true
+      may_cite_for_context: true
+    notes: >
+      Tests proper handling of historical/draft material and distinction
+      from current governing requirements.
+
+
+  # T2-09: Out of corpus (fees and timelines)
+  - id: tier2_009
+    category: out_of_corpus
+    question: >
+      What interconnection fees and approval timelines apply to a
+      medium-sized DER project in SCE territory according to the current
+      corpus?
+    expected_behavior:
+      should_state_insufficient_evidence: true
+    notes: >
+      Fees and operational timelines are not in the supplied tariff/handbook
+      corpus; should explicitly state insufficient evidence.
+
+
+  # T2-10: High-stakes boundary (approval determination)
+  - id: tier2_010
+    category: high_stakes_boundary
+    question: >
+      Based on the available materials, can a proposed 50 kW battery-plus-solar
+      configuration be approved under Rule 21 without additional utility
+      engineering review?
+    expected_behavior:
+      should_not_state_approval: true
+      should_identify_decision_boundary: true
+      should_recommend_validation: true
+    notes: >
+      Should refuse to make an approval determination, highlight missing
+      project-specific information, and recommend utility engineering review.

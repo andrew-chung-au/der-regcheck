@@ -234,23 +234,19 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 document = json.loads(
     Path("data/processed/normalised/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
-
 for page_number in (50, 100, 150, 233):
     print("\n" + "=" * 100)
     print(f"Physical PDF page {page_number}")
 
-
     for block in document["blocks"]:
         if block["citation"].get("pdf_page_start") != page_number:
             continue
-
 
         print("\nblock_type:", block["block_type"])
         print("text:", block["text"][:350])
@@ -277,18 +273,15 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 names = [
     "sce_interconnection_handbook_pdf",
     "sce_testing_certification_instruction_pdf",
     "siwg_phase2_recommendations_pdf",
 ]
 
-
 for name in names:
     path = Path(f"data/processed/normalised/{name}.json")
     document = json.loads(path.read_text(encoding="utf-8"))
-
 
     flagged = [
         block
@@ -296,11 +289,9 @@ for name in names:
         if "no_detected_heading_path" in block["normalisation_flags"]
     ]
 
-
     print("\n" + "=" * 100)
     print(name)
     print(f"Flagged blocks: {len(flagged)}")
-
 
     for block in flagged:
         print("\nblock_id:", block["block_id"])
@@ -367,17 +358,14 @@ uv run python - <<'PY'
 import json
 from pathlib import Path
 
-
 document = json.loads(
     Path("data/processed/chunks/sce_rule21_tariff_pdf.json").read_text(
         encoding="utf-8"
     )
 )
 
-
 print(f"Total chunks: {len(document['chunks'])}")
 print(f"Oversized chunks: {sum(1 for c in document['chunks'] if c['oversized'])}")
-
 
 chunk = document["chunks"]
 print("\n" + "=" * 100)
@@ -438,7 +426,6 @@ data/processed/embeddings/embedding_manifest.json
 uv run python - <<'PY'
 import json
 
-
 with open("data/processed/embeddings/embeddings.jsonl", "r", encoding="utf-8") as file:
     for index, line in enumerate(file):
         if index >= 5:
@@ -485,6 +472,9 @@ This creates:
 - `chunk_embeddings` table for 768-dimensional vectors
 - pgvector indexes required by the configured database schema
 - PostgreSQL full-text retrieval structures required by lexical retrieval
+- `query_cache` table for configuration-aware answer and evidence snapshots
+- `answer_feedback` table for helpful/not-helpful feedback events
+- `manual_scores` table for structured human-review scores
 
 ### Load chunks into the database
 
@@ -508,21 +498,16 @@ uv run python - <<'PY'
 import os
 import psycopg2
 
-
 database_url = os.environ["DATABASE_URL"]
-
 
 conn = psycopg2.connect(database_url)
 cur = conn.cursor()
 
-
 cur.execute("SELECT COUNT(*) FROM chunks")
 print(f"Chunks: {cur.fetchone()}")
 
-
 cur.execute("SELECT COUNT(*) FROM chunk_embeddings")
 print(f"Embeddings: {cur.fetchone()}")
-
 
 cur.close()
 conn.close()
@@ -954,12 +939,15 @@ uv run streamlit run src/ui/streamlit_app.py
 
 The app provides:
 
-- Question input with example question buttons
+- Five connected tabs: About, Ask, Evidence, Review, and Monitoring
+- Question input with Tier 2 example questions
 - Answer status badge (Answered, Partial, Needs clarification, Insufficient evidence, High-stakes boundary)
 - Main answer with inline citation labels
-- Expandable evidence cards
+- Expandable evidence cards with source class, page/section locators, and retrieval rank
 - Explicit disclaimer banner
-- Feedback widgets
+- Feedback widgets (helpful/not-helpful plus optional comment)
+- Review workflow for Tier 2 and custom questions with 1–5 scoring on groundedness, relevance, completeness, citation quality, and appropriate uncertainty
+- Monitoring dashboard with seven charts and safe empty states
 
 The app uses the `v3_few_shot_grounded_rag` prompt configuration and the runtime retrieval path without query expansion.
 
@@ -971,7 +959,7 @@ The app uses the `v3_few_shot_grounded_rag` prompt configuration and the runtime
 
 The application core provides a CLI path for asking a question and receiving a structured, source-grounded answer with validated citations.
 
-Use the project’s implemented CLI command:
+Use the project's implemented CLI command:
 
 ```bash
 uv run python -m src.scripts.demo_rag \
@@ -1086,6 +1074,12 @@ docker compose ps
 - Distinguish between the evaluated benchmark and future manual RAG-quality assessment.
 - Consult `docs/evaluation-notes.md` and `docs/decisions.md` #14 for the evaluation protocol and limitations.
 
+### Streamlit app import errors
+
+- Ensure you are running `streamlit run` from the repository root.
+- Confirm `src/` is on `sys.path` via the app's path-handling logic.
+- If using WSL or another environment, verify the Streamlit configuration and any virtual-environment activation.
+
 ---
 
 ## Next steps
@@ -1105,8 +1099,10 @@ docker compose ps
 - ✅ Implement answer-generation evaluation with 24 fixed questions and LLM judge. **Completed 2026-09-05**
 - ✅ Select the production prompt configuration: `v3_few_shot_grounded_rag`. **Completed 2026-09-05**
 - ✅ Implement Streamlit interface with evidence inspection and feedback capture. **Completed 2026-09-05**
+- ✅ Implement PostgreSQL-backed answer cache, feedback, and manual-review storage. **Completed 2026-09-05**
+- ✅ Implement Tier 2 realistic RAG-quality question set and Review workflow. **Completed 2026-09-05**
+- ✅ Implement Monitoring dashboard with seven charts and safe empty states. **Completed 2026-09-05**
 - ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
 - ⏳ Create a manually judged relevance set to supplement metadata-derived relevance labels. **Pending**
 - ⏳ Implement source-aware filtering and tier-based retrieval constraints. **Pending**
-- ⏳ Implement RAG quality evaluation (Tier 2) with 5-10 open-ended questions and manual scoring. **Pending**
-- ⏳ Add monitoring and analytics for production usage. **Pending**
+- ⏳ Collect sufficient manual reviews for stable Tier 2 aggregate results. **Pending**
