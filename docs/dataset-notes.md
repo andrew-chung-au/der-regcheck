@@ -14,6 +14,7 @@
 **Runtime retrieval configuration:** Original user query → pgvector vector retrieval → `BAAI/bge-reranker-base` reranking → top 10 evidence chunks
 **Answer-generation evaluation:** 24-question prompt comparison completed 2026-09-05; `v3_few_shot_grounded_rag` selected under the deterministic citation-validity guardrail
 **Tier 2 RAG-quality evaluation:** 10 realistic open-ended questions created 2026-09-05; Streamlit Review workflow, PostgreSQL manual-score storage, and Monitoring coverage chart implemented; aggregate human-review results remain pending
+**RAG-impact evaluation:** Four-condition automated evaluation completed 2026-09-06 using the 10-question Tier 2 set; it compares no-evidence and evidence-backed answer conditions. Detailed protocol, results, interpretation, and limitations are recorded in [`docs/evaluation-notes.md`](evaluation-notes.md).
 
 ---
 
@@ -23,19 +24,19 @@ DER RegCheck preserves separate, tracked representations of source content:
 
 ```text
 data/corpus/
-→ source downloads and manual replacements
+→ source downloads and manual replacements (not committed to Git)
 
 data/processed/extracted/
-→ raw deterministic extraction outputs
+→ raw deterministic extraction outputs (committed)
 
 data/processed/normalised/
-→ deterministic evidence-block derivatives for chunking
+→ deterministic evidence-block derivatives for chunking (committed)
 
 data/processed/chunks/
-→ 1,049 searchable chunks with citations and metadata
+→ 1,049 searchable chunks with citations and metadata (committed)
 
 data/processed/embeddings/
-→ 1,049 Nomic embeddings (768-dim vectors)
+→ 1,049 Nomic embeddings (768-dim vectors) (committed)
 
 data/evaluation/
 → 100 retrieval benchmarking queries
@@ -45,7 +46,14 @@ data/evaluation/
 → generated answers, citation-validation results, LLM judge scores, and prompt-selection reports
 → 10 Tier 2 realistic RAG-quality questions
 → manual-review scores (PostgreSQL authoritative; JSONL secondary log)
+→ RAG-impact answer, judge, summary, and report artifacts
 ```
+
+### Distribution and copyright
+
+The v1 corpus consists of public regulatory and utility documents (CPUC and SCE). The code in this repository is provided under the MIT License.
+
+The source documents remain the property of their respective owners and are included here for research and educational purposes only. To avoid redistributing raw PDF/HTML files, the repository commits processed, machine-readable derivatives (extracted text, normalised blocks, chunks, and embeddings). The ingestion scripts are provided for future corpus refreshes; one source may require manual replacement due to intermittent automated-download blocking.
 
 ### Raw corpus files
 
@@ -214,6 +222,22 @@ They preserve both historical file-based experiments and the authoritative produ
   - PostgreSQL `manual_scores` table is the operational source of truth
   - Each score is linked to a configuration-specific cached response through `query_cache.cache_id`
   - Multiple review events may be recorded for the same cached response
+
+**RAG-impact evaluation (completed 2026-09-06):**
+
+- `impact_answers.jsonl`:
+  - 40 generated answers across 10 Tier 2 questions and four answer conditions
+  - Conditions: naive model-only, no-evidence v3, zero-shot RAG, and full v3 RAG
+  - Includes retrieved chunk IDs, evidence labels, parsed outputs, generation metrics, and deterministic citation-label validation
+- `impact_judge_scores.jsonl`:
+  - Blinded pairwise judge results for the five configured comparison types per question
+  - Includes dimension scores, pairwise preferences, confidence ratings, and rationales
+- `impact_summary.json`:
+  - Machine-readable aggregate results, pairwise preferences, pooled judge scores, generation metrics, and answer-status distributions
+- `impact_report.md`:
+  - Human-readable impact-evaluation report with interpretation and limitations
+
+Detailed findings are intentionally maintained in [`docs/evaluation-notes.md`](evaluation-notes.md), rather than duplicated here.
 
 **Future manually reviewed RAG-quality evaluation:**
 
@@ -455,4 +479,7 @@ Potential additions for later versions:
 - Additional prompt configurations if future evidence indicates a better citation-validity and quality trade-off.
 - Paired statistical testing of original versus expanded query variants.
 - A manually judged relevance set to complement metadata-derived relevance labels.
+- Repeat the RAG-impact evaluation after deliberate prompt optimisation, preserving the current run as a dated baseline.
+- Expand the Tier 2 set and rerun impact evaluation using a versioned question set.
+- Add semantic citation-entailment assessment to complement structural citation-label validation.
 - Source refresh and re-evaluation procedures as the corpus evolves.

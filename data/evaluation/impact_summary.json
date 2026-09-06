@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-09-06T11:22:18.505468Z",
+  "answers_file": "/home/andrew/projects/der-regcheck/data/evaluation/impact_answers.jsonl",
+  "judge_scores_file": "/home/andrew/projects/der-regcheck/data/evaluation/impact_judge_scores.jsonl",
+  "question_count": 10,
+  "answer_record_count": 40,
+  "judge_record_count": 50,
+  "case_summaries": [
+    {
+      "case_id": "naive_no_evidence",
+      "case_label": "A \u2014 Naive LLM, no evidence",
+      "total_records": 10,
+      "generation_success_count": 10,
+      "generation_success_rate_percent": 100.0,
+      "answer_status_counts": {
+        "insufficient_evidence": 7,
+        "needs_clarification": 1,
+        "partial": 2
+      },
+      "mean_generation_latency_ms": 7839.4,
+      "median_generation_latency_ms": 2201.0,
+      "mean_claim_count": 1.5,
+      "citation_validation_applicable_count": 0,
+      "citation_label_valid_count": 0,
+      "citation_label_valid_rate_percent": null,
+      "unknown_label_count": 0,
+      "uncited_claim_count": 0,
+      "evidence_labels_supplied_count": 0,
+      "evidence_labels_used_count": 0,
+      "evidence_label_utilisation_percent": null,
+      "fail_closed_triggered_count": 0,
+      "expected_behavior_status_compliance": {
+        "clarification_required": {
+          "passed": 1,
+          "total": 1,
+          "rate_percent": 100.0
+        },
+        "insufficient_evidence_required": {
+          "passed": 1,
+          "total": 1,
+          "rate_percent": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v3_no_evidence",
+      "case_label": "B \u2014 V3 prompt, no evidence",
+      "total_records": 10,
+      "generation_success_count": 10,
+      "generation_success_rate_percent": 100.0,
+      "answer_status_counts": {
+        "insufficient_evidence": 10
+      },
+      "mean_generation_latency_ms": 1628.6,
+      "median_generation_latency_ms": 1612.5,
+      "mean_claim_count": 0.0,
+      "citation_validation_applicable_count": 10,
+      "citation_label_valid_count": 10,
+      "citation_label_valid_rate_percent": 100.0,
+      "unknown_label_count": 0,
+      "uncited_claim_count": 0,
+      "evidence_labels_supplied_count": 0,
+      "evidence_labels_used_count": 0,
+      "evidence_label_utilisation_percent": null,
+      "fail_closed_triggered_count": 0,
+      "expected_behavior_status_compliance": {
+        "clarification_required": {
+          "passed": 0,
+          "total": 1,
+          "rate_percent": 0.0
+        },
+        "insufficient_evidence_required": {
+          "passed": 1,
+          "total": 1,
+          "rate_percent": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "zero_shot_rag",
+      "case_label": "C \u2014 Zero-shot RAG",
+      "total_records": 10,
+      "generation_success_count": 10,
+      "generation_success_rate_percent": 100.0,
+      "answer_status_counts": {
+        "answered": 5,
+        "insufficient_evidence": 2,
+        "partial": 3
+      },
+      "mean_generation_latency_ms": 2559.1,
+      "median_generation_latency_ms": 2733.5,
+      "mean_claim_count": 3.5,
+      "citation_validation_applicable_count": 10,
+      "citation_label_valid_count": 10,
+      "citation_label_valid_rate_percent": 100.0,
+      "unknown_label_count": 0,
+      "uncited_claim_count": 0,
+      "evidence_labels_supplied_count": 100,
+      "evidence_labels_used_count": 34,
+      "evidence_label_utilisation_percent": 34.0,
+      "fail_closed_triggered_count": 0,
+      "expected_behavior_status_compliance": {
+        "clarification_required": {
+          "passed": 0,
+          "total": 1,
+          "rate_percent": 0.0
+        },
+        "insufficient_evidence_required": {
+          "passed": 0,
+          "total": 1,
+          "rate_percent": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "full_v3_rag",
+      "case_label": "D \u2014 Full V3 RAG",
+      "total_records": 10,
+      "generation_success_count": 10,
+      "generation_success_rate_percent": 100.0,
+      "answer_status_counts": {
+        "answered": 7,
+        "high_stakes_boundary": 1,
+        "insufficient_evidence": 1,
+        "needs_clarification": 1
+      },
+      "mean_generation_latency_ms": 2366.8,
+      "median_generation_latency_ms": 2389.5,
+      "mean_claim_count": 3.4,
+      "citation_validation_applicable_count": 10,
+      "citation_label_valid_count": 10,
+      "citation_label_valid_rate_percent": 100.0,
+      "unknown_label_count": 0,
+      "uncited_claim_count": 0,
+      "evidence_labels_supplied_count": 100,
+      "evidence_labels_used_count": 36,
+      "evidence_label_utilisation_percent": 36.0,
+      "fail_closed_triggered_count": 0,
+      "expected_behavior_status_compliance": {
+        "clarification_required": {
+          "passed": 0,
+          "total": 1,
+          "rate_percent": 0.0
+        },
+        "insufficient_evidence_required": {
+          "passed": 0,
+          "total": 1,
+          "rate_percent": 0.0
+        }
+      }
+    }
+  ],
+  "pairwise_summaries": {
+    "naive_no_evidence__vs__full_v3_rag": {
+      "left_case_id": "naive_no_evidence",
+      "right_case_id": "full_v3_rag",
+      "total_judgements": 10,
+      "left_wins": 1,
+      "right_wins": 8,
+      "ties": 1,
+      "left_win_rate_percent": 10.0,
+      "right_win_rate_percent": 80.0,
+      "tie_rate_percent": 10.0,
+      "mean_judge_confidence": 4.8
+    },
+    "naive_no_evidence__vs__v3_no_evidence": {
+      "left_case_id": "naive_no_evidence",
+      "right_case_id": "v3_no_evidence",
+      "total_judgements": 10,
+      "left_wins": 8,
+      "right_wins": 2,
+      "ties": 0,
+      "left_win_rate_percent": 80.0,
+      "right_win_rate_percent": 20.0,
+      "tie_rate_percent": 0.0,
+      "mean_judge_confidence": 4.6
+    },
+    "naive_no_evidence__vs__zero_shot_rag": {
+      "left_case_id": "naive_no_evidence",
+      "right_case_id": "zero_shot_rag",
+      "total_judgements": 10,
+      "left_wins": 2,
+      "right_wins": 8,
+      "ties": 0,
+      "left_win_rate_percent": 20.0,
+      "right_win_rate_percent": 80.0,
+      "tie_rate_percent": 0.0,
+      "mean_judge_confidence": 4.9
+    },
+    "v3_no_evidence__vs__full_v3_rag": {
+      "left_case_id": "v3_no_evidence",
+      "right_case_id": "full_v3_rag",
+      "total_judgements": 10,
+      "left_wins": 0,
+      "right_wins": 9,
+      "ties": 1,
+      "left_win_rate_percent": 0.0,
+      "right_win_rate_percent": 90.0,
+      "tie_rate_percent": 10.0,
+      "mean_judge_confidence": 5.0
+    },
+    "zero_shot_rag__vs__full_v3_rag": {
+      "left_case_id": "zero_shot_rag",
+      "right_case_id": "full_v3_rag",
+      "total_judgements": 10,
+      "left_wins": 5,
+      "right_wins": 3,
+      "ties": 2,
+      "left_win_rate_percent": 50.0,
+      "right_win_rate_percent": 30.0,
+      "tie_rate_percent": 20.0,
+      "mean_judge_confidence": 4.6
+    }
+  },
+  "pooled_pairwise_score_means": {
+    "naive_no_evidence": {
+      "groundedness_score": 3.7667,
+      "relevance_score": 3.6667,
+      "completeness_score": 3.3333,
+      "citation_quality_score": 2.0333,
+      "appropriate_uncertainty_score": 4.3
+    },
+    "v3_no_evidence": {
+      "groundedness_score": 3.3,
+      "relevance_score": 2.4,
+      "completeness_score": 2.2,
+      "citation_quality_score": 2.3,
+      "appropriate_uncertainty_score": 3.7
+    },
+    "zero_shot_rag": {
+      "groundedness_score": 4.85,
+      "relevance_score": 4.6,
+      "completeness_score": 4.3,
+      "citation_quality_score": 4.45,
+      "appropriate_uncertainty_score": 4.8
+    },
+    "full_v3_rag": {
+      "groundedness_score": 4.9333,
+      "relevance_score": 4.8667,
+      "completeness_score": 4.4333,
+      "citation_quality_score": 4.8333,
+      "appropriate_uncertainty_score": 4.8667
+    }
+  }
+}

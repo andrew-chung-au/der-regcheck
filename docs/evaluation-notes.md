@@ -35,6 +35,12 @@ Monitoring coverage chart are implemented. Tier 2 review infrastructure is
 therefore complete, but aggregate Tier 2 human-review results should not be
 claimed until sufficient manual reviews have been recorded.
 
+A four-condition RAG-impact evaluation was completed on 2026-09-06 using the
+10-question Tier 2 set. The study compared naive model-only answers, no-evidence
+v3 answers, zero-shot RAG, and full v3 RAG. Retrieval and evidence grounding
+produced the clearest observed quality improvement. See the "RAG-impact
+evaluation (2026-09-06)" section for detailed results.
+
 ---
 
 ## Evaluation prerequisites
@@ -1024,15 +1030,191 @@ This selection does not establish that v3 is universally the best prompt. It est
 
 ### Evaluation artifacts
 
+**Prompt-regression evaluation (24 questions, 3 prompts):**
+
 - `data/evaluation/llm_evaluation_questions.yaml`: 24 fixed evaluation questions.
 - `data/evaluation/llm_answers.jsonl`: Generated answer records and deterministic validation results.
 - `data/evaluation/llm_judge_scores.jsonl`: Per-answer judge scores and rationales.
 - `data/evaluation/llm_evaluation_summary.json`: Prompt-level aggregates and selected configuration.
 - `data/evaluation/llm_evaluation_report.md`: Human-readable answer-evaluation report.
-- `src/evaluation/evaluate_llm_answers.py`: Answer generation and judging harness.
-- `src/evaluation/summarise_llm_evaluation.py`: Aggregation, selection, and report generation.
+
+**RAG-impact evaluation (10 questions, 4 conditions):**
+
+- `data/evaluation/impact_answers.jsonl`: 40 generated answers (10 Tier 2 questions × 4 conditions) with citation-label validation and generation metrics.
+- `data/evaluation/impact_judge_scores.jsonl`: Blinded pairwise judge results for five comparison types per question.
+- `data/evaluation/impact_summary.json`: Impact evaluation aggregates, pairwise preferences, and pooled judge scores.
+- `data/evaluation/impact_report.md`: Human-readable impact evaluation report with interpretation and limitations.
+
+**Generation and validation components:**
+
+- `src/evaluation/evaluate_llm_answers.py`: Answer generation and judging harness for prompt-regression evaluation.
+- `src/evaluation/summarise_llm_evaluation.py`: Aggregation, selection, and report generation for prompt evaluation.
+- `src/evaluation/generate_impact_answers.py`: Four-condition answer generation for RAG-impact evaluation.
+- `src/evaluation/judge_impact_answers.py`: Blinded pairwise judging for impact evaluation.
+- `src/evaluation/summarise_impact_evaluation.py`: Aggregation and reporting for impact evaluation.
 - `src/generation/answer_generator.py`, `src/generation/citation_validator.py`, `src/generation/prompts.py`: Generation components.
-- `tests/test_answer_generator.py`: Citation/schema/unit tests.
+- `tests/test_answer_generator.py`: Citation, schema, and unit tests.
+
+---
+
+## RAG-impact evaluation (2026-09-06)
+
+### Purpose
+
+This experiment estimates the contribution of retrieval and evidence grounding to answer quality on realistic DER research questions. It is not a business-impact study, user-satisfaction study, or independent factual-validation study because the project has no attached business workflow or real-user population.
+
+The primary question is:
+
+> Does adding retrieval and evidence grounding improve answers compared with a model-only baseline?
+
+A secondary question is:
+
+> Does the selected v3 few-shot prompt produce a consistent incremental benefit over simpler zero-shot RAG when the retrieved evidence is held constant?
+
+### Design
+
+The evaluation uses all 10 Tier 2 questions from `data/evaluation/tier2_questions.yaml`, producing:
+
+```text
+10 questions × 4 answer conditions = 40 generated answers
+```
+
+For each question, the production retriever creates one shared top-10 evidence pack. That exact pack is reused by Cases C and D.
+
+| Case | Evidence | Prompt | Role |
+|---|---|---|---|
+| A — Naive model-only | None | General-knowledge structured baseline | Plain LLM baseline |
+| B — V3 without evidence | None | `v3_few_shot_grounded_rag` | No-evidence safety control |
+| C — Zero-shot RAG | Shared top-10 production evidence | `v1_direct_rag` | Basic RAG baseline |
+| D — Full v3 RAG | Same shared top-10 evidence as C | `v3_few_shot_grounded_rag` | Full selected RAG configuration |
+
+### Generation metrics
+
+The generation script records:
+
+- Generation success/failure.
+- Answer status.
+- Mean and median generation latency.
+- Claim count.
+- Supplied and used evidence labels.
+- Citation-label validation.
+- Unknown citation labels.
+- Uncited claim indexes.
+- Fail-closed events.
+- Expected-behaviour metadata from the Tier 2 YAML.
+
+Cases A and B have no supplied evidence. Their citation-validity result is therefore not interpreted as ordinary RAG citation performance. Case B is evaluated primarily for safe abstention.
+
+### Blinded pairwise judge
+
+The judge model is `gemini-3.5-flash-lite`, matching the earlier prompt-regression evaluation.
+
+The judge sees:
+
+- The question.
+- The expected-behaviour metadata.
+- The shared retrieved evidence where applicable.
+- Two candidate answers with hidden experimental identities.
+
+The judge scores each candidate from 1 to 5 on:
+
+- Groundedness.
+- Relevance.
+- Completeness.
+- Citation quality.
+- Appropriate uncertainty.
+
+It also returns:
+
+- Pairwise winner.
+- Confidence from 1 to 5.
+- A concise rationale.
+
+The core comparisons are:
+
+| Comparison | Purpose |
+|---|---|
+| A vs C | Retrieval plus basic grounding benefit |
+| C vs D | Incremental v3 prompt/few-shot benefit with evidence held constant |
+| A vs D | Full end-to-end system benefit |
+| A vs B | No-evidence safety-control comparison |
+| B vs D | Benefit of supplying relevant evidence to the v3 configuration |
+
+### Impact results
+
+The completed run generated 40 answers and evaluated five pairwise comparisons for each question.
+
+#### Pairwise preference results
+
+| Comparison | Left wins | Right wins | Ties | Mean confidence |
+|---|---:|---:|---:|---:|
+| A — Naive vs C — Zero-shot RAG | 2/10 (20%) | **8/10 (80%)** | 0/10 (0%) | 4.90 |
+| C — Zero-shot RAG vs D — Full v3 RAG | **5/10 (50%)** | 3/10 (30%) | 2/10 (20%) | 4.60 |
+| A — Naive vs D — Full v3 RAG | 1/10 (10%) | **8/10 (80%)** | 1/10 (10%) | 4.80 |
+| A — Naive vs B — V3 without evidence | **8/10 (80%)** | 2/10 (20%) | 0/10 (0%) | 4.60 |
+| B — V3 without evidence vs D — Full v3 RAG | 0/10 (0%) | **9/10 (90%)** | 1/10 (10%) | 5.00 |
+
+The primary retrieval-impact finding is that both evidence-backed RAG configurations were strongly preferred to the no-evidence baseline:
+
+- Zero-shot RAG was preferred to the naive baseline in 8 of 10 comparisons.
+- Full v3 RAG was preferred to the naive baseline in 8 of 10 comparisons.
+- Full v3 RAG was preferred to the v3 no-evidence condition in 9 of 10 comparisons.
+
+The zero-shot RAG versus full v3 comparison was mixed. Zero-shot RAG was preferred in 5 cases, full v3 in 3 cases, and the remaining 2 were ties. The full v3 configuration nevertheless had slightly higher pooled absolute scores across the judge dimensions.
+
+#### Pooled judge scores
+
+| Case | Groundedness | Relevance | Completeness | Citation quality | Appropriate uncertainty |
+|---|---:|---:|---:|---:|---:|
+| A — Naive model-only | 3.77 | 3.67 | 3.33 | 2.03 | 4.30 |
+| B — V3 without evidence | 3.30 | 2.40 | 2.20 | 2.30 | 3.70 |
+| C — Zero-shot RAG | 4.85 | 4.60 | 4.30 | 4.45 | 4.80 |
+| D — Full v3 RAG | **4.93** | **4.87** | **4.43** | **4.83** | **4.87** |
+
+#### Generation and validation results
+
+| Case | Successful | Mean latency (ms) | Median latency (ms) | Mean claims | Citation-label validity | Unknown labels | Uncited claims | Evidence-label utilisation |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| A — Naive model-only | 10/10 | 7,839.4 | 2,201.0 | 1.50 | N/A | 0 | 0 | N/A |
+| B — V3 without evidence | 10/10 | 1,628.6 | 1,612.5 | 0.00 | 100.0% | 0 | 0 | N/A |
+| C — Zero-shot RAG | 10/10 | 2,559.1 | 2,733.5 | 3.50 | 100.0% | 0 | 0 | 34.0% |
+| D — Full v3 RAG | 10/10 | 2,366.8 | 2,389.5 | 3.40 | 100.0% | 0 | 0 | 36.0% |
+
+#### Answer-status distributions
+
+| Case | Status distribution |
+|---|---|
+| A — Naive model-only | `insufficient_evidence`: 7; `needs_clarification`: 1; `partial`: 2 |
+| B — V3 without evidence | `insufficient_evidence`: 10 |
+| C — Zero-shot RAG | `answered`: 5; `insufficient_evidence`: 2; `partial`: 3 |
+| D — Full v3 RAG | `answered`: 7; `high_stakes_boundary`: 1; `insufficient_evidence`: 1; `needs_clarification`: 1 |
+
+### Interpretation
+
+The strongest demonstrated impact is attributable to retrieval and evidence grounding rather than to prompt engineering alone. On this 10-question set, both evidence-backed configurations substantially outperformed the naive no-evidence baseline in blinded LLM-judge comparisons.
+
+The results do not establish that v3 prompt engineering consistently beats zero-shot RAG. The full v3 configuration had higher pooled scores, but zero-shot RAG had more pairwise wins in this small sample. Additional prompt optimisation remains worth investigating, particularly around few-shot example selection, concise answer structure, uncertainty wording, clarification behaviour, and source-hierarchy instructions.
+
+### Impact-evaluation limitations
+
+- The Tier 2 set contains only 10 questions.
+- The questions are curated evaluation cases, not a sample of real users.
+- The judge is an LLM, not an independent human panel.
+- The same Gemini model family is used for generation and judging.
+- No business function, adoption measure, task-time baseline, or user-satisfaction measure is available.
+- Citation-label validation is structural and deterministic; it does not establish semantic citation entailment.
+- The study measures comparative answer quality, not regulatory correctness or real-world decision success.
+- The no-evidence v3 case is a safety-control condition, not a substantive answer-quality competitor.
+
+### Impact-evaluation artifacts
+
+- `src/evaluation/generate_impact_answers.py`
+- `src/evaluation/judge_impact_answers.py`
+- `src/evaluation/summarise_impact_evaluation.py`
+- `data/evaluation/impact_answers.jsonl`
+- `data/evaluation/impact_judge_scores.jsonl`
+- `data/evaluation/impact_summary.json`
+- `data/evaluation/impact_report.md`
 
 ---
 
@@ -1195,3 +1377,6 @@ Evaluation records should be reproducible without requiring raw corpus downloads
 - ⏳ Run paired statistical testing for original versus expanded query variants. **Pending**
 - ⏳ Create a manually judged relevance set to complement metadata-derived labels. **Pending**
 - ⏳ Validate a sample of LLM-judge scores against human reviewers. **Pending**
+- ⏳ Repeat the RAG-impact evaluation after deliberate prompt optimisation, preserving the current run as a dated baseline. **Pending**
+- ⏳ Expand the Tier 2 set and re-run impact evaluation with a versioned question set. **Pending**
+- ⏳ Add semantic citation-entailment assessment to complement structural label validation. **Pending**

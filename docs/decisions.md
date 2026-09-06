@@ -23,6 +23,8 @@
 | [17](#17-feedback-and-manual-review-event-model) | Feedback and manual-review event model | Active | No |
 | [18](#18-tier-2-manual-evaluation-separation-from-prompt-regression) | Tier 2 manual evaluation separation from prompt regression | Active | No |
 | [19](#19-monitoring-dashboard-and-cache-miss-latency-interpretation) | Monitoring dashboard and cache-miss latency interpretation | Active | No |
+| [20](#20-processed-data-distribution-and-optional-ingestion) | Processed-data distribution and optional ingestion | Active | No |
+| [21](#21-rag-impact-evaluation-and-retrieval-contribution) | RAG impact evaluation and retrieval contribution | Active | No |
 
 ---
 
@@ -895,3 +897,218 @@ Original query (no expansion)
   answer.
 - Consider adding time-series charts for feedback and scores over time.
 - Add drill-down views for individual cached answers from chart clicks.
+
+---
+
+## 20. Processed-data distribution and optional ingestion
+
+**Decision:**
+
+- Do not commit raw corpus PDFs or HTML files from `data/corpus/` to the public repository.
+- Commit the processed, machine-readable artifacts required to run the application:
+  - `data/processed/extracted/`
+  - `data/processed/normalised/`
+  - `data/processed/chunks/`
+  - `data/processed/embeddings/`
+- Treat the ingestion and source-download pipeline as optional for normal Milestone 5 application startup.
+- Use the committed processed artifacts as the default input for database initialisation and application startup.
+- Retain the source downloader and ingestion scripts for future corpus refreshes and advanced reproduction.
+- Require corpus metadata validation and, where necessary, manual replacement when a source cannot be downloaded reliably.
+
+**Reason:**
+
+- One source, the SCE Interconnection Handbook, intermittently returns HTML,
+  SharePoint content, or authentication material instead of the expected PDF.
+- Requiring every user or evaluator to download the source before running the
+  application would make the “one command” containerised workflow unreliable.
+- The processed artifacts are sufficient to initialise the knowledge base,
+  run retrieval, use the Streamlit application, and reproduce the documented
+  evaluation workflow.
+- Excluding raw PDF and HTML files reduces repository size and avoids
+  unnecessarily redistributing source documents whose rights remain with their
+  respective publishers.
+- Content hashes, source URLs, extraction metadata, and provenance fields
+  preserve traceability without requiring the raw source files to be present in
+  the public repository.
+
+**Alternatives considered:**
+
+- Commit the raw PDFs and HTML files directly to Git.
+- Require users to download and validate the entire corpus before starting the application.
+- Host a separate corpus archive through a GitHub Release or external dataset store.
+- Commit only embeddings and omit extracted, normalised, and chunked artifacts.
+- Re-run the complete ingestion pipeline automatically every time Docker Compose starts.
+
+**Trade-offs:**
+
+- Committing processed artifacts increases repository size compared with a
+  code-only repository.
+- A clean-clone user can run the application without independently reproducing
+  the raw-download step.
+- Reproducing the entire corpus from source URLs still requires the downloader,
+  source access, and possible manual replacement.
+- Processed artifacts are derived data and do not provide the same archival
+  guarantee as retaining the original source files.
+- The application and evaluation workflow are reproducible from committed
+  processed data, while full source acquisition remains a separate refresh
+  workflow.
+- Future corpus refreshes must regenerate downstream artifacts and trigger a
+  new retrieval evaluation before existing results are treated as applicable
+  to the refreshed corpus.
+
+**Impact:**
+
+- `data/corpus/` remains a local acquisition directory and is ignored by Git.
+- `data/corpus/corpus_metadata.json` remains the source of truth for download
+  validation, content hashes, manual review, and extraction eligibility.
+- `data/processed/` is the default reproducibility boundary for Milestone 5.
+- The standard startup path is:
+  - Start PostgreSQL with Docker Compose.
+  - Initialise the database schema.
+  - Load committed chunks and embeddings.
+  - Start the Streamlit application.
+- The source download and ingestion pipeline is documented as optional for
+  normal application startup.
+- A source refresh that changes content hashes requires re-extraction,
+  normalisation, chunking, embedding generation, database reload, and a new
+  dated retrieval evaluation.
+- README, dataset notes, and runbook documentation must distinguish:
+  - committed processed artifacts;
+  - uncommitted raw source files; and
+  - optional corpus-refresh commands.
+
+**Evidence and artifacts:**
+
+- `README.md` — Data and copyright note and committed-processed-data startup path.
+- `docs/dataset-notes.md` — Data lifecycle, distribution, copyright, and source notes.
+- `docs/runbook.md` — Recommended Milestone 5 startup path and optional ingestion workflow.
+- `src/ingestion/download_california_rule21_docs.py` — Source acquisition and validation.
+- `src/ingestion/extract_raw_content.py` — Raw extraction.
+- `data/corpus/corpus_metadata.json` — Source hashes and eligibility metadata.
+- `data/processed/extracted/` — Tracked raw-extraction derivatives.
+- `data/processed/normalised/` — Tracked normalised evidence blocks.
+- `data/processed/chunks/` — Tracked searchable chunks.
+- `data/processed/embeddings/` — Tracked embedding artifacts.
+
+**Supersedes:**
+
+- No previous decision is fully superseded.
+- This decision clarifies and operationalises the distribution implications of
+  [Decision 03](#03-ingestion-and-download-strategy) for Milestone 5.
+
+**Future work:**
+
+- Consider publishing a versioned corpus manifest or processed-data release
+  artifact separately from the source repository.
+- Add automated checks that verify committed processed-artifact counts and
+  content hashes before application startup.
+- Consider a data-version identifier in the database schema and cache key.
+- Revisit raw-source distribution if publisher terms, repository size, or
+  deployment requirements change.
+
+---
+
+## 21. RAG impact evaluation and retrieval contribution
+
+**Decision:**
+
+- Add a separate RAG impact evaluation focused on the contribution of retrieval and evidence grounding to answer quality.
+- Keep this evaluation separate from:
+  - the 100-query retrieval benchmark; and
+  - the 24-question prompt-regression and production-prompt selection study.
+- Use the 10-question Tier 2 set in `data/evaluation/tier2_questions.yaml`.
+- Compare four answer-generation conditions:
+  - **A — Naive model-only baseline:** no retrieved evidence and a general-knowledge prompt.
+  - **B — V3 without evidence:** the evidence-bounded v3 prompt with no retrieved evidence.
+  - **C — Zero-shot RAG:** `v1_direct_rag` with production-retrieved evidence.
+  - **D — Full v3 RAG:** `v3_few_shot_grounded_rag` with the same retrieved evidence used for C.
+- Reuse one shared top-10 production evidence pack for Cases C and D for each question.
+- Evaluate outputs using:
+  - deterministic citation-label validation;
+  - answer-status and expected-behaviour checks; and
+  - blinded pairwise LLM judging with `gemini-3.5-flash-lite`.
+- Treat retrieval contribution as the primary impact question. Treat additional prompt optimisation as a secondary future-work question.
+
+**Reason:**
+
+- The existing 24-question evaluation was designed primarily to compare prompt configurations under a strict citation-validity guardrail.
+- The Tier 2 set contains 10 more realistic questions covering:
+  - direct factual lookup;
+  - multi-chunk synthesis;
+  - clarification-sensitive questions;
+  - out-of-corpus handling;
+  - high-stakes decision boundaries; and
+  - historical-source treatment.
+- Comparing a no-evidence model against evidence-backed RAG provides a direct test of whether the retrieval layer improves answers over a plain LLM baseline.
+- Reusing the same retrieved evidence for Cases C and D controls retrieval variation when comparing zero-shot RAG with the full v3 prompt.
+- A separate impact evaluation avoids overstating the meaning of the prompt-selection benchmark.
+- The experiment is appropriate for a portfolio project where no real users or attached business workflow are available.
+
+**Alternatives considered:**
+
+- Measuring business outcomes such as conversion, revenue, or research productivity.
+- Running a real-user satisfaction or task-completion study.
+- Using only the 24-question prompt-regression set.
+- Comparing only the full RAG system with a naive LLM baseline.
+- Relying solely on LLM-judge scores without deterministic validation.
+- Treating the selected v3 prompt as the only possible source of improvement.
+
+**Trade-offs:**
+
+- The 10-question set is realistic and manageable but too small for a conclusive general performance claim.
+- LLM judging provides scalable comparative evidence but is not independent human evaluation.
+- The same Gemini model family is used for answer generation and judging, which may introduce model-specific preferences.
+- Case B is primarily a safety-control condition rather than a substantive answer-quality competitor because it receives no evidence.
+- Deterministic citation-label validation confirms label validity and claim-citation presence, but not semantic entailment between claims and evidence.
+- The experiment measures comparative answer quality, not business impact, user satisfaction, or time saved.
+- Additional prompt optimisation was not the main focus of this experiment; further improvements may require more systematic prompt iteration and independent human review.
+
+**Impact:**
+
+- Retrieval produced the clearest observed improvement:
+  - Zero-shot RAG was preferred to the naive no-evidence baseline in 8 of 10 blinded comparisons.
+  - Full v3 RAG was preferred to the naive no-evidence baseline in 8 of 10 blinded comparisons.
+  - Full v3 RAG was preferred to the v3 no-evidence condition in 9 of 10 comparisons.
+- The full v3 configuration achieved slightly higher pooled judge scores than zero-shot RAG across groundedness, relevance, completeness, citation quality, and appropriate uncertainty.
+- The zero-shot RAG versus full v3 pairwise result was mixed:
+  - Zero-shot RAG was preferred in 5 of 10 comparisons.
+  - Full v3 RAG was preferred in 3 of 10 comparisons.
+  - The remaining 2 comparisons were ties.
+- The result supports retrieval and evidence grounding as the primary quality improvement demonstrated by this experiment.
+- The result does not establish that v3 prompt engineering consistently outperforms zero-shot RAG on realistic Tier 2 questions.
+- Additional prompt optimisation remains a worthwhile future direction, especially for:
+  - few-shot example selection;
+  - clarification and abstention behaviour;
+  - source-hierarchy instructions; and
+  - concise answers that preserve uncertainty and evidence boundaries.
+
+**Evidence and artifacts:**
+
+- `data/evaluation/tier2_questions.yaml` — 10-question Tier 2 evaluation set.
+- `src/evaluation/generate_impact_answers.py` — Four-case answer generation.
+- `src/evaluation/judge_impact_answers.py` — Blinded pairwise LLM judging.
+- `src/evaluation/summarise_impact_evaluation.py` — Aggregation and reporting.
+- `data/evaluation/impact_answers.jsonl` — Generated answer records.
+- `data/evaluation/impact_judge_scores.jsonl` — Pairwise judge records.
+- `data/evaluation/impact_summary.json` — Machine-readable summary.
+- `data/evaluation/impact_report.md` — Human-readable impact report.
+- `src/generation/citation_validator.py` — Deterministic citation-label validation.
+- `docs/evaluation-notes.md` — Detailed protocol, metrics, results, and limitations.
+
+**Supersedes:**
+
+- No previous decision is superseded.
+- This decision complements:
+  - [Decision 06](#06-evaluation-strategy), which separates retrieval and answer-quality evaluation.
+  - [Decision 14](#14-llm-answer-evaluation-and-prompt-configuration-selection), which selects the production prompt under the citation-validity guardrail.
+  - [Decision 18](#18-tier-2-manual-evaluation-separation-from-prompt-regression), which separates the Tier 2 question set from the 24-question prompt-regression set.
+
+**Future work:**
+
+- Repeat the evaluation after deliberate prompt optimisation rather than treating the current prompt comparison as final.
+- Expand the Tier 2 set and preserve a dated evaluation version for comparability.
+- Add independent human scoring for a sample of the same A–D comparisons.
+- Compare judge preferences with human-review agreement.
+- Add semantic citation-entailment assessment rather than relying only on citation-label validity.
+- Evaluate whether retrieval improvements persist across a larger and more diverse question set.
+- Preserve each future run as a dated artifact rather than overwriting the current results.

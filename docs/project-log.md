@@ -14,6 +14,10 @@
 | [2026-09-05](#2026-09-05---application-core-rag-pipeline-and-cli) | Development | Application core: RAG pipeline and CLI | ✅ Complete |
 | [2026-09-05](#2026-09-05---llm-answer-evaluation-and-prompt-selection) | Evaluation | LLM answer evaluation and prompt selection | ✅ Complete |
 | [2026-09-05](#2026-09-05---streamlit-interface-observability-and-manual-review) | Development | Streamlit interface, cache, manual review, and monitoring | ✅ Complete |
+| [2026-09-06](#2026-09-06---containerisation-and-processed-data-distribution) | Infrastructure | Containerisation and processed-data distribution | ✅ Complete |
+| [2026-09-06](#2026-09-06---rag-impact-evaluation) | Evaluation | RAG impact evaluation | ✅ Complete |
+
+---
 
 ## 2026-08-21 - California Rule 21 corpus selection and ingestion
 
@@ -768,55 +772,126 @@ feedback capture, query caching, and Tier 2 human-evaluation support.
   current runtime does not persist that value; displaying `N/A` repeatedly was
   not useful. The default evidence view now emphasizes final retrieval rank.
 
+### Follow-up
+
+- Collect enough manual Tier 2 reviews to produce stable aggregate human-review results.
+- Add focused tests for query-cache lookup, configuration separation, feedback insertion, manual-score insertion, monitoring aggregation, and Tier 2 question-label mapping.
+- Revisit reviewer-facing reranker scores only if the runtime persists a consistent score definition for every cached evidence record.
+- Keep containerisation, processed-data distribution, and source-refresh procedures documented in the later infrastructure entry and `docs/runbook.md`.
+
+---
+
+## 2026-09-06 - Containerisation and processed-data distribution
+
+### Goal
+Ship a reproducible, containerised deployment of DER RegCheck that can run from committed processed artifacts without re-downloading sources, and document the data-distribution strategy.
+
+### What I did
+- Implemented a multi-stage Dockerfile using `uv` to build a stateless application image.
+- Defined `compose.yaml` with:
+  - `db` service using `pgvector/pgvector:pg16`.
+  - `app` service running the Streamlit app and depending on `db`.
+- Added Makefile targets:
+  - `docker-build`, `docker-up`, `docker-down`, `docker-logs`, `docker-restart`, `docker-clean`.
+  - `db-init-docker` and `load-chunks-docker` for one-time schema and data load in the container.
+- Finalised the “processed-data distribution” strategy:
+  - Raw source files in `data/corpus/` remain local and are ignored by Git.
+  - Processed artifacts (`data/processed/extracted/`, `normalised/`, `chunks/`, `embeddings/`) are committed.
+  - The app can run from committed processed data; ingestion scripts are optional and intended for future corpus refreshes.
+- Updated `README.md`, `docs/runbook.md`, and `docs/decisions.md` to reflect:
+  - Container-first setup.
+  - Processed-data distribution and copyright notes.
+  - New Decision 20 on processed-data distribution and optional ingestion.
+
+### What I learned
+- Venvs created by `uv` on the host can embed host-specific symlinks that break in containers; switching to `--system` installs in the builder and copying site-packages into the runtime image avoids this.
+- Keeping raw source acquisition separate from processed artifacts simplifies both licensing and reproducibility.
+- A small set of Makefile wrappers around `docker compose` makes the workflow much easier to document and use.
+
+### Decision made
+- Use a stateless application image + separate PostgreSQL container.
+- Commit processed artifacts and treat them as the reproducibility boundary.
+- Keep ingestion and source download as optional, advanced workflows for corpus refresh.
+
+### Problems
+- Initial Dockerfile used a venv with host-specific symlinks, causing `streamlit` to fail with “no such file or directory”.
+- Resolved by:
+  - Installing with `uv pip install --system` in the builder.
+  - Copying site-packages and `streamlit` into the runtime image.
+  - Removing reliance on a venv in the runtime container.
+
+### Current follow-up
+
+- Add optional CI checks that verify committed processed-artifact counts and basic database-schema integrity.
+- Consider adding a data-version identifier to the database schema or answer-cache configuration hash when the corpus is refreshed.
+- Keep source refreshes, downstream regeneration, and re-evaluation documented through the existing dataset, evaluation, decision, and runbook documents.
+
+---
+
+## 2026-09-06 - RAG impact evaluation
+
+### Goal
+
+Measure the observable contribution of the retrieval layer on realistic DER research questions, while separately examining whether the selected v3 prompt configuration adds value beyond a simpler retrieval-grounded prompt.
+
+This evaluation was intended as a portfolio-quality system-impact study rather than a business-impact or real-user study.
+
+### What I did
+
+- Used the 10-question Tier 2 evaluation set in `data/evaluation/tier2_questions.yaml`.
+- Kept the existing 24-question prompt-regression evaluation separate.
+- Generated four answer conditions for each Tier 2 question:
+  - Naive model-only answer with no retrieved evidence.
+  - v3 evidence-bounded prompt with no retrieved evidence.
+  - Zero-shot RAG using `v1_direct_rag`.
+  - Full RAG using `v3_few_shot_grounded_rag`.
+- Retrieved one shared top-10 evidence pack per question and reused it for the two evidence-backed conditions.
+- Added deterministic citation-label validation for the evidence-backed conditions.
+- Used blinded pairwise LLM judging with `gemini-3.5-flash-lite`.
+- Compared:
+  - Naive model-only answers against zero-shot RAG.
+  - Zero-shot RAG against the full v3 RAG configuration.
+  - Naive model-only answers against the full v3 RAG configuration.
+  - The no-evidence v3 condition against the full v3 RAG configuration.
+- Recorded generation outputs, retrieval references, validation results, judge results, and summary reports as JSONL, JSON, and Markdown artefacts.
+
+### What I learned
+
+- The main observed impact came from adding retrieval and evidence grounding:
+  - Zero-shot RAG was preferred to the naive no-evidence baseline in 8 of 10 comparisons.
+  - The full v3 RAG configuration was preferred to the naive baseline in 8 of 10 comparisons.
+  - The full v3 configuration was preferred to the v3 no-evidence condition in 9 of 10 comparisons.
+- The full v3 configuration achieved slightly higher pooled judge scores than zero-shot RAG across groundedness, relevance, completeness, citation quality, and appropriate uncertainty.
+- The pairwise zero-shot RAG versus full v3 comparison was mixed: zero-shot RAG was preferred in 5 cases, full v3 in 3 cases, with 2 ties.
+- This suggests that the retrieval layer produced the clearest quality improvement in this experiment, while additional prompt engineering produced a smaller and less consistent incremental benefit on the 10-question set.
+- Further prompt optimisation remains a worthwhile future direction, particularly for:
+  - Few-shot example selection.
+  - Clarification and abstention behaviour.
+  - Source-hierarchy instructions.
+  - Concise answers that retain appropriate uncertainty.
+- All evidence-backed outputs passed deterministic citation-label validation. This confirms label validity and claim-citation presence, but does not independently establish semantic citation entailment.
+- The v3 no-evidence condition returned `insufficient_evidence` for all 10 questions, demonstrating safe abstention when no evidence pack was supplied.
+
+### Decision made
+
+- Treat the retrieval-impact result as the primary finding from this experiment.
+- Describe the full v3 prompt as the selected production configuration because it satisfies the existing citation-validity guardrail and performed strongly on the established prompt-regression evaluation.
+- Do not claim that v3 prompt engineering definitively outperformed zero-shot RAG on realistic Tier 2 questions.
+- Retain the impact experiment as a separate evaluation from the 24-question prompt-selection study.
+- Describe the new results as an automated LLM-as-judge comparison, not as human-user impact, business impact, or independent factual validation.
+- Preserve the generated impact artefacts for later inspection and future comparison.
+
+### Problems
+
+- The Tier 2 set contains only 10 questions, so the results should be treated as indicative rather than conclusive.
+- The same Gemini model family was used for answer generation and judging, so judge results may contain model-specific preferences.
+- The pairwise comparison between zero-shot RAG and full v3 RAG was not decisive.
+- Some expected-behaviour checks for clarification and insufficient-evidence handling did not align perfectly with the structured output statuses and require interpretation at the answer-content level.
+- No real users or business workflow were available, so this experiment does not measure adoption, task completion time, business value, or user satisfaction.
+
 ### Next step
 
-- Finalize the corresponding stable decisions in `docs/decisions.md`:
-  - Streamlit interface adapter and tabbed reviewer workflow.
-  - PostgreSQL-backed configuration-aware answer cache.
-  - Feedback and manual-review event model.
-  - Tier 2 manual evaluation separation from prompt regression.
-  - Monitoring dashboard and cache-miss latency interpretation.
-
-- Update `docs/evaluation-notes.md`:
-  - Clarify that the 24-question set is for prompt comparison.
-  - Document the 10-question Tier 2 realistic manual-review set.
-  - Define the 1–5 manual-review rubric and how scores are persisted.
-  - Keep actual Tier 2 results separate until sufficient human reviews exist.
-
-- Update `docs/runbook.md`:
-  - Add Makefile commands.
-  - Add Streamlit launch instructions.
-  - Add database initialization for observability tables.
-  - Add reviewer workflow instructions.
-  - Add instructions for populating Monitoring with real local records.
-  - Add Docker and Docker Compose steps once containerization is finalized.
-
-- Update `README.md`:
-  - Replace inaccurate claims that Streamlit or feedback monitoring was merely
-    planned, if present.
-  - Add a concise Milestone 3 reviewer-interface summary.
-  - Add local and containerized launch commands.
-  - Mention the seven-chart monitoring dashboard and safe empty states without
-    duplicating detailed implementation notes.
-
-- Add tests for:
-  - Query-cache lookup and save behavior.
-  - Cache-key configuration separation.
-  - Feedback insertion.
-  - Manual-score insertion.
-  - Monitoring aggregation helpers.
-  - Tier 2 question loading and UI label mapping.
-
-- Implement containerization fully:
-  - Add Dockerfile for Streamlit application.
-  - Extend `compose.yaml` to run database and application together.
-  - Persist PostgreSQL data through a Docker volume.
-  - Pass required environment variables securely through `.env`.
-  - Verify the complete application can run through Docker Compose.
-
-- Populate the dashboard with real local records before screenshots or demo:
-  - Submit at least three different questions.
-  - Re-submit one question to demonstrate a cache hit.
-  - Add at least one Helpful and one Not helpful feedback event.
-  - Save manual scores for at least two Tier 2 questions.
-  - Capture screenshots only after charts contain real records.
+- Record the detailed protocol, metrics, tables, results, and limitations in `docs/evaluation-notes.md`.
+- Add one concise headline result and limitation to `README.md`.
+- Consider future prompt optimisation using a larger and independently human-reviewed evaluation set.
+- Avoid overwriting this evaluation when testing prompt changes; record future runs as new dated conditions.

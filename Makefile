@@ -7,10 +7,17 @@
 	demo-rag \
 	demo-retrieval \
 	load-chunks \
+	db-init-docker \
+	load-chunks-docker \
 	docker-build \
+	docker-up \
+	docker-down \
+	docker-logs \
+	docker-restart \
 	docker-run \
 	docker-clean \
 	clean
+
 
 
 # ------------------------------------------------------------------
@@ -20,17 +27,20 @@ ui:
 	uv run streamlit run src/ui/streamlit_app.py
 
 
+
 # ------------------------------------------------------------------
-# Database schema initialisation
+# Database schema initialisation (local)
 # ------------------------------------------------------------------
 db-init:
 	uv run python -m src.database.db_init
+
 
 
 # ------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------
 test: test-unit test-eval
+
 
 test-unit:
 	uv run python -m unittest \
@@ -45,19 +55,23 @@ test-unit:
 		tests.test_retrieval \
 		tests.test_summarise_evaluation
 
+
 test-eval:
 	uv run python -m unittest \
 		tests.test_evaluate_retrieval
 
 
+
 # ------------------------------------------------------------------
-# Data / evaluation scripts
+# Data / evaluation scripts (local)
 # ------------------------------------------------------------------
 demo-rag:
 	uv run python -m src.scripts.demo_rag
 
+
 demo-retrieval:
 	uv run python -m src.scripts.demo_retrieval
+
 
 load-chunks:
 	uv run python -m src.scripts.load_chunks_to_db \
@@ -65,20 +79,56 @@ load-chunks:
 		--embeddings-file data/processed/embeddings/embeddings.jsonl
 
 
+
 # ------------------------------------------------------------------
-# Docker (basic targets; adjust image name / args as needed)
+# Database / Compose helpers (Docker)
+# ------------------------------------------------------------------
+db-init-docker:
+	docker compose exec app python -m src.database.db_init
+
+
+load-chunks-docker:
+	docker compose exec app python -m src.scripts.load_chunks_to_db \
+		--chunks-dir /app/data/processed/chunks \
+		--embeddings-dir /app/data/processed/embeddings
+
+
+
+# ------------------------------------------------------------------
+# Docker / Compose (Milestone 5)
 # ------------------------------------------------------------------
 docker-build:
 	docker build -t der-regcheck:latest .
 
+
+docker-up:
+	docker compose up -d
+
+
+docker-down:
+	docker compose down
+
+
+docker-logs:
+	docker compose logs -f
+
+
+docker-restart:
+	docker compose restart
+
+
+# Legacy standalone container run (optional)
 docker-run:
 	docker run --rm \
 		--env-file .env \
 		-p 8501:8501 \
 		der-regcheck:latest
 
+
 docker-clean:
+	docker compose down -v || true
 	docker rmi der-regcheck:latest || true
+
 
 
 # ------------------------------------------------------------------
