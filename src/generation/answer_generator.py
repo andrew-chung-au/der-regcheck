@@ -2,7 +2,7 @@
 
 Runtime flow:
 1. Retrieve evidence using the selected v3 production retrieval path.
-2. Build an evidence pack with stable S1–S10 labels.
+2. Build an evidence pack with stable S1-S10 labels.
 3. Generate a structured answer using Gemini with configurable prompt.
 4. Validate every claim citation against the supplied evidence labels.
 5. Fail closed when generated citations are invalid.
@@ -146,8 +146,10 @@ def build_user_prompt(question: str, chunks: list[dict[str, Any]]) -> str:
 {question.strip()}
 
 
+
 Retrieved evidence:
 {evidence_context}
+
 
 
 Return a structured answer to the original user question. For every factual
@@ -159,7 +161,8 @@ class AnswerGenerator:
     """Retrieve evidence and generate a citation-grounded structured answer.
 
     The prompt version can be configured at initialization time. The default
-    is v2_structured_grounded_rag, which is the current production prompt.
+    is v3_few_shot_grounded_rag, selected for production under the
+    citation-validity guardrail.
     """
 
     def __init__(
@@ -197,7 +200,6 @@ class AnswerGenerator:
         if top_k <= 0:
             raise ValueError("top_k must be positive.")
 
-        # Query expansion disabled for performance. See docs/decisions.md.
         expansion = QueryExpansionResult(
             original_question=cleaned_question,
             expansion_terms=[],
@@ -239,10 +241,7 @@ class AnswerGenerator:
                 prompt_version=self.prompt_version,
             )
 
-        # Get prompt instructions for this configuration
         instructions = get_prompt_instructions(self.prompt_version)
-
-        # Build user prompt with evidence
         user_prompt = build_user_prompt(cleaned_question, sources)
 
         try:

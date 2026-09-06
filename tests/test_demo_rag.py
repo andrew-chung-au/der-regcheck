@@ -9,7 +9,7 @@ from src.scripts.demo_rag import print_source
 
 
 class DemoRagTests(unittest.TestCase):
-    def test_print_source_displays_citation_number_once(self) -> None:
+    def test_print_source_displays_citation_label_once(self) -> None:
         source = {
             "source_id": "sce_rule21_tariff_pdf",
             "heading_path": ["H.2.w", "Constant Reactive Power Mode"],
@@ -35,10 +35,10 @@ class DemoRagTests(unittest.TestCase):
 
         rendered = output.getvalue()
 
-        self.assertIn("[1] sce_rule21_tariff_pdf", rendered)
-        self.assertNotIn("[1] [1]", rendered)
-        self.assertIn("lexical=not retrieved", rendered)
-        self.assertIn("vector=1", rendered)
+        self.assertIn("[S1] sce_rule21_tariff_pdf", rendered)
+        self.assertNotIn("[S1] [S1]", rendered)
+        self.assertIn("Reranker score: 0.998204", rendered)
+        self.assertIn("Vector rank: 1", rendered)
 
 
 if __name__ == "__main__":

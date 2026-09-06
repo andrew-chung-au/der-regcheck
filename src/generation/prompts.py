@@ -3,7 +3,8 @@
 This module defines the v1, v2, and v3 prompt configurations
 for systematic comparison in the LLM evaluation harness.
 
-The default production prompt is v2_structured_grounded_rag.
+The default production prompt is v3_few_shot_grounded_rag, selected under
+the deterministic citation-validity guardrail.
 """
 from __future__ import annotations
 
@@ -15,6 +16,10 @@ PromptVersion = Literal[
     "v2_structured_grounded_rag",
     "v3_few_shot_grounded_rag",
 ]
+
+
+# Default production prompt selected by the 2026-09-05 evaluation.
+DEFAULT_PROMPT_VERSION: PromptVersion = "v3_few_shot_grounded_rag"
 
 
 V1_DIRECT_RAG_INSTRUCTIONS = """You are DER RegCheck, an assistant for Distributed Energy Resource interconnection requirements.
@@ -161,12 +166,15 @@ Correct answer structure:
 }"""
 
 
-def get_prompt_instructions(prompt_version: PromptVersion | str = "v2_structured_grounded_rag") -> str:
+def get_prompt_instructions(
+    prompt_version: PromptVersion | str = DEFAULT_PROMPT_VERSION,
+) -> str:
     """Return the system instructions for the specified prompt version.
 
     Args:
         prompt_version: One of 'v1_direct_rag', 'v2_structured_grounded_rag',
-            or 'v3_few_shot_grounded_rag'. Defaults to 'v2_structured_grounded_rag'.
+            or 'v3_few_shot_grounded_rag'. Defaults to the selected production
+            prompt.
 
     Returns:
         System instructions string for the specified prompt configuration.
@@ -187,7 +195,3 @@ def get_prompt_instructions(prompt_version: PromptVersion | str = "v2_structured
         )
 
     return prompts[prompt_version]  # type: ignore[arg-type]
-
-
-# Default production prompt
-DEFAULT_PROMPT_VERSION: PromptVersion = "v2_structured_grounded_rag"
