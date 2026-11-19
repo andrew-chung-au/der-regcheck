@@ -77,10 +77,10 @@ def main() -> None:
     if len(chunks) != len(embeddings):
         print(f"WARNING: Chunk count ({len(chunks)}) != embedding count ({len(embeddings)})")
 
-    print("Inserting chunks into database...")
+    print("Upserting chunks into database...")
     insert_chunks(chunks)
 
-    print("Inserting embeddings into database...")
+    print("Upserting embeddings into database...")
     insert_embeddings(embeddings)
 
     print(f"\n✅ Database migration complete!")
