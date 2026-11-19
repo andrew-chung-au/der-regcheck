@@ -9,16 +9,24 @@ Last reviewed: 2026-11-19. The review was mostly documentation. Code or data cha
 - The pipeline, database schema, retrieval, answer generation, evaluation scripts and Streamlit app are implemented. Processed data (1,049 chunks and embeddings) and evaluation artefacts are committed.
 - Last commit: 2026-09-07. Work took place between 2026-08-21 and 2026-09-07.
 - Unit tests: 36 passed, 7 skipped, 1 error on Python 3.11 without a database or Hugging Face access (see the [runbook](runbook.md#run-regression-tests)).
+- Docker path verified by the author on 2026-11-19 (see below).
 
-## What has not been verified
+## Verification status
 
-These could not be run in the review environment (no Docker daemon, no PostgreSQL, no Gemini key, no Hugging Face access, Python 3.11 rather than 3.13).
+### Verified (author's machine, 2026-11-19)
 
-- The Docker Compose build and startup, and the `make docker-*` targets.
-- `db_init`, the chunk loader, and the 7 database-dependent tests.
-- The Streamlit app, live answer generation, and every evaluation script (they need the database and Gemini).
-- `tests/test_embed_chunks.py` (needs the Nomic model).
-- Python 3.13 compatibility and `uv sync` from `uv.lock`.
+- `docker compose up --build` builds the image on Python 3.13 (about 14 minutes the first time, with a 5.63 GB build context) and starts both containers. `docker compose ps` shows `app` and `db` as `healthy`. This also exercises the `pyproject.toml` metadata change (`license = "MIT"`) and the `data/feedback/.gitkeep` `COPY`.
+- `make load-chunks-docker`, run twice against a database that already held the data, completes both times with `Chunks: 1049` and `Embeddings: 1049`. The schema initialisation inside it also re-runs cleanly. A direct `SELECT count(*)` returned 1049 for `chunks` and 1049 for `chunk_embeddings`.
+
+### Not verified
+
+The database already existed before these runs, so a load into a truly empty volume has not been checked. The second loader run used identical data, so the upsert's replacement of changed rows has not been checked either. The review environment had no Docker daemon, no PostgreSQL, no Gemini key and no Hugging Face access (Python 3.11 rather than 3.13).
+
+- A question answered end to end in the Streamlit app (needs `GOOGLE_API_KEY` and the model downloads).
+- `make load-chunks` on the host, `make db-init-docker` on its own, and the other `make docker-*` targets.
+- The 7 database-dependent tests and `tests/test_embed_chunks.py`.
+- Every evaluation script (they need the database and Gemini).
+- `uv sync` from `uv.lock`. The Docker build uses `uv pip install -e .`, which does not read the lock file.
 - The earlier temporary AWS EC2 demo. Its link was removed from the README, and its current status is unknown.
 
 ## Findings
@@ -27,11 +35,11 @@ These could not be run in the review environment (no Docker daemon, no PostgreSQ
 
 | # | Finding | Evidence | Suggested fix |
 |---|---|---|---|
-| 1 | **Fixed.** `make load-chunks` passed `--embeddings-file`, which the loader rejects. It now passes `--embeddings-dir data/processed/embeddings`. Not run, because there is no database in the review environment. | `Makefile` | None. |
-| 2 | **Fixed, not run against a database.** `insert_chunks` and `insert_embeddings` now upsert (`ON CONFLICT ... DO UPDATE`). Chunks deleted from the source files are still not removed from the database; that needs a clean reload. The full-text column updates through the existing trigger. | `src/database/db_chunks.py` | Optionally delete rows missing from the loaded set. |
+| 1 | **Fixed.** `make load-chunks` passed `--embeddings-file`, which the loader rejects. It now passes `--embeddings-dir data/processed/embeddings`. The equivalent `make load-chunks-docker` target was run successfully; the host target itself was not. | `Makefile` | None. |
+| 2 | **Fixed.** Re-running the loader against PostgreSQL 16 with pgvector succeeded and left the counts unchanged (see Verification status); replacement of changed rows was not tested. `insert_chunks` and `insert_embeddings` now upsert (`ON CONFLICT ... DO UPDATE`). Chunks deleted from the source files are still not removed from the database; that needs a clean reload. The full-text column updates through the existing trigger. | `src/database/db_chunks.py` | Optionally delete rows missing from the loaded set. |
 | 3 | Tests cannot run in the app container because the Dockerfile does not copy `tests/` and installs without the dev group. | `Dockerfile` | Run tests on the host, or add a test stage. |
 | 4 | Compose does not initialise the database. A fresh volume needs `make db-init-docker` and `make load-chunks-docker` before the app works. Earlier docs described this as automated ingestion; it is not. | `compose.yaml` has no init or loader service | Add an init service or an entrypoint step. |
-| 5 | The `db` healthcheck is written as `CMD-SHELL` followed by several list items. Docker runs only the first command string (`pg_isready`) and ignores the user and database flags. It probably still works, but it was not run. | `compose.yaml` | Use `CMD` form or a single shell string. |
+| 5 | The `db` healthcheck is written as `CMD-SHELL` followed by several list items. Docker runs only the first command string (`pg_isready`) and ignores the user and database flags. `docker compose ps` reported the database as `healthy` on 2026-11-19, so it works, but it is unclear whether the user and database flags are applied. | `compose.yaml` | Use `CMD` form or a single shell string. |
 | 6 | Hugging Face models are downloaded at runtime with no cache volume in Compose. A recreated container downloads them again. The Nomic model is loaded with `trust_remote_code=True` (revision pinned in `config/embedding.yaml`). | `compose.yaml`, `src/retrieval/runtime_retriever.py`, `src/processing/embed_chunks.py` | Mount a cache volume or pre-download in the image. |
 | 7 | PostgreSQL is published on host port 5432 with default credentials `postgres`/`postgres`. Fine on a laptop, not elsewhere. | `compose.yaml`, `.env.example` | Bind to `127.0.0.1` and require a real password outside local use. |
 | 8 | The Streamlit app has no authentication. | `src/ui/streamlit_app.py` | Needed before any public deployment. |
@@ -63,7 +71,7 @@ These could not be run in the review environment (no Docker daemon, no PostgreSQ
 Ordered by value to the project, not by commitment. Nothing here is in progress.
 
 1. **Fix the remaining small defects** (findings 10 and 14: CI, project name). Each is small.
-2. **Verify the Docker path end to end** on a clean machine and record the result in the runbook. Add a model-cache volume (finding 6).
+2. **Finish verifying the Docker path** on a clean volume with a real question answered, and add a model-cache volume (finding 6). Add a `.dockerignore`: the 5.63 GB build context includes `.git`, any local virtual environment and raw `data/corpus/` files, and `COPY . .` copies `.env` into the builder layer.
 3. **Add CI** that runs the unit tests (the 7 database tests can run against a pgvector service container) and checks the committed chunk and embedding counts.
 4. **Improve evaluation validity**
    - Re-run the prompt comparison cleanly (one answer per question and prompt, one judge pass, possibly several judge samples to measure judge noise) instead of relying on the repeated records.

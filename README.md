@@ -138,7 +138,7 @@ make load-chunks-docker         # load committed chunks and embeddings (one time
 
 Open <http://localhost:8501>. The first question is slow because the models load.
 
-The database schema and data are not created automatically at startup, so the two `make` steps above are required on a fresh volume. Verify the load with:
+The database schema and data are not created automatically at startup, so the two `make` steps above are required on a fresh volume. (Checked on 2026-11-19: `docker compose up --build` gave two healthy containers, and `make load-chunks-docker` ran cleanly twice on an already populated database. A load into an empty volume and a full question through the UI have not been checked yet; see [known issues](docs/known-issues-and-roadmap.md#verification-status).) Verify the load with:
 
 ```bash
 docker compose exec db psql -U postgres -d der-regcheck -c "SELECT count(*) FROM chunks;"   # expect 1049

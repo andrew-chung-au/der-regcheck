@@ -8,7 +8,7 @@ This runbook covers setup, running the app, rebuilding each pipeline stage, re-r
 
 All processed artefacts (extracted text, normalised blocks, chunks, embeddings) are committed, so the app runs without downloading the source documents. The ingestion pipeline is only needed to refresh the corpus. One source (the SCE Interconnection Handbook) may need a manual download because automated download is intermittently blocked.
 
-**Verification note.** The pipeline-stage commands below were checked against each script's `argparse` definitions during the documentation review of 2026-11-18. Only the unit tests were actually executed in that review (see [Run regression tests](#run-regression-tests)). Commands that need Docker, PostgreSQL, a Gemini key or Hugging Face model downloads were not executed.
+**Verification note.** The pipeline-stage commands below were checked against each script's `argparse` definitions during the documentation review of 2026-11-18. Only the unit tests were executed in that review (see [Run regression tests](#run-regression-tests)). Afterwards, on 2026-11-19, the author ran `docker compose up --build` (both services reached `healthy`) and `make load-chunks-docker` twice against an already populated database (1,049 chunks and 1,049 embeddings both times). Not yet verified: answering a question in the app, a load into an empty volume, the host-side `make` targets, the database-dependent tests, and the evaluation scripts. See [`known-issues-and-roadmap.md`](known-issues-and-roadmap.md#verification-status).
 
 For design rationale see [`decisions.md`](decisions.md); for evaluation methodology and results see [`evaluation-notes.md`](evaluation-notes.md); for the build history see [`project-log.md`](project-log.md).
 
@@ -112,6 +112,8 @@ The application image is built from the repository `Dockerfile`. The database us
 Raw source files in `data/corpus/` are not required for normal application startup. The app uses the committed processed artifacts in `data/processed/`.
 
 ### Build the application image
+
+The first build took about 14 minutes on the author's machine, including a 5.63 GB build context (there is no `.dockerignore`) and the PyTorch install. Later builds reuse cached layers.
 
 From the repository root:
 
