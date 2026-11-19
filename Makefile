@@ -76,7 +76,7 @@ demo-retrieval:
 load-chunks:
 	uv run python -m src.scripts.load_chunks_to_db \
 		--chunks-dir data/processed/chunks \
-		--embeddings-file data/processed/embeddings/embeddings.jsonl
+		--embeddings-dir data/processed/embeddings
 
 
 
