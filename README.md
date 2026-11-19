@@ -1,351 +1,283 @@
 # DER RegCheck
 
-DER RegCheck is an evidence-first retrieval-augmented generation (RAG) assistant for distributed energy resource (DER) interconnection and market-entry research. It helps analysts and project teams inspect governing tariff requirements, technical handbook detail, and supporting guidance from public California Rule 21 / Southern California Edison (SCE) documents.
+An evidence-first retrieval-augmented generation (RAG) assistant for researching distributed energy resource (DER) interconnection requirements. It answers questions over a small, curated corpus of public California Rule 21 / Southern California Edison (SCE) documents, shows the evidence behind every answer, and rejects answers whose citations do not check out.
 
-It retrieves relevant passages from a curated corpus and generates structured answers with explicit citations, source hierarchy, and uncertainty. It supports human judgement; it does not provide legal, regulatory, engineering, or compliance advice.
+It is a research-support prototype. It does not provide legal, regulatory, engineering, or compliance advice.
 
-> **Project status (v1)**
->
-> - The deployed retrieval path uses pgvector vector retrieval plus local cross-encoder reranking (`BAAI/bge-reranker-base`).
-> - The selected answer-generation prompt is `v3_few_shot_grounded_rag`, chosen under a 100% deterministic citation-validity guardrail.
-> - The application includes a Streamlit interface (Ask, Evidence, Review, Monitoring), configuration-aware answer cache, feedback capture, and manual-review workflow.
-> - Runtime telemetry and optional user feedback are stored in PostgreSQL tables: `query_cache`, `answer_feedback`, and `manual_scores`.
-> - Retrieval and prompt configurations were evaluated on a 100-query synthetic benchmark, a 24-question prompt-evaluation set, and a 10-question RAG-impact evaluation.
-> - The current benchmark is not a frozen held-out final benchmark.
-> - Docker Compose is the canonical local runtime and ingestion path.
-> - A temporary cloud deployment on AWS EC2 is available for peer review; see [Live demo](#live-demo) and [`docs/self-assessment.md`](docs/self-assessment.md).
+The project was started on 21 August 2026 as a course project and is now maintained as a portfolio project and a base for further experimentation. Git history shows a single author. The course context is only background: the repository is no longer organised around any assessment criteria.
+
+![Ask tab: grounded answer with uncertainty boundary, next steps and feedback](./docs/images/readme_ask_tab_2.png)
 
 ---
 
-## Reviewer Navigation
+## Contents
 
-* **[Self-Assessment & Rubric Mapping](docs/self-assessment.md):** Start here for a direct map of project features to course evaluation criteria and the case for bonus/discretionary marks.
-* **[Live Demo — AWS EC2](http://100.30.163.97:8501/):** Open the deployed Streamlit application for a five-minute review.
-* **[Runbook](docs/runbook.md):** Complete steps for local reproduction and evaluation benchmark execution.
-
----
-
-## Project overview
-
-DER RegCheck is a research-support prototype for DER interconnection and market-entry questions over public California Rule 21 / SCE documents. It provides grounded, citation-validated answers, inspectable evidence, and a reviewer-friendly workflow (Ask, Evidence, Review, Monitoring) that can be run locally or via a temporary EC2 deployment.
-
----
-
-## Rubric at a glance
-
-This section summarises how DER RegCheck maps to the course rubric. For the full evidence trail and rationale, see [`docs/self-assessment.md`](docs/self-assessment.md).
-
-| Criterion | Self-assessed score | What you'll see in this repo | Where to inspect |
-|---|---:|---|---|
-| **Problem description** | 2/2 | Clear DER interconnection / market-entry problem, users, scope, and retrieval rationale. | [Problem](#problem), [Scope](#scope), [`docs/dataset-notes.md`](docs/dataset-notes.md) |
-| **Retrieval flow** | 2/2 | Knowledge base (PostgreSQL + pgvector) + LLM answer generation with citations and source hierarchy. | [Data Flow](#data-flow), `src/retrieval/`, `src/generation/` |
-| **Retrieval evaluation** | 2/2 | Lexical, vector, hybrid, reranked, and query-rewrite retrieval evaluated; best backend selected. | [Retrieval Evaluation Summary](#retrieval-evaluation-summary), [`docs/evaluation-notes.md`](docs/evaluation-notes.md) |
-| **LLM evaluation** | 2/2 | Three prompt configurations compared with deterministic citation validation + LLM judge; best prompt selected. | [`docs/evaluation-notes.md`](docs/evaluation-notes.md), `data/evaluation/` |
-| **Interface** | 2/2 | Streamlit UI (Ask, Evidence, Review, Monitoring) deployed locally and on EC2. | [Live demo](#live-demo), `src/ui/` |
-| **Ingestion pipeline** | 2/2 | Fully automated scripted ingestion via Docker Compose (no dedicated orchestrator required). | [`compose.yaml`](compose.yaml), `src/ingestion/`, `src/processing/` |
-| **Monitoring** | 2/2 | PostgreSQL-backed feedback + seven live telemetry charts with safe empty states. | [Monitoring tab](#user-interface), `src/observability/` |
-| **Containerization** | 2/2 | Complete runtime defined in Docker Compose (DB + app). | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
-| **Reproducibility** | 2/2 | Clear instructions, accessible processed data, pinned dependencies, runbook, and Docker runtime. | [Local Reproduction](#local-reproduction--developer-rebuild), [`docs/runbook.md`](docs/runbook.md), `uv.lock` |
-| **Bonus: Hybrid search** | +1 | Implemented and evaluated (lexical + vector via reciprocal rank fusion). | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) |
-| **Bonus: Document reranking** | +1 | Implemented, evaluated, and selected as default retrieval. | [`docs/evaluation-notes.md`](docs/evaluation-notes.md) |
-| **Bonus: User query rewriting** | +1 | Implemented and evaluated; retained as experimental due to latency. | [`docs/evaluation-notes.md`](docs/evaluation-notes.md), [Decision 13](docs/decisions.md#13-runtime-configuration-disable-query-expansion-for-latency) |
-| **Bonus: Cloud deployment** | +2 | Temporary EC2 deployment for peer-review demonstration. | [Live demo](#live-demo), [`docs/self-assessment.md`](docs/self-assessment.md) |
-
-## Extra Bonus Points (Up to 3 additional marks)
-
-Beyond the core rubric, DER RegCheck is designed to exceed baseline expectations in four areas: evaluation depth, safety/governance, reproducibility/engineering quality, and documentation. The self-assessment provides the full narrative; the bullets below summarise the key points a marker can verify quickly.
-
-**1. Evaluation depth and rigour**
-
-Large-scale retrieval benchmark (100 queries; 7,500 retrieval + 8,000 query-rewrite records) across lexical, vector, hybrid, and reranked backends, plus a two-tier design: Tier 1 retrieval metrics and Tier 2 RAG-quality scoring on 24 realistic questions. A separate four-condition RAG-impact evaluation on the 10-question Tier 2 set quantifies the contribution of retrieval and evidence grounding to answer quality. Every answer is checked with deterministic citation validation; prompts that produce any invalid citations are rejected regardless of LLM-judge score.
-
-**2. Safety, governance, and responsible use**
-
-Fail-closed citation guardrail (unknown/invalid citations → answer rejected), source hierarchy and content-hash tracking for chunks, and a Review tab that supports blinded, rubric-based scoring of Tier 2 questions for human oversight.
-
-**3. Reproducibility and engineering quality**
-
-End-to-end containerization via a single Docker Compose stack (used locally and on EC2), stateless application configuration, regression tests across core pipeline components, and pinned dependencies (`uv.lock`) with a step-by-step runbook.
-
-**4. Documentation and assessment transparency**
-
-Six dedicated documents (runbook, dataset notes, decisions, evaluation notes, project log, self-assessment), 20+ decision records with rationale and trade-offs, and committed JSONL/CSV evaluation artefacts that markers can inspect and re-run.
-
-For the full narrative, examples, and links to specific artefacts, see the [Extra Bonus Points (case for additional marks)](docs/self-assessment.md#extra-bonus-points-case-for-additional-marks) section in the self-assessment.
+- [The problem](#the-problem)
+- [What it does](#what-it-does)
+- [Architecture](#architecture)
+- [Technology](#technology)
+- [Evaluation results](#evaluation-results)
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [Testing](#testing)
+- [Repository layout](#repository-layout)
+- [Design decisions](#design-decisions)
+- [What this project demonstrates](#what-this-project-demonstrates)
+- [Limitations and known issues](#limitations-and-known-issues)
+- [Documentation](#documentation)
+- [Data, copyright and responsible use](#data-copyright-and-responsible-use)
 
 ---
 
-## Interface at a glance
+## The problem
 
-The screenshots below show the main reviewer workflow: submit a DER research question, inspect the generated answer, verify its evidence, optionally review it manually, and inspect stored runtime telemetry.
+Anyone assessing a DER project or market in California has to read across a fragmented set of public documents: a regulator overview, a utility tariff of several hundred pages, a technical interconnection handbook, a testing and certification instruction sheet, web guidance, and historical working-group reports. The relevant provisions are scattered, conditional, and version-sensitive, and the sources differ in authority (a tariff governs, a web page only explains, a draft recommendation is historical).
 
-### Ask: question and answer state
+A general-purpose LLM answers such questions fluently but without sources, and it does not know which document outranks another. DER RegCheck instead retrieves passages from the actual documents, tells the model which source tier each passage comes from, and requires every claim in the answer to cite a retrieved passage.
 
-![Ask tab – question submission and answer status](./docs/images/readme_ask_tab_1.png)
+## What it does
 
-> Ask tab: a Tier 2 DER question is submitted through the cache-aware workflow, with the selected question, cache state, and answer-status result visible.
+- **Builds a citation-preserving knowledge base** from six public sources (about 1,049 chunks). Each chunk keeps its PDF page, tariff sheet, section IDs and heading path.
+- **Retrieves evidence** with pgvector similarity search over 50 candidates, then reranks them with a local cross-encoder and keeps the top 10.
+- **Generates structured answers** with Gemini. The model returns a schema with an answer status (`answered`, `partial`, `needs_clarification`, `insufficient_evidence`, `high_stakes_boundary`), claims with citation labels, an uncertainty statement, evidence gaps, and suggested next research steps.
+- **Validates citations deterministically.** Any citation label that is not in the supplied evidence pack causes the answer to be rejected (fail closed). The check covers label validity only, not whether the cited text really supports the claim.
+- **Exposes the evidence.** The Streamlit app has five tabs: About, Ask, Evidence (source class, heading path, page locators, retrieval rank), Review (1 to 5 manual scoring on five dimensions), and Monitoring (seven charts over stored telemetry).
+- **Caches and records** answers, feedback and manual scores in PostgreSQL (`query_cache`, `answer_feedback`, `manual_scores`). The cache key includes the prompt version and retrieval configuration.
 
-### Ask: grounded answer and feedback
+| Evidence tab | Monitoring tab |
+|---|---|
+| ![Evidence tab](./docs/images/readme_evidence_tab.png) | ![Monitoring tab](./docs/images/readme_monitoring_tab_overview.png) |
 
-![Ask tab – grounded answer and feedback capture](./docs/images/readme_ask_tab_2.png)
+Further screenshots: [`docs/images/`](docs/images/) (Ask and Review tabs).
 
-> Ask tab: the generated answer includes an uncertainty boundary, suggested next steps, and optional Helpful / Not helpful feedback linked to the cached response.
+## Architecture
 
-### Evidence: source hierarchy and locators
-
-![Evidence tab – source hierarchy and locators](./docs/images/readme_evidence_tab.png)
-
-> Evidence tab: inspect retrieved chunks with source class, heading path, PDF page or section locator, retrieval rank, and preserved supporting excerpts.
-
-### Review: manual evaluation workflow
-
-![Review tab – Tier 2 manual-review workflow](./docs/images/readme_review_tab_1.png)
-
-> Review tab: select a Tier 2 question, load or generate its response, and evaluate groundedness, relevance, completeness, citation quality, and appropriate uncertainty.
-
-### Review: answer scoring form
-
-![Review tab – answer scoring form](./docs/images/readme_review_tab_2.png)
-
-> Review tab: score the selected answer on the five 1–5 human-review dimensions while inspecting the answer and its research-support boundary.
-
-### Monitoring: runtime telemetry
-
-![Monitoring tab – telemetry overview](./docs/images/readme_monitoring_tab_overview.png)
-
-> Monitoring tab: PostgreSQL-backed runtime summary showing cached queries, feedback events, manual reviews, Tier 2 coverage, and answer-status distribution.
-
----
-
-## Live demo
-
-**[Open DER RegCheck on AWS EC2](http://100.30.163.97:8501/)**
-
-The application is temporarily deployed on AWS EC2 for peer-review access. It runs the same Docker Compose stack documented for local reproduction.
-
-The deployment is a demonstration environment rather than a production service. It does not include HTTPS, a custom domain, managed secrets, backups, high availability, or production monitoring. It will be decommissioned after the review period.
-
----
-
-## Review in five minutes
-
-You do not need to clone the repository to review the main application workflow.
-
-1.  Open the **[live EC2 demo](http://100.30.163.97:8501/)**.
-2.  Select **Ask**.
-3.  Choose a Tier 2 example question or paste a short DER research question, for example:
-
-    ```text
-    What does SCE Rule 21 require for smart inverter reactive power?
-    ```
-
-4.  Select **Submit**.
-5.  Confirm that the interface shows:
-    - A generated answer with inline citation labels.
-    - An explicit uncertainty or clarification note where appropriate.
-    - Expandable evidence cards with source class (e.g., primary tariff vs technical handbook), heading path, and page/section locators.
-    - Feedback controls (Helpful / Not helpful).
-6.  Open **Monitoring** to inspect seven live telemetry charts—answer-status distribution, feedback distribution, average manual-review scores, cache-miss latency over time, cache-miss latency by answer status, query volume over time, and Tier 2 manual-review coverage.
-7.  Optionally open **Review** to inspect the Tier 2 manual-review workflow and scoring rubric.
-
-The Ask workflow uses the selected v3 path:
+Offline pipeline (scripts under `src/ingestion`, `src/processing`, `src/scripts`). Its outputs are committed, so you do not need to run it to use the app.
 
 ```text
-User question
-        ↓
-Vector retrieval of top candidates (pgvector)
-        ↓
-Local cross-encoder reranking (BAAI/bge-reranker-base)
-        ↓
-Top 10 chunks used as answer context
-        ↓
-Structured answer using v3_few_shot_grounded_rag with deterministic citation validation
+download (requests)            data/corpus/              (not committed)
+   -> extract raw content      data/processed/extracted/     pypdf pages, BeautifulSoup headings
+   -> normalise evidence       data/processed/normalised/    source-specific rules, tariff parser
+   -> structural chunking      data/processed/chunks/        citation metadata, neighbour links
+   -> embed (Nomic v1.5, 768d) data/processed/embeddings/
+   -> load                     PostgreSQL + pgvector (chunks, chunk_embeddings)
 ```
 
----
+Runtime path (the app and `src/scripts/demo_rag.py`):
 
-## Assessment evidence
+```text
+user question
+  -> Nomic query embedding (local, "search_query:" prefix)
+  -> pgvector top 50 candidates
+  -> BAAI/bge-reranker-base cross-encoder (local) -> top 10 chunks
+  -> evidence pack with labels S1..S10 and source-authority metadata
+  -> Gemini structured output (prompt v3_few_shot_grounded_rag)
+  -> deterministic citation validation (fail closed)
+  -> query_cache row -> Streamlit tabs (answer, evidence, review, monitoring)
+```
 
-| Criterion | Evidence |
+Query expansion (an LLM rewrite of the question before retrieval) is implemented in `src/retrieval/query_expansion.py` but disabled at runtime. See [Evaluation results](#evaluation-results).
+
+## Technology
+
+| Area | Tools |
 |---|---|
-| Problem and scope | [Problem](#problem), [Scope](#scope), [`docs/dataset-notes.md`](docs/dataset-notes.md) |
-| Knowledge base plus LLM flow | [Data Flow](#data-flow), `src/retrieval/`, `src/generation/` |
-| Retrieval evaluation | [Retrieval Evaluation Summary](#retrieval-evaluation-summary), [`docs/evaluation-notes.md`](docs/evaluation-notes.md) |
-| LLM evaluation | [`docs/evaluation-notes.md`](docs/evaluation-notes.md), `data/evaluation/` |
-| Interface | [Live EC2 demo](http://100.30.163.97:8501/), `src/ui/` |
-| Automated ingestion | [`compose.yaml`](compose.yaml), `src/ingestion/`, `src/processing/`, `src/database/` |
-| Monitoring | `src/ui/streamlit_app.py` (Monitoring tab), `src/observability/` |
-| Containerization | [`Dockerfile`](Dockerfile), [`compose.yaml`](compose.yaml) |
-| Reproducibility | [Local Reproduction](#local-reproduction--developer-rebuild), [`docs/runbook.md`](docs/runbook.md), `uv.lock` |
-| Self-assessment | [`docs/self-assessment.md`](docs/self-assessment.md) |
+| Language and packaging | Python 3.13, `uv` (lockfile committed) |
+| Extraction | `pypdf`, `beautifulsoup4`, `requests` |
+| Embeddings and reranking | `nomic-ai/nomic-embed-text-v1.5` (revision pinned in `config/embedding.yaml`), `BAAI/bge-reranker-base`, `sentence-transformers`, PyTorch via `transformers` |
+| Storage and search | PostgreSQL 16 with `pgvector` (IVFFlat cosine index) and a full-text search column kept current by a trigger |
+| LLM | Google Gemini via `google-genai` (default `MODEL_ID` is `gemini-3.5-flash-lite`), Pydantic structured output, client-side rate limiting and retries |
+| UI | Streamlit |
+| Runtime | Docker, Docker Compose, Makefile wrappers |
+| Tests | `unittest` (also runs under `pytest`) |
 
----
+## Evaluation results
 
-## Problem
+All numbers below come from committed artefacts in [`data/evaluation/`](data/evaluation/). Methodology and caveats are in [`docs/evaluation-notes.md`](docs/evaluation-notes.md). Treat them as indicative: the benchmarks are small, LLM-generated or curated by the author, and scored against metadata or by an LLM judge, not by independent human experts.
 
-Teams researching DER products, projects, or market opportunities must locate, read, compare, and interpret a fragmented set of public documents: regulator overviews, utility tariffs, interconnection handbooks, testing/certification instructions, web guidance, and historical working-group reports. Doing this manually is slow and inconsistent because relevant provisions are scattered, conditional, and version-sensitive.
+**Retrieval (100 synthetic queries, each tied to one gold chunk, 7,500 configuration records, PostgreSQL path)**
 
-**DER RegCheck** solves this by providing a retrieval-augmented assistant over a curated California Rule 21 / SCE corpus. Rather than relying on a general LLM's ungrounded advice, it semantically searches a curated corpus, retrieves the most relevant passages, and generates a structured answer. It explicitly surfaces supporting evidence, source hierarchy, and uncertainty, keeping the human analyst in the loop while reducing manual search time.
+| Configuration (equal weighting) | nDCG@10 | MRR |
+|---|---:|---:|
+| Lexical (PostgreSQL full-text) | 0.154 | 0.155 |
+| Vector | 0.763 | 0.873 |
+| Hybrid (alpha 0.5) | 0.767 | 0.873 |
+| Vector + cross-encoder rerank (deployed) | 0.946 | 0.925 |
 
----
+Reranking was the largest effect. Recall@10 is about 0.10 for every configuration because each query has a single gold chunk and the label scheme counts metadata-related chunks, so it is not a useful headline number. Expanding the query before retrieval scored marginally higher (nDCG@10 0.9471) but added roughly 36 seconds of latency in live testing, so the app uses the original query.
 
-## Scope
+**Prompt selection (24 fixed questions, 3 prompts, LLM judge plus deterministic validation)**
 
-Version 1 focuses on a narrow DER interconnection and market-entry research task: given a research question, retrieve relevant tariff, handbook, and supporting material, then generate a citation-validated summary for analyst review.
+`v3_few_shot_grounded_rag` was the only prompt with 100% valid citations (v1 21/24, v2 22/24, v3 24/24). On judge composite the three prompts are close (v1 4.86, v2 4.91, v3 4.88) and v3 is not the top scorer, so it was chosen under the citation-validity guardrail rather than on score. An earlier version of the summary double-counted repeated records; it has been corrected (see [evaluation notes](docs/evaluation-notes.md#results)).
 
-### Included
+**Does retrieval help? (10 curated questions, 4 conditions, blinded pairwise LLM judge)**
 
-- Six public CPUC and SCE sources (tariff, handbook, testing instruction, web guidance, overview, historical SIWG Phase 2)
-- Processed corpus: extracted text, normalised evidence blocks, searchable chunks, and Nomic embeddings
-- PostgreSQL with pgvector for chunk records and embeddings
-- Vector retrieval plus local cross-encoder reranking
-- Structured answer generation with deterministic citation validation
-- Streamlit Ask, Evidence, Review, and Monitoring interfaces
-- User feedback capture and manual-review workflow
-- Automated Docker Compose ingestion and runtime
-- Public Tier 2 example questions in the Ask tab
+Retrieval-backed answers were preferred to a no-evidence baseline in 8 of 10 comparisons. Full v3 against zero-shot RAG was mixed (5 wins for zero-shot, 3 for v3, 2 ties), so the evidence does not show that the v3 prompt beats a simpler RAG prompt. The judge and the generator are the same model family.
 
-### Out of scope
+**Human review:** the Review workflow exists, but the repository contains only 2 manual scores and 3 feedback events (they look like development test entries), so there are no aggregate human-review results.
 
-- Legal, regulatory, engineering, or compliance advice
-- Multi-utility or multi-market coverage (v1 is SCE / Rule 21 only)
-- Live tariff or handbook version monitoring beyond content-hash tracking
-- Production hardening (HTTPS, custom domain, managed secrets, backups, HA)
-- Public exposure of raw source PDFs/HTML (only processed derivatives are committed)
+## Getting started
 
----
+### Prerequisites
 
-## Local Reproduction & Developer Rebuild
+- Docker and Docker Compose
+- A Google AI (Gemini) API key
+- For local development: Python 3.13 and [`uv`](https://github.com/astral-sh/uv)
+- Disk space and network access for the first run. PyTorch and two Hugging Face models (Nomic embedder, `bge-reranker-base`) are downloaded when the app first loads them. The Compose setup has no model-cache volume, so a recreated container downloads them again.
 
-For full environment setup, database initialization, containerized execution, LLM configuration, and targeted rebuilds, please refer to the **[Runbook](docs/runbook.md)**.
+### Option A: Docker Compose (app and database)
 
----
+```bash
+cd der-regcheck
+cp .env.example .env            # then set GOOGLE_API_KEY in .env
 
-## Data Flow
+docker compose up -d --build    # or: make docker-build && make docker-up
+make db-init-docker             # create schema (one time)
+make load-chunks-docker         # load committed chunks and embeddings (one time)
+```
 
-The project uses public CPUC and SCE documents. For extraction rules, schema details, and the full pipeline flow, please refer to the **[Dataset Notes](docs/dataset-notes.md)**.
+Open <http://localhost:8501>. The first question is slow because the models load.
 
----
+The database schema and data are not created automatically at startup, so the two `make` steps above are required on a fresh volume. Verify the load with:
 
-## Retrieval Evaluation Summary
+```bash
+docker compose exec db psql -U postgres -d der-regcheck -c "SELECT count(*) FROM chunks;"   # expect 1049
+```
 
-The selected v1 configuration utilizes vector retrieval plus local cross-encoder reranking. This approach outperformed lexical, plain vector, and hybrid alternatives on the current benchmark and is therefore the default downstream retrieval path. Query expansion improved metrics slightly but introduced unacceptable latency for interactive use and is retained as an evaluated experimental capability. For the complete benchmark methodology, detailed metric tables, and latency trade-offs, see the **[Evaluation Notes](docs/evaluation-notes.md)**.
+Stop with `make docker-down`. `make docker-clean` also deletes the database volume, including cached answers, feedback and manual scores.
 
-The current retrieval and answer-generation results were produced using a 100-query synthetic benchmark and a 24-question prompt-evaluation set. The benchmark is not frozen; reviewers can regenerate queries or extend the set following the workflow in [`docs/evaluation-notes.md`](docs/evaluation-notes.md).
+### Option B: local Python, database in Docker
 
----
+```bash
+uv sync
+cp .env.example .env            # set GOOGLE_API_KEY; DATABASE_URL already points at localhost
+docker compose up -d db
+make db-init
+make load-chunks                                  # same as: python -m src.scripts.load_chunks_to_db with the default directories
+make ui                                            # Streamlit on http://localhost:8501
+```
 
-## Current implementation
+### Try it without the UI
 
-### Completed
+```bash
+make demo-retrieval     # retrieval and reranking only (database and local models, no Gemini call)
+make demo-rag           # full answer with citations
+```
 
-- Download and provenance tracking for six public CPUC and SCE sources.
-- Page-preserving PDF text extraction and main-content HTML extraction.
-- Deterministic evidence normalisation with source-specific rules and tariff-specific parser.
-- Structural chunking with citation metadata, neighbour links, and oversized-block flagging.
-- Embedding generation using Nomic `nomic-embed-text-v1.5` (768-dim vectors).
-- PostgreSQL + pgvector database initialisation.
-- Chunk and embedding loading scripts and audit records.
-- Lexical, vector, hybrid, and reranked retrieval evaluation (7,500 retrieval records).
-- Query-rewrite evaluation (original, expanded, HyDE, HyDE-expanded) with 8,000 records.
-- Deterministic citation validation for every generated answer.
-- LLM-as-judge evaluation of three prompt configurations on 24 questions.
-- Prompt-selection decision: `v3_few_shot_grounded_rag` selected under 100% citation-validity guardrail.
-- RAG-impact evaluation: four-condition study (naive model-only, no-evidence v3, zero-shot RAG, full v3 RAG) on 10 Tier 2 questions with blinded pairwise judging.
-- Streamlit analyst-facing UI and monitoring dashboard with seven charts.
-- PostgreSQL-backed runtime telemetry and optional user-feedback persistence using `query_cache`, `answer_feedback`, and `manual_scores`.
-- Immediate query-event logging after successful answer generation, independent of optional feedback submission.
-- Application Dockerfile and Compose configuration for PostgreSQL and Streamlit.
-- Committed evaluation artefacts for marker inspection.
+Both accept `--question` and `--top-k`. Example question: *What does SCE Rule 21 require for smart inverter reactive power?*
 
-### Planned
+The full set of commands (rebuilding each pipeline stage, re-running evaluations, troubleshooting) is in [`docs/runbook.md`](docs/runbook.md).
 
-- Optional future work (beyond v1 assessment scope):
-  - Expand evaluation with more diverse or human-authored questions while preserving a held-out test set.
-  - Collect sufficient Tier 2 manual reviews to produce stable aggregate human-review results.
-  - Investigate source-aware filtering and tier-based retrieval constraints.
-  - Production hardening beyond the current temporary EC2 demonstration deployment.
+## Configuration
 
----
+Settings come from environment variables (`.env`, loaded with `python-dotenv`) and four YAML files.
 
-## User interface
+| Variable | Used by | Notes |
+|---|---|---|
+| `DATABASE_URL` | all database code | Required. `localhost` for local runs. Compose overrides it with the `db` host for the app container. |
+| `GOOGLE_API_KEY` | LLM client | Required for answer generation, query rewriting, synthetic queries and judging. |
+| `MODEL_ID` | LLM client | Defaults to `gemini-3.5-flash-lite`. |
+| `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_PORT` | `compose.yaml` | Defaults `der-regcheck`, `postgres`, `postgres`, `5432`. Defaults are for local use only. |
+| `STREAMLIT_PORT` | `compose.yaml` | Host port mapping only. The container always listens on 8501. |
 
-The project includes a Streamlit-based analyst-facing UI and monitoring dashboard.
+| File | Controls |
+|---|---|
+| `config/normalisation.yaml` | Per-source page skips, boilerplate patterns, heading patterns |
+| `config/chunking.yaml` | Token limits, table policy, source authority and currency tiers |
+| `config/embedding.yaml` | Embedding model, pinned revision, prefixes, output directory |
+| `config/retrieval.yaml` | Reranker candidate limit and top-k, hybrid alpha, weighting schemes for evaluation |
 
-### Tabs
+## Testing
 
-- **About**: Overview, data sources, and responsible-use boundary.
-- **Ask**: DER research question input, retrieval with reranking, structured answer generation, evidence inspection, and feedback capture.
-- **Evidence**: Expandable evidence cards with source class, heading path, and page/section locators.
-- **Review**: Tier 2 realistic RAG-quality manual-review workflow with 1–5 scoring on five dimensions.
-- **Monitoring**: PostgreSQL-backed runtime telemetry dashboard with seven operational views.
+```bash
+make test           # unittest over tests/ (see Makefile)
+uv run pytest       # alternative; pytest is a dev dependency
+```
 
----
+The 11 test modules cover normalisation (including four real tariff page fixtures), structural chunking, chunk and normalisation quality checks, the answer generator and citation validator, evaluator and summariser logic, the demo script, and the database schema.
 
-## Repository structure
+State as last checked (documentation review, 2026-11-18, Python 3.11 with CPU PyTorch, no database, no Hugging Face access): 36 passed, 7 skipped, 1 error. The 7 skipped tests are database integration tests that need `DATABASE_URL` and a loaded database. The error is `tests/test_embed_chunks.py`, which downloads the Nomic model. Those 8 tests were not run, and the project targets Python 3.13, which was not available for that check.
 
-_Representative structure (simplified and alphabetically ordered):_
+There are no tests for the Streamlit app, the query cache, or the LLM client, and no CI configuration.
+
+## Repository layout
 
 ```text
 der-regcheck/
-├── compose.yaml                  # Docker Compose runtime (PostgreSQL, Streamlit)
-├── config/                       # Normalisation and chunking configuration
-├── data/                         # Processed corpus and evaluation inputs/outputs
-│   ├── corpus/                   # Raw source downloads (local, not committed)
-│   ├── evaluation/               # Queries, results, summaries, LLM evaluation artefacts
-│   ├── processed/                # Extracted, normalised, chunked, embedded artefacts (committed)
-│   └── corpus_metadata.json      # Source provenance and eligibility metadata
-├── docs/                         # Documentation and assessment artefacts
-│   ├── decisions.md              # Architecture and evaluation decisions
-│   ├── dataset-notes.md          # Corpus scope, provenance, schema, and processing rules
-│   ├── evaluation-notes.md       # Benchmark design, metrics, retrieval results, and answer evaluation
-│   ├── project-log.md            # Chronological progress, discoveries, and immediate next steps
-│   ├── runbook.md                # Local reproduction, commands, and troubleshooting
-│   └── self-assessment.md        # Criterion-by-criterion self-assessment
-├── pyproject.toml                # Python project metadata and dependencies
-├── README.md                     # Project overview and assessment evidence map
-├── src/                          # Python source code
-│   ├── database/                 # PostgreSQL + pgvector initialisation
-│   ├── evaluation/               # Retrieval benchmarks, LLM-as-judge, and manual review
-│   ├── generation/               # Answer-generation prompts, citation validation, and orchestration
-│   ├── ingestion/                # Source download and extraction scripts
-│   ├── observability/            # Query cache, feedback, and manual-score persistence
-│   ├── processing/               # Normalisation, chunking, embedding, and quality checks
-│   ├── retrieval/                # Embedding, lexical, vector, hybrid, reranking, and query expansion
-│   └── ui/                       # Streamlit application
-├── tests/                        # Regression tests for pipeline and evaluation components
-├── uv.lock                       # Locked Python dependency versions
-└── .env.example                  # Example environment configuration
+├── src/
+│   ├── ingestion/        download_california_rule21_docs.py, extract_raw_content.py
+│   ├── processing/       normalise_documents.py, chunk_documents.py, embed_chunks.py, quality checks
+│   ├── database/         db_init.py (schema), db_chunks.py (load), db_connection.py (pool)
+│   ├── retrieval/        retrieve.py (SQL), rerank.py, runtime_retriever.py, production_pipeline.py, query_expansion.py
+│   ├── generation/       answer_generator.py, prompts.py, schemas.py, citation_validator.py
+│   ├── evaluation/       query generation, retrieval grid, prompt and RAG-impact evaluation, summarisers
+│   ├── observability/    query_cache.py (cache, feedback, manual scores), timing.py
+│   ├── ui/               streamlit_app.py (single file, about 1,600 lines)
+│   ├── scripts/          demo_rag.py, demo_retrieval.py, load_chunks_to_db.py
+│   └── llm_client.py     Gemini client with rate limiting and retry
+├── config/               YAML configuration for each pipeline stage
+├── data/
+│   ├── processed/        extracted, normalised, chunks, embeddings (committed)
+│   ├── evaluation/       benchmarks, results, summaries, reports (committed)
+│   └── feedback/         runtime feedback log (written by the app; empty in the repo)
+├── tests/                unittest modules and fixtures
+├── docs/                 runbook, decisions, evaluation notes, dataset notes, project log, known issues
+├── Dockerfile, compose.yaml, Makefile, pyproject.toml, uv.lock, .env.example
 ```
 
----
+`data/corpus/` (raw downloads) is git-ignored and absent from a fresh clone. `src/database/db_monitoring.py`, `src/ingestion/analyse_structure.py` and the `src/monitoring/` package are empty placeholders.
+
+## Design decisions
+
+The 21 decision records in [`docs/decisions.md`](docs/decisions.md) give alternatives and trade-offs. The ones that shape the system most:
+
+- **Keep citation text separate from embedding text.** Chunks store unchanged `evidence_text` for citation and a heading-prefixed `embedding_text` for search (Decisions 07, 08).
+- **Structural chunking, not fixed windows.** Chunks follow the document's blocks, keep tables with their context, and flag oversized blocks rather than splitting them mid-block (Decision 08).
+- **Source authority is metadata.** The tariff is `primary_governing`, the handbook `primary_technical`, and the SIWG report `historical_draft`/`historical_only`. This reaches the prompt as a label on each evidence item. It is not yet used to filter retrieval (Decision 05).
+- **Re-run the retrieval evaluation on the runtime path.** The first two evaluations used an in-memory evaluator. Because those results did not describe what the app does, the grid was repeated against PostgreSQL and the earlier numbers were kept as history only (Decision 12).
+- **Evaluation winner is not always the runtime choice.** Expanded-query retrieval won by a small margin but cost about 36 seconds, so it is off (Decision 13).
+- **Select the prompt with a hard guardrail.** 100% valid citations first, judge score second (Decision 14).
+- **Fail closed.** Unknown citation labels or empty retrieval yield an insufficient-evidence response instead of a guess.
+- **Cache by configuration.** A cached answer is reused only for the same question, prompt version and retrieval configuration (Decision 16).
+- **Commit processed data, not raw sources.** This makes the app runnable from a clean clone and avoids redistributing source PDFs (Decision 20).
+
+## What this project demonstrates
+
+Everything below can be inspected in the repository. The work is a single-author project.
+
+- **Data engineering for messy documents.** Page-preserving PDF extraction, a source-specific normaliser with a dedicated tariff hierarchy parser (regression-tested on real pages), manual-replacement provenance for a source that blocks automated download, and quality reports at each stage.
+- **Retrieval engineering.** A pgvector and full-text schema, vector, lexical and reciprocal-rank-fusion hybrid search, cross-encoder reranking, and query rewriting (expansion and HyDE).
+- **LLM application design.** Schema-constrained output, an evidence pack with stable labels, deterministic citation validation, abstention statuses, and prompt versions compared under a guardrail.
+- **Evaluation practice.** A two-tier design, a 7,500-record retrieval grid and an 8,000-record rewrite grid with checkpoint and resume, an LLM judge with a blinded pairwise comparison, and written limitations. The earlier file-based retrieval results were re-run on the PostgreSQL runtime path and the old numbers were kept only as history.
+- **Application and operations.** A Streamlit interface over the pipeline, PostgreSQL-backed cache, feedback and review tables, a monitoring dashboard, and a multi-stage Docker build with Compose.
+- **Documentation.** A decision log, a dated project log, and a runbook.
+
+## Limitations and known issues
+
+Summary. The full list, with suggested fixes, is in [`docs/known-issues-and-roadmap.md`](docs/known-issues-and-roadmap.md).
+
+- **Narrow corpus.** Six public documents, California Rule 21 and SCE only. Sources can change at their URLs, and content hashes only detect that after the fact.
+- **Weak evaluation labels.** Retrieval relevance is derived from chunk metadata, queries are LLM-generated from the chunks, and there is one gold chunk per query. Answer quality is judged by an LLM from the same model family, on small question sets. None of this establishes regulatory correctness.
+- **Citation check is structural.** It confirms labels exist, not that the cited passage entails the claim.
+- **No source-aware retrieval filtering.** Authority and currency tiers are shown to the model but do not constrain retrieval.
+- **Extraction artefacts.** Some PDF extraction noise remains in citation text.
+- **Not production-ready.** No authentication, HTTPS, secrets management, backups, rate limiting for users, CI, or tests for the UI. Default database credentials are for local use only.
+- **Documentation and tooling drift found during the last review.** Some older runbook commands did not match the scripts (corrected; see the known-issues file).
+- **Licence covers the code only.** The code is MIT-licensed (see [`LICENSE`](LICENSE)). The processed source-document derivatives in `data/processed/` remain the property of their publishers.
 
 ## Documentation
 
-| Document | Purpose |
+| Document | Use it for |
 |---|---|
-| [`docs/runbook.md`](docs/runbook.md) | Setup, pipeline commands, verification, rebuilds, benchmarks, answer-generation, UI, and troubleshooting |
-| [`docs/dataset-notes.md`](docs/dataset-notes.md) | Corpus scope, provenance, schema, processing rules, artefact policy, and limitations |
-| [`docs/decisions.md`](docs/decisions.md) | Stable architecture, corpus, retrieval, and evaluation decisions |
-| [`docs/evaluation-notes.md`](docs/evaluation-notes.md) | Benchmark design, metrics, retrieval results, answer evaluation, and limitations |
-| [`docs/project-log.md`](docs/project-log.md) | Chronological progress, discoveries, and immediate next steps |
-| [`docs/self-assessment.md`](docs/self-assessment.md) | Criterion-by-criterion self-assessment and case for bonus/discretionary marks |
+| [`docs/runbook.md`](docs/runbook.md) | Setup, rebuilding each pipeline stage, re-running evaluations, troubleshooting |
+| [`docs/known-issues-and-roadmap.md`](docs/known-issues-and-roadmap.md) | Current state, verified findings, and what to do next |
+| [`docs/decisions.md`](docs/decisions.md) | Design decisions with alternatives and trade-offs |
+| [`docs/evaluation-notes.md`](docs/evaluation-notes.md) | Evaluation design, full results, interpretation and limitations |
+| [`docs/dataset-notes.md`](docs/dataset-notes.md) | Sources, provenance, schemas and processing rules |
+| [`docs/project-log.md`](docs/project-log.md) | Chronological build journal (2026-08-21 to 2026-09-06) |
 
----
+## Data, copyright and responsible use
 
-## Limitations
+The repository commits processed, machine-readable derivatives of public CPUC and SCE documents (extracted text, normalised blocks, chunks, embeddings), not the original PDF and HTML files. The originals remain the property of their publishers. Verify copyright and fair use before redistributing the processed data. The MIT licence in [`LICENSE`](LICENSE) applies to the project's own code and documentation, not to that derived source material.
 
-- The v1 corpus covers California Rule 21 and SCE only; it is not yet multi-utility or multi-market.
-- Sources can change at their original URLs; corpus hashes and review procedures mitigate but do not eliminate currency risk.
-- Some PDF extraction artifacts remain in citation-grade evidence text.
-- Relevance labels are metadata-derived rather than manually judged semantic relevance.
-- The benchmark queries are synthetic and may not represent real user-query distributions.
-- Query expansion is implemented but not part of the default interactive path due to latency.
-- Tier 2 aggregate human-review results are not yet stable until sufficient manual scores have been collected.
-- The local deployment and EC2 instance are research prototypes without production hardening (HTTPS, custom domain, managed secrets, backups, or high availability). The EC2 deployment is temporary and will be decommissioned after the review period.
-
----
-
-## Responsible use
-
-DER RegCheck is a research-support prototype. It does not provide legal, regulatory, engineering, or compliance advice. Users should verify important conclusions against the current authoritative source, check applicability conditions, distinguish historical material from current requirements, and consult qualified professionals where appropriate.
+DER RegCheck is a research aid. Check important conclusions against the current authoritative source, confirm the applicability conditions, treat historical material as historical, and consult qualified professionals for project decisions.

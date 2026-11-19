@@ -26,7 +26,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 
 
 @dataclass
@@ -57,6 +57,14 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
     ]
 
 
+def relative_to_root(path: Path) -> str:
+    """Return a repository-relative path string where possible."""
+    try:
+        return str(path.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def now_iso() -> str:
     """Return current UTC timestamp in ISO format."""
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -78,14 +86,39 @@ def std_dev(values: list[float]) -> float:
     return variance ** 0.5
 
 
+def deduplicate_answers(answers: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Keep the first answer record for each (question_id, prompt_version).
+
+    Generation runs can be resumed or re-appended, leaving repeated records for
+    the same question and prompt. Counting each question once per prompt keeps
+    rates and means from being weighted by how often a record was repeated.
+    """
+    seen: set[tuple[str, str]] = set()
+    unique: list[dict[str, Any]] = []
+    for answer in answers:
+        key = (answer["question_id"], answer["prompt_version"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(answer)
+    return unique
+
+
 def compute_summary(
     answers: list[dict[str, Any]],
     judge_scores: list[dict[str, Any]],
     prompt_version: str,
 ) -> PromptSummary:
-    """Compute aggregated metrics for one prompt version."""
-    # Filter answers for this prompt version
-    prompt_answers = [a for a in answers if a["prompt_version"] == prompt_version]
+    """Compute aggregated metrics for one prompt version.
+
+    Answers are deduplicated by question. Judge scores are averaged per question
+    first (a question may have been judged more than once), so every question
+    contributes equally. ``total_answers`` is the number of unique questions.
+    ``best_composite`` and ``worst_composite`` are per-question mean composites.
+    """
+    prompt_answers = [
+        a for a in deduplicate_answers(answers)
+        if a["prompt_version"] == prompt_version
+    ]
     total_answers = len(prompt_answers)
 
     # Citation validity
@@ -95,14 +128,19 @@ def compute_summary(
     )
     citation_valid_rate = citation_valid_count / total_answers if total_answers > 0 else 0.0
 
-    # Join with judge scores
-    answer_run_ids = {a["run_id"] for a in prompt_answers}
-    prompt_judges = [
-        j for j in judge_scores
-        if j["prompt_version"] == prompt_version and j["answer_record_run_id"] in answer_run_ids
-    ]
+    # Join with judge scores, restricted to the unique questions above.
+    question_ids = {a["question_id"] for a in prompt_answers}
+    all_run_ids = {a["run_id"] for a in answers if a["prompt_version"] == prompt_version}
+    judges_by_question: dict[str, list[dict[str, Any]]] = {}
+    for j in judge_scores:
+        if (
+            j["prompt_version"] == prompt_version
+            and j["question_id"] in question_ids
+            and j["answer_record_run_id"] in all_run_ids
+        ):
+            judges_by_question.setdefault(j["question_id"], []).append(j)
 
-    if not prompt_judges:
+    if not judges_by_question:
         return PromptSummary(
             prompt_version=prompt_version,
             total_answers=total_answers,
@@ -119,24 +157,24 @@ def compute_summary(
             worst_composite=0.0,
         )
 
-    # Extract scores
-    groundedness = [j["groundedness_score"] for j in prompt_judges]
-    relevance = [j["relevance_score"] for j in prompt_judges]
-    completeness = [j["completeness_score"] for j in prompt_judges]
-    citation_quality = [j["citation_quality_score"] for j in prompt_judges]
-    uncertainty = [j["appropriate_uncertainty_score"] for j in prompt_judges]
-    composite = [j["composite_score"] for j in prompt_judges]
+    def per_question(field: str) -> list[float]:
+        return [
+            mean([j[field] for j in rows])
+            for rows in judges_by_question.values()
+        ]
+
+    composite = per_question("composite_score")
 
     return PromptSummary(
         prompt_version=prompt_version,
         total_answers=total_answers,
         citation_valid_count=citation_valid_count,
         citation_valid_rate=citation_valid_rate,
-        mean_groundedness=mean(groundedness),
-        mean_relevance=mean(relevance),
-        mean_completeness=mean(completeness),
-        mean_citation_quality=mean(citation_quality),
-        mean_uncertainty=mean(uncertainty),
+        mean_groundedness=mean(per_question("groundedness_score")),
+        mean_relevance=mean(per_question("relevance_score")),
+        mean_completeness=mean(per_question("completeness_score")),
+        mean_citation_quality=mean(per_question("citation_quality_score")),
+        mean_uncertainty=mean(per_question("appropriate_uncertainty_score")),
         mean_composite=mean(composite),
         std_composite=std_dev(composite),
         best_composite=max(composite),
@@ -191,10 +229,10 @@ def generate_markdown_report(
     lines.append("")
     lines.append("- **Questions:** 24 fixed evaluation questions across 6 categories")
     lines.append("- **Prompt variants:** v1_direct_rag, v2_structured_grounded_rag, v3_few_shot_grounded_rag")
-    lines.append("- **Total answers:** 72 (24 questions × 3 prompt versions)")
+    lines.append("- **Total answers:** 72 unique (24 questions × 3 prompt versions); repeated records are counted once and judge scores are averaged per question")
     lines.append("- **Judge model:** gemini-3.5-flash-lite")
     lines.append("- **Scoring dimensions:** Groundedness, Relevance, Completeness, Citation Quality, Appropriate Uncertainty")
-    lines.append("- **Composite formula:** 0.30×�roundedness + 0.20×µelevance + 0.20×½ompleteness + 0.20×¦itation Quality + 0.10×½ncertainty")
+    lines.append("- **Composite formula:** 0.30×Groundedness + 0.20×Relevance + 0.20×Completeness + 0.20×Citation Quality + 0.10×Uncertainty")
     lines.append("")
 
     lines.append("## Selection Guardrail")
@@ -333,10 +371,12 @@ def main() -> None:
     summary_json = {
         "schema_version": SCHEMA_VERSION,
         "generated_at_utc": now_iso(),
-        "answers_file": str(answers_path),
-        "judge_scores_file": str(judge_scores_path),
-        "total_answers": len(answers),
+        "answers_file": relative_to_root(answers_path),
+        "judge_scores_file": relative_to_root(judge_scores_path),
+        "total_answer_records": len(answers),
+        "total_answers": len(deduplicate_answers(answers)),
         "total_judge_scores": len(judge_scores),
+        "deduplicated": True,
         "prompt_versions_evaluated": prompt_versions,
         "min_citation_validity_threshold": args.min_citation_validity,
         "summaries": [

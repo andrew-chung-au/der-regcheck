@@ -2,11 +2,12 @@
 
 This script demonstrates the complete RAG flow:
 1. User asks a research question.
-2. Query is expanded with technical terms.
-3. Evidence is retrieved using the selected v3 configuration.
-4. A structured, citation-grounded answer is generated.
-5. Citations are validated deterministically.
-6. Answer, evidence, and trace are displayed.
+2. Evidence is retrieved for the original question using the selected v3
+   configuration (vector retrieval and cross-encoder reranking; query
+   expansion is disabled).
+3. A structured, citation-grounded answer is generated.
+4. Citations are validated deterministically.
+5. Answer, evidence, and trace are displayed.
 
 Usage:
     uv run python -m src.scripts.demo_rag \

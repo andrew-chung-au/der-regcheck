@@ -38,7 +38,9 @@ def load_embeddings_from_jsonl(embeddings_dir: Path) -> dict[str, list[float]]:
 
 
 def insert_chunks(chunks: list[dict[str, Any]]) -> None:
-    """Insert multiple chunks into database."""
+    """Insert chunks, updating rows that already exist (upsert by chunk_id).
+
+    Chunks removed from the source files are not deleted; do a clean reload for that."""
     with get_connection() as conn:
         with conn.cursor() as cur:
             values = [
@@ -68,7 +70,18 @@ def insert_chunks(chunks: list[dict[str, Any]]) -> None:
                     citation, source_policy, block_ids, block_types,
                     estimated_tokens
                 ) VALUES %s
-                ON CONFLICT (chunk_id) DO NOTHING
+                ON CONFLICT (chunk_id) DO UPDATE SET
+                    document_id = EXCLUDED.document_id,
+                    source_id = EXCLUDED.source_id,
+                    chunk_ordinal = EXCLUDED.chunk_ordinal,
+                    heading_path = EXCLUDED.heading_path,
+                    evidence_text = EXCLUDED.evidence_text,
+                    embedding_text = EXCLUDED.embedding_text,
+                    citation = EXCLUDED.citation,
+                    source_policy = EXCLUDED.source_policy,
+                    block_ids = EXCLUDED.block_ids,
+                    block_types = EXCLUDED.block_types,
+                    estimated_tokens = EXCLUDED.estimated_tokens
                 """,
                 values,
             )
@@ -78,7 +91,7 @@ def insert_chunks(chunks: list[dict[str, Any]]) -> None:
 
 
 def insert_embeddings(embeddings: dict[str, list[float]], model_id: str = "nomic-ai/nomic-embed-text-v1.5") -> None:
-    """Insert multiple embeddings into database."""
+    """Insert embeddings, updating rows that already exist (upsert by chunk_id)."""
     with get_connection() as conn:
         with conn.cursor() as cur:
             values = [
@@ -91,7 +104,10 @@ def insert_embeddings(embeddings: dict[str, list[float]], model_id: str = "nomic
                 """
                 INSERT INTO chunk_embeddings (chunk_id, embedding, model_id)
                 VALUES %s
-                ON CONFLICT (chunk_id) DO NOTHING
+                ON CONFLICT (chunk_id) DO UPDATE SET
+                    embedding = EXCLUDED.embedding,
+                    model_id = EXCLUDED.model_id,
+                    embedded_at = NOW()
                 """,
                 values,
             )

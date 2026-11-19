@@ -1,8 +1,10 @@
 [project]
 name = "der"
 version = "0.1.0"
-description = "Add your description here"
+description = "Evidence-first RAG assistant for California Rule 21 / SCE DER interconnection research"
 readme = "README.md"
+license = "MIT"
+authors = [{ name = "Andrew Chung" }]
 requires-python = ">=3.13"
 dependencies = [
     "beautifulsoup4>=4.15.0",

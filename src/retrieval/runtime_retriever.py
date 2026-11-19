@@ -3,12 +3,15 @@
 This module provides the runtime retrieval interface, defaulting to the
 selected v3 configuration:
 
-    Expanded query
+    Original user query
     → pgvector vector retrieval
     → BAAI/bge-reranker-base reranking
     → top 10 evidence chunks
 
-Hybrid retrieval remains available as an explicitly named experimental method.
+Query expansion scored marginally higher in evaluation but is disabled at
+runtime because of latency (see docs/decisions.md, Decision 13). Callers may
+still pass an expanded query. Hybrid retrieval remains available as an
+explicitly named experimental method.
 """
 from __future__ import annotations
 
@@ -127,7 +130,8 @@ class RuntimeRetriever:
         - Top-k final results (default: 10)
 
         Args:
-            question: The query string (typically an expanded query).
+            question: The query string (the application passes the original
+                user question; query expansion is disabled).
             final_k: Number of final reranked chunks to return.
 
         Returns:

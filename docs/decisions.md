@@ -283,13 +283,13 @@ Assign each source an authority level and retrieval tier:
 - Vector retrieval outperforms hybrid and BM25 on primary ranking metrics.
 - Weighting scheme has a modest impact, with equal weighting performing best for vector retrieval.
 - Hybrid has the best MRR, but vector was chosen for overall nDCG@10.
-- File-based evaluation is reproducible (no DB needed for reviewers).
+- File-based evaluation is reproducible (no DB needed to re-run it).
 - *For full evaluation metrics and tables, please see [`docs/evaluation-notes.md`](evaluation-notes.md).*
 
 **Alternatives considered:**
 - Manual query curation (more accurate but time-consuming).
 - Using only BM25 or only vector (would miss comparative insights).
-- Storing evaluation results in database (less reproducible for peer review).
+- Storing evaluation results in database (less reproducible without a running database).
 
 **Trade-offs:**
 - Synthetic queries are scalable but may not capture all real-world query patterns.
@@ -312,7 +312,7 @@ Assign each source an authority level and retrieval tier:
 - pgvector enables efficient similarity search at scale.
 - Database is better for production than loading all embeddings into memory.
 - Metadata filtering (by source_id) is essential for targeted retrieval.
-- Evaluation must remain file-based for peer review (no DB setup required).
+- At the time, evaluation was kept file-based so it needed no DB setup. This was later superseded: Decision 12 moved the authoritative retrieval evaluation onto the PostgreSQL path.
 - Production and evaluation can coexist with different storage backends.
 
 **Alternatives considered:**
@@ -339,7 +339,7 @@ Assign each source an authority level and retrieval tier:
   - Hybrid + reranking (cross-encoder on top of hybrid candidates)
   - Vector + reranking (cross-encoder on top of vector candidates)
 - Test five metadata weighting schemes: equal, source-heavy, section-heavy, page-heavy, authority-heavy.
-- Sweep hybrid α ∈ {0.3, 0.5, 0.7} and plan RRF k ∈ {1, 20, 60, 100} (course-aligned).
+- Sweep hybrid α ∈ {0.3, 0.5, 0.7} and plan RRF k ∈ {1, 20, 60, 100}. The retrieval code uses a fixed offset of 1; no k sweep appears in the committed PostgreSQL results.
 - Compute metrics: nDCG@10, MRR, Recall@10, and a composite score.
 - Save results to JSONL (8,100 records for retrieval, plus rewrite variants), reproducible without database.
 - Use hybrid retrieval with reranking and equal weighting (α = 0.5, RRF k = 1) for production.
@@ -348,7 +348,7 @@ Assign each source an authority level and retrieval tier:
 - Reranked retrievers clearly dominate on all metrics compared to non-reranked baseline methods.
 - Among reranked configurations, weighting scheme has tiny effects; equal weighting is chosen for simplicity and a marginal edge on the composite score.
 - Hybrid α has modest impact relative to the reranking effect; 0.5 is a sensible default.
-- RRF k sweep is planned to align with course experiments.
+- A wider RRF k sweep was planned but was not run in the PostgreSQL evaluation.
 - *For full evaluation metrics, grids, and historical tables, please see [`docs/evaluation-notes.md`](evaluation-notes.md).*
 
 **Alternatives considered:**
@@ -360,7 +360,7 @@ Assign each source an authority level and retrieval tier:
 **Trade-offs:**
 - Reranking adds latency and a model dependency (BAAI/bge-reranker-base) but yields large quality gains.
 - Equal weighting is simpler to justify and implement, at the cost of ignoring small, uncertain gains from tuned weightings.
-- File-based evaluation is reproducible and peer-review friendly, but requires separate database logic for production.
+- File-based evaluation is reproducible and needs no database, but requires separate database logic for production.
 - Synthetic queries are scalable and systematic, but may not capture all real-world query patterns; manual queries can be added later.
 
 **Supersedes:**
@@ -570,7 +570,7 @@ Original query (no expansion)
 ## 15. Streamlit interface adapter and tabbed reviewer workflow
 
 **Decision:**
-- Use Streamlit as the primary reviewer-facing interface and portfolio demo.
+- Use Streamlit as the primary interface and demo for the project.
 - Implement `src/ui/streamlit_app.py` as an interface adapter over the existing
   production retrieval and answer-generation pipeline.
 - Provide five connected tabs: About, Ask, Evidence, Review, and Monitoring.
@@ -910,7 +910,7 @@ Original query (no expansion)
   - `data/processed/normalised/`
   - `data/processed/chunks/`
   - `data/processed/embeddings/`
-- Treat the ingestion and source-download pipeline as optional for normal Milestone 5 application startup.
+- Treat the ingestion and source-download pipeline as optional for normal containerised application startup.
 - Use the committed processed artifacts as the default input for database initialisation and application startup.
 - Retain the source downloader and ingestion scripts for future corpus refreshes and advanced reproduction.
 - Require corpus metadata validation and, where necessary, manual replacement when a source cannot be downloaded reliably.
@@ -961,7 +961,7 @@ Original query (no expansion)
 - `data/corpus/` remains a local acquisition directory and is ignored by Git.
 - `data/corpus/corpus_metadata.json` remains the source of truth for download
   validation, content hashes, manual review, and extraction eligibility.
-- `data/processed/` is the default reproducibility boundary for Milestone 5.
+- `data/processed/` is the default reproducibility boundary for the containerised setup.
 - The standard startup path is:
   - Start PostgreSQL with Docker Compose.
   - Initialise the database schema.
@@ -981,7 +981,7 @@ Original query (no expansion)
 
 - `README.md` — Data and copyright note and committed-processed-data startup path.
 - `docs/dataset-notes.md` — Data lifecycle, distribution, copyright, and source notes.
-- `docs/runbook.md` — Recommended Milestone 5 startup path and optional ingestion workflow.
+- `docs/runbook.md` — Recommended startup path and optional ingestion workflow.
 - `src/ingestion/download_california_rule21_docs.py` — Source acquisition and validation.
 - `src/ingestion/extract_raw_content.py` — Raw extraction.
 - `data/corpus/corpus_metadata.json` — Source hashes and eligibility metadata.
@@ -994,7 +994,7 @@ Original query (no expansion)
 
 - No previous decision is fully superseded.
 - This decision clarifies and operationalises the distribution implications of
-  [Decision 03](#03-ingestion-and-download-strategy) for Milestone 5.
+  [Decision 03](#03-ingestion-and-download-strategy) for the containerised setup.
 
 **Future work:**
 

@@ -688,7 +688,7 @@ This is an engineering distinction:
 
 These questions evaluate research-plan structure, source hierarchy, category coverage, uncertainty communication, and usefulness for preliminary market-entry research.
 
-**Status:** To be regenerated or manually reviewed using a stronger model such as Gemini 2.5 Pro or equivalent for realistic RAG evaluation.
+**Status:** The questions below are the original draft examples, kept for reference. The curated set actually used by the Review tab and the RAG-impact evaluation is `data/evaluation/tier2_questions.yaml` (10 questions). The draft set has not been regenerated or re-reviewed.
 
 **Original example questions (for reference):**
 
@@ -950,7 +950,9 @@ Regardless of numerical score, mark an answer as failed if it:
 - Fails to identify missing project facts where those facts determine applicability.
 - Claims that a source is current without checking or disclosing currency limitations.
 
-### Prompt variants to test
+### Prompt variants
+
+The three prompt variants that were implemented and compared are described in [Completed answer-generation evaluation](#completed-answer-generation-evaluation-2026-09-05).
 
 ---
 
@@ -1012,19 +1014,23 @@ Among eligible configurations, the highest mean composite score was selected. Me
 
 ### Results
 
-| Prompt version | Unique questions | Persisted records | Citation-valid rate | Mean composite |
-|---|---:|---:|---:|---:|
-| `v1_direct_rag` | 24 | 74 | 94.6% | 4.7509 |
-| `v2_structured_grounded_rag` | 24 | 74 | 97.3% | **4.8670** |
-| `v3_few_shot_grounded_rag` | 24 | 74 | **100.0%** | 4.8110 |
+Each unique question is counted once per prompt, and judge scores are averaged per question before aggregating. This is how `summarise_llm_evaluation.py` computes the committed summary (schema 1.1, regenerated 2026-11-19).
 
-**Record-count note:** The evaluation design targeted 24 unique questions per prompt version, or 72 intended unique answer evaluations in total. The aggregate artifacts contain 74 answer records per prompt version because of repeated or checkpointed records. The 74 records should not be interpreted as 74 distinct questions; unique-question coverage is 24 questions per prompt version when deduplicated by question ID and prompt version.
+| Prompt version | Unique questions | Citation-valid | Citation-valid rate | Mean composite |
+|---|---:|---:|---:|---:|
+| `v1_direct_rag` | 24 | 21 | 87.5% | 4.8640 |
+| `v2_structured_grounded_rag` | 24 | 22 | 91.7% | **4.9062** |
+| `v3_few_shot_grounded_rag` | 24 | 24 | **100.0%** | 4.8812 |
+
+The three composites are within 0.05 of each other, and the differences were not tested for significance. With 24 questions and an LLM judge from the same model family, they should not be read as a ranking.
+
+**Correction note.** The first version of this section (2026-09-05) reported 94.6% / 97.3% / 100% valid and composites of 4.7509 / 4.8670 / 4.8110. Those figures came from a summariser that averaged over every record. `llm_answers.jsonl` contains 222 lines but only 72 distinct (question, prompt) pairs, because byte-identical copies were appended (probably by a resumed run), and `llm_judge_scores.jsonl` has 2,752 rows (up to 86 per pair) because the judge ran over the copies. Questions that were repeated more often were therefore weighted more. The raw files are unchanged. The earlier summary and report are in git history (commit `86b1006` and earlier). The selection of v3 is unaffected, because it rests on the 100% citation-validity guardrail.
 
 ### Selection
 
-`v3_few_shot_grounded_rag` is selected as the runtime prompt because it is the only configuration meeting the 100% citation-validity guardrail. Although v2 achieved the highest mean composite score, it did not meet the citation guardrail.
+`v3_few_shot_grounded_rag` is selected as the runtime prompt because it is the only configuration meeting the 100% citation-validity guardrail. v2 had a slightly higher mean composite but did not meet the guardrail (22 of 24 answers valid).
 
-The selected v3 mean composite of `4.8110` is `96.2%` of the maximum possible score of `5.0`.
+The selected v3 mean composite of `4.8812` is `97.6%` of the maximum possible score of `5.0`.
 
 This selection does not establish that v3 is universally the best prompt. It establishes that v3 is the best eligible configuration under the documented guardrail, question set, judge rubric, and recorded evaluation run.
 
@@ -1035,8 +1041,8 @@ This selection does not establish that v3 is universally the best prompt. It est
 - `data/evaluation/llm_evaluation_questions.yaml`: 24 fixed evaluation questions.
 - `data/evaluation/llm_answers.jsonl`: Generated answer records and deterministic validation results.
 - `data/evaluation/llm_judge_scores.jsonl`: Per-answer judge scores and rationales.
-- `data/evaluation/llm_evaluation_summary.json`: Prompt-level aggregates and selected configuration.
-- `data/evaluation/llm_evaluation_report.md`: Human-readable answer-evaluation report.
+- `data/evaluation/llm_evaluation_summary.json`: Prompt-level aggregates and selected configuration (deduplicated).
+- `data/evaluation/llm_evaluation_report.md`: Human-readable answer-evaluation report (deduplicated).
 
 **RAG-impact evaluation (10 questions, 4 conditions):**
 
@@ -1315,7 +1321,8 @@ data/evaluation/
     # 10 realistic open-ended questions for manual Tier 2 review
 
   tier2_manual_scores.jsonl
-    # Secondary portable manual-review event log
+    # Secondary portable manual-review event log. Not committed: created by
+    # the Review tab when the first score is submitted.
 
   llm_evaluation_questions.yaml
     # 24 fixed questions for prompt comparison
@@ -1365,7 +1372,7 @@ Evaluation records should be reproducible without requiring raw corpus downloads
 - ✅ Extend the historical file-based evaluation with reranking, multiple alphas, weightings, and composite scoring (v2). **Completed 2026-08-23**
 - ✅ Run the full production-aligned PostgreSQL retrieval grid: 100 queries × 3 alphas × 5 variants × 5 weightings = 7,500 records. **Completed 2026-09-05**
 - ✅ Run the production-aligned PostgreSQL cached query-rewrite evaluation: 100 queries × 4 rewrite techniques × 4 retrieval variants × 5 weightings = 8,000 records. **Completed 2026-09-05**
-- ✅ Select a production retrieval configuration from the PostgreSQL evaluation. **Completed: expanded query + vector rerank**
+- ✅ Select a retrieval configuration from the PostgreSQL evaluation. **Evaluation-best: expanded query + vector rerank. Runtime: original query + vector rerank, because expansion added about 36 seconds of latency (see Decision 13).**
 - ✅ Add evaluator and summariser regression tests. **Completed**
 - ✅ Create Tier 2 question set with 10 realistic open-ended questions. **Completed 2026-09-05**
 - ✅ Implement answer generation with citation support. **Completed 2026-09-05**
