@@ -1,0 +1,27 @@
+# Version control and editor files
+.git
+.gitignore
+.idea
+.vscode
+**/*.swp
+**/.DS_Store
+
+# Local environments and caches
+.venv
+**/__pycache__
+**/*.py[cod]
+**/*.egg-info
+.pytest_cache
+.mypy_cache
+htmlcov
+
+# Secrets: never bake these into an image layer
+.env
+
+# Large local data that the app does not use
+data/corpus
+data/processed/embeddings_pre_normalization
+
+# Not needed at runtime (the final image copies only the paths listed in the Dockerfile)
+docs
+tests
