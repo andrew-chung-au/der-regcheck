@@ -87,7 +87,7 @@ def insert_chunks(chunks: list[dict[str, Any]]) -> None:
             )
             conn.commit()
 
-    print(f"Inserted {len(chunks)} chunks")
+    print(f"Upserted {len(chunks)} chunks")
 
 
 def insert_embeddings(embeddings: dict[str, list[float]], model_id: str = "nomic-ai/nomic-embed-text-v1.5") -> None:
@@ -113,7 +113,7 @@ def insert_embeddings(embeddings: dict[str, list[float]], model_id: str = "nomic
             )
             conn.commit()
 
-    print(f"Inserted {len(embeddings)} embeddings")
+    print(f"Upserted {len(embeddings)} embeddings")
 
 
 def search_chunks(
