@@ -3,7 +3,7 @@
 This module provides the reusable retrieval primitive for the selected
 v3 configuration:
 
-    Expanded query
+    Original user query (query expansion is disabled at runtime)
     → pgvector vector retrieval
     → BAAI/bge-reranker-base reranking
     → top 10 evidence chunks
@@ -33,7 +33,7 @@ def retrieve_vector_reranked(
     """Retrieve pgvector candidates and rerank with the selected cross-encoder.
 
     Args:
-        query_text: The query string used for reranking (typically expanded).
+        query_text: The query string used for reranking (the original user question in the application).
         query_embedding: 768-dimensional Nomic embedding of the query.
         reranker: Initialized BAAI/bge-reranker-base cross-encoder.
         candidate_limit: Number of vector candidates to retrieve (typically 50).
