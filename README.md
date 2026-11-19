@@ -138,7 +138,7 @@ make load-chunks-docker         # load committed chunks and embeddings (one time
 
 Open <http://localhost:8501>. The first question is slow because the models load.
 
-The database schema and data are not created automatically at startup, so the two `make` steps above are required on a fresh volume. Verify the load with:
+The database schema and data are not created automatically at startup, so the two `make` steps above are required on a fresh volume. (Checked on 2026-11-19: `docker compose up --build` gave two healthy containers, and `make load-chunks-docker` ran cleanly twice on an already populated database. A load into an empty volume and a full question through the UI have not been checked yet; see [known issues](docs/known-issues-and-roadmap.md#verification-status).) Verify the load with:
 
 ```bash
 docker compose exec db psql -U postgres -d der-regcheck -c "SELECT count(*) FROM chunks;"   # expect 1049
@@ -222,7 +222,7 @@ der-regcheck/
 │   └── feedback/         runtime feedback log (written by the app; empty in the repo)
 ├── tests/                unittest modules and fixtures
 ├── docs/                 runbook, decisions, evaluation notes, dataset notes, project log, known issues
-├── Dockerfile, compose.yaml, Makefile, pyproject.toml, uv.lock, .env.example
+├── Dockerfile, .dockerignore, compose.yaml, Makefile, pyproject.toml, uv.lock, .env.example, LICENSE
 ```
 
 `data/corpus/` (raw downloads) is git-ignored and absent from a fresh clone. `src/database/db_monitoring.py`, `src/ingestion/analyse_structure.py` and the `src/monitoring/` package are empty placeholders.
