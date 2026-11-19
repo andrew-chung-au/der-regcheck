@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "generated_at_utc": "2026-09-06T11:22:18.505468Z",
-  "answers_file": "/home/andrew/projects/der-regcheck/data/evaluation/impact_answers.jsonl",
-  "judge_scores_file": "/home/andrew/projects/der-regcheck/data/evaluation/impact_judge_scores.jsonl",
+  "answers_file": "data/evaluation/impact_answers.jsonl",
+  "judge_scores_file": "data/evaluation/impact_judge_scores.jsonl",
   "question_count": 10,
   "answer_record_count": 40,
   "judge_record_count": 50,

@@ -18,6 +18,16 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def relative_to_root(path: Path) -> str:
+    """Return a repository-relative path string where possible."""
+    try:
+        return str(path.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 SCHEMA_VERSION = "1.0"
 CASE_ORDER = ("naive_no_evidence", "v3_no_evidence", "zero_shot_rag", "full_v3_rag")
 CASE_LABELS = {
@@ -237,8 +247,8 @@ def main() -> None:
     payload = {
         "schema_version": SCHEMA_VERSION,
         "generated_at_utc": now_iso(),
-        "answers_file": str(answers_path),
-        "judge_scores_file": str(judges_path),
+        "answers_file": relative_to_root(answers_path),
+        "judge_scores_file": relative_to_root(judges_path),
         "question_count": len({record.get("question_id") for record in answers}),
         "answer_record_count": len(answers),
         "judge_record_count": len(judges),
