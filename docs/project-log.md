@@ -730,7 +730,7 @@ feedback capture, query caching, and Tier 2 human-evaluation support.
 - Use the new 10-question Tier 2 set for realistic manual RAG-quality review.
 - Use five Tier 2 questions as the Ask-tab examples and expose all Tier 2
   questions in the Review tab.
-- Use seven charts in Monitoring, exceeding the five-chart course requirement:
+- Use seven charts in Monitoring, one more than the five charts originally required for the course project:
   - Answer status distribution.
   - Feedback distribution.
   - Average manual-review scores.

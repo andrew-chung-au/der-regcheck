@@ -2,22 +2,25 @@
 
 ## Overview
 
-This runbook describes how to reproduce the DER RegCheck environment, run the application with the committed processed data, and optionally re-run the ingestion, evaluation, and answer-generation pipelines.
+This runbook covers setup, running the app, rebuilding each pipeline stage, re-running the evaluations, and troubleshooting. For the project summary see the [README](../README.md); for what is outstanding see [`known-issues-and-roadmap.md`](known-issues-and-roadmap.md).
 
-**Status:** Ingestion, raw extraction, deterministic evidence normalisation, quality reporting, tariff regression tests, structural chunking, embedding generation, database loading, production PostgreSQL/pgvector retrieval evaluation, cached query-rewrite evaluation, evaluator regression tests, summariser regression tests, answer-generation evaluation, the Streamlit interface, and the containerised deployment are implemented. Historical file-based evaluations (v1 and v2) are retained as offline-baseline artifacts. The production-aligned PostgreSQL evaluation completed on 2026-09-05 is authoritative for the deployed retrieval path. The runtime application uses original-query vector retrieval with reranking and the `v3_few_shot_grounded_rag` prompt.
+**Current state:** The runtime application uses original-query vector retrieval (pgvector, top 50), `BAAI/bge-reranker-base` reranking (top 10), and the `v3_few_shot_grounded_rag` prompt. The PostgreSQL-aligned evaluation of 2026-09-05 is the authoritative retrieval result. The earlier file-based evaluations (v1, v2) are kept as historical artefacts only.
 
-The v1 corpus and all processed artifacts—extracted text, normalised blocks, chunks, and embeddings—are committed to the repository so the system can run without re-downloading source documents. The ingestion pipeline is provided for future corpus refreshes and advanced users; one source may require manual replacement because of intermittent automated-download blocking.
+All processed artefacts (extracted text, normalised blocks, chunks, embeddings) are committed, so the app runs without downloading the source documents. The ingestion pipeline is only needed to refresh the corpus. One source (the SCE Interconnection Handbook) may need a manual download because automated download is intermittently blocked.
 
-For project progress, implementation status, and planned next work, see [`docs/project-log.md`](project-log.md). For evaluation methodology and full results, including the RAG-impact evaluation, see [`docs/evaluation-notes.md`](evaluation-notes.md). For design rationale and configuration-selection decisions, see [`docs/decisions.md`](decisions.md).
+**Verification note.** The pipeline-stage commands below were checked against each script's `argparse` definitions during the documentation review of 2026-11-18. Only the unit tests were actually executed in that review (see [Run regression tests](#run-regression-tests)). Commands that need Docker, PostgreSQL, a Gemini key or Hugging Face model downloads were not executed.
+
+For design rationale see [`decisions.md`](decisions.md); for evaluation methodology and results see [`evaluation-notes.md`](evaluation-notes.md); for the build history see [`project-log.md`](project-log.md).
 
 ---
 
 ## Prerequisites
 
 - Python 3.13 or later.
-- `uv` for dependency management: [https://github.com/astral.sh/uv](https://github.com/astral-sh/uv).
+- `uv` for dependency management: <https://github.com/astral-sh/uv>.
 - Docker and Docker Compose.
-- A local `.env` file containing the database and LLM settings required by the project.
+- A local `.env` file containing the database and LLM settings (copy `.env.example`; a `GOOGLE_API_KEY` is needed for answer generation and for most evaluation scripts).
+- Network access to Hugging Face on first use: the Nomic embedder and `BAAI/bge-reranker-base` are downloaded then, and the Compose setup has no model-cache volume.
 - Sufficient local disk space for the application image, model caches, and PostgreSQL volume.
 
 ---
@@ -178,17 +181,12 @@ Run the loader inside the application container:
 ```bash
 docker compose exec app python -m src.scripts.load_chunks_to_db \
   --chunks-dir /app/data/processed/chunks \
-  --embeddings-file /app/data/processed/embeddings/embeddings.jsonl
+  --embeddings-dir /app/data/processed/embeddings
 ```
 
-Expected output:
+Expected output ends with `Chunks: 1049` and `Embeddings: 1049`.
 
-```text
-Loaded 1,049 chunks into database
-Loaded 1,049 embeddings into database
-```
-
-The loader is safe to run again when the database schema supports replacement or upsert behaviour. If you need a clean reload, stop the stack and remove the database volume only when you intentionally want to delete the existing database state:
+The loader upserts by `chunk_id` (`ON CONFLICT ... DO UPDATE`), so re-running it after regenerating chunks or embeddings refreshes changed rows. It does not delete chunks that no longer exist in the source files. If you need a clean reload (for example after removing chunks), stop the stack and remove the database volume only when you intentionally want to delete the existing database state:
 
 ```bash
 docker compose down -v
@@ -225,22 +223,9 @@ chunk_embeddings: 1049
 
 The `vector` extension should be present.
 
-### Run tests in the application container
+### Run tests
 
-Run the full test suite:
-
-```bash
-docker compose exec app python -m unittest discover -s tests
-```
-
-Run the evaluator and answer-generation regression tests:
-
-```bash
-docker compose exec app python -m unittest \
-  tests.test_evaluate_retrieval \
-  tests.test_summarise_evaluation \
-  tests.test_answer_generator
-```
+The application image does not contain `tests/` (the Dockerfile copies only `src`, `config`, `data/processed`, `data/evaluation`, `data/feedback` and `.streamlit`), so tests cannot be run with `docker compose exec app`. Run them on the host (see [Run regression tests](#run-regression-tests)).
 
 ### Stop the services
 
@@ -305,7 +290,7 @@ uv run python -m src.database.db_init
 ```bash
 uv run python -m src.scripts.load_chunks_to_db \
   --chunks-dir data/processed/chunks \
-  --embeddings-file data/processed/embeddings/embeddings.jsonl
+  --embeddings-dir data/processed/embeddings
 ```
 
 ### Run the Streamlit application
@@ -595,7 +580,7 @@ The chunking stage:
 rm -rf data/processed/chunks/*
 
 uv run python -m src.processing.chunk_documents \
-  --normalised-dir data/processed/normalised \
+  --input-dir data/processed/normalised \
   --config config/chunking.yaml \
   --output-dir data/processed/chunks
 ```
@@ -604,7 +589,7 @@ This writes:
 
 ```text
 data/processed/chunks/<document_id>.json
-data/processed/chunks/chunking_manifest.json
+data/processed/chunks/chunk_manifest.json
 ```
 
 ### Generate chunk quality reports
@@ -612,14 +597,14 @@ data/processed/chunks/chunking_manifest.json
 ```bash
 uv run python -m src.processing.quality_check_chunks \
   --chunks-dir data/processed/chunks \
-  --output-json data/processed/chunks/quality_report.json \
-  --output-md data/processed/chunks/quality_report.md
+  --output-json data/processed/chunks/chunk_quality_report.json \
+  --output-md data/processed/chunks/chunk_quality_report.md
 ```
 
 Review the Markdown report:
 
 ```bash
-cat data/processed/chunks/quality_report.md
+cat data/processed/chunks/chunk_quality_report.md
 ```
 
 ### Inspect chunk outputs
@@ -638,10 +623,10 @@ document = json.loads(
 chunks = document["chunks"]
 
 print(f"Total chunks: {len(chunks)}")
-print(f"Oversized chunks: {sum(1 for chunk in chunks if chunk['oversized'])}")
+print(f"Oversized chunks: {sum(1 for chunk in chunks if chunk['chunking_flags'])}")
 
 if chunks:
-    chunk = chunks
+    chunk = chunks[0]
     print("\n" + "=" * 100)
     print(f"Chunk {chunk['chunk_id']}")
     print("Block types:", chunk["block_types"])
@@ -649,14 +634,14 @@ if chunks:
     print("Embedding text:", chunk["embedding_text"][:300])
     print("Citation:", chunk["citation"])
     print("Source policy:", chunk["source_policy"])
-    print("Neighbours:", chunk["neighbour_chunk_ids"])
+    print("Neighbours:", chunk["previous_chunk_id"], chunk["next_chunk_id"])
 PY
 ```
 
 Expected chunking behaviour:
 
 - 1,049 total chunks across six sources.
-- Five oversized chunks, all handbook table-of-contents blocks of approximately 1,033–1,561 tokens.
+- Five chunks flagged `single_block_exceeds_hard_limit`, all in the handbook (about 804 to 1,561 estimated tokens, against a hard limit of 750).
 - `evidence_text` remains unchanged from normalised blocks.
 - `embedding_text` includes heading context.
 - Neighbour links enable navigation.
@@ -684,15 +669,16 @@ Use the embedding module implemented in the repository:
 rm -rf data/processed/embeddings/*
 
 uv run python -m src.processing.embed_chunks \
-  --chunks-dir data/processed/chunks \
-  --output-dir data/processed/embeddings \
-  --model nomic-ai/nomic-embed-text-v1.5
+  --input-dir data/processed/chunks \
+  --config config/embedding.yaml
 ```
 
-This writes:
+The output directory and model are read from `config/embedding.yaml` (`output_dir`, `model_id`, `revision`); there are no `--output-dir` or `--model` options. The script loads the Nomic model through `transformers` with `trust_remote_code=True`, so the first run downloads it from Hugging Face.
+
+This writes one file per source plus a manifest:
 
 ```text
-data/processed/embeddings/embeddings.jsonl
+data/processed/embeddings/<document_id>.jsonl
 data/processed/embeddings/embedding_manifest.json
 ```
 
@@ -703,7 +689,7 @@ uv run python - <<'PY'
 import json
 
 with open(
-    "data/processed/embeddings/embeddings.jsonl",
+    "data/processed/embeddings/sce_interconnection_web.jsonl",
     "r",
     encoding="utf-8",
 ) as file:
@@ -713,9 +699,8 @@ with open(
 
         embedding = json.loads(line)
         print(f"\nChunk {embedding['chunk_id']}")
-        print(f"Vector dimension: {len(embedding['vector'])}")
-        print(f"Model: {embedding['embedding_model']}")
-        print(f"Prefix: {embedding['embedding_prefix']}")
+        print(f"Vector dimension: {len(embedding['embedding'])}")
+        print(f"Model: {embedding['model_id']}")
 PY
 ```
 
@@ -723,7 +708,7 @@ Expected embedding outputs:
 
 - 1,049 embeddings, one per chunk.
 - 768-dimensional vectors.
-- `search_document:` prefix applied to document embedding input.
+- The `search_document:` prefix is applied to the document embedding input (set in `config/embedding.yaml`).
 
 ---
 
@@ -754,15 +739,10 @@ uv run python -m src.database.db_init
 ```bash
 uv run python -m src.scripts.load_chunks_to_db \
   --chunks-dir data/processed/chunks \
-  --embeddings-file data/processed/embeddings/embeddings.jsonl
+  --embeddings-dir data/processed/embeddings
 ```
 
-Expected output:
-
-```text
-Loaded 1,049 chunks into database
-Loaded 1,049 embeddings into database
-```
+Expected output ends with `Chunks: 1049` and `Embeddings: 1049`.
 
 ### Verify database contents
 
@@ -777,10 +757,10 @@ conn = psycopg2.connect(database_url)
 cur = conn.cursor()
 
 cur.execute("SELECT COUNT(*) FROM chunks")
-print(f"Chunks: {cur.fetchone()}")
+print(f"Chunks: {cur.fetchone()[0]}")
 
 cur.execute("SELECT COUNT(*) FROM chunk_embeddings")
-print(f"Embeddings: {cur.fetchone()}")
+print(f"Embeddings: {cur.fetchone()[0]}")
 
 cur.close()
 conn.close()
@@ -800,12 +780,13 @@ Run this only when intentionally creating a new benchmark. Do not regenerate que
 ```bash
 uv run python -m src.evaluation.generate_synthetic_queries \
   --chunks-dir data/processed/chunks \
-  --output-file data/evaluation/queries.jsonl \
-  --num-queries 100 \
-  --model gemini-3.5-flash-lite
+  --output data/evaluation/queries.jsonl \
+  --seed 42
 ```
 
-Expected output:
+The number of queries per source is hard-coded in `generate_synthetic_queries.py` (there is no `--num-queries` option), and the model comes from `MODEL_ID`. Use `--rate-limit-calls` and `--rate-limit-window` to stay within API limits. With the default `--output` this overwrites the committed benchmark.
+
+Expected output (for the committed benchmark):
 
 - 100 LLM-generated queries.
 - Gold chunk IDs and metadata.
@@ -819,28 +800,23 @@ The current production-aligned benchmark is `data/evaluation/queries.jsonl`. Tre
 
 ### Test the deployed retrieval path
 
-The exact command-line interface may vary with the current retrieval module. The runtime application is the canonical integration path:
+With the database loaded, run the retrieval-only demo (needs the database and the local models, not Gemini):
 
 ```bash
-uv run streamlit run src/ui/streamlit_app.py
+uv run python -m src.scripts.demo_retrieval --question "What does SCE Rule 21 require for smart inverter reactive power?" --top-k 10
 ```
-
-The deployed retrieval path can use:
-
-- PostgreSQL full-text lexical retrieval.
-- pgvector vector retrieval.
-- PostgreSQL-backed hybrid retrieval.
-- Runtime query embedding using the Nomic `search_query:` prefix.
-- Cross-encoder reranking using `BAAI/bge-reranker-base`.
 
 The runtime application uses:
 
 ```text
 Original user query
-→ pgvector vector retrieval
+→ Nomic query embedding (search_query: prefix)
+→ pgvector vector retrieval (top 50 candidates)
 → BAAI/bge-reranker-base cross-encoder reranking
 → top 10 evidence chunks
 ```
+
+PostgreSQL full-text and hybrid retrieval exist in `src/retrieval/retrieve.py` and are used by the evaluator, not by the app.
 
 Inspect returned source metadata and citation locators before treating any result as evidence for a requirement.
 
@@ -881,13 +857,7 @@ The retrieval grid contains:
 
 Ensure PostgreSQL is running and contains the current 1,049 chunks and embeddings before starting.
 
-Use the evaluator's current command-line help to confirm supported options:
-
-```bash
-uv run python -m src.evaluation.evaluate_retrieval --help
-```
-
-The intended evaluation inputs and outputs are:
+The evaluation inputs and outputs are:
 
 ```text
 Input:
@@ -897,10 +867,11 @@ Output:
 data/evaluation/evaluation_results_postgres.jsonl
 ```
 
-When supported by the current evaluator interface, use:
+Run:
 
 ```bash
 uv run python -m src.evaluation.evaluate_retrieval \
+  --mode retrieval \
   --queries data/evaluation/queries.jsonl \
   --output data/evaluation/evaluation_results_postgres.jsonl \
   --alphas "0.3,0.5,0.7" \
@@ -908,35 +879,13 @@ uv run python -m src.evaluation.evaluate_retrieval \
   --resume
 ```
 
-If the evaluator exposes an explicit database URL option, use:
-
-```bash
-uv run python -m src.evaluation.evaluate_retrieval \
-  --queries data/evaluation/queries.jsonl \
-  --output data/evaluation/evaluation_results_postgres.jsonl \
-  --database-url "$DATABASE_URL" \
-  --alphas "0.3,0.5,0.7" \
-  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
-  --resume
-```
+The evaluator reads the database from `DATABASE_URL` (there is no `--database-url` option). Other options: `--rerank-only` (evaluate only the two reranked retrievers) and `--overwrite`.
 
 Use `--resume` only when continuing the same benchmark, corpus, evaluator implementation, and configuration grid. Use `--overwrite` only when deliberately replacing an existing result artifact.
 
 ### Summarise PostgreSQL retrieval results
 
-Confirm supported options first:
-
-```bash
-uv run python -m src.evaluation.summarise_evaluation --help
-```
-
-The intended summary output is:
-
-```text
-data/evaluation/evaluation_summary_postgres.json
-```
-
-When supported by the current summariser interface, use:
+The summary output is `data/evaluation/evaluation_summary_postgres.json`. Run:
 
 ```bash
 uv run python -m src.evaluation.summarise_evaluation \
@@ -1004,23 +953,37 @@ It records the original query ID, rewrite technique, generated text, timestamp, 
 
 ### Refresh cached rewrites
 
-Only regenerate rewrites when intentionally revising the rewrite-generation method or benchmark. Inspect the current command interface first:
+Only regenerate rewrites when intentionally revising the rewrite-generation method or benchmark. The script takes `--queries` and `--output` (defaults: `data/evaluation/queries.jsonl` and `data/evaluation/query_rewrites.jsonl`) and calls Gemini:
 
 ```bash
-uv run python -m src.evaluation.generate_query_rewrites --help
+uv run python -m src.evaluation.generate_query_rewrites
 ```
 
 Keep the original query IDs stable if the goal is a comparable evaluation.
 
 ### Run the PostgreSQL rewrite evaluation
 
-Use the implemented query-rewrite evaluation entry point and confirm its options before running:
+Use `evaluate_retrieval` in `rewrites-full` mode:
 
 ```bash
-uv run python -m src.evaluation.evaluate_retrieval --help
+uv run python -m src.evaluation.evaluate_retrieval \
+  --mode rewrites-full \
+  --queries data/evaluation/queries.jsonl \
+  --query-rewrites data/evaluation/query_rewrites.jsonl \
+  --rewrite-output data/evaluation/query_rewrite_results_postgres.jsonl \
+  --rerank-weightings "equal,authority_heavy,page_heavy,section_heavy,source_heavy" \
+  --resume
 ```
 
-The intended inputs and outputs are:
+`--rewrite-retrievers` defaults to `vector,hybrid,hybrid_rerank,vector_rerank`. Summarise the rewrite results with the same summariser:
+
+```bash
+uv run python -m src.evaluation.summarise_evaluation \
+  --input data/evaluation/query_rewrite_results_postgres.jsonl \
+  --output data/evaluation/query_rewrite_summary_postgres.json
+```
+
+Inputs and outputs:
 
 ```text
 Input queries:
@@ -1109,13 +1072,7 @@ The RAG-impact evaluation uses:
 
 ## Run prompt-regression evaluation
 
-Inspect the current evaluator interface first:
-
-```bash
-uv run python -m src.evaluation.evaluate_llm_answers --help
-```
-
-The intended artifacts are:
+The artifacts are:
 
 ```text
 data/evaluation/llm_answers.jsonl
@@ -1124,7 +1081,7 @@ data/evaluation/llm_evaluation_summary.json
 data/evaluation/llm_evaluation_report.md
 ```
 
-When supported by the current evaluator interface, generate answers with:
+Generate answers with:
 
 ```bash
 uv run python -m src.evaluation.evaluate_llm_answers \
@@ -1181,13 +1138,7 @@ The impact evaluation uses:
 
 ### Run impact answer generation
 
-Inspect the current evaluator interface:
-
-```bash
-uv run python -m src.evaluation.generate_impact_answers --help
-```
-
-The intended artifacts are:
+The artifacts are:
 
 ```text
 data/evaluation/impact_answers.jsonl
@@ -1217,7 +1168,7 @@ uv run python -m src.evaluation.generate_impact_answers \
 ```bash
 uv run python -m src.evaluation.judge_impact_answers \
   --answers data/evaluation/impact_answers.jsonl \
-  --judge-output data/evaluation/impact_judge_scores.jsonl \
+  --output data/evaluation/impact_judge_scores.jsonl \
   --overwrite
 ```
 
@@ -1226,7 +1177,7 @@ Run only the three core retrieval-impact comparisons:
 ```bash
 uv run python -m src.evaluation.judge_impact_answers \
   --answers data/evaluation/impact_answers.jsonl \
-  --judge-output data/evaluation/impact_judge_scores.jsonl \
+  --output data/evaluation/impact_judge_scores.jsonl \
   --comparisons naive_no_evidence:zero_shot_rag,zero_shot_rag:full_v3_rag,naive_no_evidence:full_v3_rag \
   --overwrite
 ```
@@ -1249,37 +1200,18 @@ For detailed findings, pairwise preferences, pooled judge scores, and interpreta
 
 ## Run regression tests
 
-Run the full test suite:
-
 ```bash
-make test
+make test                                   # runs the module lists in the Makefile (unittest)
+uv run python -m unittest discover -s tests # all test modules
+uv run pytest                               # pytest is a dev dependency; pytest.ini sets the path
 ```
 
-Equivalent direct command:
+Notes:
 
-```bash
-uv run python -m unittest discover -s tests
-```
-
-Run evaluator and answer-generation regression tests:
-
-```bash
-uv run python -m unittest \
-  tests.test_evaluate_retrieval \
-  tests.test_summarise_evaluation \
-  tests.test_answer_generator
-```
-
-Run normalisation and quality tests:
-
-```bash
-uv run python -m unittest \
-  tests.test_normalise_documents \
-  tests.test_quality_check_normalised \
-  tests.test_quality_check_chunks
-```
-
-Regression tests cover pipeline behaviour, evaluator and summariser behaviour, unique-query counting, variability calculations, composite-score ranking, and answer-generation citation validation.
+- The four tests in `tests/test_db_schema.py` and the three integration tests in `tests/test_retrieval.py` are skipped unless `DATABASE_URL` points to a database that has the schema and data loaded.
+- `tests/test_embed_chunks.py` downloads the Nomic model from Hugging Face in `setUpClass`, so it errors without network access.
+- Last observed result (2026-11-18, Python 3.11, CPU PyTorch, no database, no Hugging Face access): 36 passed, 7 skipped, 1 error (the embedding test). Not yet re-run on Python 3.13 or against a live database.
+- Test areas: normalisation (with real tariff page fixtures), chunking, chunk and normalisation quality checks, answer generation and citation validation, evaluator and summariser logic, the demo script, and the schema. There are no tests for `src/ui/`, `src/observability/query_cache.py` or `src/llm_client.py`.
 
 ---
 
@@ -1343,24 +1275,25 @@ uv run python -m src.processing.quality_check_normalised \
 # 5. Re-run chunking.
 rm -rf data/processed/chunks/*
 uv run python -m src.processing.chunk_documents \
-  --normalised-dir data/processed/normalised \
+  --input-dir data/processed/normalised \
   --config config/chunking.yaml \
   --output-dir data/processed/chunks
 
 # 6. Re-run chunk quality checks.
 uv run python -m src.processing.quality_check_chunks \
   --chunks-dir data/processed/chunks \
-  --output-json data/processed/chunks/quality_report.json \
-  --output-md data/processed/chunks/quality_report.md
+  --output-json data/processed/chunks/chunk_quality_report.json \
+  --output-md data/processed/chunks/chunk_quality_report.md
 
 # 7. Re-run embeddings.
 rm -rf data/processed/embeddings/*
 uv run python -m src.processing.embed_chunks \
-  --chunks-dir data/processed/chunks \
-  --output-dir data/processed/embeddings \
-  --model nomic-ai/nomic-embed-text-v1.5
+  --input-dir data/processed/chunks \
+  --config config/embedding.yaml
 
-# 8. Recreate the local database only if a clean reload is required.
+# 8. Recreate the local database. Optional: the loader upserts, but only a
+# clean reload removes chunks that no longer exist.
+# WARNING: -v also deletes cached answers, feedback and manual scores.
 docker compose down -v
 docker compose up -d db
 
@@ -1370,18 +1303,14 @@ uv run python -m src.database.db_init
 # 10. Load refreshed chunks and embeddings.
 uv run python -m src.scripts.load_chunks_to_db \
   --chunks-dir data/processed/chunks \
-  --embeddings-file data/processed/embeddings/embeddings.jsonl
+  --embeddings-dir data/processed/embeddings
 
 # 11. Run regression tests.
 make test
 
-# 12. Re-run the PostgreSQL retrieval evaluation after confirming
-# the current evaluator command-line options.
-uv run python -m src.evaluation.evaluate_retrieval --help
-
-# 13. Summarise the refreshed retrieval evaluation after confirming
-# the current summariser command-line options.
-uv run python -m src.evaluation.summarise_evaluation --help
+# 12. Re-run the PostgreSQL retrieval evaluation to a NEW dated output file
+# (see "Run retrieval evaluation"), then summarise it with
+# src.evaluation.summarise_evaluation.
 ```
 
 Do not delete `data/evaluation/queries.jsonl` or `data/evaluation/query_rewrites.jsonl` during a routine rerun if the goal is comparable evaluation against the established benchmark.
@@ -1609,7 +1538,7 @@ postgresql://postgres:postgres@db:5432/der-regcheck
 
 ### Chunking produces oversized chunks
 
-- Check `data/processed/chunks/quality_report.md`.
+- Check `data/processed/chunks/chunk_quality_report.md`.
 - Verify whether the chunks are accepted exceptions, such as handbook table-of-contents blocks.
 - If substantive content is oversized, consider adjusting `config/chunking.yaml`.
 - Do not split citation-grade evidence mid-block without recording the change and its implications.
@@ -1619,14 +1548,14 @@ postgresql://postgres:postgres@db:5432/der-regcheck
 - Confirm `sentence-transformers` is installed.
 - Verify internet connectivity for model download or use a cached model.
 - Check that `data/processed/chunks/` exists and contains valid chunk JSON files.
-- Confirm the model is `nomic-ai/nomic-embed-text-v1.5`.
+- Confirm the model is `nomic-ai/nomic-embed-text-v1.5` (`config/embedding.yaml`).
 - Check available memory, particularly when running inside Docker.
 
 ### PostgreSQL loading fails
 
 - Confirm the database schema exists.
 - Confirm `data/processed/chunks/` contains chunk files.
-- Confirm `data/processed/embeddings/embeddings.jsonl` exists.
+- Confirm `data/processed/embeddings/*.jsonl` exists (one file per source).
 - Confirm the number of embeddings matches the number of chunks.
 - Confirm embedding vectors have dimension 768.
 - Confirm `DATABASE_URL` points to the intended database.
@@ -1736,12 +1665,13 @@ Use a new dated output path when an experiment is not directly comparable with t
 
 ## Documentation map
 
-- [`README.md`](../README.md) — Project overview, setup, architecture, and high-level results.
-- [`docs/project-log.md`](project-log.md) — Working journal and stage-by-stage progress.
-- [`docs/decisions.md`](decisions.md) — Design choices, alternatives, trade-offs, and implementation decisions.
-- [`docs/dataset-notes.md`](dataset-notes.md) — Corpus details, source hierarchy, processing, distribution, and quality notes.
-- [`docs/evaluation-notes.md`](evaluation-notes.md) — Retrieval protocol, historical v1/v2 context, authoritative v3 results, prompt evaluation, Tier 2 review, and RAG-impact evaluation.
-- [`docs/runbook.md`](runbook.md) — This setup, reproduction, evaluation, and troubleshooting guide.
+- [`README.md`](../README.md): project overview, quick start, results summary.
+- [`docs/known-issues-and-roadmap.md`](known-issues-and-roadmap.md): current state, verified findings, next steps.
+- [`docs/project-log.md`](project-log.md): build journal.
+- [`docs/decisions.md`](decisions.md): design choices, alternatives and trade-offs.
+- [`docs/dataset-notes.md`](dataset-notes.md): corpus, source hierarchy, processing and quality notes.
+- [`docs/evaluation-notes.md`](evaluation-notes.md): retrieval and answer evaluation protocols and results.
+- [`docs/runbook.md`](runbook.md): this document.
 
 ---
 
